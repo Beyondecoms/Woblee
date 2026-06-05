@@ -1,0 +1,691 @@
+{% comment %}
+  Welcome Category Icons Section
+  - Centered heading + subtext with optional inline link
+  - Scrollable circular category icons with labels
+  - Optional CTA button below icons
+  - Hover image swap + hover text color
+{% endcomment %}
+
+<section class="wci-section" id="wci-{{ section.id }}">
+
+  {% comment %} Heading Block {% endcomment %}
+  {% if section.settings.heading != blank %}
+    <h2 class="wci-heading">{{ section.settings.heading }}</h2>
+  {% endif %}
+
+  {% comment %} Subtext with optional inline link {% endcomment %}
+  {% if section.settings.subtext_line_1 != blank or section.settings.subtext_line_2 != blank %}
+    <div class="wci-subtext">
+      {% if section.settings.subtext_line_1 != blank %}
+        <p>{{ section.settings.subtext_line_1 }}</p>
+      {% endif %}
+      {% if section.settings.subtext_line_2 != blank %}
+        <p>
+          {{ section.settings.subtext_line_2_before }}
+          {% if section.settings.inline_link_label != blank %}
+            <a href="{{ section.settings.inline_link_url | default: '#' }}" class="wci-inline-link">{{ section.settings.inline_link_label }}</a>
+          {% endif %}
+          {{ section.settings.subtext_line_2_after }}
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% comment %} Category Icons {% endcomment %}
+  {% if section.blocks.size > 0 %}
+    <div class="wci-scroll-wrap">
+      <div class="wci-icons-row">
+        {% for block in section.blocks %}
+          {% if block.type == 'category' %}
+            <a class="wci-item" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
+              <div class="wci-circle" style="background-color: {{ block.settings.circle_bg }};">
+                {% if block.settings.image != blank %}
+                  <div class="wci-icon-stack">
+                    <img
+                      src="{{ block.settings.image | image_url: width: 200 }}"
+                      alt="{{ block.settings.label | escape }}"
+                      class="wci-icon-img wci-icon-img--default"
+                      loading="lazy"
+                      width="200"
+                      height="200"
+                    >
+
+                    {% if block.settings.image_hover != blank %}
+                      <img
+                        src="{{ block.settings.image_hover | image_url: width: 200 }}"
+                        alt="{{ block.settings.label | escape }}"
+                        class="wci-icon-img wci-icon-img--hover"
+                        loading="lazy"
+                        width="200"
+                        height="200"
+                      >
+                    {% endif %}
+                  </div>
+                {% else %}
+                  <div class="wci-icon-placeholder">
+                    {{ 'image' | placeholder_svg_tag: 'wci-placeholder-svg' }}
+                  </div>
+                {% endif %}
+              </div>
+
+              {% if block.settings.label != blank %}
+                <span class="wci-label">{{ block.settings.label }}</span>
+              {% endif %}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% comment %} CTA Button {% endcomment %}
+  {% if section.settings.cta_label != blank %}
+    <div class="wci-cta-wrap">
+      <a href="{{ section.settings.cta_url | default: '#' }}" class="wci-cta-btn">
+        {{ section.settings.cta_label }}
+      </a>
+    </div>
+  {% endif %}
+
+</section>
+
+<style>
+#wci-{{ section.id }} {
+  --wci-bg: var(--wb-color-white);
+  --wci-heading-color: var(--wb-color-blue);
+  --wci-subtext-color: var(--wb-color-grey);
+  --wci-label-color: #000000;
+  --wci-label-hover-color: #0c4168;
+  --wci-inline-color: var(--wb-color-lime);
+
+  --wci-btn-bg: var(--wb-color-lime);
+  --wci-btn-color: var(--wb-color-blue);
+  --wci-btn-hover-bg: var(--wb-color-blue);
+
+  --wci-circle-size: {{ section.settings.circle_size }}px;
+  --wci-padding-top: {{ section.settings.padding_top }}px;
+  --wci-padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+
+.wci-section {
+  background: var(--wci-bg);
+  padding: var(--wci-padding-top) 20px var(--wci-padding-bottom);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* =========================
+   HEADING
+========================= */
+
+.wci-heading {
+  font-family: var(--wb-font-heading);
+  font-size: var(--wb-h2);
+  font-weight: var(--wb-fw-extrabold);
+  color: var(--wci-heading-color);
+  margin: 0 0 18px;
+  letter-spacing: var(--wb-letter-tight);
+  line-height: var(--wb-line-tight);
+  text-transform: uppercase;
+}
+
+/* =========================
+   SUBTEXT
+========================= */
+
+.wci-subtext {
+  font-family: var(--wb-font-body);
+  font-size: var(--wb-body);
+  font-weight: var(--wb-fw-medium);
+  color: var(--wci-subtext-color);
+  line-height: var(--wb-line-relaxed);
+  margin: 0 auto 10px;
+  max-width: 680px;
+}
+
+.wci-subtext p {
+  margin: 0 0 6px;
+}
+
+.wci-inline-link {
+  color: var(--wci-inline-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: var(--wb-fw-bold);
+  transition: var(--wb-transition);
+}
+
+.wci-inline-link:hover {
+  opacity: 0.8;
+}
+
+/* =========================
+   ICONS WRAPPER
+========================= */
+
+.wci-scroll-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-bottom: 15px;
+}
+
+.wci-scroll-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.wci-icons-row {
+  display: flex;
+  justify-content: center;
+  gap: {{ section.settings.icon_gap }}px;
+  padding: 8px 16px;
+  min-width: max-content;
+  margin: 0 auto;
+}
+
+/* =========================
+   ICON ITEM
+========================= */
+
+.wci-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.wci-circle {
+  width: var(--wci-circle-size);
+  height: var(--wci-circle-size);
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.wci-item:hover .wci-circle {
+  transform: translateY(-6px);
+  border-color: var(--wb-color-lime);
+  box-shadow: var(--wb-shadow-md);
+}
+
+.wci-icon-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.wci-icon-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.wci-icon-img--default {
+  opacity: 1;
+  z-index: 1;
+}
+
+.wci-icon-img--hover {
+  opacity: 0;
+  z-index: 2;
+}
+
+.wci-item:hover .wci-icon-img--default {
+  opacity: 0;
+}
+
+.wci-item:hover .wci-icon-img--hover {
+  opacity: 1;
+}
+
+.wci-icon-placeholder {
+  width: 60%;
+  height: 60%;
+  opacity: 0.3;
+}
+
+.wci-placeholder-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================
+   LABEL
+========================= */
+
+.wci-label {
+  font-family: var(--wb-font-body);
+  font-size: var(--wb-caption);
+  font-weight: var(--wb-fw-bold);
+  letter-spacing: var(--wb-letter-wide);
+  text-transform: uppercase;
+  color: var(--wci-label-color);
+  white-space: nowrap;
+  line-height: 1.2;
+  transition: color 0.25s ease;
+}
+
+.wci-item:hover .wci-label {
+  color: var(--wci-label-hover-color);
+}
+
+/* =========================
+   CTA BUTTON
+========================= */
+
+.wci-cta-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.wci-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: var(--wb-btn-height);
+
+  padding:
+    var(--wb-btn-padding-y)
+    var(--wb-btn-padding-x);
+
+  color: var(--wci-btn-color);
+
+  border: 2px solid #0C4168;
+
+  font-family: var(--wb-font-heading);
+  font-size: var(--wb-btn-font-size);
+  font-weight: var(--wb-btn-font-weight);
+
+  letter-spacing: var(--wb-btn-letter-spacing);
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  transition: var(--wb-transition);
+
+  border-radius: var(--wb-btn-radius);
+}
+
+.wci-cta-btn:hover {
+  background: var(--wci-btn-hover-bg);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .wci-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .wci-icons-row {
+    justify-content: flex-start;
+    gap: calc({{ section.settings.icon_gap }}px - 10px);
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .wci-heading {
+    font-size: clamp(32px, 9vw, 42px);
+    line-height: 0.98;
+  }
+
+  .wci-subtext {
+    font-size: 14px;
+    margin-bottom: 36px;
+  }
+
+  .wci-label {
+    font-size: 11px;
+  }
+
+  .wci-circle {
+    width: calc(var(--wci-circle-size) * 0.82);
+    height: calc(var(--wci-circle-size) * 0.82);
+  }
+
+  .wci-cta-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Category Icons",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "Welcome to Andamen"
+    },
+    {
+      "type": "text",
+      "id": "heading_font",
+      "label": "Heading font name",
+      "default": "Garamond"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading font size (px)",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "default": 52
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Subtext"
+    },
+    {
+      "type": "text",
+      "id": "subtext_line_1",
+      "label": "Subtext line 1",
+      "default": "We craft premium menswear, designed to last."
+    },
+    {
+      "type": "text",
+      "id": "subtext_line_2_before",
+      "label": "Subtext line 2 — text before inline link",
+      "default": "Start exploring our categories and make sure you"
+    },
+    {
+      "type": "text",
+      "id": "inline_link_label",
+      "label": "Inline link label",
+      "default": "join Club Andamen",
+      "info": "Leave blank to hide the inline link"
+    },
+    {
+      "type": "url",
+      "id": "inline_link_url",
+      "label": "Inline link URL"
+    },
+    {
+      "type": "text",
+      "id": "subtext_line_2_after",
+      "label": "Subtext line 2 — text after inline link",
+      "default": "for exclusive benefits."
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "label": "Subtext font size (px)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "JOIN CLUB ANDAMEN",
+      "info": "Leave blank to hide the button"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "btn_font_size",
+      "label": "Button font size (px)",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "btn_padding_v",
+      "label": "Button vertical padding (px)",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "btn_padding_h",
+      "label": "Button horizontal padding (px)",
+      "min": 20,
+      "max": 100,
+      "step": 4,
+      "default": 56
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "range",
+      "id": "circle_size",
+      "label": "Circle size (px)",
+      "min": 60,
+      "max": 160,
+      "step": 4,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "icon_gap",
+      "label": "Gap between icons (px)",
+      "min": 12,
+      "max": 60,
+      "step": 4,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "label": "Label font size (px)",
+      "min": 9,
+      "max": 16,
+      "step": 1,
+      "default": 11
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext color",
+      "default": "#444444"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Icon label color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "inline_link_color",
+      "label": "Inline link color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg",
+      "label": "Button background",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "btn_hover_bg",
+      "label": "Button hover background",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Section top padding (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Section bottom padding (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "text",
+      "id": "body_font",
+      "label": "Body / label font name",
+      "default": "Helvetica Neue"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon image",
+          "info": "Use square images for best results. PNG with transparent background works great."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_hover",
+          "label": "Hover image",
+          "info": "This image will show when hovering on the category."
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "SHIRTS"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        },
+        {
+          "type": "color",
+          "id": "circle_bg",
+          "label": "Circle background color",
+          "default": "#f0ece4"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Category Icons",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": { "label": "SHOP SALE", "circle_bg": "#1a6b5a" }
+        },
+        {
+          "type": "category",
+          "settings": { "label": "SHIRTS", "circle_bg": "#f0ece4" }
+        },
+        {
+          "type": "category",
+          "settings": { "label": "POLOS", "circle_bg": "#f0ece4" }
+        },
+        {
+          "type": "category",
+          "settings": { "label": "TEES", "circle_bg": "#f0ece4" }
+        },
+        {
+          "type": "category",
+          "settings": { "label": "BOTTOMS", "circle_bg": "#f0ece4" }
+        },
+        {
+          "type": "category",
+          "settings": { "label": "ETHNICWEAR", "circle_bg": "#f0ece4" }
+        },
+        {
+          "type": "category",
+          "settings": { "label": "SHOP ALL", "circle_bg": "#f0ece4" }
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12
+}
+{% endschema %}

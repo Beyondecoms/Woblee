@@ -1,0 +1,733 @@
+{% doc %}
+  @prompt
+    Create a premium 3D fashion hero/about section for a streetwear brand called Sidekick.
+    
+    Design style:
+    - Modern, bold, professional, and user-friendly
+    - Premium editorial look with strong visual hierarchy
+    - Smooth 3D depth effect with layered product/model cards
+    - Clean spacing, no clutter, no awkward motion
+    - Works beautifully on both desktop and mobile
+    
+    Layout:
+    - Left side: brand heading, short description, and optional CTA button
+    - Right side: 3 overlapping image cards with subtle perspective, depth, and floating effect
+    - Bottom strip/banner with animated keyword text like “We are bold / rebellious / fearless”
+    - Use a bright branded background with soft abstract shapes or gradients
+    - Cards should feel like they are floating in 3D space
+    
+    Animation:
+    - Use smooth hover tilt and parallax movement on desktop
+    - Cards should gently scale and rotate on hover, without shaking or jumping
+    - On scroll, add subtle entrance animation
+    - On mobile, reduce motion and keep the layout stable, touch-friendly, and easy to read
+    - Avoid aggressive or distracting animation
+    
+    Mobile behavior:
+    - Stack content cleanly
+    - Keep cards centered and visible without overlap issues
+    - Reduce card sizes and motion
+    - Ensure text stays readable and buttons are easy to tap
+    
+    UI quality:
+    - Premium fashion brand feel
+    - Smooth transitions
+    - Rounded corners
+    - Soft shadows
+    - Clear typography
+    - Responsive and polished
+    - User-friendly for conversion and brand storytelling
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-hero-3d-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background: {{ block.settings.background_color }};
+    position: relative;
+    overflow: hidden;
+    padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
+  }
+
+  .ai-hero-3d-container-{{ ai_gen_id }} {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ai-hero-3d-bg-shape-{{ ai_gen_id }} {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur({{ block.settings.shape_blur }}px);
+    opacity: {{ block.settings.shape_opacity }};
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .ai-hero-3d-bg-shape-1-{{ ai_gen_id }} {
+    width: 400px;
+    height: 400px;
+    background: {{ block.settings.shape_color_1 }};
+    top: -100px;
+    left: -100px;
+  }
+
+  .ai-hero-3d-bg-shape-2-{{ ai_gen_id }} {
+    width: 300px;
+    height: 300px;
+    background: {{ block.settings.shape_color_2 }};
+    bottom: -80px;
+    right: -80px;
+  }
+
+  .ai-hero-3d-content-wrapper-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    min-height: 500px;
+  }
+
+  .ai-hero-3d-text-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .ai-hero-3d-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .ai-hero-3d-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+    opacity: 0.85;
+    max-width: 500px;
+  }
+
+  .ai-hero-3d-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_radius }}px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+  }
+
+  .ai-hero-3d-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+    color: {{ block.settings.button_hover_text_color }};
+    transform: translateY(-2px);
+  }
+
+  .ai-hero-3d-cards-container-{{ ai_gen_id }} {
+    position: relative;
+    height: 500px;
+    perspective: 1500px;
+  }
+
+  .ai-hero-3d-card-{{ ai_gen_id }} {
+    position: absolute;
+    width: 280px;
+    height: 380px;
+    border-radius: {{ block.settings.card_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+
+  .ai-hero-3d-card-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-hero-3d-card-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-hero-3d-card-placeholder-{{ ai_gen_id }} svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.3;
+  }
+
+  .ai-hero-3d-card-1-{{ ai_gen_id }} {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateZ(0px) rotateY(-8deg);
+    z-index: 3;
+  }
+
+  .ai-hero-3d-card-2-{{ ai_gen_id }} {
+    top: 60px;
+    left: calc(50% - 140px);
+    transform: translateX(-50%) translateZ(-50px) rotateY(5deg);
+    z-index: 2;
+  }
+
+  .ai-hero-3d-card-3-{{ ai_gen_id }} {
+    top: 60px;
+    left: calc(50% + 140px);
+    transform: translateX(-50%) translateZ(-50px) rotateY(-5deg);
+    z-index: 2;
+  }
+
+  .ai-hero-3d-card-{{ ai_gen_id }}:hover {
+    transform: translateX(-50%) translateZ(20px) scale(1.05) rotateY(0deg);
+    z-index: 4;
+  }
+
+  .ai-hero-3d-card-1-{{ ai_gen_id }}:hover {
+    transform: translateX(-50%) translateZ(20px) scale(1.05) rotateY(0deg);
+  }
+
+  .ai-hero-3d-card-2-{{ ai_gen_id }}:hover {
+    transform: translateX(-50%) translateZ(20px) scale(1.05) rotateY(0deg);
+  }
+
+  .ai-hero-3d-card-3-{{ ai_gen_id }}:hover {
+    transform: translateX(-50%) translateZ(20px) scale(1.05) rotateY(0deg);
+  }
+
+  .ai-hero-3d-banner-{{ ai_gen_id }} {
+    margin-top: 80px;
+    padding: 24px;
+    background: {{ block.settings.banner_bg_color }};
+    border-radius: {{ block.settings.banner_radius }}px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ai-hero-3d-banner-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.banner_text_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.banner_text_color }};
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 989px) {
+    .ai-hero-3d-content-wrapper-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      min-height: auto;
+    }
+
+    .ai-hero-3d-heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.6);
+    }
+
+    .ai-hero-3d-description-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.description_size }}px * 0.9);
+    }
+
+    .ai-hero-3d-cards-container-{{ ai_gen_id }} {
+      height: 400px;
+      margin: 0 auto;
+      max-width: 400px;
+    }
+
+    .ai-hero-3d-card-{{ ai_gen_id }} {
+      width: 200px;
+      height: 280px;
+    }
+
+    .ai-hero-3d-card-1-{{ ai_gen_id }} {
+      transform: translateX(-50%) translateZ(0px) rotateY(0deg);
+    }
+
+    .ai-hero-3d-card-2-{{ ai_gen_id }} {
+      top: 50px;
+      left: calc(50% - 90px);
+      transform: translateX(-50%) translateZ(0px) rotateY(0deg);
+    }
+
+    .ai-hero-3d-card-3-{{ ai_gen_id }} {
+      top: 50px;
+      left: calc(50% + 90px);
+      transform: translateX(-50%) translateZ(0px) rotateY(0deg);
+    }
+
+    .ai-hero-3d-card-{{ ai_gen_id }}:hover {
+      transform: translateX(-50%) translateZ(0px) scale(1.02) rotateY(0deg);
+    }
+
+    .ai-hero-3d-banner-text-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.banner_text_size }}px * 0.7);
+    }
+
+    .ai-hero-3d-banner-{{ ai_gen_id }} {
+      margin-top: 60px;
+    }
+  }
+
+  @media (max-width: 749px) {
+    .ai-hero-3d-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.6 }}px 16px {{ block.settings.section_padding_bottom | times: 0.6 }}px;
+    }
+
+    .ai-hero-3d-text-content-{{ ai_gen_id }} {
+      gap: 16px;
+    }
+
+    .ai-hero-3d-button-{{ ai_gen_id }} {
+      padding: 14px 28px;
+      font-size: 15px;
+    }
+
+    .ai-hero-3d-cards-container-{{ ai_gen_id }} {
+      height: 320px;
+      max-width: 320px;
+    }
+
+    .ai-hero-3d-card-{{ ai_gen_id }} {
+      width: 160px;
+      height: 220px;
+    }
+
+    .ai-hero-3d-card-2-{{ ai_gen_id }} {
+      left: calc(50% - 70px);
+    }
+
+    .ai-hero-3d-card-3-{{ ai_gen_id }} {
+      left: calc(50% + 70px);
+    }
+  }
+{% endstyle %}
+
+<sidekick-hero-{{ ai_gen_id }} class="ai-hero-3d-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-hero-3d-bg-shape-{{ ai_gen_id }} ai-hero-3d-bg-shape-1-{{ ai_gen_id }}"></div>
+  <div class="ai-hero-3d-bg-shape-{{ ai_gen_id }} ai-hero-3d-bg-shape-2-{{ ai_gen_id }}"></div>
+
+  <div class="ai-hero-3d-container-{{ ai_gen_id }}">
+    <div class="ai-hero-3d-content-wrapper-{{ ai_gen_id }}">
+      <div class="ai-hero-3d-text-content-{{ ai_gen_id }}">
+        {% if block.settings.heading != blank %}
+          <h1 class="ai-hero-3d-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h1>
+        {% endif %}
+
+        {% if block.settings.description != blank %}
+          <div class="ai-hero-3d-description-{{ ai_gen_id }}">
+            {{ block.settings.description }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.button_text != blank %}
+          <a href="{{ block.settings.button_link }}" class="ai-hero-3d-button-{{ ai_gen_id }}">
+            {{ block.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="ai-hero-3d-cards-container-{{ ai_gen_id }}">
+        <div class="ai-hero-3d-card-{{ ai_gen_id }} ai-hero-3d-card-1-{{ ai_gen_id }}" data-card="1">
+          {% if block.settings.card_image_1 %}
+            <img
+              src="{{ block.settings.card_image_1 | image_url: width: 600 }}"
+              alt="{{ block.settings.card_image_1.alt | escape }}"
+              loading="lazy"
+              width="280"
+              height="380"
+            >
+          {% else %}
+            <div class="ai-hero-3d-card-placeholder-{{ ai_gen_id }}">
+              {{ 'product-1' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="ai-hero-3d-card-{{ ai_gen_id }} ai-hero-3d-card-2-{{ ai_gen_id }}" data-card="2">
+          {% if block.settings.card_image_2 %}
+            <img
+              src="{{ block.settings.card_image_2 | image_url: width: 600 }}"
+              alt="{{ block.settings.card_image_2.alt | escape }}"
+              loading="lazy"
+              width="280"
+              height="380"
+            >
+          {% else %}
+            <div class="ai-hero-3d-card-placeholder-{{ ai_gen_id }}">
+              {{ 'product-2' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="ai-hero-3d-card-{{ ai_gen_id }} ai-hero-3d-card-3-{{ ai_gen_id }}" data-card="3">
+          {% if block.settings.card_image_3 %}
+            <img
+              src="{{ block.settings.card_image_3 | image_url: width: 600 }}"
+              alt="{{ block.settings.card_image_3.alt | escape }}"
+              loading="lazy"
+              width="280"
+              height="380"
+            >
+          {% else %}
+            <div class="ai-hero-3d-card-placeholder-{{ ai_gen_id }}">
+              {{ 'product-3' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% if block.settings.banner_text != blank %}
+      <div class="ai-hero-3d-banner-{{ ai_gen_id }}">
+        <div class="ai-hero-3d-banner-text-{{ ai_gen_id }}">
+          {{ block.settings.banner_text }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</sidekick-hero-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SidekickHero{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.cards = this.querySelectorAll('.ai-hero-3d-card-{{ ai_gen_id }}');
+        this.cardsContainer = this.querySelector('.ai-hero-3d-cards-container-{{ ai_gen_id }}');
+        this.isMobile = window.innerWidth <= 989;
+      }
+
+      connectedCallback() {
+        if (!this.isMobile) {
+          this.setupParallax();
+        }
+        this.setupIntersectionObserver();
+      }
+
+      setupParallax() {
+        this.cardsContainer.addEventListener('mousemove', (e) => {
+          const rect = this.cardsContainer.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const percentX = (x - centerX) / centerX;
+          const percentY = (y - centerY) / centerY;
+
+          this.cards.forEach((card, index) => {
+            const depth = index === 0 ? 15 : 10;
+            const rotateY = percentX * depth;
+            const rotateX = -percentY * (depth * 0.5);
+            const translateZ = index === 0 ? 0 : -50;
+
+            if (index === 0) {
+              card.style.transform = `translateX(-50%) translateZ(${translateZ}px) rotateY(${rotateY - 8}deg) rotateX(${rotateX}deg)`;
+            } else if (index === 1) {
+              card.style.transform = `translateX(-50%) translateZ(${translateZ}px) rotateY(${rotateY + 5}deg) rotateX(${rotateX}deg)`;
+            } else {
+              card.style.transform = `translateX(-50%) translateZ(${translateZ}px) rotateY(${rotateY - 5}deg) rotateX(${rotateX}deg)`;
+            }
+          });
+        });
+
+        this.cardsContainer.addEventListener('mouseleave', () => {
+          this.cards.forEach((card, index) => {
+            if (index === 0) {
+              card.style.transform = 'translateX(-50%) translateZ(0px) rotateY(-8deg)';
+            } else if (index === 1) {
+              card.style.transform = 'translateX(-50%) translateZ(-50px) rotateY(5deg)';
+            } else {
+              card.style.transform = 'translateX(-50%) translateZ(-50px) rotateY(-5deg)';
+            }
+          });
+        });
+      }
+
+      setupIntersectionObserver() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.cards.forEach((card, index) => {
+                setTimeout(() => {
+                  card.style.opacity = '1';
+                  card.style.transition = 'opacity 0.6s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                }, index * 100);
+              });
+              observer.unobserve(this);
+            }
+          });
+        }, { threshold: 0.2 });
+
+        this.cards.forEach((card) => {
+          card.style.opacity = '0';
+        });
+
+        observer.observe(this);
+      }
+    }
+
+    customElements.define('sidekick-hero-{{ ai_gen_id }}', SidekickHero{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Sidekick 3D hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Sidekick"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Bold streetwear for the fearless. Express your rebellion through premium fashion that breaks boundaries.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Product cards"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_1",
+      "label": "Card image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_2",
+      "label": "Card image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_3",
+      "label": "Card image 3"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Bottom banner"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "banner_text",
+      "label": "Banner text",
+      "default": "We are bold / rebellious / fearless"
+    },
+    {
+      "type": "color",
+      "id": "banner_bg_color",
+      "label": "Banner background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "banner_text_color",
+      "label": "Banner text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "banner_text_size",
+      "label": "Banner text size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "banner_radius",
+      "label": "Banner border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button hover background",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Background shapes"
+    },
+    {
+      "type": "color",
+      "id": "shape_color_1",
+      "label": "Shape color 1",
+      "default": "#ff6b6b"
+    },
+    {
+      "type": "color",
+      "id": "shape_color_2",
+      "label": "Shape color 2",
+      "default": "#4ecdc4"
+    },
+    {
+      "type": "range",
+      "id": "shape_blur",
+      "label": "Shape blur",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "shape_opacity",
+      "label": "Shape opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.3
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 14,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Top padding",
+      "min": 20,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Bottom padding",
+      "min": 20,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sidekick 3D hero"
+    }
+  ]
+}
+{% endschema %}

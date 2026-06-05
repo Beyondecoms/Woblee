@@ -1,0 +1,367 @@
+{% comment %}
+  ============================================================
+  WE ARE — Rotating Text Banner Section
+  By Mime360
+  ============================================================
+{% endcomment %}
+
+{%- liquid
+  assign bg_color    = section.settings.background_color
+  assign static_text = section.settings.static_text
+  assign text_color  = section.settings.text_color
+-%}
+
+<section
+  class="war-section"
+  id="war-{{ section.id }}"
+  style="
+    --war-bg: {{ bg_color }};
+    --war-color: {{ text_color }};
+    --war-pt: {{ section.settings.padding_top }}px;
+    --war-pb: {{ section.settings.padding_bottom }}px;
+  "
+>
+
+  <div class="war-inner">
+
+    <!-- Static "We are" -->
+    <span class="war-static">{{ static_text }}</span>
+
+    <!-- Rotating word — JS swaps this -->
+    <div class="war-slot" aria-live="polite" aria-atomic="true">
+      <span class="war-word war-word--visible" id="war-word-a-{{ section.id }}">
+        {%- assign first_phrase = section.blocks | where: 'type', 'phrase' | first -%}
+        {{ first_phrase.settings.word }}
+      </span>
+      <span class="war-word" id="war-word-b-{{ section.id }}"></span>
+    </div>
+
+  </div>
+
+  <!-- Sub-text -->
+  <div class="war-sub" id="war-sub-{{ section.id }}">
+    {{ first_phrase.settings.sub_text }}
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════
+  CSS
+═══════════════════════════════════════ -->
+<style>
+.war-section {
+  background: var(--war-bg, #F5C800);
+  padding: var(--war-pt, 28px) 20px var(--war-pb, 28px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  position: relative;
+  padding: 14px;
+}
+
+/* grain */
+.war-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+
+/* ── Row layout ── */
+.war-inner {
+  position: relative; z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+
+/* ── Static text ── */
+.war-static {
+  font-family: var(--wb-font-heading, 'Helvetica Neue', sans-serif);
+  font-size: clamp(26px, 3.8vw, 52px);
+  font-weight: var(--wb-fw-bold, 700);
+  color: white;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ── Slot wrapper — clips the animation ── */
+.war-slot {
+  position: relative;
+  overflow: hidden;
+  /* height set by JS to match word height */
+  display: flex;
+  align-items: center;
+  min-width: 40px;
+}
+
+/* ── Each word ── */
+.war-word {
+  font-family: var(--wb-font-heading, 'Helvetica Neue', sans-serif);
+  font-size: clamp(26px, 3.8vw, 52px);
+  font-weight: var(--wb-fw-extrabold, 900);
+  color: #0c4168;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+
+  /* stacked absolutely so only 1 is visible at a time */
+  position: absolute;
+  left: 0;
+
+  /* default: hidden below */
+  transform: translateY(110%);
+  opacity: 0;
+  transition: none;
+}
+
+/* Visible state — sits in normal position */
+.war-word--visible {
+  position: relative;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Enter: comes from below */
+.war-word--enter {
+  position: absolute;
+  transform: translateY(110%);
+  opacity: 0;
+}
+
+/* Animate in */
+.war-word--animating-in {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity   0.3s ease;
+}
+
+/* Animate out: goes up */
+.war-word--animating-out {
+  transform: translateY(-110%);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.55, 0, 0.8, 0.45),
+              opacity   0.3s ease;
+}
+
+/* ── Sub-text ── */
+.war-sub {
+  position: relative; z-index: 1;
+  font-family: var(--wb-font-body, 'Helvetica Neue', sans-serif);
+  font-size: clamp(12px, 1.1vw, 15px);
+  font-weight: 400;
+  color: #0c4168;
+  opacity: 0.55;
+  letter-spacing: 0.04em;
+  margin-top: 0px;
+  text-align: center;
+  min-height: 1.4em;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.war-sub.war-sub--hiding {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .war-inner { gap: 8px; }
+  .war-section { min-height: 50px; }
+}
+</style>
+
+<!-- ═══════════════════════════════════════
+  JAVASCRIPT
+═══════════════════════════════════════ -->
+<script>
+(function () {
+  const INTERVAL = {{ section.settings.interval | times: 1000 }};
+  const slot   = document.querySelector('#war-{{ section.id }} .war-slot');
+  const subEl  = document.getElementById('war-sub-{{ section.id }}');
+  if (!slot) return;
+
+  /* Collect all phrases from schema blocks */
+  const phrases = [
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'phrase' -%}
+        { word: {{ block.settings.word | json }}, sub: {{ block.settings.sub_text | json }} },
+      {%- endif -%}
+    {%- endfor -%}
+  ];
+
+  if (phrases.length <= 1) return; /* nothing to rotate */
+
+  let current  = 0;
+  let busy     = false;
+
+  /* Two span elements — ping-pong between them */
+  const elA = document.getElementById('war-word-a-{{ section.id }}');
+  const elB = document.getElementById('war-word-b-{{ section.id }}');
+
+  /* Size the slot to match word height so it never collapses */
+  function sizeSlot() {
+    const h = elA.offsetHeight || 52;
+    slot.style.height = h + 'px';
+    slot.style.minWidth = Math.max(elA.offsetWidth, elB.offsetWidth) + 'px';
+  }
+  sizeSlot();
+
+  let activeEl  = elA; /* currently visible */
+  let inactiveEl = elB; /* waiting off-screen */
+
+  function rotate() {
+    if (busy) return;
+    busy = true;
+
+    current = (current + 1) % phrases.length;
+    const next = phrases[current];
+
+    /* Prep inactive el with new word, position it below */
+    inactiveEl.textContent = next.word;
+    inactiveEl.className = 'war-word war-word--enter';
+
+    /* Force reflow so transition fires */
+    void inactiveEl.offsetWidth;
+
+    /* Widen slot if new word is wider */
+    const newW = inactiveEl.scrollWidth;
+    const curW = activeEl.scrollWidth;
+    slot.style.minWidth = Math.max(newW, curW) + 'px';
+
+    /* Kick both animations simultaneously */
+    activeEl.className  = 'war-word war-word--animating-out';
+    inactiveEl.className = 'war-word war-word--animating-in';
+
+    /* Swap sub-text */
+    subEl.classList.add('war-sub--hiding');
+    setTimeout(() => {
+      subEl.textContent = next.sub;
+      subEl.classList.remove('war-sub--hiding');
+    }, 220);
+
+    /* After animation: promote inactiveEl to visible, reset activeEl */
+    setTimeout(() => {
+      activeEl.className  = 'war-word'; /* hidden, off-screen */
+      inactiveEl.className = 'war-word war-word--visible';
+
+      /* Swap references */
+      const tmp = activeEl;
+      activeEl   = inactiveEl;
+      inactiveEl = tmp;
+
+      sizeSlot();
+      busy = false;
+    }, 520);
+  }
+
+  setInterval(rotate, INTERVAL);
+})();
+</script>
+
+<!-- ═══════════════════════════════════════
+  SCHEMA
+═══════════════════════════════════════ -->
+{% schema %}
+{
+  "name": "We Are — Rotating Banner",
+  "tag": "section",
+  "class": "war-section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "static_text",
+      "label": "Static text",
+      "default": "We are"
+    },
+    {
+      "type": "header",
+      "content": "Design"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F5C800"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#111111"
+    },
+    {
+      "type": "header",
+      "content": "Timing"
+    },
+    {
+      "type": "range",
+      "id": "interval",
+      "label": "Rotation speed (seconds)",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0, "max": 80, "step": 4, "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0, "max": 80, "step": 4, "unit": "px",
+      "default": 28
+    }
+  ],
+  "blocks": [
+    {
+      "type": "phrase",
+      "name": "Phrase",
+      "settings": [
+        {
+          "type": "text",
+          "id": "word",
+          "label": "Rotating word",
+          "default": "bold"
+        },
+        {
+          "type": "text",
+          "id": "sub_text",
+          "label": "Sub-text",
+          "default": "But never curt"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "We Are — Rotating Banner",
+      "blocks": [
+        { "type": "phrase", "settings": { "word": "bold",         "sub_text": "But never curt" } },
+        { "type": "phrase", "settings": { "word": "unapologetic", "sub_text": "But never disrespectful" } },
+        { "type": "phrase", "settings": { "word": "rebellious",   "sub_text": "But never scandalous" } },
+        { "type": "phrase", "settings": { "word": "fearless",     "sub_text": "But never reckless" } },
+        { "type": "phrase", "settings": { "word": "confident",    "sub_text": "But never arrogant" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

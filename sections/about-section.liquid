@@ -1,0 +1,813 @@
+{% comment %}
+  ============================================================
+  ABOUT US — Premium Animated Section
+  By Mime360 for Shopify
+  ============================================================
+{% endcomment %}
+
+{%- liquid
+  assign bg_color = section.settings.background_color
+  assign heading   = section.settings.heading
+  assign sub_label = section.settings.sub_label
+  assign body_text = section.settings.body_text
+  assign cta_text  = section.settings.cta_text
+  assign cta_url   = section.settings.cta_url
+  assign accent    = section.settings.accent_color
+-%}
+
+<section
+  class="wau-section"
+  id="wau-{{ section.id }}"
+  style="
+    --wau-bg: {{ bg_color }};
+    --wau-accent: {{ accent }};
+    --wau-pt: {{ section.settings.padding_top }}px;
+    --wau-pb: {{ section.settings.padding_bottom }}px;
+  "
+>
+
+  <!-- ░░ GRAIN OVERLAY ░░ -->
+  <div class="wau-grain" aria-hidden="true"></div>
+
+  <div class="wau-inner">
+
+    <!-- ─────────────── LEFT PANEL ─────────────── -->
+    <div class="wau-left wau-reveal">
+
+      <span class="wau-eyebrow">{{ sub_label }}</span>
+
+      <h2 class="wau-heading">{{ heading }}</h2>
+
+      <p class="wau-body">{{ body_text }}</p>
+
+      {%- if cta_text != blank -%}
+        <a href="{{ cta_url }}" class="wau-cta">
+          <span>{{ cta_text }}</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {%- endif -%}
+
+      <!-- Stat pills -->
+      <div class="wau-stats">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'stat' -%}
+            <div class="wau-stat-pill" {{ block.shopify_attributes }}>
+              <strong>{{ block.settings.stat_value }}</strong>
+              <span>{{ block.settings.stat_label }}</span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+    </div><!-- /left -->
+
+    <!-- ─────────────── RIGHT PANEL ─────────────── -->
+    <div class="wau-right" aria-hidden="false">
+      <div class="wau-cards-wrap">
+
+        {%- assign card_blocks = section.blocks | where: 'type', 'card' -%}
+
+        {%- for block in card_blocks -%}
+          {%- assign idx = forloop.index0 -%}
+          <div
+            class="wau-card wau-card--{{ idx | modulo: 3 }}"
+            data-card="{{ idx }}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.card_image != blank -%}
+              <div class="wau-card__img-wrap">
+                {{
+                  block.settings.card_image
+                  | image_url: width: 600
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '300,450,600',
+                    class: 'wau-card__img'
+                }}
+              </div>
+            {%- else -%}
+              <div class="wau-card__img-wrap wau-card__img-wrap--placeholder">
+                {{ 'collection-1' | placeholder_svg_tag: 'wau-card__img' }}
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.card_label != blank -%}
+              <div class="wau-card__label">{{ block.settings.card_label }}</div>
+            {%- endif -%}
+
+            <!-- Shimmer overlay -->
+            <div class="wau-card__shimmer" aria-hidden="true"></div>
+          </div>
+        {%- endfor -%}
+
+        <!-- Decorative blobs -->
+        <div class="wau-blob wau-blob--1" aria-hidden="true"></div>
+        <div class="wau-blob wau-blob--2" aria-hidden="true"></div>
+
+      </div>
+    </div><!-- /right -->
+
+  </div><!-- /inner -->
+
+  <!-- ─────────────── MARQUEE STRIP ─────────────── -->
+  <div class="wau-marquee-wrap" aria-label="Brand phrases">
+    <div class="wau-marquee-track" id="wau-marquee-{{ section.id }}">
+      {%- assign ticker_repeat = 3 -%}
+      {%- for r in (1..ticker_repeat) -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'ticker' -%}
+            <span class="wau-marquee-item" {{ block.shopify_attributes }}>
+              <span class="wau-marquee-dot" aria-hidden="true">✦</span>
+              {{ block.settings.ticker_text }}
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════════
+     CSS
+════════════════════════════════════════════ -->
+<style>
+/* ── Reset scoped ──────────────────────────── */
+#wau-{{ section.id }} *,
+#wau-{{ section.id }} *::before,
+#wau-{{ section.id }} *::after { box-sizing: border-box; }
+
+/* ── Section shell ─────────────────────────── */
+.wau-section {
+  position: relative;
+  background: var(--wau-bg, #0C4168);
+  overflow: hidden;
+  padding-top: var(--wau-pt, 80px);
+  padding-bottom: 0;
+}
+
+/* ── Grain overlay ─────────────────────────── */
+.wau-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+/* ── Inner layout ──────────────────────────── */
+.wau-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px var(--wau-pb, 72px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  min-height: 520px;
+}
+
+/* ── LEFT ──────────────────────────────────── */
+.wau-left {
+  color: #fff;
+  padding-right: 24px;
+}
+
+.wau-eyebrow {
+  display: inline-block;
+  font-family: var(--wb-font-body, 'Helvetica Neue', sans-serif);
+  font-size: var(--wb-caption, 11px);
+  font-weight: var(--wb-fw-bold, 700);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--wau-accent, #21F010);
+  border: 1px solid var(--wau-accent, #21F010);
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.wau-heading {
+  font-family: var(--wb-font-heading, 'Bebas Neue', 'Arial Black', sans-serif);
+  font-size: clamp(40px, 5.5vw, 80px);
+  font-weight: var(--wb-fw-extrabold, 900);
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0 0 24px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+}
+
+.wau-body {
+  font-family: var(--wb-font-body, 'Helvetica Neue', sans-serif);
+  font-size: var(--wb-body, 15px);
+  line-height: 1.75;
+  color: rgba(255,255,255,0.72);
+  max-width: 420px;
+  margin: 0 0 36px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+}
+
+/* ── CTA ───────────────────────────────────── */
+.wau-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--wb-font-body, sans-serif);
+  font-size: 13px;
+  font-weight: var(--wb-fw-bold, 700);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--wau-bg, #0C4168);
+  background: white;
+  padding: 13px 28px;
+  border-radius: 100px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s;
+}
+.wau-cta:hover{
+background: #0c4168;
+color: white;
+}
+
+.wau-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+.wau-cta:hover::before { transform: translateX(0); }
+
+/* ── Stats ─────────────────────────────────── */
+.wau-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s;
+}
+
+.wau-stat-pill {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  backdrop-filter: blur(8px);
+  min-width: 110px;
+  transition: background 0.25s, border-color 0.25s;
+}
+.wau-stat-pill:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: var(--wau-accent, #21F010);
+}
+.wau-stat-pill strong {
+  font-family: var(--wb-font-heading, sans-serif);
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 900;
+  color: var(--wau-accent, #21F010);
+  line-height: 1;
+}
+.wau-stat-pill span {
+  font-family: var(--wb-font-body, sans-serif);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ── Reveal animation trigger ──────────────── */
+.wau-section.wau-in-view .wau-eyebrow,
+.wau-section.wau-in-view .wau-heading,
+.wau-section.wau-in-view .wau-body,
+.wau-section.wau-in-view .wau-cta,
+.wau-section.wau-in-view .wau-stats {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RIGHT ─────────────────────────────────── */
+.wau-right {
+  position: relative;
+  z-index: 1;
+}
+
+.wau-cards-wrap {
+  position: relative;
+  height: 520px;
+}
+
+/* ── Cards ─────────────────────────────────── */
+.wau-card {
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  cursor: pointer;
+  will-change: transform;
+  transition: box-shadow 0.35s ease;
+  background: #0a2e4a;
+}
+.wau-card:hover {
+  box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+  z-index: 10;
+}
+
+/* Card positions & sizes */
+.wau-card--0 { width: 52%; aspect-ratio: 3/4; top: 0; left: 8%; }
+.wau-card--1 { width: 42%; aspect-ratio: 4/5; top: 30px; right: 0; }
+.wau-card--2 { width: 36%; aspect-ratio: 1/1; bottom: 0; left: 28%; }
+
+.wau-card__img-wrap {
+  width: 100%;
+  height: 100%;
+}
+.wau-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+.wau-card:hover .wau-card__img { transform: scale(1.06); }
+
+.wau-card__img-wrap--placeholder svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.35;
+}
+
+.wau-card__label {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  background: rgba(12,65,104,0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-family: var(--wb-font-body, sans-serif);
+  font-size: 12px;
+  font-weight: var(--wb-fw-bold, 700);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* Shimmer */
+.wau-card__shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%);
+  background-size: 200% 100%;
+  animation: wau-shimmer 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes wau-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Decorative blobs */
+.wau-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: -1;
+}
+.wau-blob--1 {
+  width: 260px; height: 260px;
+  background: var(--wau-accent, #21F010);
+  opacity: 0.08;
+  top: -40px; right: -60px;
+  animation: wau-pulse 6s ease-in-out infinite alternate;
+}
+.wau-blob--2 {
+  width: 200px; height: 200px;
+  background: #851828;
+  opacity: 0.12;
+  bottom: 40px; left: -30px;
+  animation: wau-pulse 8s ease-in-out infinite alternate-reverse;
+}
+@keyframes wau-pulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.25); }
+}
+
+/* ── Marquee strip ─────────────────────────── */
+.wau-marquee-wrap {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.25);
+  padding: 18px 0;
+  margin-top: 8px;
+  /* subtle bottom fade */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+}
+
+.wau-marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: wau-marquee 28s linear infinite;
+  will-change: transform;
+}
+@keyframes wau-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+.wau-marquee-wrap:hover .wau-marquee-track {
+  animation-play-state: paused;
+}
+
+.wau-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 28px;
+  font-family: var(--wb-font-heading, 'Bebas Neue', 'Arial Black', sans-serif);
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: var(--wb-fw-extrabold, 900);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+}
+.wau-marquee-dot {
+  color: var(--wau-accent, #21F010);
+  font-size: 0.55em;
+  line-height: 1;
+  animation: wau-spin 6s linear infinite;
+}
+@keyframes wau-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Responsive ────────────────────────────── */
+@media (max-width: 900px) {
+  .wau-inner {
+    grid-template-columns: 1fr;
+    padding: 0 24px var(--wau-pb, 60px);
+    gap: 52px;
+    min-height: unset;
+  }
+  .wau-left { padding-right: 0; }
+  .wau-right { width: 100%; }
+  .wau-cards-wrap { height: 360px; }
+  .wau-card--0 { width: 50%; top: 0; left: 5%; }
+  .wau-card--1 { width: 42%; top: 20px; right: 0; }
+  .wau-card--2 { width: 34%; bottom: 0; left: 25%; }
+}
+
+@media (max-width: 540px) {
+  .wau-cards-wrap { height: 280px; }
+  .wau-card__shimmer { display: none; } /* perf on mobile */
+}
+</style>
+
+<!-- ════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+(function() {
+  const SEC_ID = 'wau-{{ section.id }}';
+
+  /* ── 1. SCROLL REVEAL ─────────────────────── */
+  const section = document.getElementById(SEC_ID);
+  if (!section) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        section.classList.add('wau-in-view');
+        observer.disconnect();
+      }
+    },
+    { threshold: 0.15 }
+  );
+  observer.observe(section);
+
+  /* ── 2. FLOATING CARD ANIMATION ───────────── */
+  const cards = section.querySelectorAll('.wau-card');
+
+  // Each card gets a unique float rhythm
+  const rhythms = [
+    { ty: 14, tx:  5, r:  2.5, dur: 5.2 },
+    { ty: 18, tx: -6, r: -2.0, dur: 6.1 },
+    { ty: 10, tx:  4, r:  1.5, dur: 4.8 },
+    { ty: 16, tx: -5, r:  2.0, dur: 5.6 },
+  ];
+
+  cards.forEach((card, i) => {
+    const { ty, tx, r, dur } = rhythms[i % rhythms.length];
+    let start = null;
+    const offset = i * (dur / cards.length) * 1000; // stagger
+
+    function animate(ts) {
+      if (!start) start = ts - offset;
+      const elapsed = (ts - start) / 1000;
+      const progress = (elapsed % dur) / dur; // 0→1 loop
+      // Smooth sine wave
+      const sin = Math.sin(progress * Math.PI * 2);
+      const cos = Math.cos(progress * Math.PI * 2);
+      const translateY = sin * ty;
+      const translateX = cos * tx * 0.5;
+      const rotate     = sin * r;
+      card.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`;
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  });
+
+  /* ── 3. PARALLAX ON MOUSE MOVE ────────────── */
+  const right = section.querySelector('.wau-right');
+  if (right && window.matchMedia('(pointer:fine)').matches) {
+    let rafId;
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+
+    section.addEventListener('mousemove', (e) => {
+      const rect = section.getBoundingClientRect();
+      targetX = ((e.clientX - rect.left) / rect.width  - 0.5) * 24;
+      targetY = ((e.clientY - rect.top)  / rect.height - 0.5) * 16;
+    });
+
+    section.addEventListener('mouseleave', () => {
+      targetX = 0; targetY = 0;
+    });
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function parallaxLoop() {
+      currentX = lerp(currentX, targetX, 0.06);
+      currentY = lerp(currentY, targetY, 0.06);
+      cards.forEach((card, i) => {
+        const depth = 0.4 + i * 0.2;
+        // Add on top of existing float transform via CSS var trick
+        card.style.setProperty('--px', `${currentX * depth}px`);
+        card.style.setProperty('--py', `${currentY * depth}px`);
+      });
+      rafId = requestAnimationFrame(parallaxLoop);
+    }
+    parallaxLoop();
+  }
+
+  /* ── 4. HOVER TILT on cards ───────────────── */
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect  = card.getBoundingClientRect();
+      const cx    = (e.clientX - rect.left) / rect.width  - 0.5;
+      const cy    = (e.clientY - rect.top)  / rect.height - 0.5;
+      card.style.setProperty('--tilt-x', `${cy * -12}deg`);
+      card.style.setProperty('--tilt-y', `${cx *  12}deg`);
+      card.style.transform += ` perspective(700px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.removeProperty('--tilt-x');
+      card.style.removeProperty('--tilt-y');
+    });
+  });
+
+  /* ── 5. DUPLICATE MARQUEE if content too short ── */
+  const track = document.getElementById('wau-marquee-{{ section.id }}');
+  if (track) {
+    // Ensure track is at least 3× screen width for seamless loop
+    const needed = window.innerWidth * 3;
+    while (track.scrollWidth < needed) {
+      const clone = track.innerHTML;
+      track.innerHTML += clone;
+    }
+  }
+
+})();
+</script>
+
+<!-- ════════════════════════════════════════════
+     SCHEMA
+════════════════════════════════════════════ -->
+{% schema %}
+{
+  "name": "About Us — Animated",
+  "tag": "section",
+  "class": "wau-section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "sub_label",
+      "label": "Eyebrow label",
+      "default": "ABOUT US"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We Are More Than a Brand"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Description",
+      "default": "Born from a belief that every woman deserves confidence in everything she wears — our products are crafted with care, purpose, and a bold spirit."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "Our Story"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    },
+    {
+      "type": "header",
+      "content": "Design"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#0C4168"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#21F010"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Image Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card image"
+        },
+        {
+          "type": "text",
+          "id": "card_label",
+          "label": "Card label (optional)",
+          "default": "Crafted with care"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Stat Pill",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Stat value",
+          "default": "10K+"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Stat label",
+          "default": "Happy Customers"
+        }
+      ]
+    },
+    {
+      "type": "ticker",
+      "name": "Ticker Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "ticker_text",
+          "label": "Ticker phrase",
+          "default": "WE ARE BOLD"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us — Animated",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "card_label": "Pure Confidence"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "card_label": "Born Bold"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "card_label": "Fearless Spirit"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "10K+",
+            "stat_label": "Happy Customers"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "4.9★",
+            "stat_label": "Avg. Rating"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "100%",
+            "stat_label": "Made with Love"
+          }
+        },
+        {
+          "type": "ticker",
+          "settings": { "ticker_text": "WE ARE BOLD" }
+        },
+        {
+          "type": "ticker",
+          "settings": { "ticker_text": "WE ARE STRONG" }
+        },
+        {
+          "type": "ticker",
+          "settings": { "ticker_text": "WE ARE FEARLESS" }
+        },
+        {
+          "type": "ticker",
+          "settings": { "ticker_text": "WE ARE CONFIDENT" }
+        },
+        {
+          "type": "ticker",
+          "settings": { "ticker_text": "WE ARE BEAUTIFUL" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

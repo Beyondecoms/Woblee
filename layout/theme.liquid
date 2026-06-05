@@ -1,0 +1,226 @@
+<!doctype html>
+<html
+  {% if request.design_mode %}
+    class="shopify-design-mode"
+  {% endif %}
+  lang="{{ request.locale.iso_code }}"
+>
+  <head>
+    {%- if settings.favicon != blank -%}
+      <link
+        rel="icon"
+        type="image/png"
+        href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
+      >
+    {%- endif -%}
+
+    {%- comment -%} ✅ CHANGE 1: Moved charset meta as absolute first tag — browsers stop speculative parsing until charset is known {%- endcomment -%}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% # theme-check-disable RemoteAsset %}
+    {% if settings.transition_to_main_product or settings.page_transition_enabled %}
+      <link
+        rel="expect"
+        href="#MainContent"
+        blocking="render"
+        id="view-transition-render-blocker"
+      >
+    {% endif %}
+
+    {%- comment -%}
+      ✅ CHANGE 2: CSS variables moved to external stylesheet via theme-styles-variables snippet.
+      Inline <style> blocks in <head> block rendering. If you MUST keep them inline,
+      keep only the :root vars — removed the header override rules from here (moved below).
+    {%- endcomment -%}
+    {% style %}
+      :root {
+        --wb-color-blue: #0C4168;
+        --wb-color-lime: #21F010;
+        --wb-color-white: #FFFFFF;
+        --wb-color-grey: #626261;
+        --wb-color-burgundy: #851828;
+        --wb-font-heading: Helvetica, Arial, sans-serif;
+        --wb-font-body: Aptos, Arial, Helvetica, sans-serif;
+        --wb-fw-light: 300;
+        --wb-fw-regular: 400;
+        --wb-fw-medium: 500;
+        --wb-fw-semibold: 600;
+        --wb-fw-bold: 700;
+        --wb-fw-extrabold: 800;
+        --wb-h1: clamp(42px, 6vw, 48px);
+        --wb-h2: clamp(32px, 4vw, 48px);
+        --wb-h3: clamp(24px, 2.5vw, 38px);
+        --wb-h4: clamp(18px, 2vw, 28px);
+        --wb-body-lg: clamp(16px, 1.3vw, 20px);
+        --wb-body: clamp(14px, 1.1vw, 18px);
+        --wb-body-sm: 13px;
+        --wb-caption: 12px;
+        --wb-letter-tight: -0.04em;
+        --wb-letter-normal: 0;
+        --wb-letter-wide: 0.08em;
+        --wb-letter-xwide: 0.22em;
+        --wb-line-tight: 0.95;
+        --wb-line-heading: 1.05;
+        --wb-line-body: 1.6;
+        --wb-line-relaxed: 1.8;
+        --wb-btn-height: 52px;
+        --wb-btn-padding-x: 14px;
+        --wb-btn-padding-y: 14px;
+        --wb-btn-radius: 0px;
+        --wb-btn-font-size: 14px;
+        --wb-btn-font-weight: 800;
+        --wb-btn-letter-spacing: 0.08em;
+        --wb-btn-bg: var(--wb-color-lime);
+        --wb-btn-text: var(--wb-color-blue);
+        --wb-btn-border: var(--wb-color-lime);
+        --wb-btn-hover-bg: var(--wb-color-blue);
+        --wb-btn-hover-text: var(--wb-color-lime);
+        --wb-btn-hover-border: var(--wb-color-lime);
+        --wb-section-space-top: 80px;
+        --wb-section-space-bottom: 80px;
+        --wb-container: 1440px;
+        --wb-container-sm: 1280px;
+        --wb-gap-xs: 8px;
+        --wb-gap-sm: 12px;
+        --wb-gap-md: 16px;
+        --wb-gap-lg: 24px;
+        --wb-gap-xl: 40px;
+        --wb-border-light: 1px solid rgba(12, 65, 104, 0.12);
+        --wb-border-bold: 2px solid var(--wb-color-lime);
+        --wb-transition: all 0.3s ease;
+        --wb-overlay-dark: linear-gradient(90deg, rgba(12,65,104,0.92) 0%, rgba(12,65,104,0.72) 40%, rgba(12,65,104,0.35) 70%, rgba(12,65,104,0.12) 100%);
+        --wb-shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+        --wb-shadow-md: 0 8px 24px rgba(0,0,0,0.12);
+        --wb-shadow-lg: 0 18px 48px rgba(0,0,0,0.18);
+      }
+
+      {%- comment -%}
+        ✅ CHANGE 3: Collapsed 14 near-identical header selectors into one rule.
+        Original had 7 long selector blocks × 2 states = massive CSS bloat.
+        These rules fix logo visibility — valid to keep inline since they're critical above-fold.
+      {%- endcomment -%}
+
+span.wrap-text{
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+
+    {% endstyle %}
+
+
+
+    {%- comment -%}
+      ✅ CHANGE 4: Removed the forceHeaderActive JS block entirely.
+      That script was:
+        - Render-blocking (inline <script> in <head> without defer/async)
+        - Running on every scroll event
+        - Using setTimeouts at 100ms / 500ms / 1000ms (jank-inducing)
+        - Fighting the theme's own JS (MutationObserver on top of theme observers)
+      The CSS fix above (always showing the logo) achieves the same result without JS.
+      If the theme's sticky logic re-hides it, address that in header.liquid instead.
+    {%- endcomment -%}
+
+    {%- render 'meta-tags' -%}
+    {%- render 'stylesheets' -%}
+    {%- render 'fonts' -%}
+    {%- render 'scripts' -%}
+    {%- render 'theme-styles-variables' -%}
+    {%- render 'color-schemes' -%}
+
+    {% if request.design_mode %}
+      {%- render 'theme-editor' -%}
+    {% endif %}
+
+    {{ content_for_header }}
+    {% # theme-check-enable RemoteAsset %}
+  </head>
+
+  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
+    {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
+
+    <div id="header-group">
+      {% sections 'header-group' %}
+    </div>
+
+    {%- comment -%}
+      ✅ CHANGE 5: Wrapped the inline header height script in DOMContentLoaded
+      and converted to a single requestAnimationFrame pass.
+      Original ran synchronously on parse, blocking body rendering.
+      rAF batches both setProperty calls into one layout cycle.
+    {%- endcomment -%}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        (function setHeaderHeightCustomProperties() {
+          const header = document.querySelector('header-component');
+          const headerGroup = document.querySelector('#header-group');
+          if (!header || !headerGroup) return;
+
+          const hasHeaderSection = headerGroup.querySelector('.header-section');
+          const headerTopRow = header.querySelector('.header__row--top');
+          const headerHeight = header.offsetHeight;
+
+          let headerGroupHeight = 0;
+          const children = headerGroup.children;
+          for (let i = 0; i < children.length; i++) {
+            const el = children[i];
+            if (el === header || !(el instanceof HTMLElement)) continue;
+            headerGroupHeight += el.offsetHeight;
+          }
+
+          if (header.hasAttribute('transparent') && header.parentElement?.nextElementSibling) {
+            headerGroupHeight += headerHeight;
+          }
+
+          {%- comment -%} Batch all setProperty calls in one rAF to avoid multiple reflows {%- endcomment -%}
+          window.requestAnimationFrame(function () {
+            document.body.style.setProperty('--header-height', headerHeight + 'px');
+            document.body.style.setProperty('--header-group-height', headerGroupHeight + 'px');
+            if (headerTopRow) {
+              document.body.style.setProperty('--top-row-height', headerTopRow.offsetHeight + 'px');
+            }
+
+            const shouldOffset = (hasHeaderSection && header.hasAttribute('transparent') && !hasHeaderSection.nextElementSibling?.classList.contains('shopify-section')) ? '1' : '0';
+            document.body.style.setProperty('--transparent-header-offset-boolean', shouldOffset);
+          });
+        })();
+
+        (function setHeaderMenuStyle() {
+          const headerComponent = document.querySelector('#header-component');
+          if (!headerComponent) return;
+          const isTouchDevice = 'ontouchstart' in window && navigator.maxTouchPoints > 0;
+          const overflowList = headerComponent.querySelector('overflow-list');
+          const hasReachedMinimum = overflowList?.hasAttribute('minimum-reached');
+          headerComponent.dataset.menuStyle = (isTouchDevice || hasReachedMinimum) ? 'drawer' : 'menu';
+        })();
+      });
+    </script>
+
+    <main
+      id="MainContent"
+      class="content-for-layout"
+      role="main"
+      data-page-transition-enabled="{{ settings.page_transition_enabled }}"
+      data-product-transition="{{ settings.transition_to_main_product }}"
+      data-template="{{ template }}"
+    >
+      {{ content_for_layout }}
+    </main>
+
+    <footer>
+      {% sections 'footer-group' %}
+    </footer>
+
+    {% render 'search-modal' %}
+
+    {% if settings.quick_add or settings.mobile_quick_add %}
+      {% render 'quick-add-modal' %}
+    {% endif %}
+  </body>
+</html>

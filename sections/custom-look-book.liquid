@@ -1,0 +1,844 @@
+{% comment %}
+  3D Showcase Section
+  - Shopify Liquid compatible
+  - Smooth 3D card depth
+  - Click / tap / autoplay support
+  - Mobile friendly and accessible
+{% endcomment %}
+
+<section id="three-d-showcase-{{ section.id }}" class="tds-section">
+  <div class="tds-bg"></div>
+
+  <div class="tds-container">
+    <div class="tds-grid">
+      <div class="tds-content">
+        {% if section.settings.kicker != blank %}
+          <div class="tds-kicker">
+            <span class="tds-kicker-dot"></span>
+            {{ section.settings.kicker }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="tds-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="tds-text">{{ section.settings.text }}</div>
+        {% endif %}
+
+        <div class="tds-actions">
+          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+            <a class="tds-button" href="{{ section.settings.button_link }}">
+              {{ section.settings.button_label }}
+              <span class="tds-button-arrow">→</span>
+            </a>
+          {% endif %}
+
+          <div class="tds-nav">
+            <button type="button" class="tds-nav-btn" data-prev aria-label="Previous card">
+              ‹
+            </button>
+            <button type="button" class="tds-nav-btn" data-next aria-label="Next card">
+              ›
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tds-stage-wrap">
+        <div class="tds-stage" data-stage>
+          {% for block in section.blocks %}
+    
+            <article
+              class="tds-card"
+              data-card
+              data-index="{{ forloop.index0 }}"
+              {{ block.shopify_attributes }}
+              style="--card-color: {{ block.settings.card_color }};"
+            >
+              <div class="tds-card-inner">
+                <div class="tds-card-top">
+                  <div class="tds-icon-wrap">
+                    {% if block.settings.icon != blank %}
+                      <span class="tds-icon">{{ block.settings.icon }}</span>
+                    {% else %}
+                      <span class="tds-icon">✦</span>
+                    {% endif %}
+                  </div>
+                  <span class="tds-card-badge">
+                    0{{ forloop.index }}
+                  </span>
+                </div>
+<div class="tds-card-image">
+  {% if block.settings.image != blank %}
+    {{
+      block.settings.image
+      | image_url: width: 1000
+      | image_tag:
+      loading: 'lazy',
+      class: 'tds-image'
+    }}
+  {% endif %}
+</div>
+
+
+
+                {% if block.settings.title != blank %}
+                  <h3 class="tds-card-title">{{ block.settings.title }}</h3>
+                {% endif %}
+
+                {% if block.settings.subtitle != blank %}
+                  <p class="tds-card-subtitle">{{ block.settings.subtitle }}</p>
+                {% endif %}
+
+                {% if block.settings.description != blank %}
+                  <div class="tds-card-text">{{ block.settings.description }}</div>
+                {% endif %}
+
+                {% if block.settings.link_label != blank and block.settings.link_url != blank %}
+                  <a class="tds-card-link" href="{{ block.settings.link_url }}">
+                    {{ block.settings.link_label }}
+                    <span>→</span>
+                  </a>
+                {% endif %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+
+        <div class="tds-dots" data-dots>
+          {% for block in section.blocks %}
+            <button
+              type="button"
+              class="tds-dot"
+              data-dot="{{ forloop.index0 }}"
+              aria-label="Go to card {{ forloop.index }}"
+              aria-pressed="false"
+            ></button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    {% if section.settings.show_features %}
+      <div class="tds-features">
+        <div class="tds-feature">
+          <strong>Mobile friendly</strong>
+          <span>Scales smoothly on small screens</span>
+        </div>
+        <div class="tds-feature">
+          <strong>Smooth motion</strong>
+          <span>Clean transitions without shaking</span>
+        </div>
+        <div class="tds-feature">
+          <strong>Premium feel</strong>
+          <span>Soft shadows and depth</span>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <style>
+    .tds-card-image {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 28px;
+}
+
+.tds-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .8s ease;
+}
+
+.tds-card:hover .tds-image {
+  transform: scale(1.08);
+}
+    #three-d-showcase-{{ section.id }} {
+      position: relative;
+      overflow: hidden;
+      background: {{ section.settings.background }};
+      padding: 72px 20px;
+      isolation: isolate;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(120, 160, 220, 0.18), transparent 26%),
+        radial-gradient(circle at 80% 30%, rgba(95, 145, 205, 0.14), transparent 24%),
+        radial-gradient(circle at 50% 90%, rgba(255, 255, 255, 0.55), transparent 22%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      color: #2e3b4b;
+      font-size: 14px;
+      font-weight: 600;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(31, 45, 61, 0.08);
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-kicker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #5d8fc1;
+      box-shadow: 0 0 0 6px rgba(93, 143, 193, 0.15);
+      flex: 0 0 auto;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-heading {
+      margin: 18px 0 0;
+      color: #16202b;
+      font-size: clamp(34px, 4.5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-text {
+      margin-top: 18px;
+      color: rgba(22, 32, 43, 0.78);
+      font-size: 17px;
+      line-height: 1.8;
+      max-width: 52ch;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      background: #16202b;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 14px 30px rgba(22, 32, 43, 0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(22, 32, 43, 0.22);
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-button-arrow {
+      transition: transform 0.25s ease;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-button:hover .tds-button-arrow {
+      transform: translateX(3px);
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-nav {
+      display: inline-flex;
+      gap: 10px;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-nav-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(22, 32, 43, 0.12);
+      background: rgba(255, 255, 255, 0.84);
+      color: #16202b;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 10px 24px rgba(31, 45, 61, 0.08);
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-nav-btn:hover {
+      transform: translateY(-2px);
+      background: #fff;
+      box-shadow: 0 14px 30px rgba(31, 45, 61, 0.12);
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-stage-wrap {
+      position: relative;
+      perspective: 1800px;
+      min-height: 560px;
+      display: grid;
+      place-items: center;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-stage {
+      position: relative;
+      width: min(100%, 820px);
+      height: 560px;
+      transform-style: preserve-3d;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(84vw, 360px);
+      height: 420px;
+      transform-style: preserve-3d;
+      transform: translate(-50%, -50%);
+      transition:
+        transform 650ms cubic-bezier(.2,.8,.2,1),
+        opacity 650ms cubic-bezier(.2,.8,.2,1),
+        filter 650ms cubic-bezier(.2,.8,.2,1);
+      will-change: transform, opacity, filter;
+      opacity: 0.22;
+      filter: blur(1.6px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card.is-active,
+    #three-d-showcase-{{ section.id }} .tds-card.is-near {
+      pointer-events: auto;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      padding: 26px;
+      color: #fff;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06)),
+        var(--card-color);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow:
+        0 26px 55px rgba(24, 39, 55, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card-inner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.10), transparent 28%);
+      pointer-events: none;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.16);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card-badge {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card-title {
+      margin: 42px 0 0;
+      font-size: clamp(30px, 3vw, 38px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      position: relative;
+      z-index: 1;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card-subtitle {
+      margin: 10px 0 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.88);
+      position: relative;
+      z-index: 1;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card-text {
+      margin-top: 16px;
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 28ch;
+      position: relative;
+      z-index: 1;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card-link {
+      margin-top: 26px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card-link span {
+      transition: transform 0.25s ease;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-card-link:hover span {
+      transform: translateX(3px);
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-dot {
+      width: 11px;
+      height: 11px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(22, 32, 43, 0.18);
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease, width 0.25s ease;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-dot.is-active {
+      width: 32px;
+      background: #16202b;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-feature {
+      border-radius: 22px;
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 28px rgba(31, 45, 61, 0.07);
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-feature strong {
+      display: block;
+      color: #16202b;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    #three-d-showcase-{{ section.id }} .tds-feature span {
+      color: rgba(22, 32, 43, 0.72);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 990px) {
+      #three-d-showcase-{{ section.id }} {
+        padding: 56px 16px;
+      }
+
+      #three-d-showcase-{{ section.id }} .tds-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      #three-d-showcase-{{ section.id }} .tds-stage-wrap {
+        min-height: 500px;
+      }
+
+      #three-d-showcase-{{ section.id }} .tds-stage {
+        height: 500px;
+      }
+
+      #three-d-showcase-{{ section.id }} .tds-features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      #three-d-showcase-{{ section.id }} .tds-stage-wrap {
+        min-height: 430px;
+      }
+
+      #three-d-showcase-{{ section.id }} .tds-stage {
+        height: 430px;
+      }
+
+      #three-d-showcase-{{ section.id }} .tds-card {
+        width: min(86vw, 330px);
+        height: 390px;
+      }
+
+      #three-d-showcase-{{ section.id }} .tds-card-inner {
+        padding: 22px;
+      }
+
+      #three-d-showcase-{{ section.id }} .tds-heading {
+        font-size: clamp(30px, 9vw, 42px);
+      }
+
+      #three-d-showcase-{{ section.id }} .tds-text {
+        font-size: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #three-d-showcase-{{ section.id }} .tds-card,
+      #three-d-showcase-{{ section.id }} .tds-button,
+      #three-d-showcase-{{ section.id }} .tds-nav-btn,
+      #three-d-showcase-{{ section.id }} .tds-dot {
+        transition: none !important;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      var section = document.getElementById('three-d-showcase-{{ section.id }}');
+      if (!section) return;
+
+      var cards = Array.prototype.slice.call(section.querySelectorAll('[data-card]'));
+      var dots = Array.prototype.slice.call(section.querySelectorAll('[data-dot]'));
+      var prevBtn = section.querySelector('[data-prev]');
+      var nextBtn = section.querySelector('[data-next]');
+      var active = Math.max(0, Math.min(cards.length - 1, {{ section.settings.start_index }} || 1));
+      var autoplayDelay = {{ section.settings.autoplay_delay | default: 4000 }};
+      var autoplayTimer = null;
+      var isPaused = false;
+
+      if (!cards.length) return;
+
+      function applyState() {
+        var total = cards.length;
+
+        cards.forEach(function (card, i) {
+          var offset = i - active;
+          var abs = Math.abs(offset);
+          var direction = offset < 0 ? -1 : 1;
+
+          var x = 0;
+          var y = 0;
+          var z = 0;
+          var rotateY = 0;
+          var rotateZ = 0;
+          var scale = 1;
+          var opacity = 1;
+          var blur = 0;
+
+          if (offset === 0) {
+            x = 0;
+            y = 0;
+            z = 120;
+            rotateY = 0;
+            rotateZ = 0;
+            scale = 1;
+            opacity = 1;
+            blur = 0;
+          } else if (abs === 1) {
+            x = direction * 32;
+            y = 10;
+            z = 70;
+            rotateY = direction * 38;
+            rotateZ = direction * -5;
+            scale = 0.9;
+            opacity = 0.72;
+            blur = 0.5;
+          } else {
+            x = direction * 48;
+            y = 18;
+            z = 30;
+            rotateY = direction * 54;
+            rotateZ = direction * -7;
+            scale = 0.8;
+            opacity = 0.28;
+            blur = 1.8;
+          }
+
+          card.style.transform =
+            'translate(-50%, -50%) translateX(' + x + '%) translateY(' + y + 'px) translateZ(' + z + 'px) rotateY(' + rotateY + 'deg) rotateZ(' + rotateZ + 'deg) scale(' + scale + ')';
+          card.style.opacity = opacity;
+          card.style.filter = 'blur(' + blur + 'px)';
+          card.classList.toggle('is-active', offset === 0);
+          card.classList.toggle('is-near', abs === 1);
+          card.style.zIndex = String(total - abs);
+
+          if (dots[i]) {
+            dots[i].classList.toggle('is-active', offset === 0);
+            dots[i].setAttribute('aria-pressed', offset === 0 ? 'true' : 'false');
+          }
+        });
+      }
+
+      function goTo(index) {
+        active = (index + cards.length) % cards.length;
+        applyState();
+      }
+
+      function next() {
+        goTo(active + 1);
+      }
+
+      function prev() {
+        goTo(active - 1);
+      }
+
+      function startAutoplay() {
+        if (!autoplayDelay || autoplayDelay < 1500) return;
+        stopAutoplay();
+        autoplayTimer = window.setInterval(function () {
+          if (!isPaused) next();
+        }, autoplayDelay);
+      }
+
+      function stopAutoplay() {
+        if (autoplayTimer) {
+          window.clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      cards.forEach(function (card) {
+        card.addEventListener('click', function () {
+          var i = Number(card.getAttribute('data-index'));
+          if (!isNaN(i)) goTo(i);
+        });
+
+        card.addEventListener('mouseenter', function () {
+          isPaused = true;
+        });
+
+        card.addEventListener('mouseleave', function () {
+          isPaused = false;
+        });
+
+        card.addEventListener('focusin', function () {
+          isPaused = true;
+        });
+
+        card.addEventListener('focusout', function () {
+          isPaused = false;
+        });
+      });
+
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          var i = Number(dot.getAttribute('data-dot'));
+          if (!isNaN(i)) goTo(i);
+        });
+      });
+
+      if (prevBtn) prevBtn.addEventListener('click', prev);
+      if (nextBtn) nextBtn.addEventListener('click', next);
+
+      section.addEventListener('mouseenter', function () { isPaused = true; });
+      section.addEventListener('mouseleave', function () { isPaused = false; });
+      section.addEventListener('touchstart', function () { isPaused = true; }, { passive: true });
+      section.addEventListener('touchend', function () { isPaused = false; }, { passive: true });
+
+      applyState();
+      startAutoplay();
+
+      document.addEventListener('visibilitychange', function () {
+        isPaused = document.hidden;
+      });
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "3D showcase section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Premium 3D section"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A smoother, more engaging 3D showcase"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>This version keeps the 3D feel, but removes the shaky hover behavior. The cards move with softer depth, better spacing, and a more polished visual rhythm for desktop and mobile.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Explore now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background color",
+      "default": "#f3f1ef"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_features",
+      "label": "Show feature boxes",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "start_index",
+      "label": "Default active card",
+      "min": 0,
+      "max": 2,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "label": "Autoplay delay (ms)",
+      "min": 2000,
+      "max": 8000,
+      "step": 500,
+      "default": 4000
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+          {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Card Image"
+    },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon character",
+          "default": "✦"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "card 1"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Elegant motion"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Smooth depth, gentle tilt, and a premium feel that works well on desktop and mobile.</p>"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "Explore details"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        },
+        {
+          "type": "color",
+          "id": "card_color",
+          "label": "Card color",
+          "default": "#5d8fc1"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "3D showcase section",
+      "blocks": [
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

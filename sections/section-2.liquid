@@ -1,0 +1,763 @@
+{% comment %}
+  ============================================================
+  ABOUT US — Polaroid Fan Layout  |  Mime360
+  ============================================================
+{% endcomment %}
+
+{%- liquid
+  assign bg_color = section.settings.background_color
+  assign heading   = section.settings.heading
+  assign body_text = section.settings.body_text
+  assign cta_text  = section.settings.cta_text
+  assign cta_url   = section.settings.cta_url
+  assign accent    = section.settings.accent_color
+  assign card_blocks = section.blocks | where: 'type', 'card'
+-%}
+
+<section
+  class="wau-section"
+  id="wau-{{ section.id }}"
+  style="
+    --wau-bg: {{ bg_color }};
+    --wau-accent: {{ accent }};
+    --wau-pt: {{ section.settings.padding_top }}px;
+    --wau-pb: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <!-- BG image layer -->
+  {%- if section.settings.bg_image != blank -%}
+    <div class="wau-bg-img" style="background-image: url('{{ section.settings.bg_image | image_url: width: 1600 }}');"></div>
+  {%- endif -%}
+  <div class="wau-bg-overlay"></div>
+
+  <div class="wau-inner">
+
+    <!-- ═══ LEFT ═══ -->
+    <div class="wau-left">
+      <h2 class="wau-heading">{{ heading }}</h2>
+      <p class="wau-body">{{ body_text }}</p>
+
+      {%- if cta_text != blank -%}
+        <a href="{{ cta_url }}" class="wau-cta">
+          <span>{{ cta_text }}</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {%- endif -%}
+
+      <!-- Stats -->
+      <div class="wau-stats">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'stat' -%}
+            <div class="wau-stat-pill" {{ block.shopify_attributes }}>
+              <strong>{{ block.settings.stat_value }}</strong>
+              <span>{{ block.settings.stat_label }}</span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <!-- ═══ RIGHT — Polaroid Fan ═══ -->
+    <div class="wau-right">
+      <div class="wau-fan-wrap">
+        {%- for block in card_blocks limit: 3 -%}
+          <div class="wau-pcard wau-pcard--{{ forloop.index0 }}" data-idx="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            <div class="wau-pcard__inner">
+              {%- if block.settings.card_image != blank -%}
+                {{
+                  block.settings.card_image
+                  | image_url: width: 600
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '300,480,600',
+                    class: 'wau-pcard__img'
+                }}
+              {%- else -%}
+                {{ 'collection-' | append: forloop.index | placeholder_svg_tag: 'wau-pcard__img wau-pcard__img--ph' }}
+              {%- endif -%}
+              {%- if block.settings.card_label != blank -%}
+                <div class="wau-pcard__caption">{{ block.settings.card_label }}</div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+        <!-- glow blobs -->
+        <div class="wau-blob wau-blob--1" aria-hidden="true"></div>
+        <div class="wau-blob wau-blob--2" aria-hidden="true"></div>
+      </div>
+    </div>
+
+  </div><!-- /inner -->
+
+  <!-- ═══ MARQUEE STRIP ═══ -->
+
+
+</section>
+
+<!-- ════════════════════════════
+  CSS
+════════════════════════════ -->
+<style>
+#wau-{{ section.id }} *, #wau-{{ section.id }} *::before, #wau-{{ section.id }} *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Shell ── */
+.wau-section {
+  position: relative;
+  overflow: hidden;
+  padding-top: var(--wau-pt, 80px);
+  padding-bottom: 0;
+  background: var(--wb-color-white);
+}
+
+.wau-bg-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.wau-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(12,65,104,0.92) 0%, rgba(12,65,104,0.70) 55%, rgba(12,65,104,0.30) 100%);
+  z-index: 1;
+}
+
+/* ── Inner grid ── */
+.wau-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 60px var(--wau-pb, 80px);
+  display: grid;
+  grid-template-columns: 44% 1fr;
+  gap: 0;
+  align-items: center;
+  min-height: 500px;
+}
+
+/* ══ LEFT ══════════════════════════════ */
+.wau-left {
+    gap: 10px;
+  color: var(--wb-color-white);
+  padding-right: 40px;
+      width: 82%;
+  margin: auto !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wau-heading {
+  font-family: var(--wb-font-heading, 'Bebas Neue', 'Arial Black', sans-serif);
+  font-size: var(--wb-h2, clamp(52px, 7vw, 110px));
+  font-weight: var(--wb-fw-extrabold, 900);
+  line-height: 0.92;
+  letter-spacing: var(--wb-letter-tight, -0.01em);
+  color: white;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.wau-section.wau-visible .wau-heading {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.wau-body {
+  font-family: var(--wb-font-body, 'Helvetica Neue', sans-serif);
+  font-size: var(--wb-body, clamp(14px, 1.1vw, 17px));
+  font-weight: var(--wb-fw-medium, 500);
+  line-height: var(--wb-line-relaxed, 1.75);
+  color: white;
+  max-width: 400px;
+  margin-bottom: 36px;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s;
+}
+
+.wau-section.wau-visible .wau-body {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* CTA */
+.wau-cta:hover{
+background: #0c4168;
+color: white;
+}
+.wau-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--wb-font-heading, sans-serif);
+  font-size: var(--wb-btn-font-size, 13px);
+  font-weight: var(--wb-btn-font-weight, 700);
+  letter-spacing: var(--wb-btn-letter-spacing, 0.08em);
+  text-transform: uppercase;
+  color: var(--wb-color-blue, #0C4168);
+  background: white;
+  padding: 5px !important;
+  margin: 10px !important;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  width: 50%;
+      justify-content: center;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease 0.28s, transform 0.8s ease 0.28s, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.wau-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.18);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.wau-cta:hover::after {
+  transform: translateX(0);
+}
+
+
+.wau-section.wau-visible .wau-cta {
+  opacity: 1;
+  transform: translateY(0);
+padding: 14px !important;
+}
+
+/* Stats */
+.wau-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease 0.38s, transform 0.8s ease 0.38s;
+}
+
+.wau-section.wau-visible .wau-stats {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wau-stat-pill {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.13);
+
+  padding: 14px 20px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  backdrop-filter: blur(10px);
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.wau-stat-pill:hover {
+  background: rgba(255,255,255,0.13);
+  border-color: var(--wb-color-lime, #21F010);
+}
+
+.wau-stat-pill strong {
+  font-family: var(--wb-font-heading, sans-serif);
+  font-size: var(--wb-h4, clamp(22px, 2.4vw, 32px));
+  font-weight: var(--wb-fw-extrabold, 900);
+  color: var(--wb-color-lime, #21F010);
+  line-height: 1;
+}
+
+.wau-stat-pill span {
+  font-size: var(--wb-caption, 11px);
+  letter-spacing: var(--wb-letter-wide, 0.1em);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--wb-font-body, sans-serif);
+}
+
+/* ══ RIGHT — Fan cards ══════════════════ */
+.wau-right {
+  position: relative;
+  z-index: 2;
+}
+
+.wau-fan-wrap {
+  position: relative;
+  width: 50%;
+  height: 520px;
+  margin: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base polaroid card */
+.wau-pcard {
+  position: absolute;
+  width: 220px;
+  background: var(--wb-color-white, #fff);
+  padding: 10px 10px 36px;
+  box-shadow: var(--wb-shadow-md, 0 24px 60px rgba(0,0,0,0.38));
+  cursor: pointer;
+  transform-origin: center bottom;
+  will-change: transform;
+  transition: box-shadow 0.35s ease;
+}
+
+.wau-pcard:hover {
+  box-shadow: 0 36px 80px rgba(0,0,0,0.55);
+  z-index: 20 !important;
+}
+
+/* Fan positions — staggered like scattered photos */
+.wau-pcard--0 {
+  left: 50px;
+  top: 50px;
+  z-index: 10;
+  --base-rot: -12deg;
+}
+
+.wau-pcard--1 {
+  left: 160px;
+  top: 20px;
+  z-index: 11;
+  --base-rot: 2deg;
+}
+
+.wau-pcard--2 {
+  left: 270px;
+  top: 60px;
+  z-index: 12;
+  --base-rot: 14deg;
+}
+
+.wau-pcard__inner {
+  width: 100%;
+  overflow: hidden;
+
+}
+
+.wau-pcard__img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.wau-pcard:hover .wau-pcard__img {
+  transform: scale(1.04);
+}
+
+.wau-pcard__img--ph {
+  opacity: 0.25;
+  background: #aac;
+}
+
+.wau-pcard__caption {
+  text-align: center;
+  margin-top: 10px;
+  font-family: var(--wb-font-body, sans-serif);
+  font-size: var(--wb-caption, 11px);
+  font-weight: var(--wb-fw-bold, 700);
+  letter-spacing: var(--wb-letter-wide, 0.09em);
+  text-transform: uppercase;
+  color: var(--wb-color-blue, #333);
+}
+
+/* Blobs */
+.wau-blob {
+  position: absolute;
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wau-blob--1 {
+  width: 280px;
+  height: 280px;
+  background: var(--wb-color-lime, #21F010);
+  opacity: 0.07;
+  top: -20px;
+  right: -40px;
+  animation: wau-pulse 7s ease-in-out infinite alternate;
+}
+
+.wau-blob--2 {
+  width: 220px;
+  height: 220px;
+  background: #851828;
+  opacity: 0.1;
+  bottom: 30px;
+  left: 10px;
+  animation: wau-pulse 9s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes wau-pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.3); }
+}
+
+/* ══ MARQUEE ══════════════════════════ */
+.wau-marquee-wrap {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.2);
+  padding: 17px 0;
+  margin-top: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+
+.wau-marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: wau-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+.wau-marquee-wrap:hover .wau-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes wau-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-25%); }
+}
+
+.wau-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 26px;
+  font-family: var(--wb-font-heading, 'Bebas Neue', 'Arial Black', sans-serif);
+  font-size: var(--wb-h5, clamp(15px, 1.6vw, 21px));
+  font-weight: var(--wb-fw-extrabold, 900);
+  letter-spacing: var(--wb-letter-wide, 0.16em);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+}
+
+.wau-ticker-star {
+  color: var(--wb-color-lime, #21F010);
+  font-size: 0.5em;
+  animation: wau-spin 5s linear infinite;
+  display: inline-block;
+}
+
+@keyframes wau-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ══ RESPONSIVE ═══════════════════════ */
+@media (max-width: 900px) {
+  .wau-inner {
+    grid-template-columns: 1fr;
+    padding: 0 24px 60px;
+    gap: 52px;
+    min-height: unset;
+  }
+  .wau-stat-pill span{
+  font-size: 10px;
+}
+
+
+  .wau-left {
+    padding-right: 0;
+  }
+
+  .wau-fan-wrap {
+    height: 380px;
+    width: 77% !important;
+  }
+
+  .wau-pcard {
+    width: 165px;
+  }
+
+  .wau-pcard--0 {
+    left: 20px;
+    top: 40px;
+  }
+
+  .wau-pcard--1 {
+    left: 110px;
+    top: 15px;
+  }
+
+  .wau-pcard--2 {
+    left: 200px;
+    top: 50px;
+  }
+}
+
+@media only screen and (min-width: 768px){
+.wau-cta{
+width: 37%;
+}
+}
+
+@media (max-width: 480px) {
+  .wau-fan-wrap {
+    height: 300px;
+  }
+
+  .wau-pcard {
+    width: 130px;
+    padding: 7px 7px 28px;
+  }
+
+  .wau-pcard--0 {
+    left: 10px;
+    top: 30px;
+  }
+
+  .wau-pcard--1 {
+    left: 82px;
+    top: 10px;
+  }
+
+  .wau-pcard--2 {
+    left: 155px;
+    top: 45px;
+  }
+
+  .wau-heading {
+    font-size: clamp(32px, 9vw, 42px);
+    
+  }
+
+  .wau-body {
+    font-size: 14px;
+  }
+
+  .wau-ticker-item {
+    font-size: 15px;
+  }
+}
+
+</style>
+
+<!-- ════════════════════════════
+  JAVASCRIPT
+════════════════════════════ -->
+<script>
+(function () {
+  const SEC = document.getElementById('wau-{{ section.id }}');
+  if (!SEC) return;
+
+  /* 1 — Scroll reveal */
+  const io = new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) { SEC.classList.add('wau-visible'); io.disconnect(); }
+  }, { threshold: 0.12 });
+  io.observe(SEC);
+
+  /* 2 — Gentle 3D Y-axis rotate per card, staggered phase */
+  const cards = SEC.querySelectorAll('.wau-pcard');
+  const DUR = 7.0; // seconds per full cycle
+  const MAX_Y = 16; // degrees
+  const MAX_X = 5;
+
+  // Read the base static rotation from CSS var
+  const baseRots = [-12, 2, 14];
+
+  cards.forEach((card, i) => {
+    const phaseOffset = (i / cards.length) * DUR; // stagger 1/3 cycle each
+    let startTs = null;
+    let isHovered = false;
+
+    card.addEventListener('mouseenter', () => { isHovered = true; });
+    card.addEventListener('mouseleave', () => { isHovered = false; });
+
+    function tick(ts) {
+      if (!startTs) startTs = ts;
+      const elapsed = ((ts - startTs) / 1000) + phaseOffset;
+      const angle = (elapsed / DUR) * Math.PI * 2;
+
+      if (!isHovered) {
+        const rotY = Math.sin(angle) * MAX_Y;
+        const rotX = Math.cos(angle) * MAX_X;
+        const baseZ = baseRots[i] || 0;
+        card.style.transform = `rotate(${baseZ}deg) perspective(800px) rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+      } else {
+        // On hover: straighten and lift
+        card.style.transform = `rotate(0deg) perspective(800px) rotateY(0deg) rotateX(0deg) translateY(-8px) scale(1.05)`;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+
+  /* 3 — Duplicate ticker for seamless loop */
+  const track = document.getElementById('wau-ticker-{{ section.id }}');
+  if (track) {
+    while (track.scrollWidth < window.innerWidth * 4) {
+      track.innerHTML += track.innerHTML;
+    }
+  }
+})();
+</script>
+
+<!-- ════════════════════════════
+  SCHEMA
+════════════════════════════ -->
+{% schema %}
+{
+  "name": "About Us — Fan Cards",
+  "tag": "section",
+  "class": "wau-section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "ABOUT US"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Description",
+      "default": "Be bold, be you. Born from a belief that every woman deserves confidence in everything she wears — our products are crafted with care, purpose, and a fearless spirit."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "Our Story"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    },
+    {
+      "type": "header",
+      "content": "Design"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image (optional)"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#0C4168"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#21F010"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0, "max": 160, "step": 4, "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0, "max": 160, "step": 4, "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Image Card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card image"
+        },
+        {
+          "type": "text",
+          "id": "card_label",
+          "label": "Caption (optional)",
+          "default": "Our Style"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Stat Pill",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Value",
+          "default": "10K+"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Label",
+          "default": "Happy Customers"
+        }
+      ]
+    },
+    {
+      "type": "ticker",
+      "name": "Ticker Phrase",
+      "settings": [
+        {
+          "type": "text",
+          "id": "ticker_text",
+          "label": "Phrase",
+          "default": "WE ARE BOLD"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us — Fan Cards",
+      "blocks": [
+        { "type": "card", "settings": { "card_label": "Pure Confidence" } },
+        { "type": "card", "settings": { "card_label": "Born Bold" } },
+        { "type": "card", "settings": { "card_label": "Fearless Spirit" } },
+        { "type": "stat", "settings": { "stat_value": "10K+", "stat_label": "Happy Customers" } },
+        { "type": "stat", "settings": { "stat_value": "4.9★", "stat_label": "Avg. Rating" } },
+        { "type": "stat", "settings": { "stat_value": "100%", "stat_label": "Made with Love" } },
+        { "type": "ticker", "settings": { "ticker_text": "WE ARE BOLD" } },
+        { "type": "ticker", "settings": { "ticker_text": "WE ARE STRONG" } },
+        { "type": "ticker", "settings": { "ticker_text": "WE ARE FEARLESS" } },
+        { "type": "ticker", "settings": { "ticker_text": "WE ARE CONFIDENT" } },
+        { "type": "ticker", "settings": { "ticker_text": "WE ARE BEAUTIFUL" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

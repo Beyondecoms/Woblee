@@ -1,0 +1,430 @@
+{% liquid
+  assign section_id = 'trust-strip-' | append: section.id
+%}
+
+<section id="{{ section_id }}" class="trust-strip">
+
+  {%- comment -%} Header stays inside page-width padding {%- endcomment -%}
+  {% if section.settings.heading != blank or section.settings.subheading != blank %}
+    <div class="trust-strip__header page-width">
+      {% if section.settings.heading != blank %}
+        <h2 class="trust-strip__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="trust-strip__subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {%- comment -%} Track is FULL-BLEED — no page-width wrapper so no clipping {%- endcomment -%}
+  <div class="trust-strip__track-wrap">
+
+    {%- comment -%} Left / right fade masks {%- endcomment -%}
+    <div class="trust-strip__fade trust-strip__fade--left"  aria-hidden="true"></div>
+    <div class="trust-strip__fade trust-strip__fade--right" aria-hidden="true"></div>
+
+    <div class="trust-strip__track" id="TrustTrack-{{ section.id }}" aria-label="Trust features">
+
+      {%- comment -%} Set A — real blocks {%- endcomment -%}
+      <div class="trust-strip__set" id="TrustSetA-{{ section.id }}" aria-hidden="false">
+        {% for block in section.blocks %}
+          <article class="trust-strip__card" {{ block.shopify_attributes }}>
+            <div class="trust-strip__icon-wrap">
+              {% if block.settings.icon != blank %}
+                {{ block.settings.icon | image_url: width: 120 | image_tag: class: 'trust-strip__icon', loading: 'lazy', alt: block.settings.title }}
+              {% else %}
+                <span class="trust-strip__icon-fallback">✓</span>
+              {% endif %}
+            </div>
+            <div class="trust-strip__content">
+              {% if block.settings.title != blank %}
+                <h3 class="trust-strip__title">{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <p class="trust-strip__text">{{ block.settings.text }}</p>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      {%- comment -%} Set B — identical clone for seamless loop {%- endcomment -%}
+      <div class="trust-strip__set" id="TrustSetB-{{ section.id }}" aria-hidden="true">
+        {% for block in section.blocks %}
+          <article class="trust-strip__card">
+            <div class="trust-strip__icon-wrap">
+              {% if block.settings.icon != blank %}
+                {{ block.settings.icon | image_url: width: 120 | image_tag: class: 'trust-strip__icon', loading: 'lazy', alt: block.settings.title }}
+              {% else %}
+                <span class="trust-strip__icon-fallback">✓</span>
+              {% endif %}
+            </div>
+            <div class="trust-strip__content">
+              {% if block.settings.title != blank %}
+                <h3 class="trust-strip__title">{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <p class="trust-strip__text">{{ block.settings.text }}</p>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<style>
+/* ── Section shell ──────────────────────────────────────────── */
+.trust-strip {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  
+  margin: 12px 0;
+  padding-top: 0px;
+  padding-bottom: 18px;
+}
+
+/* ── Header (centered, page-width padding) ──────────────────── */
+.trust-strip__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.trust-strip__heading {
+  margin: 0;
+  font-family: var(--wb-font-heading);
+  font-size: 32px;
+  line-height: 1.05;
+  font-weight: var(--wb-fw-extrabold);
+  letter-spacing: var(--wb-letter-tight);
+  text-transform: uppercase;
+  color: var(--wb-color-blue, #0c4168);
+}
+
+.trust-strip__subheading {
+  margin: 0;
+  max-width: 680px;
+  font-family: var(--wb-font-body);
+  font-size: clamp(13px, 1.1vw, 15px);
+  line-height: 1.55;
+  color: rgba(12, 65, 104, 0.60);
+  font-weight: var(--wb-fw-medium);
+}
+
+/* ── Track wrapper — full bleed, clips overflow ─────────────── */
+.trust-strip__track-wrap {
+  position: relative;
+  overflow: hidden;
+  /* Prevent the very first card from being clipped on load */
+  padding: 4px 0 6px;
+}
+
+/* ── Left / right fade masks ────────────────────────────────── */
+.trust-strip__fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+.trust-strip__fade--left  { left:  0; background: linear-gradient(to right, #ffffff 0%, transparent 100%); }
+.trust-strip__fade--right { right: 0; background: linear-gradient(to left,  #ffffff 0%, transparent 100%); }
+
+/* ── Scrolling track ────────────────────────────────────────── */
+.trust-strip__track {
+  display: flex;
+  width: max-content;
+  /* JS drives translateX — no CSS animation here */
+  will-change: transform;
+  transform: translateX(0);
+}
+
+/* ── Set ────────────────────────────────────────────────────── */
+.trust-strip__set {
+  display: flex;
+  gap: 14px;
+  padding: 0 7px;
+  flex-shrink: 0;
+}
+
+/* ── Card default (white) ───────────────────────────────────── */
+.trust-strip__card {
+  flex: 0 0 auto;
+  width: 290px;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 18px;
+  background: #ffffff;
+  border: 1.5px solid rgba(12, 65, 104, 0.13);
+  box-shadow: 0 2px 10px rgba(12, 65, 104, 0.06);
+  transition: background 0.26s ease, border-color 0.26s ease,
+              box-shadow 0.26s ease, transform 0.22s ease;
+  cursor: default;
+  user-select: none;
+}
+
+/* ── Card hover — blue fill ─────────────────────────────────── */
+.trust-strip__card:hover {
+  background: var(--wb-color-blue, #0c4168);
+  border-color: var(--wb-color-blue, #0c4168);
+  box-shadow: 0 8px 28px rgba(12, 65, 104, 0.22);
+  transform: translateY(-3px) scale(1.025);
+}
+
+/* ── Icon wrap ──────────────────────────────────────────────── */
+.trust-strip__icon-wrap {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  background: rgba(12, 65, 104, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.26s ease;
+}
+
+.trust-strip__card:hover .trust-strip__icon-wrap {
+  background: var(--wb-color-lime, #c8e62b);
+}
+
+.trust-strip__icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  display: block;
+}
+
+.trust-strip__icon-fallback {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--wb-color-blue, #0c4168);
+  transition: color 0.26s ease;
+}
+
+/* Keep fallback tick dark on hover (sits on lime bg) */
+.trust-strip__card:hover .trust-strip__icon-fallback {
+  color: var(--wb-color-blue, #0c4168);
+}
+
+/* ── Content text ───────────────────────────────────────────── */
+.trust-strip__content { flex: 1; min-width: 0; }
+
+.trust-strip__title {
+  margin: 0 0 3px;
+  font-family: var(--wb-font-heading);
+  font-size: 14.5px;
+  line-height: 1.15;
+  font-weight: var(--wb-fw-extrabold);
+  letter-spacing: var(--wb-letter-tight);
+  text-transform: uppercase;
+  color: var(--wb-color-blue, #0c4168);
+  transition: color 0.26s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trust-strip__card:hover .trust-strip__title { color: #ffffff; }
+
+.trust-strip__text {
+  margin: 0;
+  font-family: var(--wb-font-body);
+  font-size: 12.5px;
+  line-height: 1.38;
+  color: rgba(12, 65, 104, 0.62);
+  font-weight: var(--wb-fw-medium);
+  transition: color 0.26s ease;
+}
+
+.trust-strip__card:hover .trust-strip__text { color: rgba(255,255,255,0.85); }
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media screen and (max-width: 749px) {
+  .trust-strip {
+    padding-top: 16px;
+    padding-bottom: 14px;
+  }
+
+  .trust-strip__fade { width: 48px; }
+
+  .trust-strip__card {
+    width: 252px;
+    padding: 11px 14px;
+  }
+
+  .trust-strip__title { font-size: 13.5px; }
+  .trust-strip__text  { font-size: 12px; }
+  .trust-strip__set   { gap: 10px; }
+}
+
+/* ── Reduced motion: static overflow scroll ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .trust-strip__track-wrap { overflow-x: auto; }
+  .trust-strip__track      { transform: none !important; width: 100%; }
+}
+</style>
+
+<script>
+(function () {
+  const sid    = '{{ section.id }}';
+  const track  = document.getElementById('TrustTrack-' + sid);
+  const setA   = document.getElementById('TrustSetA-'  + sid);
+  if (!track || !setA) return;
+
+  /* Speed: px per second. Higher = faster. */
+  const PX_PER_SEC = {{ section.settings.scroll_speed | default: 60 }};
+
+  let pos       = 0;       /* current translateX (negative = scrolled left) */
+  let paused    = false;
+  let lastTime  = null;
+  let raf       = null;
+  let loopWidth = 0;       /* width of ONE set (= the loop point) */
+
+  function measure() {
+    /* Wait for layout then grab Set A's full rendered width incl. gap */
+    const setStyle = getComputedStyle(track.querySelector('.trust-strip__set'));
+    const gap = parseFloat(setStyle.gap) || 14;
+    loopWidth = setA.offsetWidth + gap;
+  }
+
+  function step(ts) {
+    if (lastTime !== null && !paused) {
+      const delta = (ts - lastTime) / 1000;           /* seconds */
+      pos -= PX_PER_SEC * delta;
+
+      /* Reset seamlessly when we've scrolled exactly one set width */
+      if (Math.abs(pos) >= loopWidth) {
+        pos += loopWidth;
+      }
+
+      track.style.transform = 'translateX(' + pos + 'px)';
+    }
+    lastTime = ts;
+    raf = requestAnimationFrame(step);
+  }
+
+  /* Pause/resume helpers */
+  function pause()  { paused = true;  }
+  function resume() { paused = false; lastTime = null; }
+
+  track.addEventListener('mouseenter', pause);
+  track.addEventListener('mouseleave', resume);
+  track.addEventListener('touchstart',  pause,  { passive: true });
+  track.addEventListener('touchend',    resume, { passive: true });
+
+  /* Re-measure on resize (card width doesn't change but gap might) */
+  let resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(measure, 120);
+  });
+
+  /* Kick off after paint */
+  requestAnimationFrame(function () {
+    measure();
+    raf = requestAnimationFrame(step);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Trust scroll strip",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Built to earn customer trust"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Show your strongest product advantages in a premium, scrollable strip."
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed (px per second)",
+      "min": 20,
+      "max": 140,
+      "step": 10,
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Trusted Quality"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Rigorously tested for comfort & durability."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Trust scroll strip",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "OEKO-TEX® Certified",
+            "text": "100% safe, chemical-free & tested fabrics."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Sustainably Made",
+            "text": "Certified to the Global Organic Textile Standard."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Trusted Quality",
+            "text": "Rigorously tested for comfort & durability."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Dermatologically Tested",
+            "text": "Safe for sensitive skin, clinically approved."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1032 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_hero_section_jrfcFp": {
+      "type": "custom-hero-section",
+      "blocks": {
+        "slide_B6rmj8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_nn8na4nn8na4nn8n.png",
+            "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/Gemini_Generated_Image_exxnl7exxnl7exxn.png",
+            "mobile_image_focal_point": "center center",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "hide_content": false,
+            "eyebrow": "",
+            "heading": "New for Summer",
+            "subtext": "Cobblestone streets, sunbaked rooftops, and Lisbon as our guide.\nLet adventure lead the way in relaxed linen and packable new arrivals.",
+            "btn1_label": "WOMEN'S NEW ARRIVALS",
+            "btn1_link": "",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "MEN'S NEW ARRIVALS",
+            "btn2_link": "",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "EXPLORE THE CAMPAIGN",
+            "btn3_link": "",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_B6rmj8"
+      ],
+      "name": "Hero Slideshow Custom",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5000,
+        "transition_type": "slide",
+        "transition_speed": 700,
+        "show_arrows": true,
+        "show_dots": true,
+        "video_pause_autoplay": false,
+        "desktop_height": 780,
+        "mobile_height": 500,
+        "overlay_color": "#000000",
+        "overlay_opacity": 25,
+        "heading_font": "Georgia, 'Times New Roman', serif",
+        "body_font": "'Helvetica Neue', Arial, sans-serif",
+        "eyebrow_font_size": 12,
+        "heading_font_size": 64,
+        "heading_font_weight": "400",
+        "subtext_font_size": 16,
+        "heading_color": "#ffffff",
+        "subtext_color": "#f0ede8",
+        "caption_position": "bottom_left",
+        "content_offset_h": 4,
+        "content_offset_v": 8,
+        "content_max_width": 600,
+        "caption_bg_show": false,
+        "caption_bg_color": "#00000066",
+        "button_style": "sharp",
+        "button_bg_color": "#ffffff",
+        "button_text_color": "#1a1a1a",
+        "button_border_color": "#ffffff",
+        "button_hover_bg": "rgba(0,0,0,0)",
+        "button_hover_text": "#ffffff",
+        "button_font_size": 12,
+        "button_padding_v": 18,
+        "button_padding_h": 40,
+        "button_min_width": 180,
+        "button_border_width": 1,
+        "button_gap": 16,
+        "button_align": "left",
+        "mobile_button_stack": "column",
+        "arrow_bg": "#ffffff26",
+        "arrow_hover_bg": "#ffffff59",
+        "arrow_color": "#ffffff",
+        "dot_color": "#ffffff",
+        "dot_active_color": "#ffffff",
+        "mobile_caption_below": false,
+        "mobile_caption_bg": "#ffffff"
+      }
+    },
+    "marquee_izzYrQ": {
+      "type": "marquee",
+      "blocks": {
+        "text_WDkNgd": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A world of timeless designs that honor the people who make them & the places they’re made.</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "var(--font-size--heading-lg)",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_WDkNgd"
+      ],
+      "disabled": true,
+      "name": "t:names.marquee",
+      "settings": {
+        "movement_direction": "normal",
+        "color_scheme": "",
+        "padding-block-start": 48,
+        "padding-block-end": 48,
+        "gap_between_elements": 16
+      }
+    },
+    "custom_editorial_CCz9Yx": {
+      "type": "custom-editorial",
+      "blocks": {
+        "collection_item_3c4Dti": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/e7g67g30o1cd8t7s68otxfw602tji5g0.avif",
+            "heading": "The Linen Shop",
+            "button_1_label": "Women",
+            "button_1_url": "",
+            "button_2_label": "Men",
+            "button_2_url": ""
+          }
+        },
+        "collection_item_W9xTnk": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
+            "heading": "The Getaway Edit",
+            "button_1_label": "Women",
+            "button_1_url": "",
+            "button_2_label": "Men",
+            "button_2_url": ""
+          }
+        },
+        "collection_item_EGfkLq": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
+            "heading": "Dresses",
+            "button_1_label": "Shop Now",
+            "button_1_url": "",
+            "button_2_label": "",
+            "button_2_url": ""
+          }
+        },
+        "collection_item_GJtwzb": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/q5w00c72s70127860d5dwl150v22ij58.webp",
+            "heading": "Matching Sets",
+            "button_1_label": "Shop Now",
+            "button_1_url": "",
+            "button_2_label": "",
+            "button_2_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_3c4Dti",
+        "collection_item_W9xTnk",
+        "collection_item_EGfkLq",
+        "collection_item_GJtwzb"
+      ],
+      "name": "Custom Editorial",
+      "settings": {
+        "max_width": 1400,
+        "section_padding_horizontal": 24,
+        "padding_top": 40,
+        "padding_bottom": 24,
+        "image_ratio": "3/4",
+        "background_color": "#ffffff",
+        "heading_color": "#1a1a1a",
+        "button_color": "#1a1a1a",
+        "button_hover_color": "#555555",
+        "heading_font": "Garamond",
+        "heading_size": 18,
+        "heading_transform": "none",
+        "button_font": "Helvetica Neue",
+        "button_size": 12
+      }
+    },
+    "custom_category_icons_fa4BTq": {
+      "type": "custom-category-icons",
+      "blocks": {
+        "category_kzEbaF": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Regular-Blue.png",
+            "image_hover": "shopify://shop_images/Relaxed-Blue.png",
+            "label": "Regular",
+            "link": "",
+            "circle_bg": "#f0ece4"
+          }
+        },
+        "category_HapBiR": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Regular.png",
+            "image_hover": "shopify://shop_images/Regular-Blue.png",
+            "label": "Regular",
+            "link": "",
+            "circle_bg": "#f0ece4"
+          }
+        },
+        "category_6dU3Bg": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Boxy.png",
+            "image_hover": "shopify://shop_images/Boxy-Blue.png",
+            "label": "Boxy",
+            "link": "",
+            "circle_bg": "#f0ece4"
+          }
+        },
+        "category_LP6wDc": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Oversized.png",
+            "image_hover": "shopify://shop_images/Oversized-Blue.png",
+            "label": "Oversized",
+            "link": "",
+            "circle_bg": "#f0ece4"
+          }
+        },
+        "category_Fgx9N4": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Relaxed.png",
+            "image_hover": "shopify://shop_images/Relaxed-Blue.png",
+            "label": "Relaxed",
+            "link": "",
+            "circle_bg": "#f0ece4"
+          }
+        }
+      },
+      "block_order": [
+        "category_kzEbaF",
+        "category_HapBiR",
+        "category_6dU3Bg",
+        "category_LP6wDc",
+        "category_Fgx9N4"
+      ],
+      "name": "Custom Category Icons",
+      "settings": {
+        "heading": "Welcome to Woblee",
+        "heading_font": "Garamond",
+        "heading_size": 52,
+        "heading_weight": "400",
+        "subtext_line_1": "We craft premium menswear, designed to last.",
+        "subtext_line_2_before": "Start exploring our categories and make sure you",
+        "inline_link_label": "join Club Woblee",
+        "inline_link_url": "",
+        "subtext_line_2_after": "for exclusive benefits.",
+        "subtext_size": 15,
+        "cta_label": "JOIN CLUB Woblee",
+        "cta_url": "",
+        "btn_font_size": 13,
+        "btn_padding_v": 18,
+        "btn_padding_h": 56,
+        "circle_size": 120,
+        "icon_gap": 32,
+        "label_size": 11,
+        "background_color": "#ffffff",
+        "heading_color": "#1a1a1a",
+        "subtext_color": "#444444",
+        "label_color": "#1a1a1a",
+        "inline_link_color": "#1a1a1a",
+        "btn_bg": "#1a1a1a",
+        "btn_text_color": "#ffffff",
+        "btn_hover_bg": "#333333",
+        "padding_top": 0,
+        "padding_bottom": 32,
+        "body_font": "Helvetica Neue"
+      }
+    },
+    "section_2_BrdHkP": {
+      "type": "section-2",
+      "blocks": {
+        "card_KDWbQm": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
+            "card_label": "Pure Confidence"
+          }
+        },
+        "card_KMLL9L": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/black.webp",
+            "card_label": "Born Bold"
+          }
+        },
+        "card_r6TGtV": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "card_label": "Fearless Spirit"
+          }
+        },
+        "stat_eApY44": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "10K+",
+            "stat_label": "Happy Customers"
+          }
+        },
+        "stat_Pqzapj": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "4.9★",
+            "stat_label": "Avg. Rating"
+          }
+        },
+        "stat_j3QiFA": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "100%",
+            "stat_label": "Made with Love"
+          }
+        },
+        "ticker_QjnHpz": {
+          "type": "ticker",
+          "settings": {
+            "ticker_text": "WE ARE BOLD"
+          }
+        },
+        "ticker_j44dHi": {
+          "type": "ticker",
+          "settings": {
+            "ticker_text": "WE ARE STRONG"
+          }
+        },
+        "ticker_6zxQgx": {
+          "type": "ticker",
+          "settings": {
+            "ticker_text": "WE ARE FEARLESS"
+          }
+        },
+        "ticker_4HUeDM": {
+          "type": "ticker",
+          "settings": {
+            "ticker_text": "WE ARE CONFIDENT"
+          }
+        },
+        "ticker_E6tJ98": {
+          "type": "ticker",
+          "settings": {
+            "ticker_text": "WE ARE BEAUTIFUL"
+          }
+        }
+      },
+      "block_order": [
+        "card_KDWbQm",
+        "card_KMLL9L",
+        "card_r6TGtV",
+        "stat_eApY44",
+        "stat_Pqzapj",
+        "stat_j3QiFA",
+        "ticker_QjnHpz",
+        "ticker_j44dHi",
+        "ticker_6zxQgx",
+        "ticker_4HUeDM",
+        "ticker_E6tJ98"
+      ],
+      "name": "About Us — Fan Cards",
+      "settings": {
+        "heading": "ABOUT US",
+        "body_text": "Be bold, be you. Born from a belief that every woman deserves confidence in everything she wears — our products are crafted with care, purpose, and a fearless spirit.",
+        "cta_text": "Our Story",
+        "cta_url": "",
+        "background_color": "#0c4168",
+        "accent_color": "#21f010",
+        "padding_top": 84,
+        "padding_bottom": 0
+      }
+    },
+    "rotating_text_X4Hpjk": {
+      "type": "rotating-text",
+      "blocks": {
+        "phrase_erCf4E": {
+          "type": "phrase",
+          "settings": {
+            "word": "bold",
+            "sub_text": "But never curt"
+          }
+        },
+        "phrase_DkDGRX": {
+          "type": "phrase",
+          "settings": {
+            "word": "unapologetic",
+            "sub_text": "But never disrespectful"
+          }
+        },
+        "phrase_JrdzcE": {
+          "type": "phrase",
+          "settings": {
+            "word": "rebellious",
+            "sub_text": "But never scandalous"
+          }
+        },
+        "phrase_CamVJL": {
+          "type": "phrase",
+          "settings": {
+            "word": "fearless",
+            "sub_text": "But never reckless"
+          }
+        },
+        "phrase_wqybQ8": {
+          "type": "phrase",
+          "settings": {
+            "word": "confident",
+            "sub_text": "But never arrogant"
+          }
+        }
+      },
+      "block_order": [
+        "phrase_erCf4E",
+        "phrase_DkDGRX",
+        "phrase_JrdzcE",
+        "phrase_CamVJL",
+        "phrase_wqybQ8"
+      ],
+      "name": "We Are — Rotating Banner",
+      "settings": {
+        "static_text": "We are",
+        "background_color": "#f5c800",
+        "text_color": "#111111",
+        "interval": 2,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "17800675107a00a753": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_31a39b2_Va8WBB": {
+          "type": "ai_gen_block_31a39b2",
+          "settings": {
+            "small_title": "More to",
+            "main_heading": "Products",
+            "subtitle": "Discover our curated edits and seasonal collections",
+            "small_title_size": 16,
+            "main_heading_size": 48,
+            "subtitle_size": 14,
+            "card_1_image": "shopify://shop_images/black.webp",
+            "card_1_title": "Collection 1",
+            "card_1_link": "",
+            "card_2_image": "shopify://shop_images/hoodie2.webp",
+            "card_2_title": "Collection 2",
+            "card_2_link": "",
+            "card_3_image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "card_3_title": "Collection 3",
+            "card_3_link": "",
+            "card_4_image": "shopify://shop_images/hoodie1.webp",
+            "card_4_title": "Collection 4",
+            "card_4_link": "",
+            "card_5_image": "shopify://shop_images/drs2.webp",
+            "card_5_title": "Collection 5",
+            "card_5_link": "",
+            "card_6_image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
+            "card_6_title": "Collection 6",
+            "card_6_link": "",
+            "card_width_desktop": 400,
+            "card_width_mobile": 280,
+            "card_height": 500,
+            "card_gap": 20,
+            "card_border_radius": 12,
+            "card_title_size": 20,
+            "card_background": "#ffffff",
+            "background_color": "#ffffff",
+            "heading_color": "#000000",
+            "text_color": "#030302",
+            "arrow_background": "#ffffff",
+            "arrow_hover_background": "#030302",
+            "arrow_icon_color": "#000000",
+            "scrollbar_color": "#030302",
+            "scrollbar_hover_color": "#000000",
+            "scrollbar_track_color": "#d3cec5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_31a39b2_Va8WBB"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "collection_banner_kBPTxj": {
+      "type": "collection-banner",
+      "blocks": {
+        "slide_EHTaEb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Lookbook1_Desktop.webp",
+            "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
+            "heading": "Kith Summer 2026",
+            "subtext": "Summer separates, easy layers, and an expanded shirting range, defined by elevated fabric blends and novelty artwork, alongside our continued partnership with Clarks Originals.",
+            "button_1_label": "Shop Now",
+            "button_1_link": "",
+            "button_2_label": "A Closer Look",
+            "button_2_link": ""
+          }
+        },
+        "slide_99W6bA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Lookbook1_Desktop.webp",
+            "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
+            "heading": "Kith Summer 2026",
+            "subtext": "Summer separates, easy layers, and an expanded shirting range, defined by elevated fabric blends and novelty artwork, alongside our continued partnership with Clarks Originals.",
+            "button_1_label": "Shop Now",
+            "button_1_link": "",
+            "button_2_label": "A Closer Look",
+            "button_2_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_EHTaEb",
+        "slide_99W6bA"
+      ],
+      "name": "Collection Slideshow",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 6
+      }
+    },
+    "collection_splider_j6nUDX": {
+      "type": "collection-splider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "",
+        "collection": "home-page",
+        "products_to_show": 24,
+        "show_view_all": true,
+        "button_label": "SHOP ALL",
+        "section_padding_top": 40,
+        "section_padding_bottom": 24
+      }
+    },
+    "product_list_aak7xm": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_a8UMYC": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h2>{{ closest.collection.title }}</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_9MpXnU": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": true,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_a8UMYC",
+            "product_list_button_9MpXnU"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_BzqxyQ": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_KPyPqq": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_EAwF6k": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_BzqxyQ",
+            "product_title_KPyPqq",
+            "price_EAwF6k"
+          ]
+        }
+      },
+      "disabled": true,
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "home-page",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 6,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "44cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "square",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "tab_section_PXmk7b": {
+      "type": "tab-section",
+      "blocks": {
+        "timeline_item_wxTw3A": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2017",
+            "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
+            "title": "Designing for PowerHouses",
+            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p>Mercury Development and ChilliFresh have since worked together on three more projects – Pin.FM, a new, Amazon-cloud powered, social media app for the iPhone that allows users to view their content (photos, Tweets, check-ins, and so on) from social services like Facebook, Twitter, and Foursquare in one aggregated chronological timeline and post voice comments to it; jaja, the world's first pressure-sensitive stylus; and the AppTag Laser Blaster, which brings first-person shooter console gameplay to smartphones.<br/>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p>"
+          }
+        },
+        "timeline_item_Ufgcn7": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2017",
+            "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
+            "title": "Designing for PowerHouses",
+            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p>Mercury Development and ChilliFresh have since worked together on three more projects – Pin.FM, a new, Amazon-cloud powered, social media app for the iPhone that allows users to view their content (photos, Tweets, check-ins, and so on) from social services like Facebook, Twitter, and Foursquare in one aggregated chronological timeline and post voice comments to it; jaja, the world's first pressure-sensitive stylus; and the AppTag Laser Blaster, which brings first-person shooter console gameplay to smartphones.</p>"
+          }
+        },
+        "timeline_item_JVj43V": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2017",
+            "image": "shopify://shop_images/q5w00c72s70127860d5dwl150v22ij58.webp",
+            "title": "Designing for PowerHouses",
+            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
+          }
+        },
+        "timeline_item_BCqJBC": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2017",
+            "image": "shopify://shop_images/drs2.webp",
+            "title": "Designing for PowerHouses",
+            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_item_wxTw3A",
+        "timeline_item_Ufgcn7",
+        "timeline_item_JVj43V",
+        "timeline_item_BCqJBC"
+      ],
+      "name": "Timeline tabs",
+      "settings": {
+        "heading": "About us"
+      }
+    },
+    "custom_editorial_seaction_mHFt7p": {
+      "type": "custom-editorial-seaction",
+      "blocks": {
+        "grid_item_TpiJNJ": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/materialsblock_1024x1024_6e31caab-b83c-438a-b38b-47b5ad9e718b.webp",
+            "caption": "Explore the incredible materials we use",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_x33UQJ": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/factory-our-parternerblock_1024x1024_8237e11c-afc5-44fe-991b-5a7e9e1b4735.webp",
+            "caption": "Read about our amazing factory partners",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_BYHQCe": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/promisblock_1024x1024_5d0eabf8-08ae-45bc-9137-ba4035196c6a.webp",
+            "caption": "Our promise of great quality",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_bGrG7w": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/sustainabilityblock_1024x1024_fc8ae7de-d48e-4c34-b64b-243a76d0c263.webp",
+            "caption": "Discover our pursuit of sustainability",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "grid_item_TpiJNJ",
+        "grid_item_x33UQJ",
+        "grid_item_BYHQCe",
+        "grid_item_bGrG7w"
+      ],
+      "name": "Custom Editorial Split",
+      "settings": {
+        "max_width": 1400,
+        "left_width": "1.1fr",
+        "gap": 6,
+        "border_radius": 10,
+        "h_padding": 20,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "left_image": "shopify://shop_images/updated-extended-signup-banner-home_d.webp",
+        "left_content_padding": 32,
+        "logo": "shopify://shop_images/Woblee_Logo_Wide.png",
+        "logo_width": 80,
+        "stats_text": "10+ years of premium fashion.\nOver 2 lakh happy customers.\n1500+ unique styles.",
+        "body_text": "And a relentless vision of setting a new benchmark for premium Indian fashion.",
+        "cta_label": "READ REVIEWS",
+        "cta_url": "",
+        "grid_overlay_padding": 16,
+        "body_font": "Helvetica Neue",
+        "stats_size": 13,
+        "body_size": 13,
+        "cta_size": 11,
+        "caption_size": 13,
+        "explore_size": 10,
+        "background_color": "#f5f2ee",
+        "stats_color": "#2b2b2b",
+        "body_color": "#3d3d3d",
+        "cta_color": "#1a1a1a",
+        "caption_color": "#ffffff",
+        "explore_color": "#ffffff"
+      }
+    },
+    "custom_category_grid_dyNMWU": {
+      "type": "custom-category-grid",
+      "name": "Baby Category Grid",
+      "settings": {
+        "grid_gap": 8,
+        "section_padding": 24,
+        "section_bg": "#ffffff",
+        "label_bg": "#ffffff",
+        "label_color": "#1a1a1a",
+        "price_color": "#ffffff",
+        "mobile_height": 220,
+        "image_1": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
+        "height_1": 300,
+        "label_1": "Dresses",
+        "price_1": "₹699",
+        "price_prefix_1": "starting",
+        "link_1": "",
+        "image_2": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+        "height_2": 620,
+        "label_2": "Sleepwear",
+        "price_2": "₹799",
+        "price_prefix_2": "starting",
+        "link_2": "",
+        "height_3": 300,
+        "label_3": "Topwear",
+        "price_3": "₹499",
+        "price_prefix_3": "starting",
+        "link_3": "",
+        "height_4": 200,
+        "label_4": "Rompers",
+        "price_4": "₹699",
+        "price_prefix_4": "starting",
+        "link_4": "",
+        "height_5": 300,
+        "label_5": "Outfit Sets",
+        "price_5": "₹999",
+        "price_prefix_5": "starting",
+        "link_5": "",
+        "height_6": 300,
+        "label_6": "Bottoms",
+        "price_6": "₹499",
+        "price_prefix_6": "starting",
+        "link_6": "",
+        "height_7": 200,
+        "label_7": "Swimwear",
+        "price_7": "₹699",
+        "price_prefix_7": "starting",
+        "link_7": "",
+        "height_8": 200,
+        "label_8": "Bodysuits",
+        "price_8": "₹1499",
+        "price_prefix_8": "under",
+        "link_8": ""
+      }
+    },
+    "custom_bottom_bar_966ULH": {
+      "type": "custom-bottom-bar",
+      "blocks": {
+        "feature_mTikFx": {
+          "type": "feature",
+          "settings": {
+            "title": "OEKO-TEX® Certified",
+            "text": "100% safe, chemical-free & tested fabrics."
+          }
+        },
+        "feature_L3LwBp": {
+          "type": "feature",
+          "settings": {
+            "title": "Sustainably Made",
+            "text": "Certified to the Global Organic Textile Standard."
+          }
+        },
+        "feature_XNFat3": {
+          "type": "feature",
+          "settings": {
+            "title": "Trusted Quality",
+            "text": "Rigorous tested for comfort & durability."
+          }
+        }
+      },
+      "block_order": [
+        "feature_mTikFx",
+        "feature_L3LwBp",
+        "feature_XNFat3"
+      ],
+      "name": "Trust scroll strip",
+      "settings": {
+        "heading": "Built to earn customer trust",
+        "subheading": "Show your strongest product advantages in a premium, scrollable strip that feels interactive and easy to explore.",
+        "scroll_speed": 60
+      }
+    }
+  },
+  "order": [
+    "custom_hero_section_jrfcFp",
+    "marquee_izzYrQ",
+    "custom_editorial_CCz9Yx",
+    "custom_category_icons_fa4BTq",
+    "section_2_BrdHkP",
+    "rotating_text_X4Hpjk",
+    "17800675107a00a753",
+    "collection_banner_kBPTxj",
+    "collection_splider_j6nUDX",
+    "product_list_aak7xm",
+    "tab_section_PXmk7b",
+    "custom_editorial_seaction_mHFt7p",
+    "custom_category_grid_dyNMWU",
+    "custom_bottom_bar_966ULH"
+  ]
+}

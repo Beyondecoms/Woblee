@@ -1,0 +1,542 @@
+{% comment %}
+  Hero Slideshow Section — Kith-style full-width editorial carousel
+  Features: full-bleed images, bottom-left text, dual CTA buttons, dot nav, arrow nav
+{% endcomment %}
+
+<style>
+  .hero-slideshow {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #111;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 2rem;
+  }
+
+  /* ── Slides ── */
+  .hero-slideshow__track {
+    display: flex;
+    transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+  }
+
+  .hero-slideshow__slide {
+    position: relative;
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .hero-slideshow__media {
+    position: relative;
+    width: 100%;
+    padding-top: 42.1875%; /* 16:6.75 ratio — wide cinematic */
+    overflow: hidden;
+  }
+
+  @media (max-width: 767px) {
+    .hero-slideshow__media {
+      padding-top: 125%; /* taller on mobile */
+    }
+  }
+
+  .hero-slideshow__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* ── Overlay gradient for text legibility ── */
+  .hero-slideshow__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(0,0,0,0.52) 0%,
+      rgba(0,0,0,0.18) 45%,
+      rgba(0,0,0,0) 70%
+    );
+    pointer-events: none;
+  }
+
+  /* ── Text block — bottom left ── */
+  .hero-slideshow__content {
+    position: absolute;
+    bottom: 10%;
+    left: 3.5%;
+    max-width: 340px;
+    color: #fff;
+    z-index: 2;
+  }
+
+  @media (max-width: 767px) {
+    .hero-slideshow__content {
+      bottom: 22%;
+      left: 5%;
+      max-width: 78%;
+    }
+  }
+
+  .hero-slideshow__heading {
+    font-size: clamp(22px, 2.6vw, 42px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin: 0 0 10px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+
+  .hero-slideshow__subtext {
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 400;
+    line-height: 1.55;
+    margin: 0;
+    opacity: 0.92;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+
+  /* ── CTA Buttons — bottom right ── */
+  .hero-slideshow__cta-group {
+    position: absolute;
+    bottom: 10%;
+    right: 3.5%;
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+
+  @media (max-width: 767px) {
+    .hero-slideshow__cta-group {
+      bottom: 5%;
+      right: 50%;
+      transform: translateX(50%);
+      gap: 8px;
+    }
+  }
+
+  .hero-slideshow__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #0c4168;
+    background: white;
+    cursor: pointer;
+    transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+    white-space: nowrap;
+  }
+
+  .hero-slideshow__btn:hover {
+    background: #0c4168;
+    color: white;
+  }
+
+  @media (max-width: 767px) {
+    .hero-slideshow__btn {
+      height: 36px;
+      padding: 0 14px;
+      font-size: 10px;
+    }
+  }
+
+  /* ── Arrow navigation ── */
+  .hero-slideshow__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+  }
+
+  .hero-slideshow__arrow:hover {
+    opacity: 1;
+  }
+
+  .hero-slideshow__arrow svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .hero-slideshow__arrow--prev { left: 12px; }
+  .hero-slideshow__arrow--next { right: 12px; }
+
+  @media (max-width: 767px) {
+    .hero-slideshow__arrow svg { width: 16px; height: 16px; }
+    .hero-slideshow__arrow--prev { left: 4px; }
+    .hero-slideshow__arrow--next { right: 4px; }
+  }
+
+  /* ── Dot navigation ── */
+  .hero-slideshow__dots {
+    position: absolute;
+    bottom: 5.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 10;
+  }
+
+  @media (max-width: 767px) {
+    .hero-slideshow__dots { bottom: 14%; }
+  }
+
+  .hero-slideshow__dot {
+    width: 28px;
+    height: 3px;
+    background: rgba(255,255,255,0.38);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s ease, width 0.25s ease;
+    border-radius: 2px;
+  }
+
+  .hero-slideshow__dot--active {
+    background: rgba(255,255,255,0.95);
+    width: 36px;
+  }
+
+  /* Circular dots fallback for single-image slides */
+  .hero-slideshow--round-dots .hero-slideshow__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+  .hero-slideshow--round-dots .hero-slideshow__dot--active {
+    width: 7px;
+  }
+</style>
+
+{%- assign slide_count = section.blocks | size -%}
+
+<section
+  class="hero-slideshow"
+  id="hero-slideshow-{{ section.id }}"
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-autoplay-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
+  aria-label="Hero slideshow"
+>
+  <!-- Track -->
+  <div class="hero-slideshow__track" id="hsTrack-{{ section.id }}">
+    {%- for block in section.blocks -%}
+      {%- assign b = block.settings -%}
+      <div
+        class="hero-slideshow__slide"
+        role="group"
+        aria-label="Slide {{ forloop.index }} of {{ slide_count }}"
+        {{ block.shopify_attributes }}
+      >
+        <div class="hero-slideshow__media">
+
+          {%- comment -%} Desktop image {%- endcomment -%}
+          {%- if b.image != blank -%}
+            <picture>
+              {%- if b.mobile_image != blank -%}
+                <source
+                  media="(max-width: 767px)"
+                  srcset="{{ b.mobile_image | image_url: width: 800 }}"
+                >
+              {%- endif -%}
+              <img
+                class="hero-slideshow__img"
+                src="{{ b.image | image_url: width: 2000 }}"
+                srcset="
+                  {{ b.image | image_url: width: 800 }} 800w,
+                  {{ b.image | image_url: width: 1200 }} 1200w,
+                  {{ b.image | image_url: width: 1600 }} 1600w,
+                  {{ b.image | image_url: width: 2000 }} 2000w
+                "
+                sizes="100vw"
+                alt="{{ b.image.alt | escape | default: b.heading }}"
+                {%- if forloop.first -%}loading="eager" fetchpriority="high"{%- else -%}loading="lazy"{%- endif -%}
+                width="{{ b.image.width }}"
+                height="{{ b.image.height }}"
+              >
+            </picture>
+          {%- else -%}
+            <div class="hero-slideshow__img" style="background:#1a1a1a;"></div>
+          {%- endif -%}
+
+          <!-- Overlay -->
+          <div class="hero-slideshow__overlay"></div>
+
+          <!-- Text content -->
+          {%- if b.heading != blank or b.subtext != blank -%}
+            <div class="hero-slideshow__content">
+              {%- if b.heading != blank -%}
+                <p class="hero-slideshow__heading">{{ b.heading }}</p>
+              {%- endif -%}
+              {%- if b.subtext != blank -%}
+                <p class="hero-slideshow__subtext">{{ b.subtext }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          <!-- CTA buttons -->
+          {%- if b.button_1_label != blank or b.button_2_label != blank -%}
+            <div class="hero-slideshow__cta-group">
+              {%- if b.button_1_label != blank -%}
+                <a
+                  href="{{ b.button_1_link | default: '#' }}"
+                  class="hero-slideshow__btn"
+                >{{ b.button_1_label }}</a>
+              {%- endif -%}
+              {%- if b.button_2_label != blank -%}
+                <a
+                  href="{{ b.button_2_link | default: '#' }}"
+                  class="hero-slideshow__btn"
+                >{{ b.button_2_label }}</a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+        </div><!-- /.media -->
+      </div><!-- /.slide -->
+    {%- endfor -%}
+  </div><!-- /.track -->
+
+  <!-- Prev arrow -->
+  {%- if slide_count > 1 -%}
+    <button
+      class="hero-slideshow__arrow hero-slideshow__arrow--prev"
+      aria-label="Previous slide"
+      id="hsPrev-{{ section.id }}"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Next arrow -->
+    <button
+      class="hero-slideshow__arrow hero-slideshow__arrow--next"
+      aria-label="Next slide"
+      id="hsNext-{{ section.id }}"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Dots -->
+    <div
+      class="hero-slideshow__dots"
+      role="tablist"
+      aria-label="Slideshow navigation"
+      id="hsDots-{{ section.id }}"
+    >
+      {%- for block in section.blocks -%}
+        <button
+          class="hero-slideshow__dot{% if forloop.first %} hero-slideshow__dot--active{% endif %}"
+          role="tab"
+          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+          aria-label="Go to slide {{ forloop.index }}"
+          data-index="{{ forloop.index0 }}"
+        ></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+<script>
+(function () {
+  var sectionId   = '{{ section.id }}';
+  var track       = document.getElementById('hsTrack-'   + sectionId);
+  var prevBtn     = document.getElementById('hsPrev-'    + sectionId);
+  var nextBtn     = document.getElementById('hsNext-'    + sectionId);
+  var dotsWrap    = document.getElementById('hsDots-'    + sectionId);
+  var root        = document.getElementById('hero-slideshow-' + sectionId);
+
+  if (!track) return;
+
+  var total       = track.children.length;
+  var current     = 0;
+  var autoplay    = root.dataset.autoplay === 'true';
+  var speed       = parseInt(root.dataset.autoplaySpeed, 10) || 5000;
+  var timer       = null;
+  var dots        = dotsWrap ? dotsWrap.querySelectorAll('.hero-slideshow__dot') : [];
+
+  function goTo(index) {
+    if (index < 0) index = total - 1;
+    if (index >= total) index = 0;
+    current = index;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function (d, i) {
+      d.classList.toggle('hero-slideshow__dot--active', i === current);
+      d.setAttribute('aria-selected', i === current ? 'true' : 'false');
+    });
+  }
+
+  function startTimer() {
+    if (!autoplay || total <= 1) return;
+    clearInterval(timer);
+    timer = setInterval(function () { goTo(current + 1); }, speed);
+  }
+
+  function resetTimer() { clearInterval(timer); startTimer(); }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function () { goTo(current - 1); resetTimer(); });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function () { goTo(current + 1); resetTimer(); });
+  }
+
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      goTo(parseInt(this.dataset.index, 10));
+      resetTimer();
+    });
+  });
+
+  /* Swipe / touch support */
+  var touchStartX = 0;
+  track.addEventListener('touchstart', function (e) {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    var diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      goTo(diff > 0 ? current + 1 : current - 1);
+      resetTimer();
+    }
+  }, { passive: true });
+
+  /* Keyboard */
+  root.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  { goTo(current - 1); resetTimer(); }
+    if (e.key === 'ArrowRight') { goTo(current + 1); resetTimer(); }
+  });
+
+  startTimer();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Collection Slideshow",
+  "tag": "section",
+  "class": "section-hero-slideshow",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto-rotate slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "unit": "s",
+      "label": "Change slides every",
+      "default": 6
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop image",
+          "info": "Recommended: 2000 × 840px (landscape)"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image (optional)",
+          "info": "Recommended: 800 × 1000px (portrait). Falls back to desktop image."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Kith Summer 2026"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Subtext",
+          "default": "Summer separates, easy layers, and an expanded shirting range, defined by elevated fabric blends and novelty artwork."
+        },
+        {
+          "type": "header",
+          "content": "Button 1"
+        },
+        {
+          "type": "text",
+          "id": "button_1_label",
+          "label": "Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Button 2"
+        },
+        {
+          "type": "text",
+          "id": "button_2_label",
+          "label": "Label",
+          "default": "A Closer Look"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Slideshow",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "Kith Summer 2026",
+            "subtext": "Summer separates, easy layers, and an expanded shirting range, defined by elevated fabric blends and novelty artwork, alongside our continued partnership with Clarks Originals.",
+            "button_1_label": "Shop Now",
+            "button_2_label": "A Closer Look"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

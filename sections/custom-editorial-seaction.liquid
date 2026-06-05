@@ -1,0 +1,724 @@
+{% comment %}
+  Editorial Split Section
+  - Left: large hero image with logo, stats text, body text, CTA link
+  - Right: 2x2 grid of images each with caption + EXPLORE link
+{% endcomment %}
+
+<section class="ess-section" id="ess-{{ section.id }}">
+  <div class="ess-inner">
+
+    {% comment %} LEFT PANEL {% endcomment %}
+    <div class="ess-left">
+      {% if section.settings.left_image != blank %}
+        <img
+          src="{{ section.settings.left_image | image_url: width: 1000 }}"
+          alt="{{ section.settings.heading | escape }}"
+          class="ess-left-img"
+          loading="lazy"
+          width="1000"
+        >
+      {% else %}
+        <div class="ess-left-placeholder">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'ess-svg' }}
+        </div>
+      {% endif %}
+
+      <div class="ess-left-content">
+        {% if section.settings.logo != blank %}
+          <img
+            src="{{ section.settings.logo | image_url: width: 200 }}"
+            alt="Logo"
+            class="ess-logo"
+            loading="lazy"
+            width="200"
+          >
+        {% endif %}
+
+        {% if section.settings.stats_text != blank %}
+          <div class="ess-stats">{{ section.settings.stats_text }}</div>
+        {% endif %}
+
+        {% if section.settings.body_text != blank %}
+          <div class="ess-body">{{ section.settings.body_text }}</div>
+        {% endif %}
+
+        {% if section.settings.cta_label != blank %}
+          <a href="{{ section.settings.cta_url | default: '#' }}" class="ess-cta">
+            {{ section.settings.cta_label }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% comment %} RIGHT PANEL — 2x2 grid {% endcomment %}
+    <div class="ess-right">
+      {% for block in section.blocks %}
+        {% if block.type == 'grid_item' %}
+          <a class="ess-grid-item" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              <img
+                src="{{ block.settings.image | image_url: width: 700 }}"
+                alt="{{ block.settings.caption | escape }}"
+                class="ess-grid-img"
+                loading="lazy"
+                width="700"
+              >
+            {% else %}
+              <div class="ess-grid-placeholder">
+                {{ 'lifestyle-2' | placeholder_svg_tag: 'ess-svg' }}
+              </div>
+            {% endif %}
+
+            <div class="ess-grid-overlay">
+              <div class="ess-grid-bottom">
+                {% if block.settings.caption != blank %}
+                  <p class="ess-caption">{{ block.settings.caption }}</p>
+                {% endif %}
+                {% if block.settings.explore_label != blank %}
+                  <span class="ess-explore">
+                    {{ block.settings.explore_label }}
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+#ess-{{ section.id }} {
+  --ess-bg: var(--wb-color-white);
+  --ess-gap: {{ section.settings.gap }}px;
+  --ess-radius: {{ section.settings.border_radius }}px;
+  --ess-left-ratio: {{ section.settings.left_width }};
+  --ess-stats-color: var(--wb-color-blue);
+  --ess-body-color: var(--wb-color-grey);
+  --ess-cta-color: var(--wb-color-lime);
+  --ess-caption-color: var(--wb-color-white);
+  --ess-explore-color: var(--wb-color-lime);
+  --ess-padding-top: {{ section.settings.padding_top }}px;
+  --ess-padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+
+.ess-section {
+  background: var(--ess-bg);
+  padding: var(--ess-padding-top) {{ section.settings.h_padding }}px var(--ess-padding-bottom);
+  font-family: var(--wb-font-body);
+}
+
+.ess-inner {
+  display: grid;
+  grid-template-columns: var(--ess-left-ratio) 1fr;
+  gap: var(--ess-gap);
+  max-width: {{ section.settings.max_width }}px;
+  margin: 0 auto;
+}
+
+/* LEFT */
+.ess-left {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+  background: var(--wb-color-blue);
+}
+
+.ess-left-img,
+.ess-left-placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.ess-left-placeholder {
+  background: var(--wb-color-blue);
+}
+
+.ess-svg {
+  width: 60px;
+  height: 60px;
+  opacity: 0.2;
+}
+
+.ess-left-content {
+  position: relative;
+  z-index: 2;
+  padding: {{ section.settings.left_content_padding }}px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+}
+
+.ess-logo {
+  width: {{ section.settings.logo_width }}px;
+  height: auto;
+  display: block;
+  margin-bottom: 28px;
+  object-fit: contain;
+}
+
+.ess-stats {
+  font-family: var(--wb-font-body);
+  font-size: {{ section.settings.stats_size }}px;
+  color: var(--ess-stats-color);
+  line-height: var(--wb-line-relaxed);
+  font-weight: var(--wb-fw-regular);
+  margin-bottom: 20px;
+  white-space: pre-line;
+}
+
+.ess-body {
+  font-family: var(--wb-font-body);
+  font-size: {{ section.settings.body_size }}px;
+  color: var(--ess-body-color);
+  line-height: var(--wb-line-body);
+  margin-bottom: 28px;
+  max-width: 280px;
+  font-weight: var(--wb-fw-medium);
+}
+
+.ess-cta {
+  font-family: var(--wb-font-heading);
+  font-size: {{ section.settings.cta_size }}px;
+  font-weight: var(--wb-fw-bold);
+  color: black;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-transform: uppercase;
+  letter-spacing: var(--wb-letter-wide);
+  margin-top: auto;
+  align-self: flex-start;
+  transition: var(--wb-transition);
+}
+
+.ess-cta:hover {
+  color: var(--wb-color-blue);
+}
+
+/* RIGHT GRID */
+.ess-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--ess-gap);
+}
+
+.ess-grid-item {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  background: var(--wb-color-blue);
+  aspect-ratio: 1 / 1;
+}
+
+.ess-grid-img,
+.ess-grid-placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.ess-grid-item:hover .ess-grid-img {
+  transform: scale(1.05);
+}
+
+.ess-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(12, 65, 104, 0.72) 0%, rgba(12, 65, 104, 0) 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: {{ section.settings.grid_overlay_padding }}px;
+}
+
+.ess-grid-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ess-caption {
+  font-family: var(--wb-font-body);
+  font-size: {{ section.settings.caption_size }}px;
+  color: var(--ess-caption-color);
+  margin: 0;
+  line-height: var(--wb-line-body);
+  font-weight: var(--wb-fw-medium);
+}
+
+.ess-explore:hover{
+background: #0c4168;
+color: white;
+}
+
+.ess-explore {
+  display: block;
+  text-align: center;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--wb-font-heading);
+  font-size: 13px;
+  font-weight: var(--wb-fw-bold);
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  color: #0c4168;
+  line-height: 1;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  padding: 10px 14px;
+  background: white;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+  width: 50%;
+}
+
+.ess-explore::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(33, 240, 16, 0.12),
+    rgba(255, 255, 255, 0.02),
+    rgba(33, 240, 16, 0.12)
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.ess-explore:hover {
+  transform: translateY(-2px);
+  background: rgba(12, 65, 104, 0.38);
+  border-color: rgba(33, 240, 16, 0.55);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
+  color: var(--wb-color-white);
+}
+
+.ess-explore:hover::before {
+  transform: translateX(100%);
+}
+
+.ess-explore-line {
+  width: 30px;
+  height: 2px;
+  background: var(--wb-color-lime);
+  border-radius: 999px;
+  position: relative;
+  transition: all 0.35s ease;
+  flex-shrink: 0;
+}
+
+.ess-explore-line::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid var(--wb-color-lime);
+  border-right: 2px solid var(--wb-color-lime);
+  transform: translateY(-50%) rotate(45deg);
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+
+.ess-explore:hover .ess-explore-line {
+  width: 40px;
+  background: var(--wb-color-white);
+}
+
+.ess-explore:hover .ess-explore-line::after {
+  opacity: 1;
+  border-color: var(--wb-color-white);
+}
+
+.ess-explore:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(33, 240, 16, 0.18),
+    0 10px 26px rgba(0, 0, 0, 0.22);
+}
+
+.ess-explore-line {
+  display: inline-block;
+  width: 28px;
+  height: 2px;
+  background: var(--ess-explore-color);
+  flex-shrink: 0;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .ess-inner {
+    grid-template-columns: 1fr;
+  }
+  .ess-explore{
+  font-size: 9px;
+  }
+
+  .ess-left {
+    min-height: 420px;
+    aspect-ratio: 3 / 4;
+  }
+
+  .ess-right {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ess-grid-item {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .ess-section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .ess-left {
+    min-height: 340px;
+  }
+
+  .ess-left-content {
+    padding: 20px;
+  }
+
+  .ess-caption {
+    font-size: {{ section.settings.caption_size | minus: 1 }}px;
+  }
+
+  .ess-grid-overlay {
+    padding: 10px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Editorial Split",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max section width (px)",
+      "min": 800,
+      "max": 1800,
+      "step": 20,
+      "default": 1400
+    },
+    {
+      "type": "text",
+      "id": "left_width",
+      "label": "Left panel width (CSS fraction)",
+      "default": "1.1fr",
+      "info": "e.g. '1fr', '1.1fr', '1.2fr'. Right panel fills remaining space."
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between panels / grid items (px)",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius (px)",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "h_padding",
+      "label": "Horizontal padding (px)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Section top padding (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Section bottom padding (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Left Panel — Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left hero image"
+    },
+    {
+      "type": "range",
+      "id": "left_content_padding",
+      "label": "Content padding (px)",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Left Panel — Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo / icon image",
+      "info": "Use a PNG with transparent background"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width (px)",
+      "min": 40,
+      "max": 200,
+      "step": 4,
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Left Panel — Text"
+    },
+    {
+      "type": "textarea",
+      "id": "stats_text",
+      "label": "Stats / highlight text",
+      "default": "10+ years of premium fashion.\nOver 2 lakh happy customers.\n1500+ unique styles.",
+      "info": "Use line breaks to separate stats"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body / tagline text",
+      "default": "And a relentless vision of setting a new benchmark for premium Indian fashion."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA link label",
+      "default": "READ REVIEWS",
+      "info": "Leave blank to hide"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link URL"
+    },
+    {
+      "type": "header",
+      "content": "Right Grid — Overlay"
+    },
+    {
+      "type": "range",
+      "id": "grid_overlay_padding",
+      "label": "Grid item overlay padding (px)",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "text",
+      "id": "body_font",
+      "label": "Font name (all text)",
+      "default": "Helvetica Neue"
+    },
+    {
+      "type": "range",
+      "id": "stats_size",
+      "label": "Stats font size (px)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body text font size (px)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "cta_size",
+      "label": "CTA link font size (px)",
+      "min": 9,
+      "max": 16,
+      "step": 1,
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "caption_size",
+      "label": "Grid caption font size (px)",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "explore_size",
+      "label": "Explore label font size (px)",
+      "min": 8,
+      "max": 14,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#f5f2ee"
+    },
+    {
+      "type": "color",
+      "id": "stats_color",
+      "label": "Stats text color",
+      "default": "#2b2b2b"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body text color",
+      "default": "#3d3d3d"
+    },
+    {
+      "type": "color",
+      "id": "cta_color",
+      "label": "CTA link color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Grid caption color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "explore_color",
+      "label": "Explore label color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "grid_item",
+      "name": "Grid Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption text",
+          "default": "Explore the incredible materials we use"
+        },
+        {
+          "type": "text",
+          "id": "explore_label",
+          "label": "Explore link label",
+          "default": "EXPLORE",
+          "info": "Leave blank to hide"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Editorial Split",
+      "blocks": [
+        {
+          "type": "grid_item",
+          "settings": {
+            "caption": "Explore the incredible materials we use",
+            "explore_label": "EXPLORE"
+          }
+        },
+        {
+          "type": "grid_item",
+          "settings": {
+            "caption": "Read about our amazing factory partners",
+            "explore_label": "EXPLORE"
+          }
+        },
+        {
+          "type": "grid_item",
+          "settings": {
+            "caption": "Our promise of great quality",
+            "explore_label": "EXPLORE"
+          }
+        },
+        {
+          "type": "grid_item",
+          "settings": {
+            "caption": "Discover our pursuit of sustainability",
+            "explore_label": "EXPLORE"
+          }
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4
+}
+{% endschema %}

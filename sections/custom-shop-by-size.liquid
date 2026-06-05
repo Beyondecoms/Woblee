@@ -1,0 +1,247 @@
+{% liquid
+  assign section_id = 'CategoryCollage-' | append: section.id
+%}
+
+<section id="{{ section_id }}" class="category-collage">
+  <div class="category-collage__inner page-width">
+    <div class="category-collage__grid">
+      {% for block in section.blocks %}
+        {% liquid
+          case forloop.index
+            when 1
+              assign card_class = 'category-collage__card--1'
+            when 2
+              assign card_class = 'category-collage__card--2'
+            when 3
+              assign card_class = 'category-collage__card--3'
+            when 4
+              assign card_class = 'category-collage__card--4'
+            when 5
+              assign card_class = 'category-collage__card--5'
+            when 6
+              assign card_class = 'category-collage__card--6'
+            when 7
+              assign card_class = 'category-collage__card--7'
+            when 8
+              assign card_class = 'category-collage__card--8'
+            else
+              assign card_class = ''
+          endcase
+        %}
+
+        <a
+          href="{{ block.settings.link | default: '#' }}"
+          class="category-collage__card {{ card_class }}"
+          {{ block.shopify_attributes }}
+        >
+          {% if block.settings.image != blank %}
+            <img
+              class="category-collage__image"
+              src="{{ block.settings.image | image_url: width: 1400 }}"
+              alt="{{ block.settings.title | escape }}"
+              loading="lazy"
+              width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.height }}"
+            >
+          {% else %}
+            {{ 'collection-1' | placeholder_svg_tag: 'category-collage__placeholder' }}
+          {% endif %}
+
+          <div class="category-collage__overlay">
+            <div class="category-collage__price">
+              <span class="category-collage__price-prefix">starting</span>
+              <span class="category-collage__price-value">{{ block.settings.price_text }}</span>
+            </div>
+
+            <div class="category-collage__pill">
+              {{ block.settings.title }}
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .category-collage {
+    padding: 8px 0 0;
+  }
+
+  .category-collage__inner {
+    max-width: 1048px;
+    margin: 0 auto;
+  }
+
+  .category-collage__grid {
+    display: grid;
+    gap: 6px;
+    grid-template-columns: 1fr 1.15fr 1.15fr 1fr 1fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    aspect-ratio: 1048 / 566;
+  }
+
+  .category-collage__card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #e9dfd2;
+    min-width: 0;
+    min-height: 0;
+    text-decoration: none;
+  }
+
+  .category-collage__image,
+  .category-collage__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .category-collage__overlay {
+    position: absolute;
+    inset: 0;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+
+  .category-collage__price {
+    align-self: flex-start;
+    color: #fff;
+    line-height: 1;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+  }
+
+  .category-collage__price-prefix {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 2px;
+    text-transform: lowercase;
+  }
+
+  .category-collage__price-value {
+    display: block;
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 700;
+  }
+
+  .category-collage__pill {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #111111;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Desktop placement to mimic the reference collage */
+  .category-collage__card--1 { grid-column: 1; grid-row: 1; }
+  .category-collage__card--2 { grid-column: 2 / span 2; grid-row: 1 / span 2; }
+  .category-collage__card--3 { grid-column: 4; grid-row: 1; }
+  .category-collage__card--4 { grid-column: 5; grid-row: 1; }
+  .category-collage__card--5 { grid-column: 1; grid-row: 2; }
+  .category-collage__card--6 { grid-column: 2; grid-row: 2; }
+  .category-collage__card--7 { grid-column: 3; grid-row: 2; }
+  .category-collage__card--8 { grid-column: 4 / span 2; grid-row: 2; }
+
+  @media screen and (max-width: 989px) {
+    .category-collage__grid {
+      aspect-ratio: auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: auto;
+    }
+
+    .category-collage__card--1,
+    .category-collage__card--2,
+    .category-collage__card--3,
+    .category-collage__card--4,
+    .category-collage__card--5,
+    .category-collage__card--6,
+    .category-collage__card--7,
+    .category-collage__card--8 {
+      grid-column: auto !important;
+      grid-row: auto !important;
+      aspect-ratio: 1 / 1.08;
+    }
+
+    .category-collage__overlay {
+      padding: 10px;
+    }
+
+    .category-collage__price-prefix {
+      font-size: 11px;
+    }
+
+    .category-collage__price-value {
+      font-size: 20px;
+    }
+
+    .category-collage__pill {
+      min-height: 30px;
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .category-collage__grid {
+      gap: 5px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Category collage grid",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Category card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label",
+          "default": "Dresses"
+        },
+        {
+          "type": "text",
+          "id": "price_text",
+          "label": "Price text",
+          "default": "₹699"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Category collage grid"
+    }
+  ]
+}
+{% endschema %}

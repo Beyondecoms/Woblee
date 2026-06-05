@@ -1,0 +1,837 @@
+{% doc %}
+  @prompt
+    Create a custom Shopify section that matches the attached design as closely as possible.
+    
+    Section requirements:
+    - Add a centered heading area with:
+      - small title: “More to”
+      - large main heading: “Explore”
+      - subtitle: “Discover our curated edits and seasonal collections”
+    - Below the text, create a horizontal scrolling card row exactly like the reference image.
+    - The cards must be large, image-first, and styled with clean white spacing around them.
+    - Show the horizontal scrollbar at the bottom of the section, visible and styled neatly.
+    - Add left and right arrow controls for scrolling on both desktop and mobile.
+    - Make the arrows user friendly, easy to tap, and positioned in a way that does not block the cards.
+    - Use smooth scrolling and scroll snap so each card aligns properly.
+    - The layout should be responsive:
+      - Desktop: show 2–3 cards partially visible with horizontal scroll
+      - Mobile: show 1 full card and part of the next card, still scrollable
+    - Each card should contain:
+      - a large image
+      - a text title overlaid near the bottom
+    - Keep the section visually elegant, modern, and close to the provided mockup.
+    - Use proper spacing, padding, and consistent card height/width.
+    - Add settings in the schema for:
+      - heading text
+      - subtitle text
+      - card image
+      - card title
+      - card link
+    - Make the arrows work with JavaScript and make the scrollbar visible under the cards.
+    
+    Please build the full section code with HTML, CSS, JavaScript, and schema.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+.ai-explore-section-{{ ai_gen_id }} {
+  display: flex;
+  width: 100%;
+  padding: 30px 0 0 0;
+  background: var(--wb-color-white);
+  gap: 40px;
+  overflow: hidden;
+}
+
+.ai-explore-header-{{ ai_gen_id }} {
+  width: 32%;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ai-explore-small-title-{{ ai_gen_id }} {
+  font-family: var(--wb-font-body);
+  font-size: var(--wb-caption);
+  font-weight: var(--wb-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--wb-letter-xwide);
+  color: var(--wb-color-lime);
+  margin: 0 0 14px;
+}
+
+.ai-explore-main-heading-{{ ai_gen_id }} {
+  font-family: var(--wb-font-heading);
+  font-size: var(--wb-h1);
+  font-weight: var(--wb-fw-extrabold);
+  line-height: var(--wb-line-tight);
+  letter-spacing: var(--wb-letter-tight);
+  text-transform: uppercase;
+  color: var(--wb-color-blue);
+  margin: 0 0 18px;
+}
+
+.ai-explore-subtitle-{{ ai_gen_id }} {
+  font-family: var(--wb-font-body);
+  font-size: var(--wb-body);
+  line-height: var(--wb-line-relaxed);
+  color: var(--wb-color-grey);
+  margin: 0;
+  max-width: 420px;
+}
+
+/* =========================
+   CAROUSEL
+========================= */
+
+.ai-explore-carousel-wrapper-{{ ai_gen_id }} {
+  position: relative;
+  width: 68%;
+  padding-right: 40px;
+}
+
+.ai-explore-carousel-container-{{ ai_gen_id }} {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: #21f01000 rgba(12, 65, 104, 0.08);
+}
+
+.ai-explore-carousel-container-{{ ai_gen_id }}::-webkit-scrollbar {
+  height: 6px;
+}
+
+.ai-explore-carousel-container-{{ ai_gen_id }}::-webkit-scrollbar-track {
+  background: rgba(12,65,104,0.08);
+  border-radius: 999px;
+}
+
+.ai-explore-carousel-container-{{ ai_gen_id }}::-webkit-scrollbar-thumb {
+  background: var(--wb-color-lime);
+  border-radius: 999px;
+}
+
+.ai-explore-cards-row-{{ ai_gen_id }} {
+  display: flex;
+  gap: {{ block.settings.card_gap }}px;
+  padding-right: 100px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.ai-explore-card-{{ ai_gen_id }} {
+  position: relative;
+  flex: 0 0 auto;
+
+  width: {{ block.settings.card_width_desktop }}px;
+
+  scroll-snap-align: start;
+
+  overflow: hidden;
+
+  border-radius: 0;
+
+  background: var(--wb-color-white);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  box-shadow: var(--wb-shadow-sm);
+}
+
+.ai-explore-card-{{ ai_gen_id }}:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--wb-shadow-lg);
+}
+
+.ai-explore-card-link-{{ ai_gen_id }} {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ai-explore-card-image-wrapper-{{ ai_gen_id }} {
+  position: relative;
+  width: 100%;
+  height: {{ block.settings.card_height }}px;
+  overflow: hidden;
+}
+
+.ai-explore-card-image-{{ ai_gen_id }} {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+.ai-explore-card-{{ ai_gen_id }}:hover
+.ai-explore-card-image-{{ ai_gen_id }} {
+  transform: scale(1.06);
+}
+
+/* =========================
+   TITLE OVERLAY
+========================= */
+
+.ai-explore-card-title-overlay-{{ ai_gen_id }} {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 28px;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(12,65,104,0.95) 0%,
+      rgba(12,65,104,0.55) 55%,
+      rgba(12,65,104,0) 100%
+    );
+
+  color: var(--wb-color-white);
+
+  font-family: var(--wb-font-heading);
+  font-size: clamp(20px, 2vw, 34px);
+  font-weight: var(--wb-fw-extrabold);
+
+  line-height: 1.05;
+  letter-spacing: var(--wb-letter-tight);
+
+  text-transform: uppercase;
+}
+
+/* =========================
+   ARROWS
+========================= */
+
+.ai-explore-arrow-{{ ai_gen_id }} {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 54px;
+  height: 54px;
+
+  color: var(--wb-color-lime);
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+
+  z-index: 20;
+}
+
+.ai-explore-arrow-{{ ai_gen_id }} svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--wb-color-lime);
+}
+
+.ai-explore-arrow-{{ ai_gen_id }}:hover {
+}
+
+.ai-explore-arrow-{{ ai_gen_id }}:hover svg {
+  fill: var(--wb-color-blue);
+}
+
+.ai-explore-arrow-left-{{ ai_gen_id }} {
+  left: -10px;
+}
+
+.ai-explore-arrow-right-{{ ai_gen_id }} {
+  right: 10px;
+}
+
+.ai-explore-arrow-{{ ai_gen_id }}:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* =========================
+   PLACEHOLDER
+========================= */
+
+.ai-explore-card-image-placeholder-{{ ai_gen_id }} {
+  width: 100%;
+  height: 100%;
+  background: rgba(12,65,104,0.06);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-explore-card-image-placeholder-{{ ai_gen_id }} svg {
+  width: 120px;
+  height: 120px;
+  opacity: 0.2;
+}
+
+/* =========================
+   MOBILE
+========================= */
+.custom-ai-section [class*="ai-explore-arrow-"] {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+
+  .ai-explore-section-{{ ai_gen_id }} {
+    flex-direction: column;
+    padding: 20px 0;
+    gap: 30px;
+  }
+
+  .custom-ai-section [class*="ai-explore-arrow-"]{
+  height: 30px;
+  width: 30px;
+  }
+
+  .ai-explore-header-{{ ai_gen_id }} {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .ai-explore-main-heading-{{ ai_gen_id }} {
+    font-size: clamp(38px, 12vw, 52px);
+  }
+
+  .ai-explore-subtitle-{{ ai_gen_id }} {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .ai-explore-carousel-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .ai-explore-carousel-container-{{ ai_gen_id }} {
+    padding-left: 20px;
+  }
+
+  .ai-explore-cards-row-{{ ai_gen_id }} {
+    gap: 16px;
+    padding-right: 40px;
+  }
+
+  .ai-explore-card-{{ ai_gen_id }} {
+    width: {{ block.settings.card_width_mobile }}px;
+  }
+
+  .ai-explore-card-image-wrapper-{{ ai_gen_id }} {
+    height: calc({{ block.settings.card_height }}px * 0.82);
+  }
+
+  .ai-explore-card-title-overlay-{{ ai_gen_id }} {
+    padding: 20px;
+    font-size: 22px;
+  }
+
+  .ai-explore-arrow-{{ ai_gen_id }} {
+    width: 42px;
+    height: 42px;
+  }
+
+  .ai-explore-arrow-left-{{ ai_gen_id }} {
+    left: 4px;
+  }
+
+  .ai-explore-arrow-right-{{ ai_gen_id }} {
+    right: 4px;
+  }
+
+}
+
+.custom-ai-section [class*="ai-explore-arrow-"] svg {
+  width: 40px;
+  height: 40px;
+  fill: #ffffffff;
+}
+
+
+
+.custom-ai-section [class*="ai-explore-arrow-"]:focus-visible {
+  outline: none;
+}
+.custom-ai-section [class*="ai-explore-arrow-"][disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  animation: none;
+}
+{% endstyle %}
+
+<explore-carousel-{{ ai_gen_id }} class="custom-ai-section ai-explore-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-explore-header-{{ ai_gen_id }}">
+    {% if block.settings.small_title != blank %}
+      <div class="ai-explore-small-title-{{ ai_gen_id }}">{{ block.settings.small_title }}</div>
+    {% endif %}
+    {% if block.settings.main_heading != blank %}
+      <h2 class="ai-explore-main-heading-{{ ai_gen_id }}">{{ block.settings.main_heading }}</h2>
+    {% endif %}
+    {% if block.settings.subtitle != blank %}
+      <p class="ai-explore-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+    {% endif %}
+  </div>
+
+  <div class="ai-explore-carousel-wrapper-{{ ai_gen_id }}">
+    <button
+      class="ai-explore-arrow-{{ ai_gen_id }} ai-explore-arrow-left-{{ ai_gen_id }}"
+      aria-label="Previous cards"
+      data-direction="left"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+      </svg>
+    </button>
+
+    <div class="ai-explore-carousel-container-{{ ai_gen_id }}">
+      <div class="ai-explore-cards-row-{{ ai_gen_id }}">
+        {% for i in (1..6) %}
+          {% liquid
+            assign card_image_key = 'card_' | append: i | append: '_image'
+            assign card_title_key = 'card_' | append: i | append: '_title'
+            assign card_link_key = 'card_' | append: i | append: '_link'
+            
+            assign card_image = block.settings[card_image_key]
+            assign card_title = block.settings[card_title_key]
+            assign card_link = block.settings[card_link_key]
+          %}
+
+          <div class="ai-explore-card-{{ ai_gen_id }}">
+            {% if card_link != blank %}
+              <a href="{{ card_link }}" class="ai-explore-card-link-{{ ai_gen_id }}">
+            {% else %}
+              <div class="ai-explore-card-link-{{ ai_gen_id }}">
+            {% endif %}
+              <div class="ai-explore-card-image-wrapper-{{ ai_gen_id }}">
+                {% if card_image %}
+                  <img
+                    src="{{ card_image | image_url: width: 800 }}"
+                    alt="{{ card_image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ card_image.width }}"
+                    height="{{ card_image.height }}"
+                    class="ai-explore-card-image-{{ ai_gen_id }}"
+                  >
+                {% else %}
+                  <div class="ai-explore-card-image-placeholder-{{ ai_gen_id }}">
+                    {{ 'image' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+                {% if card_title != blank %}
+                  <div class="ai-explore-card-title-overlay-{{ ai_gen_id }}">
+                    {{ card_title }}
+                  </div>
+                {% endif %}
+              </div>
+            {% if card_link != blank %}
+              </a>
+            {% else %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <button
+      class="ai-explore-arrow-{{ ai_gen_id }} ai-explore-arrow-right-{{ ai_gen_id }}"
+      aria-label="Next cards"
+      data-direction="right"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+      </svg>
+    </button>
+  </div>
+</explore-carousel-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ExploreCarousel{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.container = this.querySelector('.ai-explore-carousel-container-{{ ai_gen_id }}');
+        this.leftArrow = this.querySelector('.ai-explore-arrow-left-{{ ai_gen_id }}');
+        this.rightArrow = this.querySelector('.ai-explore-arrow-right-{{ ai_gen_id }}');
+        this.cards = this.querySelectorAll('.ai-explore-card-{{ ai_gen_id }}');
+      }
+
+      connectedCallback() {
+        this.setupEventListeners();
+        this.updateArrowStates();
+      }
+
+      setupEventListeners() {
+        this.leftArrow.addEventListener('click', () => this.scroll('left'));
+        this.rightArrow.addEventListener('click', () => this.scroll('right'));
+        this.container.addEventListener('scroll', () => this.updateArrowStates());
+      }
+
+      scroll(direction) {
+        const scrollAmount = this.cards[0].offsetWidth + {{ block.settings.card_gap }};
+        const currentScroll = this.container.scrollLeft;
+        
+        if (direction === 'left') {
+          this.container.scrollLeft = currentScroll - scrollAmount;
+        } else {
+          this.container.scrollLeft = currentScroll + scrollAmount;
+        }
+      }
+
+      updateArrowStates() {
+        const maxScroll = this.container.scrollWidth - this.container.clientWidth;
+        const currentScroll = this.container.scrollLeft;
+
+        this.leftArrow.disabled = currentScroll <= 0;
+        this.rightArrow.disabled = currentScroll >= maxScroll - 1;
+      }
+    }
+
+    customElements.define('explore-carousel-{{ ai_gen_id }}', ExploreCarousel{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Explore cards carousel",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "small_title",
+      "label": "Small title",
+      "default": "More to"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main heading",
+      "default": "Explore"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Discover our curated edits and seasonal collections"
+    },
+    {
+      "type": "range",
+      "id": "small_title_size",
+      "label": "Small title size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "main_heading_size",
+      "label": "Main heading size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "Subtitle size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Title",
+      "default": "Collection 1"
+    },
+    {
+      "type": "url",
+      "id": "card_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Title",
+      "default": "Collection 2"
+    },
+    {
+      "type": "url",
+      "id": "card_2_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_3_title",
+      "label": "Title",
+      "default": "Collection 3"
+    },
+    {
+      "type": "url",
+      "id": "card_3_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Card 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_4_title",
+      "label": "Title",
+      "default": "Collection 4"
+    },
+    {
+      "type": "url",
+      "id": "card_4_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Card 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_5_title",
+      "label": "Title",
+      "default": "Collection 5"
+    },
+    {
+      "type": "url",
+      "id": "card_5_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Card 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_6_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_6_title",
+      "label": "Title",
+      "default": "Collection 6"
+    },
+    {
+      "type": "url",
+      "id": "card_6_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_width_desktop",
+      "label": "Card width on desktop",
+      "min": 300,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "default": 440
+    },
+    {
+      "type": "range",
+      "id": "card_width_mobile",
+      "label": "Card width on mobile",
+      "min": 250,
+      "max": 350,
+      "step": 10,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "card_height",
+      "label": "Card height",
+      "min": 300,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Gap between cards",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "label": "Card title size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Arrow controls"
+    },
+    {
+      "type": "color",
+      "id": "arrow_background",
+      "label": "Arrow background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_background",
+      "label": "Arrow hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_color",
+      "label": "Arrow icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Scrollbar"
+    },
+    {
+      "type": "color",
+      "id": "scrollbar_color",
+      "label": "Scrollbar color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "scrollbar_hover_color",
+      "label": "Scrollbar hover color",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "scrollbar_track_color",
+      "label": "Scrollbar track color",
+      "default": "#f0f0f0"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Explore cards carousel"
+    }
+  ]
+}
+{% endschema %}
