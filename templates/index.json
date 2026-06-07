@@ -243,10 +243,17 @@
         "accent_line_hover_width": 68,
         "accent_line_height": 3,
         "accent_line_spacing": 12,
+<<<<<<< HEAD
         "heading_color": "#1a1a1a",
         "heading_hover_color": "#0a3557",
         "heading_font": "Garamond",
         "heading_font_weight": "800",
+=======
+        "heading_color": "#0a3557",
+        "heading_hover_color": "#0a3557",
+        "heading_font": "Garamond",
+        "heading_font_weight": "900",
+>>>>>>> 45eceb5af889b42cd41af4f9b94573f7ddc1e57f
         "heading_size_desktop": 24,
         "heading_size_mobile": 18,
         "heading_line_height": 105,
