@@ -1,140 +1,207 @@
-<section id="shopify-section-template--26410411393391__custom_liquid_ejXyfC" class="shopify-section t4s-section t4s-section-all t4s-custom-liquid" style="width:90%; margin: auto; margin-top: 0px; margin-bottom: 0px;"><!-- sections/custom-liquid.liquid -->
-<div class="t4s-section-inner t4s_nt_se_template--26410411393391__custom_liquid_ejXyfC t4s_se_template--26410411393391__custom_liquid_ejXyfC t4s-container-fluid" style="--bg-color: ;--bg-gradient: ;--border-cl: ;--mg-top: ;--mg-right: auto;--mg-bottom: 0px;--mg-left:auto;--pd-top: 0px;--pd-right: 60px;--pd-bottom: 0px;--pd-left: 60px;--mgtb-top: ;--mgtb-right: auto;--mgtb-bottom: 0px;--mgtb-left: auto;--pdtb-top: 0px;--pdtb-right: 60px;--pdtb-bottom: 0px;--pdtb-left: 60px;--mgmb-top: ;--mgmb-right: auto;--mgmb-bottom: 00px;--mgmb-left: auto;--pdmb-top: 0px;--pdmb-right: 60px;--pdmb-bottom: 0px;--pdmb-left: 60px;"><div class="t4s-code__liquid" hdt-reveal="slide-in"><div class="shop-desk">
+<section
+  class="shop-by-price-section"
+  style="
+    background: {{ section.settings.section_bg }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+<div class="shop-desk">
   <h3 class="t4s-section-title t4s-title shop-bnd">
-    <span>Shop by price</span>
+    <span>{{ section.settings.heading }}</span>
   </h3>
 
   <div class="flex-imgaes-shop">
 
     <!-- COLUMN 1 -->
     <div class="image-shop">
+
       <div class="image-inner">
         <div class="img-iner">
-          <a href="/collections/baby-girl-dresses-starting-699">
-            <img src="https://cdn.shopify.com/s/files/1/0732/1213/3527/files/Untitled_design.png?v=1780508625">
+          <a href="{{ section.settings.link_1 | default: '#' }}">
+            {{
+              section.settings.desktop_image_1
+              | image_url: width: 1200
+              | image_tag
+            }}
           </a>
         </div>
       </div>
 
       <div class="image-inner">
         <div class="img-iner">
-          <a href="/collections/outfit-sets-starting-999">
-            <img src="https://cdn.shopify.com/s/files/1/0732/1213/3527/files/Untitled_design_1.png?v=1780563830">
+          <a href="{{ section.settings.link_2 | default: '#' }}">
+            {{
+              section.settings.desktop_image_2
+              | image_url: width: 1200
+              | image_tag
+            }}
           </a>
         </div>
       </div>
+
     </div>
 
     <!-- COLUMN 2 -->
+
     <div class="image-shop">
+
       <div class="image-inner">
         <div class="img-iner">
-          <a href="/collections/sleepwear-starting-799">
-            <img src="https://cdn.shopify.com/s/files/1/0732/1213/3527/files/Untitled_design_2.png?v=1780563974">
+          <a href="{{ section.settings.link_3 | default: '#' }}">
+            {{
+              section.settings.desktop_image_3
+              | image_url: width: 1200
+              | image_tag
+            }}
           </a>
         </div>
       </div>
 
       <div class="image-inner">
         <div class="img-iner">
-          <a href="/collections/bottoms-starting-499">
-            <img src="https://cdn.shopify.com/s/files/1/0732/1213/3527/files/Untitled_design_3.png?v=1780564129">
+          <a href="{{ section.settings.link_4 | default: '#' }}">
+            {{
+              section.settings.desktop_image_4
+              | image_url: width: 1200
+              | image_tag
+            }}
           </a>
         </div>
       </div>
+
     </div>
 
-    <!-- COLUMN 3 : ROMPERS (FIRST TWO IN SAME ROW) -->
+    <!-- COLUMN 3 -->
+
     <div class="image-shop">
 
-      <!-- ROW with 2 images -->
       <div class="rompers-row">
+
         <div class="image-inner">
           <div class="img-iner">
-            <a href="/collections/topwear-starting-499">
-              <img src="https://cdn.shopify.com/s/files/1/0732/1213/3527/files/Untitled_design_4.png?v=1780564291">
+            <a href="{{ section.settings.link_5 | default: '#' }}">
+              {{
+                section.settings.desktop_image_5
+                | image_url: width: 1200
+                | image_tag
+              }}
             </a>
           </div>
         </div>
 
         <div class="image-inner">
           <div class="img-iner">
-            <a href="/collections/rompers-starting-699">
-              <img src="https://cdn.shopify.com/s/files/1/0732/1213/3527/files/Untitled_design_6.png?v=1780564441">
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- ROW with 2 images -->
-
-      <div class="rompers-row">
-        <div class="image-inner">
-          <div class="img-iner">
-            <a href="/collections/swimwear-starting-699">
-              <img src="https://cdn.shopify.com/s/files/1/0732/1213/3527/files/Untitled_design_5.png?v=1780564291">
+            <a href="{{ section.settings.link_6 | default: '#' }}">
+              {{
+                section.settings.desktop_image_6
+                | image_url: width: 1200
+                | image_tag
+              }}
             </a>
           </div>
         </div>
 
-        <div class="image-inner">
-          <div class="img-iner">
-            <a href="/collections/body-suits-under-1499?usf_sort=-price">
-              <img src="https://cdn.shopify.com/s/files/1/0732/1213/3527/files/Untitled_design_7.png?v=1780564529">
-            </a>
-          </div>
-        </div>
       </div>
 
+      <div class="rompers-row">
+
+        <div class="image-inner">
+          <div class="img-iner">
+            <a href="{{ section.settings.link_7 | default: '#' }}">
+              {{
+                section.settings.desktop_image_7
+                | image_url: width: 1200
+                | image_tag
+              }}
+            </a>
+          </div>
+        </div>
+
+        <div class="image-inner">
+          <div class="img-iner">
+            <a href="{{ section.settings.link_8 | default: '#' }}">
+              {{
+                section.settings.desktop_image_8
+                | image_url: width: 1200
+                | image_tag
+              }}
+            </a>
+          </div>
+        </div>
+
+      </div>
 
     </div>
 
   </div>
 </div>
 
+<!-- MOBILE -->
 
-<!-- MOBILE ONLY -->
 <div class="shop-mobile">
-  <h3 class="t4s-section-title t4s-title shop-bnd">
-    <span>Shop by price</span>
+
+  <h3
+    class="t4s-section-title t4s-title shop-bnd"
+    style="font-size:{{ section.settings.heading_size }}px;"
+  >
+    <span>{{ section.settings.heading }}</span>
   </h3>
 
   <div class="shop-mobile-track">
-    
-    <a class="shop-mobile-slide" href="/collections/baby-girl-dresses-starting-699">
-      <img src="https://cdn.shopify.com/s/files/1/0929/3398/0527/files/dresses_-_shopbyprice.png?v=1769875967" alt="">
-    </a>
 
-    <a class="shop-mobile-slide" href="/collections/outfit-sets-starting-999">
-      <img src="https://cdn.shopify.com/s/files/1/0929/3398/0527/files/outfit_sets_01.png?v=1770812408" alt="">
-    </a>
+    {% for i in (1..8) %}
 
-    <a class="shop-mobile-slide" href="/collections/sleepwear-starting-799">
-      <img src="https://cdn.shopify.com/s/files/1/0929/3398/0527/files/sleepwear01.png?v=1770812408" alt="">
-    </a>
+      {% liquid
+        assign desktop_key = 'desktop_image_' | append: i
+        assign mobile_key = 'mobile_image_' | append: i
+        assign link_key = 'link_' | append: i
 
-    <a class="shop-mobile-slide" href="/collections/bottoms-starting-499">
-      <img src="https://cdn.shopify.com/s/files/1/0929/3398/0527/files/bottoms_-_shopbyprice.png?v=1769875967" alt="">
-    </a>
+        assign desktop_image = section.settings[desktop_key]
+        assign mobile_image = section.settings[mobile_key]
 
-    <a class="shop-mobile-slide" href="/collections/topwear-starting-499">
-      <img src="https://cdn.shopify.com/s/files/1/0929/3398/0527/files/Group_87138_1_2ffa7e9d-93f0-4ea6-8fbf-fd3cc7a15f4b.png?v=1772518378" alt="">
-    </a>
+        if mobile_image == blank
+          assign mobile_image = desktop_image
+        endif
 
-    <a class="shop-mobile-slide" href="/collections/rompers-starting-699">
-      <img src="https://cdn.shopify.com/s/files/1/0929/3398/0527/files/Rompers_b510ab95-2b8a-483d-95cb-ad22aae9eec8.png?v=1770147723" alt="">
-    </a>
+        if desktop_image == blank
+          assign desktop_image = mobile_image
+        endif
+      %}
 
-    <a class="shop-mobile-slide" href="/collections/swimwear-starting-699">
-      <img src="https://cdn.shopify.com/s/files/1/0929/3398/0527/files/Mask_group-1_2_5f1272ce-edd3-4648-a4ca-16e1ac1d284b.png?v=1772518387" alt="">
-    </a>
+      <a
+        class="shop-mobile-slide"
+        href="{{ section.settings[link_key] | default: '#' }}"
+      >
 
-    <a class="shop-mobile-slide" href="/collections/body-suits-under-1499?usf_sort=-price">
-      <img src="https://cdn.shopify.com/s/files/1/0929/3398/0527/files/Mask_group_4_b73b8dd7-1fb7-42c0-a2d3-7b736fc78927.png?v=1772518393" alt="">
-    </a>
+        <picture>
+
+          {% if mobile_image != blank %}
+            <source
+              media="(max-width:749px)"
+              srcset="{{ mobile_image | image_url: width: 800 }}"
+            >
+          {% endif %}
+
+          {% if desktop_image != blank %}
+            {{
+              desktop_image
+              | image_url: width: 1200
+              | image_tag
+            }}
+          {% endif %}
+
+        </picture>
+
+      </a>
+
+    {% endfor %}
 
   </div>
+
 </div>
 
+</section>
 
 <style>
   .t4s-section-inner:not(.t4s-se-container), .t4s-container>.t4s-container-inner{
@@ -229,16 +296,16 @@
 }
 
 h3.t4s-section-title.t4s-title.shop-bnd{
-color: #0c4168;
- font-family: var(--wb-font-heading, 'Bebas Neue', 'Arial Black', sans-serif);
-  font-size: 32px;
-  font-weight: var(--wb-fw-extrabold, 900);
-  margin: 0 0 24px;
-  letter-spacing:0;
+  color: {{ section.settings.heading_color }};
+  font-size: {{ section.settings.heading_size }}px;
+  font-weight: {{ section.settings.heading_weight }};
+  font-family: var(--wb-font-heading, 'Bebas Neue', 'Arial Black', sans-serif);
   text-align: center;
   text-transform: uppercase;
-  transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+  margin: 0 0 24px;
+  letter-spacing: 0;
 }
+
 h3.t4s-section-title.t4s-title.shop-bnd span{
   letter-spacing:0;
 }
@@ -358,426 +425,253 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-</div></div>
 
-
-</section>
 
 {% schema %}
 {
-  "name": "Baby Category Grid",
+  "name": "Shop By Price",
   "settings": [
     {
-      "type": "header",
-      "content": "Layout"
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "SHOP BY PRICE"
     },
     {
       "type": "range",
-      "id": "grid_gap",
-      "label": "Gap between tiles",
-      "min": 0, "max": 24, "step": 2, "unit": "px",
-      "default": 8
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 32
     },
     {
-      "type": "range",
-      "id": "section_padding",
-      "label": "Section padding",
-      "min": 0, "max": 80, "step": 4, "unit": "px",
-      "default": 40
+  "type": "header",
+  "content": "Section Settings"
+},
+{
+  "type": "color",
+  "id": "section_bg",
+  "label": "Background Color",
+  "default": "#ffffff"
+},
+{
+  "type": "range",
+  "id": "padding_top",
+  "label": "Top Padding",
+  "min": 0,
+  "max": 120,
+  "step": 4,
+  "unit": "px",
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "padding_bottom",
+  "label": "Bottom Padding",
+  "min": 0,
+  "max": 120,
+  "step": 4,
+  "unit": "px",
+  "default": 0
+},
+{
+  "type": "header",
+  "content": "Heading"
+},
+{
+  "type": "color",
+  "id": "heading_color",
+  "label": "Heading Color",
+  "default": "#0c4168"
+},
+{
+  "type": "select",
+  "id": "heading_weight",
+  "label": "Heading Font Weight",
+  "options": [
+    {
+      "value": "400",
+      "label": "Regular"
     },
     {
-      "type": "color",
-      "id": "section_bg",
-      "label": "Section background",
-      "default": "#ffffff"
+      "value": "500",
+      "label": "Medium"
     },
+    {
+      "value": "600",
+      "label": "Semi Bold"
+    },
+    {
+      "value": "700",
+      "label": "Bold"
+    },
+    {
+      "value": "800",
+      "label": "Extra Bold"
+    },
+    {
+      "value": "900",
+      "label": "Black"
+    }
+  ],
+  "default": "900"
+},
     {
       "type": "header",
-      "content": "Label & Price Style"
-    },
-    {
-      "type": "color",
-      "id": "label_bg",
-      "label": "Label background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "label_color",
-      "label": "Label text color",
-      "default": "#1a1a1a"
-    },
-    {
-      "type": "color",
-      "id": "price_color",
-      "label": "Price text color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "header",
-      "content": "Mobile"
-    },
-    {
-      "type": "range",
-      "id": "mobile_height",
-      "label": "Mobile tile height",
-      "min": 140, "max": 500, "step": 10, "unit": "px",
-      "default": 220
-    },
-    {
-      "type": "header",
-      "content": "── Tile 1 (Col 1, Row 1) — Dresses ──"
+      "content": "Image 1"
     },
     {
       "type": "image_picker",
-      "id": "image_1",
-      "label": "Image"
+      "id": "desktop_image_1",
+      "label": "Desktop Image"
     },
     {
-      "type": "range",
-      "id": "height_1",
-      "label": "Height",
-      "min": 100, "max": 800, "step": 10, "unit": "px",
-      "default": 260
-    },
-    {
-      "type": "text",
-      "id": "label_1",
-      "label": "Category label",
-      "default": "Dresses"
-    },
-    {
-      "type": "text",
-      "id": "price_1",
-      "label": "Price",
-      "default": "₹699"
-    },
-    {
-      "type": "select",
-      "id": "price_prefix_1",
-      "label": "Price prefix",
-      "options": [
-        { "value": "starting", "label": "starting" },
-        { "value": "under", "label": "under" },
-        { "value": "from", "label": "from" },
-        { "value": "", "label": "none" }
-      ],
-      "default": "starting"
+      "type": "image_picker",
+      "id": "mobile_image_1",
+      "label": "Mobile Image"
     },
     {
       "type": "url",
       "id": "link_1",
       "label": "Link"
     },
+
     {
       "type": "header",
-      "content": "── Tile 2 (Col 2, spans all rows) — Sleepwear ──"
+      "content": "Image 2"
     },
     {
       "type": "image_picker",
-      "id": "image_2",
-      "label": "Image"
+      "id": "desktop_image_2",
+      "label": "Desktop Image"
     },
     {
-      "type": "range",
-      "id": "height_2",
-      "label": "Height (should equal sum of col1 heights + gaps)",
-      "min": 200, "max": 1200, "step": 10, "unit": "px",
-      "default": 530
-    },
-    {
-      "type": "text",
-      "id": "label_2",
-      "label": "Category label",
-      "default": "Sleepwear"
-    },
-    {
-      "type": "text",
-      "id": "price_2",
-      "label": "Price",
-      "default": "₹799"
-    },
-    {
-      "type": "select",
-      "id": "price_prefix_2",
-      "label": "Price prefix",
-      "options": [
-        { "value": "starting", "label": "starting" },
-        { "value": "under", "label": "under" },
-        { "value": "from", "label": "from" },
-        { "value": "", "label": "none" }
-      ],
-      "default": "starting"
+      "type": "image_picker",
+      "id": "mobile_image_2",
+      "label": "Mobile Image"
     },
     {
       "type": "url",
       "id": "link_2",
       "label": "Link"
     },
+
     {
       "type": "header",
-      "content": "── Tile 3 (Col 3, Row 1) — Topwear ──"
+      "content": "Image 3"
     },
     {
       "type": "image_picker",
-      "id": "image_3",
-      "label": "Image"
+      "id": "desktop_image_3",
+      "label": "Desktop Image"
     },
     {
-      "type": "range",
-      "id": "height_3",
-      "label": "Height",
-      "min": 100, "max": 800, "step": 10, "unit": "px",
-      "default": 260
-    },
-    {
-      "type": "text",
-      "id": "label_3",
-      "label": "Category label",
-      "default": "Topwear"
-    },
-    {
-      "type": "text",
-      "id": "price_3",
-      "label": "Price",
-      "default": "₹499"
-    },
-    {
-      "type": "select",
-      "id": "price_prefix_3",
-      "label": "Price prefix",
-      "options": [
-        { "value": "starting", "label": "starting" },
-        { "value": "under", "label": "under" },
-        { "value": "from", "label": "from" },
-        { "value": "", "label": "none" }
-      ],
-      "default": "starting"
+      "type": "image_picker",
+      "id": "mobile_image_3",
+      "label": "Mobile Image"
     },
     {
       "type": "url",
       "id": "link_3",
       "label": "Link"
     },
+
     {
       "type": "header",
-      "content": "── Tile 4 (Col 4, Row 1) — Rompers ──"
+      "content": "Image 4"
     },
     {
       "type": "image_picker",
-      "id": "image_4",
-      "label": "Image"
+      "id": "desktop_image_4",
+      "label": "Desktop Image"
     },
     {
-      "type": "range",
-      "id": "height_4",
-      "label": "Height",
-      "min": 100, "max": 800, "step": 10, "unit": "px",
-      "default": 260
-    },
-    {
-      "type": "text",
-      "id": "label_4",
-      "label": "Category label",
-      "default": "Rompers"
-    },
-    {
-      "type": "text",
-      "id": "price_4",
-      "label": "Price",
-      "default": "₹699"
-    },
-    {
-      "type": "select",
-      "id": "price_prefix_4",
-      "label": "Price prefix",
-      "options": [
-        { "value": "starting", "label": "starting" },
-        { "value": "under", "label": "under" },
-        { "value": "from", "label": "from" },
-        { "value": "", "label": "none" }
-      ],
-      "default": "starting"
+      "type": "image_picker",
+      "id": "mobile_image_4",
+      "label": "Mobile Image"
     },
     {
       "type": "url",
       "id": "link_4",
       "label": "Link"
     },
+
     {
       "type": "header",
-      "content": "── Tile 5 (Col 1, Row 2) — Outfit Sets ──"
+      "content": "Image 5"
     },
     {
       "type": "image_picker",
-      "id": "image_5",
-      "label": "Image"
+      "id": "desktop_image_5",
+      "label": "Desktop Image"
     },
     {
-      "type": "range",
-      "id": "height_5",
-      "label": "Height",
-      "min": 100, "max": 800, "step": 10, "unit": "px",
-      "default": 330
-    },
-    {
-      "type": "text",
-      "id": "label_5",
-      "label": "Category label",
-      "default": "Outfit Sets"
-    },
-    {
-      "type": "text",
-      "id": "price_5",
-      "label": "Price",
-      "default": "₹999"
-    },
-    {
-      "type": "select",
-      "id": "price_prefix_5",
-      "label": "Price prefix",
-      "options": [
-        { "value": "starting", "label": "starting" },
-        { "value": "under", "label": "under" },
-        { "value": "from", "label": "from" },
-        { "value": "", "label": "none" }
-      ],
-      "default": "starting"
+      "type": "image_picker",
+      "id": "mobile_image_5",
+      "label": "Mobile Image"
     },
     {
       "type": "url",
       "id": "link_5",
       "label": "Link"
     },
+
     {
       "type": "header",
-      "content": "── Tile 6 (Col 2, Row 2) — Bottoms ──"
+      "content": "Image 6"
     },
     {
       "type": "image_picker",
-      "id": "image_6",
-      "label": "Image"
+      "id": "desktop_image_6",
+      "label": "Desktop Image"
     },
     {
-      "type": "range",
-      "id": "height_6",
-      "label": "Height",
-      "min": 100, "max": 800, "step": 10, "unit": "px",
-      "default": 330
-    },
-    {
-      "type": "text",
-      "id": "label_6",
-      "label": "Category label",
-      "default": "Bottoms"
-    },
-    {
-      "type": "text",
-      "id": "price_6",
-      "label": "Price",
-      "default": "₹499"
-    },
-    {
-      "type": "select",
-      "id": "price_prefix_6",
-      "label": "Price prefix",
-      "options": [
-        { "value": "starting", "label": "starting" },
-        { "value": "under", "label": "under" },
-        { "value": "from", "label": "from" },
-        { "value": "", "label": "none" }
-      ],
-      "default": "starting"
+      "type": "image_picker",
+      "id": "mobile_image_6",
+      "label": "Mobile Image"
     },
     {
       "type": "url",
       "id": "link_6",
       "label": "Link"
     },
+
     {
       "type": "header",
-      "content": "── Tile 7 (Col 3, Row 2) — Swimwear ──"
+      "content": "Image 7"
     },
     {
       "type": "image_picker",
-      "id": "image_7",
-      "label": "Image"
+      "id": "desktop_image_7",
+      "label": "Desktop Image"
     },
     {
-      "type": "range",
-      "id": "height_7",
-      "label": "Height",
-      "min": 100, "max": 800, "step": 10, "unit": "px",
-      "default": 330
-    },
-    {
-      "type": "text",
-      "id": "label_7",
-      "label": "Category label",
-      "default": "Swimwear"
-    },
-    {
-      "type": "text",
-      "id": "price_7",
-      "label": "Price",
-      "default": "₹699"
-    },
-    {
-      "type": "select",
-      "id": "price_prefix_7",
-      "label": "Price prefix",
-      "options": [
-        { "value": "starting", "label": "starting" },
-        { "value": "under", "label": "under" },
-        { "value": "from", "label": "from" },
-        { "value": "", "label": "none" }
-      ],
-      "default": "starting"
+      "type": "image_picker",
+      "id": "mobile_image_7",
+      "label": "Mobile Image"
     },
     {
       "type": "url",
       "id": "link_7",
       "label": "Link"
     },
+
     {
       "type": "header",
-      "content": "── Tile 8 (Col 4, Row 2) — Bodysuits ──"
+      "content": "Image 8"
     },
     {
       "type": "image_picker",
-      "id": "image_8",
-      "label": "Image"
+      "id": "desktop_image_8",
+      "label": "Desktop Image"
     },
     {
-      "type": "range",
-      "id": "height_8",
-      "label": "Height",
-      "min": 100, "max": 800, "step": 10, "unit": "px",
-      "default": 330
-    },
-    {
-      "type": "text",
-      "id": "label_8",
-      "label": "Category label",
-      "default": "Bodysuits"
-    },
-    {
-      "type": "text",
-      "id": "price_8",
-      "label": "Price",
-      "default": "₹1499"
-    },
-    {
-      "type": "select",
-      "id": "price_prefix_8",
-      "label": "Price prefix",
-      "options": [
-        { "value": "starting", "label": "starting" },
-        { "value": "under", "label": "under" },
-        { "value": "from", "label": "from" },
-        { "value": "", "label": "none" }
-      ],
-      "default": "under"
+      "type": "image_picker",
+      "id": "mobile_image_8",
+      "label": "Mobile Image"
     },
     {
       "type": "url",
@@ -787,7 +681,7 @@ document.addEventListener('DOMContentLoaded', function () {
   ],
   "presets": [
     {
-      "name": "Baby Category Grid"
+      "name": "Shop By Price"
     }
   ]
 }

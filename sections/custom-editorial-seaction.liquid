@@ -91,15 +91,16 @@
 
 <style>
 #ess-{{ section.id }} {
-  --ess-bg: var(--wb-color-white);
+  --ess-bg: {{ section.settings.background_color }};
   --ess-gap: {{ section.settings.gap }}px;
-  --ess-radius: {{ section.settings.border_radius }}px;
   --ess-left-ratio: {{ section.settings.left_width }};
-  --ess-stats-color: var(--wb-color-blue);
-  --ess-body-color: var(--wb-color-grey);
-  --ess-cta-color: var(--wb-color-lime);
-  --ess-caption-color: var(--wb-color-white);
-  --ess-explore-color: var(--wb-color-lime);
+
+  --ess-stats-color: {{ section.settings.stats_color }};
+  --ess-body-color: {{ section.settings.body_color }};
+  --ess-cta-color: {{ section.settings.cta_color }};
+  --ess-caption-color: {{ section.settings.caption_color }};
+  --ess-explore-color: {{ section.settings.explore_color }};
+
   --ess-padding-top: {{ section.settings.padding_top }}px;
   --ess-padding-bottom: {{ section.settings.padding_bottom }}px;
 }
@@ -258,8 +259,8 @@
 }
 
 .ess-explore:hover{
-background: #0c4168;
-color: white;
+  background: {{ section.settings.explore_hover_bg }};
+  color: {{ section.settings.explore_hover_text }};
 }
 
 .ess-explore {
@@ -268,19 +269,16 @@ color: white;
   align-items: center;
   gap: 10px;
   font-family: var(--wb-font-heading);
-  font-size: 13px;
+  font-size: {{ section.settings.explore_size }}px;
   font-weight: var(--wb-fw-bold);
-  letter-spacing: 0px;
   text-transform: uppercase;
-  color: #0c4168;
   line-height: 1;
   position: relative;
   cursor: pointer;
   transition: all 0.35s ease;
   padding: 10px 14px;
-  background: white;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: {{ section.settings.explore_bg }};
+  color: {{ section.settings.explore_text_color }};
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
   overflow: hidden;
   width: 50%;
@@ -302,10 +300,9 @@ color: white;
 
 .ess-explore:hover {
   transform: translateY(-2px);
-  background: rgba(12, 65, 104, 0.38);
-  border-color: rgba(33, 240, 16, 0.55);
+  background: {{ section.settings.explore_hover_bg }};
+  color: {{ section.settings.explore_hover_text }};
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
-  color: var(--wb-color-white);
 }
 
 .ess-explore:hover::before {
@@ -442,15 +439,7 @@ color: white;
       "step": 1,
       "default": 6
     },
-    {
-      "type": "range",
-      "id": "border_radius",
-      "label": "Border radius (px)",
-      "min": 0,
-      "max": 24,
-      "step": 1,
-      "default": 10
-    },
+
     {
       "type": "range",
       "id": "h_padding",
@@ -628,6 +617,30 @@ color: white;
       "label": "Stats text color",
       "default": "#2b2b2b"
     },
+{
+  "type": "color",
+  "id": "explore_bg",
+  "label": "Explore Button Background",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "explore_text_color",
+  "label": "Explore Button Text Color",
+  "default": "#0c4168"
+},
+{
+  "type": "color",
+  "id": "explore_hover_bg",
+  "label": "Explore Button Hover Background",
+  "default": "#0c4168"
+},
+{
+  "type": "color",
+  "id": "explore_hover_text",
+  "label": "Explore Button Hover Text Color",
+  "default": "#ffffff"
+},
     {
       "type": "color",
       "id": "body_color",

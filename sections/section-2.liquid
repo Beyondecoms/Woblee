@@ -18,8 +18,30 @@
   class="wau-section"
   id="wau-{{ section.id }}"
   style="
-    --wau-bg: {{ bg_color }};
-    --wau-accent: {{ accent }};
+    --wau-bg: {{ section.settings.background_color }};
+    --wau-accent: {{ section.settings.accent_color }};
+    --wau-blob-color: {{ section.settings.blob_color }};
+
+    --wau-heading-color: {{ section.settings.heading_color }};
+    --wau-body-color: {{ section.settings.body_color }};
+
+    --wau-button-bg: {{ section.settings.button_bg }};
+    --wau-button-text: {{ section.settings.button_text }};
+    --wau-button-hover-bg: {{ section.settings.button_hover_bg }};
+    --wau-button-hover-text: {{ section.settings.button_hover_text }};
+
+    --wau-stats-number-color: {{ section.settings.stats_number_color }};
+    --wau-stats-label-color: {{ section.settings.stats_label_color }};
+
+    --wau-heading-size: {{ section.settings.heading_size }}px;
+    --wau-heading-weight: {{ section.settings.heading_weight }};
+
+    --wau-body-size: {{ section.settings.body_size }}px;
+    --wau-body-weight: {{ section.settings.body_weight }};
+
+    --wau-button-size: {{ section.settings.button_font_size }}px;
+    --wau-button-weight: {{ section.settings.button_font_weight }};
+
     --wau-pt: {{ section.settings.padding_top }}px;
     --wau-pb: {{ section.settings.padding_bottom }}px;
   "
@@ -33,62 +55,84 @@
   <div class="wau-inner">
 
     <!-- ═══ LEFT ═══ -->
-    <div class="wau-left">
-      <h2 class="wau-heading">{{ heading }}</h2>
-      <p class="wau-body">{{ body_text }}</p>
+<div class="wau-left">
+  {% if section.settings.heading != blank %}
+    <h2 class="wau-heading">
+      {{ section.settings.heading }}
+    </h2>
+  {% endif %}
 
-      {%- if cta_text != blank -%}
-        <a href="{{ cta_url }}" class="wau-cta">
-          <span>{{ cta_text }}</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      {%- endif -%}
-
-      <!-- Stats -->
-      <div class="wau-stats">
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'stat' -%}
-            <div class="wau-stat-pill" {{ block.shopify_attributes }}>
-              <strong>{{ block.settings.stat_value }}</strong>
-              <span>{{ block.settings.stat_label }}</span>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
+  {% if section.settings.body_text != blank %}
+    <div class="wau-body">
+      {{ section.settings.body_text }}
     </div>
+  {% endif %}
+
+  {% if section.settings.cta_text != blank %}
+    <a href="{{ section.settings.cta_url }}" class="wau-cta">
+      <span>{{ section.settings.cta_text }}</span>
+
+      <svg width="18" height="18" viewBox="0 0 14 14" fill="none">
+        <path
+          d="M1 7H13M13 7L7 1M13 7L7 13"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </a>
+  {% endif %}
+
+  <div class="wau-stats">
+    {% for block in section.blocks %}
+      {% if block.type == 'stat' %}
+        <div class="wau-stat-pill" {{ block.shopify_attributes }}>
+          <strong>{{ block.settings.stat_value }}</strong>
+          <span>{{ block.settings.stat_label }}</span>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
 
     <!-- ═══ RIGHT — Polaroid Fan ═══ -->
-    <div class="wau-right">
-      <div class="wau-fan-wrap">
-        {%- for block in card_blocks limit: 3 -%}
-          <div class="wau-pcard wau-pcard--{{ forloop.index0 }}" data-idx="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
-            <div class="wau-pcard__inner">
-              {%- if block.settings.card_image != blank -%}
-                {{
-                  block.settings.card_image
-                  | image_url: width: 600
-                  | image_tag:
-                    loading: 'lazy',
-                    widths: '300,480,600',
-                    class: 'wau-pcard__img'
-                }}
-              {%- else -%}
-                {{ 'collection-' | append: forloop.index | placeholder_svg_tag: 'wau-pcard__img wau-pcard__img--ph' }}
-              {%- endif -%}
-              {%- if block.settings.card_label != blank -%}
-                <div class="wau-pcard__caption">{{ block.settings.card_label }}</div>
-              {%- endif -%}
-            </div>
-          </div>
-        {%- endfor -%}
-        <!-- glow blobs -->
-        <div class="wau-blob wau-blob--1" aria-hidden="true"></div>
-        <div class="wau-blob wau-blob--2" aria-hidden="true"></div>
-      </div>
-    </div>
+<div class="wau-right">
+  <div class="wau-fan-wrap">
 
+    {% for block in section.blocks %}
+      {% if block.type == 'card' %}
+        <div class="wau-pcard wau-pcard--{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+
+          <div class="wau-pcard__inner">
+
+            {% if block.settings.card_image != blank %}
+              {{
+                block.settings.card_image
+                | image_url: width: 700
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'wau-pcard__img'
+              }}
+            {% endif %}
+
+            {% if block.settings.card_label != blank %}
+              <div class="wau-pcard__caption">
+                {{ block.settings.card_label }}
+              </div>
+            {% endif %}
+
+          </div>
+
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <div class="wau-blob wau-blob--1"></div>
+    <div class="wau-blob wau-blob--2"></div>
+
+  </div>
+</div>
   </div><!-- /inner -->
 
   <!-- ═══ MARQUEE STRIP ═══ -->
@@ -110,9 +154,9 @@
 .wau-section {
   position: relative;
   overflow: hidden;
-  padding-top: var(--wau-pt, 80px);
-  padding-bottom: 0;
-  background: var(--wb-color-white);
+  padding-top: var(--wau-pt);
+  padding-bottom: var(--wau-pb);
+  background: var(--wau-bg);
 }
 
 .wau-bg-img {
@@ -157,17 +201,13 @@
 }
 
 .wau-heading {
-  font-family: var(--wb-font-heading, 'Bebas Neue', 'Arial Black', sans-serif);
-  font-size: var(--wb-h2, clamp(52px, 7vw, 110px));
-  font-weight: var(--wb-fw-extrabold, 900);
-  line-height: 0.92;
-  letter-spacing: var(--wb-letter-tight, -0.01em);
-  color: white;
+  font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
+  font-size: var(--wau-heading-size);
+  font-weight: var(--wau-heading-weight);
+  color: var(--wau-heading-color);
+  line-height: 1.1;
   text-transform: uppercase;
   margin-bottom: 28px;
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .wau-section.wau-visible .wau-heading {
@@ -176,16 +216,13 @@
 }
 
 .wau-body {
-  font-family: var(--wb-font-body, 'Helvetica Neue', sans-serif);
-  font-size: var(--wb-body, clamp(14px, 1.1vw, 17px));
-  font-weight: var(--wb-fw-medium, 500);
-  line-height: var(--wb-line-relaxed, 1.75);
-  color: white;
-  max-width: 400px;
+  font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
+  font-size: var(--wau-body-size);
+  font-weight: var(--wau-body-weight);
+  color: var(--wau-body-color);
+  line-height: 1.7;
+  max-width: 450px;
   margin-bottom: 36px;
-  opacity: 0;
-  transform: translateX(-30px);
-  transition: opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s;
 }
 
 .wau-section.wau-visible .wau-body {
@@ -194,35 +231,37 @@
 }
 
 /* CTA */
-.wau-cta:hover{
-background: #0c4168;
-color: white;
+.wau-cta:hover {
+  background: var(--wau-button-hover-bg);
+  color: var(--wau-button-hover-text);
+}
+.wau-stat-pill strong,
+.wau-stat-pill span {
+  font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
+}
+.wau-pcard__caption {
+  font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
 }
 .wau-cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  font-family: var(--wb-font-heading, sans-serif);
-  font-size: var(--wb-btn-font-size, 13px);
-  font-weight: var(--wb-btn-font-weight, 700);
-  letter-spacing: var(--wb-btn-letter-spacing, 0.08em);
-  text-transform: uppercase;
-  color: var(--wb-color-blue, #0C4168);
-  background: white;
-  padding: 5px !important;
-  margin: 10px !important;
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  width: 50%;
-      justify-content: center;
-  transform: translateY(16px);
-  transition: opacity 0.8s ease 0.28s, transform 0.8s ease 0.28s, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+
+  font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
+  font-size: var(--wau-button-size);
+  font-weight: var(--wau-button-weight);
+
+  background: var(--wau-button-bg);
+  color: var(--wau-button-text);
+
+  padding: 14px 24px;
+  transition: all .3s ease;
 }
 
 .wau-cta::after {
-  content: '';
+  /* content: ''; */
   position: absolute;
   inset: 0;
   background: rgba(255,255,255,0.18);
@@ -278,7 +317,7 @@ padding: 14px !important;
   font-family: var(--wb-font-heading, sans-serif);
   font-size: var(--wb-h4, clamp(22px, 2.4vw, 32px));
   font-weight: var(--wb-fw-extrabold, 900);
-  color: var(--wb-color-lime, #21F010);
+   color: var(--wau-accent);
   line-height: 1;
 }
 
@@ -391,7 +430,7 @@ padding: 14px !important;
 .wau-blob--1 {
   width: 280px;
   height: 280px;
-  background: var(--wb-color-lime, #21F010);
+background: var(--wau-accent);
   opacity: 0.07;
   top: -20px;
   right: -40px;
@@ -638,40 +677,174 @@ width: 37%;
       "type": "textarea",
       "id": "body_text",
       "label": "Description",
-      "default": "Be bold, be you. Born from a belief that every woman deserves confidence in everything she wears — our products are crafted with care, purpose, and a fearless spirit."
+      "default": "Be bold, be you. Born from a belief that every woman deserves confidence in everything she wears."
     },
     {
       "type": "text",
       "id": "cta_text",
-      "label": "CTA button text",
-      "default": "Our Story"
+      "label": "Button Text",
+      "default": "OUR STORY"
     },
     {
       "type": "url",
       "id": "cta_url",
-      "label": "CTA link"
+      "label": "Button Link"
     },
+
     {
       "type": "header",
-      "content": "Design"
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "section_font",
+      "label": "Font Family",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 800
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Font Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "body_weight",
+      "label": "Body Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button Text Color",
+      "default": "#0C4168"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Button Hover Background",
+      "default": "#0C4168"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text",
+      "label": "Button Hover Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button Font Size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_font_weight",
+      "label": "Button Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+
+    {
+      "type": "header",
+      "content": "Statistics"
+    },
+    {
+      "type": "color",
+      "id": "stats_number_color",
+      "label": "Stats Number Color",
+      "default": "#21F010"
+    },
+    {
+      "type": "color",
+      "id": "stats_label_color",
+      "label": "Stats Label Color",
+      "default": "#B7C1CC"
+    },
+
+    {
+      "type": "header",
+      "content": "Background & Glow"
     },
     {
       "type": "image_picker",
       "id": "bg_image",
-      "label": "Background image (optional)"
+      "label": "Background Image"
     },
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background color",
+      "label": "Background Color",
       "default": "#0C4168"
     },
     {
       "type": "color",
       "id": "accent_color",
-      "label": "Accent color",
+      "label": "Accent Color",
       "default": "#21F010"
     },
+    {
+      "type": "color",
+      "id": "blob_color",
+      "label": "Glow Blur Color",
+      "default": "#21F010"
+    },
+
     {
       "type": "header",
       "content": "Spacing"
@@ -679,18 +852,25 @@ width: 37%;
     {
       "type": "range",
       "id": "padding_top",
-      "label": "Padding top",
-      "min": 0, "max": 160, "step": 4, "unit": "px",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
       "default": 80
     },
     {
       "type": "range",
       "id": "padding_bottom",
-      "label": "Padding bottom",
-      "min": 0, "max": 160, "step": 4, "unit": "px",
-      "default": 72
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
     }
   ],
+
   "blocks": [
     {
       "type": "card",
@@ -700,19 +880,19 @@ width: 37%;
         {
           "type": "image_picker",
           "id": "card_image",
-          "label": "Card image"
+          "label": "Card Image"
         },
         {
           "type": "text",
           "id": "card_label",
-          "label": "Caption (optional)",
-          "default": "Our Style"
+          "label": "Card Caption",
+          "default": "OUR STYLE"
         }
       ]
     },
     {
       "type": "stat",
-      "name": "Stat Pill",
+      "name": "Statistics",
       "settings": [
         {
           "type": "text",
@@ -727,35 +907,31 @@ width: 37%;
           "default": "Happy Customers"
         }
       ]
-    },
-    {
-      "type": "ticker",
-      "name": "Ticker Phrase",
-      "settings": [
-        {
-          "type": "text",
-          "id": "ticker_text",
-          "label": "Phrase",
-          "default": "WE ARE BOLD"
-        }
-      ]
     }
   ],
+
   "presets": [
     {
       "name": "About Us — Fan Cards",
       "blocks": [
-        { "type": "card", "settings": { "card_label": "Pure Confidence" } },
-        { "type": "card", "settings": { "card_label": "Born Bold" } },
-        { "type": "card", "settings": { "card_label": "Fearless Spirit" } },
-        { "type": "stat", "settings": { "stat_value": "10K+", "stat_label": "Happy Customers" } },
-        { "type": "stat", "settings": { "stat_value": "4.9★", "stat_label": "Avg. Rating" } },
-        { "type": "stat", "settings": { "stat_value": "100%", "stat_label": "Made with Love" } },
-        { "type": "ticker", "settings": { "ticker_text": "WE ARE BOLD" } },
-        { "type": "ticker", "settings": { "ticker_text": "WE ARE STRONG" } },
-        { "type": "ticker", "settings": { "ticker_text": "WE ARE FEARLESS" } },
-        { "type": "ticker", "settings": { "ticker_text": "WE ARE CONFIDENT" } },
-        { "type": "ticker", "settings": { "ticker_text": "WE ARE BEAUTIFUL" } }
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "stat"
+        },
+        {
+          "type": "stat"
+        },
+        {
+          "type": "stat"
+        }
       ]
     }
   ]

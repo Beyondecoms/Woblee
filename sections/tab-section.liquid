@@ -2,16 +2,32 @@
   assign section_id = 'timeline-tabs-' | append: section.id
 %}
 
-<section id="{{ section_id }}" class="timeline-tabs">
+<section
+  id="{{ section_id }}"
+  class="timeline-tabs"
+  style="
+    background: {{ section.settings.section_bg }};
+    padding-top: {{ section.settings.section_padding_top }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom }}px;
+  "
+>
   <div class="timeline-tabs__inner page-width">
+
     {% if section.settings.heading != blank %}
       <div class="timeline-tabs__heading-wrap">
-        <h2 class="timeline-tabs__heading">{{ section.settings.heading }}</h2>
+        <h2 class="timeline-tabs__heading">
+          {{ section.settings.heading }}
+        </h2>
       </div>
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <div class="timeline-tabs__tabs" role="tablist" aria-label="{{ section.settings.heading | escape }}">
+
+      <div
+        class="timeline-tabs__tabs"
+        role="tablist"
+        aria-label="{{ section.settings.heading | escape }}"
+      >
         {% for block in section.blocks %}
           <button
             class="timeline-tabs__tab{% if forloop.first %} is-active{% endif %}"
@@ -29,27 +45,49 @@
       </div>
 
       <div class="timeline-tabs__panels">
+
         {% for block in section.blocks %}
+
           <div
             class="timeline-tabs__panel{% if forloop.first %} is-active{% endif %}"
             role="tabpanel"
             id="timeline-panel-{{ section.id }}-{{ forloop.index0 }}"
             aria-labelledby="timeline-tab-{{ section.id }}-{{ forloop.index0 }}"
             data-panel-index="{{ forloop.index0 }}"
-            {% unless forloop.first %}hidden{% endunless %}
+            {% unless forloop.first %}
+              hidden
+            {% endunless %}
           >
+
             <div class="timeline-tabs__layout">
+
               <div class="timeline-tabs__image-wrap">
+
                 {% if block.settings.image != blank %}
-                  {{ block.settings.image | image_url: width: 1400 | image_tag: class: 'timeline-tabs__image', loading: 'lazy', alt: block.settings.title }}
+
+                  {{
+                    block.settings.image
+                    | image_url: width: 1800
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'timeline-tabs__image',
+                      alt: block.settings.title
+                  }}
+
                 {% else %}
+
                   <div class="timeline-tabs__image timeline-tabs__image--placeholder"></div>
+
                 {% endif %}
+
               </div>
 
               <div class="timeline-tabs__content">
+
                 {% if block.settings.title != blank %}
-                  <h3 class="timeline-tabs__title">{{ block.settings.title }}</h3>
+                  <h3 class="timeline-tabs__title">
+                    {{ block.settings.title }}
+                  </h3>
                 {% endif %}
 
                 {% if block.settings.text != blank %}
@@ -57,42 +95,49 @@
                     {{ block.settings.text }}
                   </div>
                 {% endif %}
+
               </div>
+
             </div>
+
           </div>
+
         {% endfor %}
+
       </div>
+
     {% endif %}
+
   </div>
 </section>
 
+
 <style>
 #{{ section_id }} {
-  background: var(--wb-color-white);
-  color: var(--wb-color-blue);
-  font-family: var(--wb-font-body);
-  padding: 18px 0 30px;
+  background: {{ section.settings.section_bg }};
+  padding-top: {{ section.settings.section_padding_top }}px;
+  padding-bottom: {{ section.settings.section_padding_bottom }}px;
 }
 
 #{{ section_id }} .timeline-tabs__inner {
   max-width: 1200px;
+  margin: auto;
 }
 
 #{{ section_id }} .timeline-tabs__heading-wrap {
   display: flex;
   justify-content: center;
-  margin-bottom: 14px;
+  margin-bottom: 15px;
 }
 
 #{{ section_id }} .timeline-tabs__heading {
   margin: 0;
-  font-family: var(--wb-font-heading);
-  font-size: clamp(24px, 2.4vw, 42px);
-  line-height: 1.05;
-  font-weight: var(--wb-fw-extrabold);
-  letter-spacing: var(--wb-letter-tight);
+  color: {{ section.settings.heading_color }};
+  font-size: {{ section.settings.heading_size }}px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.1;
   text-transform: uppercase;
-  color: var(--wb-color-blue);
 }
 
 #{{ section_id }} .timeline-tabs__tabs {
@@ -100,24 +145,28 @@
   justify-content: center;
   align-items: center;
   gap: 28px;
+  margin-bottom: 30px;
   flex-wrap: wrap;
-  margin-bottom: 18px;
 }
 
 #{{ section_id }} .timeline-tabs__tab {
-  appearance: none;
-  border: 0;
+  border: none;
   background: transparent;
-  color: var(--wb-color-grey);
-  font-family: var(--wb-font-body);
-  font-size: 15px;
-  line-height: 1;
-  font-weight: var(--wb-fw-semibold);
-  letter-spacing: var(--wb-letter-wide);
-  padding: 6px 2px 8px;
   cursor: pointer;
+  color: {{ section.settings.tab_color }};
+  font-size: {{ section.settings.tab_font_size }}px;
+  font-weight: 600;
+  padding: 8px 5px;
   position: relative;
-  transition: color 0.2s ease;
+  transition: all .3s ease;
+}
+
+#{{ section_id }} .timeline-tabs__tab:hover {
+  color: {{ section.settings.tab_active_color }};
+}
+
+#{{ section_id }} .timeline-tabs__tab.is-active {
+  color: {{ section.settings.tab_active_color }};
 }
 
 #{{ section_id }} .timeline-tabs__tab::after {
@@ -126,22 +175,14 @@
   left: 50%;
   bottom: 0;
   width: 0;
-  height: 2px;
-  background: var(--wb-color-lime);
+  height: 3px;
   transform: translateX(-50%);
-  transition: width 0.2s ease;
-}
-
-#{{ section_id }} .timeline-tabs__tab:hover {
-  color: var(--wb-color-blue);
-}
-
-#{{ section_id }} .timeline-tabs__tab.is-active {
-  color: var(--wb-color-blue);
+  background: {{ section.settings.tab_underline_color }};
+  transition: all .3s ease;
 }
 
 #{{ section_id }} .timeline-tabs__tab.is-active::after {
-  width: 28px;
+  width: 35px;
 }
 
 #{{ section_id }} .timeline-tabs__panels {
@@ -149,14 +190,15 @@
 }
 
 #{{ section_id }} .timeline-tabs__panel {
-  animation: timelineFade 0.25s ease;
+  animation: timelineFade .4s ease;
 }
 
 @keyframes timelineFade {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(15px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -165,9 +207,9 @@
 
 #{{ section_id }} .timeline-tabs__layout {
   display: grid;
-  grid-template-columns: minmax(360px, 1.05fr) minmax(300px, 0.95fr);
-  gap: 40px;
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: {{ section.settings.layout_gap }}px;
+  align-items: center;
 }
 
 #{{ section_id }} .timeline-tabs__image-wrap {
@@ -176,37 +218,35 @@
 
 #{{ section_id }} .timeline-tabs__image {
   width: 100%;
-  height: auto;
+  height: {{ section.settings.image_height_desktop }}px;
+  object-fit: {{ section.settings.image_fit }};
+  border-radius: {{ section.settings.image_radius }}px;
   display: block;
-  object-fit: cover;
-  background: rgba(12, 65, 104, 0.06);
 }
 
 #{{ section_id }} .timeline-tabs__image--placeholder {
-  aspect-ratio: 1 / 0.85;
+  background: #f4f4f4;
+  height: {{ section.settings.image_height_desktop }}px;
+  border-radius: {{ section.settings.image_radius }}px;
 }
 
 #{{ section_id }} .timeline-tabs__content {
-  padding-top: 34px;
-  max-width: 500px;
+  max-width: {{ section.settings.content_width }}px;
 }
 
 #{{ section_id }} .timeline-tabs__title {
-  margin: 0 0 18px;
-  font-family: var(--wb-font-heading);
-  font-size: clamp(18px, 1.6vw, 28px);
+  margin: 0 0 20px;
+  color: {{ section.settings.content_heading_color }};
+  font-size: {{ section.settings.content_heading_size }}px;
+  font-weight: 700;
   line-height: 1.2;
-  font-weight: var(--wb-fw-bold);
-  color: var(--wb-color-blue);
-  letter-spacing: var(--wb-letter-tight);
   text-transform: uppercase;
 }
 
 #{{ section_id }} .timeline-tabs__text {
-  font-family: var(--wb-font-body);
-  font-size: 15px;
-  line-height: var(--wb-line-relaxed);
-  color: var(--wb-color-grey);
+  color: {{ section.settings.content_text_color }};
+  font-size: {{ section.settings.content_text_size }}px;
+  line-height: 1.8;
 }
 
 #{{ section_id }} .timeline-tabs__text p {
@@ -217,30 +257,43 @@
   margin-bottom: 0;
 }
 
+/* Tablet */
+
 @media screen and (max-width: 990px) {
+
   #{{ section_id }} .timeline-tabs__layout {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 25px;
   }
 
   #{{ section_id }} .timeline-tabs__content {
-    padding-top: 0;
     max-width: 90%;
-   margin: auto;
+    margin: auto;
+  }
+
+  #{{ section_id }} .timeline-tabs__image {
+    height: {{ section.settings.image_height_mobile }}px;
+  }
+
+  #{{ section_id }} .timeline-tabs__image--placeholder {
+    height: {{ section.settings.image_height_mobile }}px;
   }
 }
 
+/* Mobile */
+
 @media screen and (max-width: 749px) {
-  #{{ section_id }} {
-    padding: 14px 0 24px;
+
+  #{{ section_id }} .timeline-tabs__heading {
+    font-size: calc({{ section.settings.heading_size }}px * 0.7);
   }
 
   #{{ section_id }} .timeline-tabs__tabs {
-    gap: 18px;
+    flex-wrap: nowrap;
     overflow-x: auto;
     justify-content: center;
-    padding: 0 4px 8px;
-    margin-bottom: 14px;
+    gap: 20px;
+    padding-bottom: 10px;
     scrollbar-width: none;
   }
 
@@ -250,24 +303,23 @@
 
   #{{ section_id }} .timeline-tabs__tab {
     flex: 0 0 auto;
-    font-size: 14px;
   }
 
-  #{{ section_id }} .timeline-tabs__layout {
-    gap: 16px;
+  #{{ section_id }} .timeline-tabs__image {
+    height: {{ section.settings.image_height_mobile }}px;
+  }
+
+  #{{ section_id }} .timeline-tabs__image--placeholder {
+    height: {{ section.settings.image_height_mobile }}px;
   }
 
   #{{ section_id }} .timeline-tabs__title {
-    margin-bottom: 12px;
+    font-size: calc({{ section.settings.content_heading_size }}px * 0.8);
   }
 
   #{{ section_id }} .timeline-tabs__text {
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: calc({{ section.settings.content_text_size }}px * 0.9);
   }
-}
-.timeline-tabs__inner.page-width{
-margin: auto;
 }
 </style>
 
@@ -309,17 +361,216 @@ margin: auto;
       "id": "heading",
       "label": "Heading",
       "default": "About us"
+    },
+
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+
+    {
+      "type": "header",
+      "content": "Main Heading"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#0c4168"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 42
+    },
+
+    {
+      "type": "header",
+      "content": "Tabs"
+    },
+    {
+      "type": "color",
+      "id": "tab_color",
+      "label": "Tab Color",
+      "default": "#777777"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Active Tab Color",
+      "default": "#0c4168"
+    },
+    {
+      "type": "color",
+      "id": "tab_underline_color",
+      "label": "Underline Color",
+      "default": "#9ad24c"
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "label": "Tab Font Size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "color",
+      "id": "content_heading_color",
+      "label": "Content Heading Color",
+      "default": "#0c4168"
+    },
+    {
+      "type": "range",
+      "id": "content_heading_size",
+      "label": "Content Heading Size",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "content_text_color",
+      "label": "Content Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "content_text_size",
+      "label": "Content Text Size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content Width",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 500
+    },
+
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "image_height_desktop",
+      "label": "Desktop Image Height",
+      "min": 300,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "label": "Mobile Image Height",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "Image Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ],
+      "default": "cover"
+    },
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "layout_gap",
+      "label": "Desktop Gap",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
     }
   ],
+
   "blocks": [
     {
       "type": "timeline_item",
-      "name": "Timeline item",
+      "name": "Timeline Item",
       "settings": [
         {
           "type": "text",
           "id": "year",
-          "label": "Tab label",
+          "label": "Tab Label",
           "default": "2017"
         },
         {
@@ -331,26 +582,36 @@ margin: auto;
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Designing for PowerHouses"
+          "default": "Designing For Powerhouses"
         },
         {
           "type": "richtext",
           "id": "text",
-          "label": "Text",
-          "default": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
+          "label": "Content",
+          "default": "<p>Add your timeline content here.</p>"
         }
       ]
     }
   ],
+
   "max_blocks": 8,
+
   "presets": [
     {
       "name": "Timeline tabs",
       "blocks": [
-        { "type": "timeline_item" },
-        { "type": "timeline_item" },
-        { "type": "timeline_item" },
-        { "type": "timeline_item" }
+        {
+          "type": "timeline_item"
+        },
+        {
+          "type": "timeline_item"
+        },
+        {
+          "type": "timeline_item"
+        },
+        {
+          "type": "timeline_item"
+        }
       ]
     }
   ]

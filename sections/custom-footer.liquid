@@ -2,14 +2,59 @@
   assign section_id = 'custom-footer-' | append: section.id
 %}
 
-<footer id="{{ section_id }}" class="custom-footer">
+<style>
+#{{ section_id }}{
+  font-family:
+    {{ section.settings.footer_font.family }},
+    {{ section.settings.footer_font.fallback_families }};
+}
+.custom-footer__contact-icon{
+  color: {{ section.settings.usp_icon_color }};
+}
+.custom-footer__usp{
+  background: {{ section.settings.usp_bg }};
+}
+
+.custom-footer__usp-text{
+  color: {{ section.settings.usp_text_color }};
+}
+
+.custom-footer__usp-icon-fallback{
+  color: {{ section.settings.usp_icon_color }};
+}
+</style>
+
+<footer
+  id="{{ section_id }}"
+  class="custom-footer"
+  style="
+    --footer-bg: {{ section.settings.footer_bg }};
+    --footer-right-bg: {{ section.settings.footer_right_bg }};
+    --footer-text: {{ section.settings.footer_text }};
+    --footer-muted: {{ section.settings.footer_muted }};
+    --footer-accent: {{ section.settings.footer_accent }};
+    --footer-border: {{ section.settings.footer_border }};
+    --usp-bg: {{ section.settings.usp_bg }};
+    --usp-text: {{ section.settings.usp_text_color }};
+    --usp-icon: {{ section.settings.usp_icon_color }};
+    --btn-bg: {{ section.settings.button_bg }};
+    --btn-text: {{ section.settings.button_text }};
+    --btn-border: {{ section.settings.button_border }};
+    --btn-hover-bg: {{ section.settings.button_hover_bg }};
+    --btn-hover-text: {{ section.settings.button_hover_text }};
+  "
+>
 <div class="custom-footer__usp">
   <div class="custom-footer__usp-inner">
     <div class="custom-footer__usp-track">
 
       <!-- First Set -->
       {% for block in section.blocks %}
-        <div class="custom-footer__usp-item" {{ block.shopify_attributes }}>
+        <div class="custom-footer__usp-item"  style="
+    --usp-bg: {{ block.settings.usp_bg }};
+    --usp-text: {{ block.settings.usp_text_color }};
+    --usp-icon: {{ block.settings.usp_icon_color }};
+  " {{ block.shopify_attributes }}>
           {% if block.settings.icon != blank %}
             {{ block.settings.icon | image_url: width: 80 | image_tag: class: 'custom-footer__usp-icon', loading: 'lazy', alt: block.settings.text }}
           {% else %}
@@ -40,9 +85,18 @@
     <div class="custom-footer__main-inner page-width">
       <div class="custom-footer__grid">
         <div class="custom-footer__left">
-          <div class="footer-img">
-          <img src="https://cdn.shopify.com/s/files/1/0732/1213/3527/files/Woblee_Logo_Wide-removebg-preview_0e31c225-e369-4e51-b1b8-ec1d95861ad7.png?v=1780232148"/>
-          </div>
+     <div class="footer-img">
+  {% if section.settings.footer_logo != blank %}
+    {{
+      section.settings.footer_logo
+      | image_url: width: 400
+      | image_tag:
+      loading: 'lazy',
+      class: 'custom-footer__logo',
+      alt: shop.name
+    }}
+  {% endif %}
+</div>
           <div class="custom-footer__links-grid">
             <div class="custom-footer__col">
               <h3 class="custom-footer__col-title">{{ section.settings.help_title }}</h3>
@@ -54,7 +108,9 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.51 2 2 6.47 2 11.95c0 1.95.57 3.86 1.64 5.52L2 22l4.71-1.55a10.1 10.1 0 0 0 5.33 1.5h.01C17.57 21.95 22 17.49 22 12.02 22 6.52 17.56 2 12.04 2Zm0 18.35h-.01a8.37 8.37 0 0 1-4.27-1.17l-.31-.18-2.79.92.9-2.72-.2-.33a8.36 8.36 0 0 1-1.28-4.42c0-4.6 3.82-8.34 8.52-8.34 2.28 0 4.42.87 6.03 2.45a8.15 8.15 0 0 1 2.5 5.89c0 4.6-3.82 8.34-8.39 8.34Zm4.67-6.03c-.26-.13-1.56-.77-1.8-.86-.24-.09-.41-.13-.58.13-.17.26-.67.86-.82 1.03-.15.17-.3.19-.56.07-.26-.13-1.11-.4-2.11-1.28-.78-.69-1.3-1.55-1.45-1.81-.15-.26-.02-.4.11-.53.11-.11.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.07-.13-.58-1.39-.8-1.9-.21-.51-.43-.44-.59-.45l-.5-.01c-.17 0-.45.06-.69.32s-.92.9-.92 2.2.94 2.56 1.06 2.74c.13.17 1.86 2.88 4.52 4.04.63.27 1.13.43 1.52.55.64.2 1.23.17 1.69.1.52-.08 1.56-.64 1.78-1.26.22-.62.22-1.15.15-1.26-.07-.11-.24-.17-.5-.3Z" fill="currentColor"/></svg>
                     </span>
                     <div>
-                      <div class="custom-footer__contact-title">Whatsapp Us</div>
+<div class="custom-footer__contact-title">
+  {{ section.settings.whatsapp_title }}
+</div>
                       <div class="custom-footer__contact-sub">{{ section.settings.whatsapp_time }}</div>
                     </div>
                   </div>
@@ -65,8 +121,9 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.3 15.3 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.4.6 3.7.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.3 21 3 13.7 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.7.1.4 0 .8-.3 1.1L6.6 10.8Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
                     </span>
                     <div>
-                      <div class="custom-footer__contact-title">Call Us</div>
-                      <div class="custom-footer__contact-sub">{{ section.settings.call_number }}</div>
+<div class="custom-footer__contact-title">
+  {{ section.settings.call_title }}
+</div>                      <div class="custom-footer__contact-sub">{{ section.settings.call_number }}</div>
                       <div class="custom-footer__contact-sub">{{ section.settings.call_time }}</div>
                     </div>
                   </div>
@@ -76,7 +133,9 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2Zm16 3.2-8 5.3-8-5.3V7l8 5.3L20 7v1.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
                     </span>
                     <div>
-                      <div class="custom-footer__contact-title">Email Us</div>
+                <div class="custom-footer__contact-title">
+  {{ section.settings.email_title }}
+</div>
                       <div class="custom-footer__contact-sub">{{ section.settings.email_time }}</div>
                     </div>
                   </div>
@@ -377,6 +436,17 @@ width: 100px;
 
 .custom-footer__usp-track::-webkit-scrollbar {
   display: none;
+}
+.custom-footer__usp-item{
+  background: var(--usp-bg);
+}
+
+.custom-footer__usp-text{
+  color: var(--usp-text);
+}
+
+.custom-footer__usp-icon-fallback{
+  color: var(--usp-icon);
 }
 
 .custom-footer__usp-item {
@@ -723,10 +793,34 @@ margin-top: 1rem;
 {
   "name": "Custom footer",
   "settings": [
+    
     {
       "type": "header",
       "content": "Left column"
     },
+    {
+  "type": "image_picker",
+  "id": "footer_logo",
+  "label": "Footer Logo"
+},
+{
+  "type": "text",
+  "id": "whatsapp_title",
+  "label": "Whatsapp Title",
+  "default": "Whatsapp Us"
+},
+{
+  "type": "text",
+  "id": "call_title",
+  "label": "Call Title",
+  "default": "Call Us"
+},
+{
+  "type": "text",
+  "id": "email_title",
+  "label": "Email Title",
+  "default": "Email Us"
+},
     {
       "type": "text",
       "id": "help_title",
@@ -853,7 +947,233 @@ margin-top: 1rem;
       "id": "copyright_text",
       "label": "Copyright text",
       "default": "© 2026, Andamen - All rights reserved."
-    }
+    },
+    {
+  "type": "header",
+  "content": "Footer Colors"
+},
+{
+  "type": "color",
+  "id": "footer_bg",
+  "label": "Footer Left Background",
+  "default": "#0c4168"
+},
+{
+  "type": "color",
+  "id": "footer_right_bg",
+  "label": "Footer Right Background",
+  "default": "#0b3a5d"
+},
+{
+  "type": "color",
+  "id": "footer_text",
+  "label": "Text Color",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "footer_muted",
+  "label": "Secondary Text Color",
+  "default": "#cccccc"
+},
+{
+  "type": "color",
+  "id": "footer_accent",
+  "label": "Accent Color",
+  "default": "#32ff00"
+},
+{
+  "type": "color",
+  "id": "footer_border",
+  "label": "Border Color",
+  "default": "#2b5f88"
+},
+{
+  "type": "color",
+  "id": "social_icon_color",
+  "label": "Social Icon Color",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "social_icon_hover",
+  "label": "Social Icon Hover Color",
+  "default": "#32ff00"
+},
+{
+  "type": "header",
+  "content": "Button Colors"
+},
+{
+  "type": "color",
+  "id": "button_bg",
+  "label": "Button Background",
+  "default": "transparent"
+},
+{
+  "type": "color",
+  "id": "button_text",
+  "label": "Button Text",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "button_border",
+  "label": "Button Border",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "button_hover_bg",
+  "label": "Button Hover Background",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "button_hover_text",
+  "label": "Button Hover Text",
+  "default": "#0c4168"
+},
+{
+  "type": "font_picker",
+  "id": "footer_font",
+  "label": "Footer Font",
+  "default": "helvetica_n4"
+},
+{
+  "type": "header",
+  "content": "Heading Typography"
+},
+{
+  "type": "range",
+  "id": "heading_size_desktop",
+  "label": "Heading Size Desktop",
+  "min": 18,
+  "max": 60,
+  "step": 1,
+  "default": 30
+},
+{
+  "type": "range",
+  "id": "heading_size_mobile",
+  "label": "Heading Size Mobile",
+  "min": 16,
+  "max": 40,
+  "step": 1,
+  "default": 24
+},
+{
+  "type": "range",
+  "id": "menu_size_desktop",
+  "label": "Menu Size Desktop",
+  "min": 10,
+  "max": 30,
+  "step": 1,
+  "default": 15
+},
+{
+  "type": "range",
+  "id": "menu_size_mobile",
+  "label": "Menu Size Mobile",
+  "min": 10,
+  "max": 24,
+  "step": 1,
+  "default": 14
+},
+{
+  "type": "range",
+  "id": "column_heading_desktop",
+  "label": "Column Heading Desktop",
+  "min": 10,
+  "max": 30,
+  "step": 1,
+  "default": 14
+},
+{
+  "type": "range",
+  "id": "column_heading_mobile",
+  "label": "Column Heading Mobile",
+  "min": 10,
+  "max": 24,
+  "step": 1,
+  "default": 13
+},
+{
+  "type": "range",
+  "id": "contact_title_desktop",
+  "label": "Contact Title Desktop",
+  "min": 10,
+  "max": 30,
+  "step": 1,
+  "default": 15
+},
+{
+  "type": "range",
+  "id": "contact_title_mobile",
+  "label": "Contact Title Mobile",
+  "min": 10,
+  "max": 24,
+  "step": 1,
+  "default": 14
+},
+{
+  "type": "range",
+  "id": "contact_sub_desktop",
+  "label": "Contact Text Desktop",
+  "min": 10,
+  "max": 24,
+  "step": 1,
+  "default": 14
+},
+{
+  "type": "range",
+  "id": "contact_sub_mobile",
+  "label": "Contact Text Mobile",
+  "min": 10,
+  "max": 20,
+  "step": 1,
+  "default": 13
+},
+{
+  "type": "range",
+  "id": "cta_text_desktop",
+  "label": "CTA Text Desktop",
+  "min": 12,
+  "max": 30,
+  "step": 1,
+  "default": 18
+},
+{
+  "type": "range",
+  "id": "cta_text_mobile",
+  "label": "CTA Text Mobile",
+  "min": 12,
+  "max": 24,
+  "step": 1,
+  "default": 16
+},
+{
+  "type": "header",
+  "content": "Footer Spacing"
+},
+{
+  "type": "range",
+  "id": "footer_top_padding",
+  "label": "Top Padding",
+  "min": 0,
+  "max": 150,
+  "step": 2,
+  "default": 20
+},
+{
+  "type": "range",
+  "id": "footer_bottom_padding",
+  "label": "Bottom Padding",
+  "min": 0,
+  "max": 150,
+  "step": 2,
+  "default": 20
+}
   ],
   "blocks": [
     {
@@ -870,7 +1190,29 @@ margin-top: 1rem;
           "id": "text",
           "label": "Text",
           "default": "Free shipping"
-        }
+        },
+        {
+  "type": "header",
+  "content": "USP Bar Colors"
+},
+{
+  "type": "color",
+  "id": "usp_bg",
+  "label": "USP Background",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "usp_text_color",
+  "label": "USP Text Color",
+  "default": "#0c4168"
+},
+{
+  "type": "color",
+  "id": "usp_icon_color",
+  "label": "USP Icon Color",
+  "default": "#32ff00"
+}
       ]
     }
   ],

@@ -17,43 +17,64 @@
         "usp_BY76Nw": {
           "type": "usp",
           "settings": {
-            "text": "Customer support"
+            "text": "Customer support",
+            "usp_bg": "#ffffff",
+            "usp_text_color": "#0c4168",
+            "usp_icon_color": "#32ff00"
           }
         },
         "usp_p6d6yW": {
           "type": "usp",
           "settings": {
-            "text": "Free tote with your first purchase"
+            "text": "Free tote with your first purchase",
+            "usp_bg": "#ffffff",
+            "usp_text_color": "#0c4168",
+            "usp_icon_color": "#32ff00"
           }
         },
         "usp_38aENB": {
           "type": "usp",
           "settings": {
-            "text": "Free shipping"
+            "text": "Free shipping",
+            "usp_bg": "#ffffff",
+            "usp_text_color": "#0c4168",
+            "usp_icon_color": "#32ff00"
           }
         },
         "usp_W9Ayrt": {
           "type": "usp",
           "settings": {
-            "text": "60 days free return"
+            "text": "60 days free return",
+            "usp_bg": "#ffffff",
+            "usp_text_color": "#0c4168",
+            "usp_icon_color": "#32ff00"
           }
         },
         "usp_7xRniz": {
           "type": "usp",
           "settings": {
-            "text": "Curated shopping experience"
+            "text": "Curated shopping experience",
+            "usp_bg": "#ffffff",
+            "usp_text_color": "#0c4168",
+            "usp_icon_color": "#32ff00"
           }
         },
         "usp_dqhpej": {
           "type": "usp",
           "settings": {
-            "text": "Elevated packaging"
+            "text": "Elevated packaging",
+            "usp_bg": "#ffffff",
+            "usp_text_color": "#0c4168",
+            "usp_icon_color": "#32ff00"
           }
         },
         "usp_4PYHY6": {
           "type": "usp",
           "settings": {
-            "text": "White glove customer support"
+            "text": "White glove customer support",
+            "usp_bg": "#ffffff",
+            "usp_text_color": "#0c4168",
+            "usp_icon_color": "#32ff00"
           }
         }
       },
@@ -68,6 +89,10 @@
       ],
       "name": "Custom footer",
       "settings": {
+        "footer_logo": "shopify://shop_images/Woblee_Logo_Wide-removebg-preview_0e31c225-e369-4e51-b1b8-ec1d95861ad7.png",
+        "whatsapp_title": "Whatsapp Us",
+        "call_title": "Call Us",
+        "email_title": "Email Us",
         "help_title": "Need Help?",
         "whatsapp_time": "Mon-Fri: 10am-6:30pm",
         "call_number": "+91 9873999110",
@@ -87,7 +112,35 @@
         "cta_text": "<p>We’ll send you updates on new launches, products and events, only good stuff.</p>",
         "cta_button_label": "Become a member",
         "cta_button_link": "shopify://policies/privacy-policy",
-        "copyright_text": "© 2026, Andamen - All rights reserved."
+        "copyright_text": "© 2026, Andamen - All rights reserved.",
+        "footer_bg": "#0c4168",
+        "footer_right_bg": "#0b3a5d",
+        "footer_text": "#ffffff",
+        "footer_muted": "#cccccc",
+        "footer_accent": "#32ff00",
+        "footer_border": "#2b5f88",
+        "social_icon_color": "#ffffff",
+        "social_icon_hover": "#32ff00",
+        "button_bg": "rgba(0,0,0,0)",
+        "button_text": "#ffffff",
+        "button_border": "#ffffff",
+        "button_hover_bg": "#ffffff",
+        "button_hover_text": "#0c4168",
+        "footer_font": "sans_serif_n4",
+        "heading_size_desktop": 30,
+        "heading_size_mobile": 24,
+        "menu_size_desktop": 15,
+        "menu_size_mobile": 14,
+        "column_heading_desktop": 14,
+        "column_heading_mobile": 13,
+        "contact_title_desktop": 15,
+        "contact_title_mobile": 14,
+        "contact_sub_desktop": 14,
+        "contact_sub_mobile": 13,
+        "cta_text_desktop": 18,
+        "cta_text_mobile": 16,
+        "footer_top_padding": 20,
+        "footer_bottom_padding": 20
       }
     },
     "section_9FjKrC": {

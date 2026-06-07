@@ -81,7 +81,7 @@
 .trust-strip {
   position: relative;
   overflow: hidden;
-  background: #ffffff;
+  background: {{ section.settings.section_bg }};
   
   margin: 12px 0;
   padding-top: 0px;
@@ -136,9 +136,22 @@
   z-index: 2;
   pointer-events: none;
 }
-.trust-strip__fade--left  { left:  0; background: linear-gradient(to right, #ffffff 0%, transparent 100%); }
-.trust-strip__fade--right { right: 0; background: linear-gradient(to left,  #ffffff 0%, transparent 100%); }
 
+.trust-strip__fade--left{
+  background: linear-gradient(
+    to right,
+    {{ section.settings.fade_color }} 0%,
+    transparent 100%
+  );
+}
+
+.trust-strip__fade--right{
+  background: linear-gradient(
+    to left,
+    {{ section.settings.fade_color }} 0%,
+    transparent 100%
+  );
+}
 /* ── Scrolling track ────────────────────────────────────────── */
 .trust-strip__track {
   display: flex;
@@ -165,8 +178,8 @@
   align-items: center;
   gap: 14px;
   padding: 13px 18px;
-  background: #ffffff;
-  border: 1.5px solid rgba(12, 65, 104, 0.13);
+  background: {{ section.settings.card_bg }};
+  border-color: {{ section.settings.card_border }};
   box-shadow: 0 2px 10px rgba(12, 65, 104, 0.06);
   transition: background 0.26s ease, border-color 0.26s ease,
               box-shadow 0.26s ease, transform 0.22s ease;
@@ -176,8 +189,8 @@
 
 /* ── Card hover — blue fill ─────────────────────────────────── */
 .trust-strip__card:hover {
-  background: var(--wb-color-blue, #0c4168);
-  border-color: var(--wb-color-blue, #0c4168);
+  background: {{ section.settings.card_hover_bg }};
+  border-color: {{ section.settings.card_hover_border }};
   box-shadow: 0 8px 28px rgba(12, 65, 104, 0.22);
   transform: translateY(-3px) scale(1.025);
 }
@@ -187,7 +200,7 @@
   flex: 0 0 44px;
   width: 44px;
   height: 44px;
-  background: rgba(12, 65, 104, 0.08);
+   background: {{ section.settings.icon_bg }};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -195,7 +208,7 @@
 }
 
 .trust-strip__card:hover .trust-strip__icon-wrap {
-  background: var(--wb-color-lime, #c8e62b);
+  background: {{ section.settings.icon_hover_bg }};
 }
 
 .trust-strip__icon {
@@ -236,8 +249,14 @@
   text-overflow: ellipsis;
 }
 
-.trust-strip__card:hover .trust-strip__title { color: #ffffff; }
+.trust-strip__card:hover .trust-strip__title,
+.trust-strip__card:hover p.trust-strip__text{ 
+  color: {{ section.settings.text_hover_color }} !important;
 
+}
+  .trust-strip__card:hover{
+    color: {{ section.settings.text_hover_color }};
+}
 .trust-strip__text {
   margin: 0;
   font-family: var(--wb-font-body);
@@ -262,6 +281,7 @@
   .trust-strip__card {
     width: 252px;
     padding: 11px 14px;
+
   }
 
   .trust-strip__title { font-size: 13.5px; }
@@ -273,6 +293,54 @@
 @media (prefers-reduced-motion: reduce) {
   .trust-strip__track-wrap { overflow-x: auto; }
   .trust-strip__track      { transform: none !important; width: 100%; }
+}
+</style>
+<style>
+#{{ section_id }}{
+  background: {{ section.settings.section_bg }};
+  padding-top: {{ section.settings.padding_top_desktop }}px;
+  padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+}
+
+#{{ section_id }} .trust-strip__heading,
+#{{ section_id }} .trust-strip__title{
+  font-family: {{ section.settings.font_family.family }}, {{ section.settings.font_family.fallback_families }};
+  font-weight: {{ section.settings.heading_weight }};
+    color: {{ section.settings.title_color }};
+}
+
+#{{ section_id }} .trust-strip__text,
+#{{ section_id }} .trust-strip__subheading{
+  font-family: {{ section.settings.font_family.family }}, {{ section.settings.font_family.fallback_families }};
+  font-weight: {{ section.settings.text_weight }};
+    color: {{ section.settings.subheading_color }};
+}
+
+#{{ section_id }} .trust-strip__heading{
+  font-size: {{ section.settings.heading_size_desktop }}px;
+    color: {{ section.settings.heading_color }};
+}
+
+#{{ section_id }} .trust-strip__text{
+  font-size: {{ section.settings.text_size_desktop }}px;
+   color: {{ section.settings.text_color }};
+}
+
+@media screen and (max-width:749px){
+
+  #{{ section_id }}{
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  #{{ section_id }} .trust-strip__heading{
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    
+  }
+
+  #{{ section_id }} .trust-strip__text{
+    font-size: {{ section.settings.text_size_mobile }}px;
+  }
 }
 </style>
 
@@ -340,6 +408,7 @@
 </script>
 
 {% schema %}
+
 {
   "name": "Trust scroll strip",
   "settings": [
@@ -363,7 +432,214 @@
       "max": 140,
       "step": 10,
       "default": 60
-    }
+    },
+    {
+  "type": "color",
+  "id": "section_bg",
+  "label": "Section Background",
+  "default": "#ffffff"
+},
+{
+  "type": "range",
+  "id": "padding_top_desktop",
+  "label": "Desktop Top Padding",
+  "min": 0,
+  "max": 150,
+  "step": 5,
+  "default": 0,
+  "unit": "px"
+},
+{
+  "type": "range",
+  "id": "padding_bottom_desktop",
+  "label": "Desktop Bottom Padding",
+  "min": 0,
+  "max": 150,
+  "step": 5,
+  "default": 10,
+  "unit": "px"
+},
+{
+  "type": "range",
+  "id": "padding_top_mobile",
+  "label": "Mobile Top Padding",
+  "min": 0,
+  "max": 100,
+  "step": 2,
+  "default": 16,
+  "unit": "px"
+},
+{
+  "type": "range",
+  "id": "padding_bottom_mobile",
+  "label": "Mobile Bottom Padding",
+  "min": 0,
+  "max": 100,
+  "step": 2,
+  "default": 14,
+  "unit": "px"
+},
+
+{
+  "type": "font_picker",
+  "id": "font_family",
+  "label": "Font Family",
+  "default": "helvetica_n4"
+},
+
+{
+  "type": "range",
+  "id": "heading_size_desktop",
+  "label": "Heading Size Desktop",
+  "min": 16,
+  "max": 60,
+  "step": 1,
+  "default": 32,
+  "unit": "px"
+},
+{
+  "type": "range",
+  "id": "heading_size_mobile",
+  "label": "Heading Size Mobile",
+  "min": 14,
+  "max": 40,
+  "step": 1,
+  "default": 24,
+  "unit": "px"
+},
+{
+  "type": "select",
+  "id": "heading_weight",
+  "label": "Heading Font Weight",
+  "default": "700",
+  "options": [
+    { "value": "400", "label": "Regular" },
+    { "value": "500", "label": "Medium" },
+    { "value": "600", "label": "Semi Bold" },
+    { "value": "700", "label": "Bold" },
+    { "value": "800", "label": "Extra Bold" }
+  ]
+},
+
+{
+  "type": "range",
+  "id": "text_size_desktop",
+  "label": "Text Size Desktop",
+  "min": 10,
+  "max": 24,
+  "step": 1,
+  "default": 13,
+  "unit": "px"
+},
+{
+  "type": "range",
+  "id": "text_size_mobile",
+  "label": "Text Size Mobile",
+  "min": 10,
+  "max": 20,
+  "step": 1,
+  "default": 12,
+  "unit": "px"
+},
+{
+  "type": "select",
+  "id": "text_weight",
+  "label": "Text Font Weight",
+  "default": "500",
+  "options": [
+    { "value": "400", "label": "Regular" },
+    { "value": "500", "label": "Medium" },
+    { "value": "600", "label": "Semi Bold" },
+    { "value": "700", "label": "Bold" }
+  ]
+},
+{
+  "type": "header",
+  "content": "Colors"
+},
+
+{
+  "type": "color",
+  "id": "heading_color",
+  "label": "Heading Color",
+  "default": "#0c4168"
+},
+{
+  "type": "color",
+  "id": "subheading_color",
+  "label": "Subheading Color",
+  "default": "#666666"
+},
+{
+  "type": "color",
+  "id": "card_bg",
+  "label": "Card Background",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "card_border",
+  "label": "Card Border Color",
+  "default": "#d9d9d9"
+},
+{
+  "type": "color",
+  "id": "title_color",
+  "label": "Card Title Color",
+  "default": "#0c4168"
+},
+{
+  "type": "color",
+  "id": "text_color",
+  "label": "Card Text Color",
+  "default": "#666666"
+},
+{
+  "type": "color",
+  "id": "icon_bg",
+  "label": "Icon Background",
+  "default": "#f5f5f5"
+},
+{
+  "type": "header",
+  "content": "Hover Colors"
+},
+{
+  "type": "color",
+  "id": "card_hover_bg",
+  "label": "Card Hover Background",
+  "default": "#0c4168"
+},
+{
+  "type": "color",
+  "id": "card_hover_border",
+  "label": "Card Hover Border",
+  "default": "#0c4168"
+},
+{
+  "type": "color",
+  "id": "title_hover_color",
+  "label": "Title Hover Color",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "text_hover_color",
+  "label": "Text Hover Color",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "icon_hover_bg",
+  "label": "Icon Hover Background",
+  "default": "#c8e62b"
+},
+{
+  "type": "color",
+  "id": "fade_color",
+  "label": "Fade Mask Color",
+  "default": "#ffffff"
+}
   ],
   "blocks": [
     {

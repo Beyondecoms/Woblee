@@ -15,8 +15,28 @@
   class="war-section"
   id="war-{{ section.id }}"
   style="
-    --war-bg: {{ bg_color }};
-    --war-color: {{ text_color }};
+    --war-bg: {{ section.settings.background_color }};
+
+    --war-static-color: {{ section.settings.static_text_color }};
+    --war-rotating-color: {{ section.settings.rotating_text_color }};
+    --war-sub-color: {{ section.settings.sub_text_color }};
+
+    --war-static-size-desktop: {{ section.settings.static_text_size_desktop }}px;
+    --war-rotating-size-desktop: {{ section.settings.rotating_text_size_desktop }}px;
+    --war-sub-size-desktop: {{ section.settings.sub_text_size_desktop }}px;
+
+    --war-static-size-mobile: {{ section.settings.static_text_size_mobile }}px;
+    --war-rotating-size-mobile: {{ section.settings.rotating_text_size_mobile }}px;
+    --war-sub-size-mobile: {{ section.settings.sub_text_size_mobile }}px;
+
+    --war-static-weight-desktop: {{ section.settings.static_text_weight_desktop }};
+    --war-rotating-weight-desktop: {{ section.settings.rotating_text_weight_desktop }};
+    --war-sub-weight-desktop: {{ section.settings.sub_text_weight_desktop }};
+
+    --war-static-weight-mobile: {{ section.settings.static_text_weight_mobile }};
+    --war-rotating-weight-mobile: {{ section.settings.rotating_text_weight_mobile }};
+    --war-sub-weight-mobile: {{ section.settings.sub_text_weight_mobile }};
+
     --war-pt: {{ section.settings.padding_top }}px;
     --war-pb: {{ section.settings.padding_bottom }}px;
   "
@@ -24,22 +44,32 @@
 
   <div class="war-inner">
 
-    <!-- Static "We are" -->
-    <span class="war-static">{{ static_text }}</span>
+    <span class="war-static">
+      {{ section.settings.static_text }}
+    </span>
 
-    <!-- Rotating word — JS swaps this -->
     <div class="war-slot" aria-live="polite" aria-atomic="true">
-      <span class="war-word war-word--visible" id="war-word-a-{{ section.id }}">
-        {%- assign first_phrase = section.blocks | where: 'type', 'phrase' | first -%}
+
+      {%- assign first_phrase = section.blocks | where: 'type', 'phrase' | first -%}
+
+      <span
+        class="war-word war-word--visible"
+        id="war-word-a-{{ section.id }}">
         {{ first_phrase.settings.word }}
       </span>
-      <span class="war-word" id="war-word-b-{{ section.id }}"></span>
+
+      <span
+        class="war-word"
+        id="war-word-b-{{ section.id }}">
+      </span>
+
     </div>
 
   </div>
 
-  <!-- Sub-text -->
-  <div class="war-sub" id="war-sub-{{ section.id }}">
+  <div
+    class="war-sub"
+    id="war-sub-{{ section.id }}">
     {{ first_phrase.settings.sub_text }}
   </div>
 
@@ -48,31 +78,37 @@
 <!-- ═══════════════════════════════════════
   CSS
 ═══════════════════════════════════════ -->
+
+
 <style>
 .war-section {
-  background: var(--war-bg, #F5C800);
-  padding: var(--war-pt, 28px) 20px var(--war-pb, 28px);
+  background: var(--war-bg);
+  padding-top: var(--war-pt);
+  padding-bottom: var(--war-pb);
+  padding-left: 20px;
+  padding-right: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60px;
   position: relative;
-  padding: 14px;
 }
 
-/* grain */
+/* Grain Overlay */
 .war-section::before {
   content: '';
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* ── Row layout ── */
+/* Layout */
 .war-inner {
-  position: relative; z-index: 1;
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,99 +116,123 @@
   flex-wrap: nowrap;
 }
 
-/* ── Static text ── */
-.war-static {
-  font-family: var(--wb-font-heading, 'Helvetica Neue', sans-serif);
-  font-size: clamp(26px, 3.8vw, 52px);
-  font-weight: var(--wb-fw-bold, 700);
-  color: white;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-/* ── Slot wrapper — clips the animation ── */
 .war-slot {
   position: relative;
   overflow: hidden;
-  /* height set by JS to match word height */
   display: flex;
   align-items: center;
   min-width: 40px;
 }
 
-/* ── Each word ── */
+/* ==========================
+   DESKTOP TYPOGRAPHY
+========================== */
+
+.war-static {
+  font-family: var(--wb-font-heading, 'Helvetica Neue', sans-serif);
+  font-size: var(--war-static-size-desktop);
+  font-weight: var(--war-static-weight-desktop);
+  color: var(--war-static-color);
+  line-height: 1;
+  white-space: nowrap;
+}
+
 .war-word {
   font-family: var(--wb-font-heading, 'Helvetica Neue', sans-serif);
-  font-size: clamp(26px, 3.8vw, 52px);
-  font-weight: var(--wb-fw-extrabold, 900);
-  color: #0c4168;
+  font-size: var(--war-rotating-size-desktop);
+  font-weight: var(--war-rotating-weight-desktop);
+  color: var(--war-rotating-color);
   line-height: 1;
   white-space: nowrap;
   letter-spacing: -0.02em;
 
-  /* stacked absolutely so only 1 is visible at a time */
   position: absolute;
   left: 0;
-
-  /* default: hidden below */
   transform: translateY(110%);
   opacity: 0;
   transition: none;
 }
 
-/* Visible state — sits in normal position */
+.war-sub {
+  position: relative;
+  z-index: 1;
+
+  font-family: var(--wb-font-body, 'Helvetica Neue', sans-serif);
+  font-size: var(--war-sub-size-desktop);
+  font-weight: var(--war-sub-weight-desktop);
+  color: var(--war-sub-color);
+
+  opacity: 0.75;
+  letter-spacing: 0.04em;
+  text-align: center;
+  min-height: 1.4em;
+
+  transition: opacity 0.2s ease,
+              transform 0.2s ease;
+}
+
+/* Animation States */
 .war-word--visible {
   position: relative;
   transform: translateY(0);
   opacity: 1;
 }
 
-/* Enter: comes from below */
 .war-word--enter {
   position: absolute;
   transform: translateY(110%);
   opacity: 0;
 }
 
-/* Animate in */
 .war-word--animating-in {
   transform: translateY(0);
   opacity: 1;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity   0.3s ease;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
 }
 
-/* Animate out: goes up */
 .war-word--animating-out {
   transform: translateY(-110%);
   opacity: 0;
-  transition: transform 0.45s cubic-bezier(0.55, 0, 0.8, 0.45),
-              opacity   0.3s ease;
+  transition:
+    transform 0.45s cubic-bezier(0.55, 0, 0.8, 0.45),
+    opacity 0.3s ease;
 }
 
-/* ── Sub-text ── */
-.war-sub {
-  position: relative; z-index: 1;
-  font-family: var(--wb-font-body, 'Helvetica Neue', sans-serif);
-  font-size: clamp(12px, 1.1vw, 15px);
-  font-weight: 400;
-  color: #0c4168;
-  opacity: 0.55;
-  letter-spacing: 0.04em;
-  margin-top: 0px;
-  text-align: center;
-  min-height: 1.4em;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
 .war-sub.war-sub--hiding {
   opacity: 0;
   transform: translateY(5px);
 }
 
-/* ── Responsive ── */
-@media (max-width: 600px) {
-  .war-inner { gap: 8px; }
-  .war-section { min-height: 50px; }
+/* ==========================
+   MOBILE
+========================== */
+
+@media screen and (max-width: 767px) {
+
+  .war-inner {
+    gap: 8px;
+  }
+
+  .war-section {
+    min-height: 50px;
+  }
+
+  .war-static {
+    font-size: var(--war-static-size-mobile);
+    font-weight: var(--war-static-weight-mobile);
+  }
+
+  .war-word {
+    font-size: var(--war-rotating-size-mobile);
+    font-weight: var(--war-rotating-weight-mobile);
+  }
+
+  .war-sub {
+    font-size: var(--war-sub-size-mobile);
+    font-weight: var(--war-sub-weight-mobile);
+  }
 }
 </style>
 
@@ -273,7 +333,7 @@
   "tag": "section",
   "class": "war-section-wrapper",
   "settings": [
-    {
+      {
       "type": "header",
       "content": "Content"
     },
@@ -283,53 +343,207 @@
       "label": "Static text",
       "default": "We are"
     },
-    {
-      "type": "header",
-      "content": "Design"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background color",
-      "default": "#F5C800"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text color",
-      "default": "#111111"
-    },
-    {
-      "type": "header",
-      "content": "Timing"
-    },
-    {
-      "type": "range",
-      "id": "interval",
-      "label": "Rotation speed (seconds)",
-      "min": 1,
-      "max": 6,
-      "step": 1,
-      "default": 2
-    },
-    {
-      "type": "header",
-      "content": "Spacing"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Padding top",
-      "min": 0, "max": 80, "step": 4, "unit": "px",
-      "default": 28
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Padding bottom",
-      "min": 0, "max": 80, "step": 4, "unit": "px",
-      "default": 28
-    }
+{
+  "type": "header",
+  "content": "Design"
+},
+{
+  "type": "color",
+  "id": "background_color",
+  "label": "Background Color",
+  "default": "#F5C800"
+},
+{
+  "type": "color",
+  "id": "static_text_color",
+  "label": "Static Text Color (We are)",
+  "default": "#FFFFFF"
+},
+{
+  "type": "color",
+  "id": "rotating_text_color",
+  "label": "Rotating Text Color",
+  "default": "#0C4168"
+},
+{
+  "type": "color",
+  "id": "sub_text_color",
+  "label": "Sub Text Color",
+  "default": "#0C4168"
+},
+
+{
+  "type": "header",
+  "content": "Desktop Font Sizes"
+},
+{
+  "type": "range",
+  "id": "static_text_size_desktop",
+  "label": "Static Text Size Desktop",
+  "min": 16,
+  "max": 120,
+  "step": 2,
+  "unit": "px",
+  "default": 52
+},
+{
+  "type": "range",
+  "id": "rotating_text_size_desktop",
+  "label": "Rotating Text Size Desktop",
+  "min": 16,
+  "max": 120,
+  "step": 2,
+  "unit": "px",
+  "default": 52
+},
+{
+  "type": "range",
+  "id": "sub_text_size_desktop",
+  "label": "Sub Text Size Desktop",
+  "min": 10,
+  "max": 40,
+  "step": 1,
+  "unit": "px",
+  "default": 15
+},
+
+{
+  "type": "header",
+  "content": "Mobile Font Sizes"
+},
+{
+  "type": "range",
+  "id": "static_text_size_mobile",
+  "label": "Static Text Size Mobile",
+  "min": 12,
+  "max": 80,
+  "step": 1,
+  "unit": "px",
+  "default": 28
+},
+{
+  "type": "range",
+  "id": "rotating_text_size_mobile",
+  "label": "Rotating Text Size Mobile",
+  "min": 12,
+  "max": 80,
+  "step": 1,
+  "unit": "px",
+  "default": 28
+},
+{
+  "type": "range",
+  "id": "sub_text_size_mobile",
+  "label": "Sub Text Size Mobile",
+  "min": 8,
+  "max": 30,
+  "step": 1,
+  "unit": "px",
+  "default": 12
+},
+
+{
+  "type": "header",
+  "content": "Desktop Font Weights"
+},
+{
+  "type": "range",
+  "id": "static_text_weight_desktop",
+  "label": "Static Text Weight Desktop",
+  "min": 100,
+  "max": 900,
+  "step": 100,
+  "default": 700
+},
+{
+  "type": "range",
+  "id": "rotating_text_weight_desktop",
+  "label": "Rotating Text Weight Desktop",
+  "min": 100,
+  "max": 900,
+  "step": 100,
+  "default": 900
+},
+{
+  "type": "range",
+  "id": "sub_text_weight_desktop",
+  "label": "Sub Text Weight Desktop",
+  "min": 100,
+  "max": 900,
+  "step": 100,
+  "default": 400
+},
+
+{
+  "type": "header",
+  "content": "Mobile Font Weights"
+},
+{
+  "type": "range",
+  "id": "static_text_weight_mobile",
+  "label": "Static Text Weight Mobile",
+  "min": 100,
+  "max": 900,
+  "step": 100,
+  "default": 700
+},
+{
+  "type": "range",
+  "id": "rotating_text_weight_mobile",
+  "label": "Rotating Text Weight Mobile",
+  "min": 100,
+  "max": 900,
+  "step": 100,
+  "default": 900
+},
+{
+  "type": "range",
+  "id": "sub_text_weight_mobile",
+  "label": "Sub Text Weight Mobile",
+  "min": 100,
+  "max": 900,
+  "step": 100,
+  "default": 400
+},
+
+{
+  "type": "header",
+  "content": "Timing"
+},
+{
+  "type": "range",
+  "id": "interval",
+  "label": "Rotation Speed (Seconds)",
+  "min": 1,
+  "max": 10,
+  "step": 1,
+  "default": 2
+},
+
+{
+  "type": "header",
+  "content": "Spacing"
+},
+{
+  "type": "range",
+  "id": "padding_top",
+  "label": "Padding Top",
+  "min": 0,
+  "max": 150,
+  "step": 2,
+  "unit": "px",
+  "default": 28
+},
+{
+  "type": "range",
+  "id": "padding_bottom",
+  "label": "Padding Bottom",
+  "min": 0,
+  "max": 150,
+  "step": 2,
+  "unit": "px",
+  "default": 28
+}
   ],
   "blocks": [
     {

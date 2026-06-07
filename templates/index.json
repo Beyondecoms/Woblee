@@ -243,17 +243,10 @@
         "accent_line_hover_width": 68,
         "accent_line_height": 3,
         "accent_line_spacing": 12,
-<<<<<<< HEAD
-        "heading_color": "#1a1a1a",
-        "heading_hover_color": "#0a3557",
-        "heading_font": "Garamond",
-        "heading_font_weight": "800",
-=======
         "heading_color": "#0a3557",
         "heading_hover_color": "#0a3557",
         "heading_font": "Garamond",
-        "heading_font_weight": "900",
->>>>>>> 45eceb5af889b42cd41af4f9b94573f7ddc1e57f
+        "heading_font_weight": "800",
         "heading_size_desktop": 24,
         "heading_size_mobile": 18,
         "heading_line_height": 105,
@@ -442,36 +435,6 @@
             "stat_value": "100%",
             "stat_label": "Made with Love"
           }
-        },
-        "ticker_QjnHpz": {
-          "type": "ticker",
-          "settings": {
-            "ticker_text": "WE ARE BOLD"
-          }
-        },
-        "ticker_j44dHi": {
-          "type": "ticker",
-          "settings": {
-            "ticker_text": "WE ARE STRONG"
-          }
-        },
-        "ticker_6zxQgx": {
-          "type": "ticker",
-          "settings": {
-            "ticker_text": "WE ARE FEARLESS"
-          }
-        },
-        "ticker_4HUeDM": {
-          "type": "ticker",
-          "settings": {
-            "ticker_text": "WE ARE CONFIDENT"
-          }
-        },
-        "ticker_E6tJ98": {
-          "type": "ticker",
-          "settings": {
-            "ticker_text": "WE ARE BEAUTIFUL"
-          }
         }
       },
       "block_order": [
@@ -480,12 +443,7 @@
         "card_r6TGtV",
         "stat_eApY44",
         "stat_Pqzapj",
-        "stat_j3QiFA",
-        "ticker_QjnHpz",
-        "ticker_j44dHi",
-        "ticker_6zxQgx",
-        "ticker_4HUeDM",
-        "ticker_E6tJ98"
+        "stat_j3QiFA"
       ],
       "name": "About Us — Fan Cards",
       "settings": {
@@ -493,8 +451,24 @@
         "body_text": "Be bold, be you. Born from a belief that every woman deserves confidence in everything she wears — our products are crafted with care, purpose, and a fearless spirit.",
         "cta_text": "Our Story",
         "cta_url": "",
-        "background_color": "#0c4168",
+        "section_font": "sans_serif_n4",
+        "heading_color": "#ffffff",
+        "heading_size": 72,
+        "heading_weight": 800,
+        "body_color": "#ffffff",
+        "body_size": 18,
+        "body_weight": 400,
+        "button_bg": "#ffffff",
+        "button_text": "#0c4168",
+        "button_hover_bg": "#0c4168",
+        "button_hover_text": "#ffffff",
+        "button_font_size": 16,
+        "button_font_weight": 700,
+        "stats_number_color": "#21f010",
+        "stats_label_color": "#b7c1cc",
+        "background_color": "#e6e6e6",
         "accent_color": "#21f010",
+        "blob_color": "#21f010",
         "padding_top": 84,
         "padding_bottom": 0
       }
@@ -549,10 +523,126 @@
       "settings": {
         "static_text": "We are",
         "background_color": "#f5c800",
-        "text_color": "#111111",
+        "static_text_color": "#ffffff",
+        "rotating_text_color": "#0c4168",
+        "sub_text_color": "#0c4168",
+        "static_text_size_desktop": 52,
+        "rotating_text_size_desktop": 52,
+        "sub_text_size_desktop": 15,
+        "static_text_size_mobile": 28,
+        "rotating_text_size_mobile": 28,
+        "sub_text_size_mobile": 12,
+        "static_text_weight_desktop": 800,
+        "rotating_text_weight_desktop": 900,
+        "sub_text_weight_desktop": 400,
+        "static_text_weight_mobile": 700,
+        "rotating_text_weight_mobile": 900,
+        "sub_text_weight_mobile": 400,
         "interval": 2,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "collection_carousel_pro_pAhcyP": {
+      "type": "collection-carousel-pro",
+      "blocks": {
+        "card_hjY9gV": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "title": "COLLECTION",
+            "link": ""
+          }
+        },
+        "card_rxyi84": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/black.webp",
+            "title": "COLLECTION",
+            "link": ""
+          }
+        },
+        "card_WDQtQc": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/e7g67g30o1cd8t7s68otxfw602tji5g0.avif",
+            "title": "COLLECTION",
+            "link": ""
+          }
+        },
+        "card_8ew7Bf": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
+            "title": "COLLECTION",
+            "link": ""
+          }
+        },
+        "card_d3fLwH": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
+            "title": "COLLECTION",
+            "link": ""
+          }
+        },
+        "card_tM8P6i": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
+            "title": "COLLECTION",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_hjY9gV",
+        "card_rxyi84",
+        "card_WDQtQc",
+        "card_8ew7Bf",
+        "card_d3fLwH",
+        "card_tM8P6i"
+      ],
+      "name": "Collection Carousel Pro",
+      "settings": {
+        "small_heading": "MORE TO",
+        "main_heading": "Collections",
+        "description": "Discover our curated edits and seasonal collections",
+        "section_font": "sans_serif_n4",
+        "background_color": "#ffffff",
+        "small_heading_color": "#21f010",
+        "main_heading_color": "#0c4168",
+        "description_color": "#4f5d6b",
+        "small_heading_size": 18,
+        "small_heading_weight": 700,
+        "main_heading_size": 48,
+        "main_heading_weight": 800,
+        "description_size": 18,
+        "description_weight": 400,
+        "small_heading_size_mobile": 14,
+        "main_heading_size_mobile": 33,
+        "description_size_mobile": 14,
+        "content_width": 30,
+        "card_gap": 24,
+        "card_width_desktop": 500,
+        "card_height_desktop": 650,
+        "card_width_mobile": 280,
+        "card_height_mobile": 380,
+        "card_radius": 0,
+        "overlay_color": "#0c4168",
+        "overlay_opacity": 0,
+        "card_title_color": "#ffffff",
+        "card_title_size": 28,
+        "card_title_weight": 800,
+        "arrow_bg": "rgba(0,0,0,0)",
+        "arrow_color": "#ffffff",
+        "arrow_size": 50,
+        "scrollbar_track": "#eaeaea",
+        "scrollbar_thumb": "#0c4168",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
       }
     },
     "17800675107a00a753": {
@@ -608,6 +698,7 @@
       "block_order": [
         "ai_gen_block_31a39b2_Va8WBB"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -932,7 +1023,26 @@
       ],
       "name": "Timeline tabs",
       "settings": {
-        "heading": "About us"
+        "heading": "About us",
+        "section_bg": "#ffffff",
+        "section_padding_top": 20,
+        "section_padding_bottom": 30,
+        "heading_color": "#0c4168",
+        "heading_size": 42,
+        "tab_color": "#777777",
+        "tab_active_color": "#0c4168",
+        "tab_underline_color": "#000000",
+        "tab_font_size": 15,
+        "content_heading_color": "#0c4168",
+        "content_heading_size": 28,
+        "content_text_color": "#666666",
+        "content_text_size": 15,
+        "content_width": 500,
+        "image_height_desktop": 700,
+        "image_height_mobile": 400,
+        "image_radius": 0,
+        "image_fit": "contain",
+        "layout_gap": 40
       }
     },
     "custom_editorial_seaction_mHFt7p": {
@@ -986,7 +1096,6 @@
         "max_width": 1400,
         "left_width": "1.1fr",
         "gap": 6,
-        "border_radius": 10,
         "h_padding": 20,
         "padding_top": 0,
         "padding_bottom": 0,
@@ -1005,8 +1114,12 @@
         "cta_size": 11,
         "caption_size": 13,
         "explore_size": 10,
-        "background_color": "#f5f2ee",
+        "background_color": "#ffffff",
         "stats_color": "#2b2b2b",
+        "explore_bg": "#ffffff",
+        "explore_text_color": "#0c4168",
+        "explore_hover_bg": "#0c4168",
+        "explore_hover_text": "#ffffff",
         "body_color": "#3d3d3d",
         "cta_color": "#1a1a1a",
         "caption_color": "#ffffff",
@@ -1017,54 +1130,28 @@
       "type": "custom-category-grid",
       "name": "Baby Category Grid",
       "settings": {
-        "grid_gap": 8,
-        "section_padding": 24,
+        "heading": "SHOP BY PRICE",
+        "heading_size": 40,
         "section_bg": "#ffffff",
-        "label_bg": "#ffffff",
-        "label_color": "#1a1a1a",
-        "price_color": "#ffffff",
-        "mobile_height": 220,
-        "image_1": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
-        "height_1": 300,
-        "label_1": "Dresses",
-        "price_1": "₹699",
-        "price_prefix_1": "starting",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "heading_color": "#0c4168",
+        "heading_weight": "900",
+        "desktop_image_1": "shopify://shop_images/Untitled_design.png",
         "link_1": "",
-        "image_2": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
-        "height_2": 620,
-        "label_2": "Sleepwear",
-        "price_2": "₹799",
-        "price_prefix_2": "starting",
+        "desktop_image_2": "shopify://shop_images/Untitled_design_1.png",
         "link_2": "",
-        "height_3": 300,
-        "label_3": "Topwear",
-        "price_3": "₹499",
-        "price_prefix_3": "starting",
+        "desktop_image_3": "shopify://shop_images/Untitled_design_2.png",
         "link_3": "",
-        "height_4": 200,
-        "label_4": "Rompers",
-        "price_4": "₹699",
-        "price_prefix_4": "starting",
+        "desktop_image_4": "shopify://shop_images/Untitled_design_3.png",
         "link_4": "",
-        "height_5": 300,
-        "label_5": "Outfit Sets",
-        "price_5": "₹999",
-        "price_prefix_5": "starting",
+        "desktop_image_5": "shopify://shop_images/Untitled_design_4.png",
         "link_5": "",
-        "height_6": 300,
-        "label_6": "Bottoms",
-        "price_6": "₹499",
-        "price_prefix_6": "starting",
+        "desktop_image_6": "shopify://shop_images/Untitled_design_6.png",
         "link_6": "",
-        "height_7": 200,
-        "label_7": "Swimwear",
-        "price_7": "₹699",
-        "price_prefix_7": "starting",
+        "desktop_image_7": "shopify://shop_images/Untitled_design_5.png",
         "link_7": "",
-        "height_8": 200,
-        "label_8": "Bodysuits",
-        "price_8": "₹1499",
-        "price_prefix_8": "under",
+        "desktop_image_8": "shopify://shop_images/Untitled_design_7.png",
         "link_8": ""
       }
     },
@@ -1074,6 +1161,7 @@
         "feature_mTikFx": {
           "type": "feature",
           "settings": {
+            "icon": "shopify://shop_images/Relaxed-Blue.png",
             "title": "OEKO-TEX® Certified",
             "text": "100% safe, chemical-free & tested fabrics."
           }
@@ -1102,7 +1190,32 @@
       "settings": {
         "heading": "Built to earn customer trust",
         "subheading": "Show your strongest product advantages in a premium, scrollable strip that feels interactive and easy to explore.",
-        "scroll_speed": 60
+        "scroll_speed": 30,
+        "section_bg": "#ffffff",
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 10,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 14,
+        "font_family": "sans_serif_n4",
+        "heading_size_desktop": 20,
+        "heading_size_mobile": 24,
+        "heading_weight": "800",
+        "text_size_desktop": 13,
+        "text_size_mobile": 12,
+        "text_weight": "500",
+        "heading_color": "#0c4168",
+        "subheading_color": "#666666",
+        "card_bg": "#ffffff",
+        "card_border": "#d9d9d9",
+        "title_color": "#0c4168",
+        "text_color": "#666666",
+        "icon_bg": "#f5f5f5",
+        "card_hover_bg": "#0c4168",
+        "card_hover_border": "#0c4168",
+        "title_hover_color": "#ffffff",
+        "text_hover_color": "#ffffff",
+        "icon_hover_bg": "#21f010",
+        "fade_color": "#ffffff"
       }
     }
   },
@@ -1113,6 +1226,7 @@
     "custom_category_icons_fa4BTq",
     "section_2_BrdHkP",
     "rotating_text_X4Hpjk",
+    "collection_carousel_pro_pAhcyP",
     "17800675107a00a753",
     "collection_banner_kBPTxj",
     "collection_splider_j6nUDX",
