@@ -25,8 +25,25 @@
       display: none;
     }
 
-    media-gallery:where(.media-gallery--grid) .media-gallery__grid {
-      display: grid;
+media-gallery:where(.media-gallery--grid) .media-gallery__grid {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  gap: 1rem;
+}
+.layout-panel-flex{
+      gap: 5px !important;
+}
+.media-fit-cover :is(img, video, iframe, .deferred-media__poster-image){
+  object-fit: contain !important;
+}
+
+media-gallery:where(.media-gallery--grid) .media-gallery__grid::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+    media-gallery.media-gallery--grid .media-gallery__grid .product-media-container{
+          flex: 0 0 25%;
     }
   }
 

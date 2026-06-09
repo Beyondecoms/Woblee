@@ -47,6 +47,17 @@
 </div>
 
 {% stylesheet %}
+
+@media only screen and (min-width: 750px) {
+.product-details.sticky-content--desktop{
+  width: 50%;
+  margin: auto;
+}
+}
+
+
+
+
   .section--page-width {
     &.media-with-content {
       grid-template-areas: 'margin-left media margin-right' 'margin-left content margin-right';
@@ -107,6 +118,9 @@
     &.media-with-content--medium {
       @media screen and (min-width: 750px) {
         --media-with-content-grid-columns: 1fr 1fr;
+      }
+      .section--full-width .product-information__grid:not(.product-information--media-none).product-information--media-left .product-details{
+        margin: auto;
       }
     }
 

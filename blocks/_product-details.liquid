@@ -15,6 +15,7 @@
   {% endif %}
 >
   {% capture children %}
+
     <div class="view-product-title">
       <a
         href="{{ closest.product.selected_or_first_available_variant.url }}"
@@ -22,6 +23,27 @@
       >
         {{- closest.product.title }}
       </a>
+     
+{% if product.description != blank %}
+  <div class="quick-view__description-template">
+    <div class="quick-view__description" data-collapsed="true">
+      <div class="quick-view__description-content rte">
+        {{ product.description }}
+      </div>
+
+      <button
+        type="button"
+        class="button button-unstyled quick-view__description-toggle"
+        aria-expanded="false"
+      >
+            <span class="read-more-text">Read More</span>
+            <span class="read-less-text">Read Less</span>
+      </button>
+    </div>
+  </div>
+{% endif %}
+
+
     </div>
     {% content_for 'blocks' %}
   {% endcapture %}
@@ -39,6 +61,11 @@
 
   .view-product-title {
     display: none;
+  }
+
+  /* Hide Quick View description on the main product page */
+  .product-information:not(.quick-add-modal__content .product-information) .quick-view__description-template {
+    display: none !important;
   }
 
   /* Container styles */

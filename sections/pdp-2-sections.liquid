@@ -1,0 +1,646 @@
+<section
+  class="feature-showcase"
+  style="
+    background: {{ section.settings.section_bg }};
+    padding-top: {{ section.settings.section_padding_top }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom }}px;
+  "
+>
+  <div class="page-width">
+
+    {% if section.settings.heading != blank %}
+      <div class="feature-showcase__header">
+        <h2
+          class="feature-showcase__heading"
+          style="
+            color: {{ section.settings.heading_color }};
+            font-family: {{ section.settings.font_family.family }}, {{ section.settings.font_family.fallback_families }};
+          "
+        >
+          {{ section.settings.heading }}
+        </h2>
+      </div>
+    {% endif %}
+
+    <div class="feature-showcase__slider splide">
+      <div class="splide__track">
+        <div class="splide__list">
+
+          {% for block in section.blocks %}
+            <div
+              class="splide__slide"
+              {{ block.shopify_attributes }}
+            >
+              <div
+                class="feature-card feature-card--{{ section.settings.layout_style }}"
+                style="
+                  background: {{ block.settings.card_bg }};
+                  text-align: {{ block.settings.content_alignment }};
+                "
+              >
+
+                {% if block.settings.image != blank %}
+                  <div
+                    class="feature-card__image-wrapper"
+                    {% if section.settings.layout_style == 'feature' %}
+                      style="max-width: {{ block.settings.image_width }}px;"
+                    {% endif %}
+                  >
+                    {{
+                      block.settings.image
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'feature-card__image'
+                    }}
+                  </div>
+                {% endif %}
+
+                <div class="feature-card__content">
+
+                  {% if block.settings.title != blank %}
+                    <h3
+                      class="feature-card__title"
+                      style="
+                        color: {{ block.settings.title_color }};
+                      "
+                    >
+                      {{ block.settings.title }}
+                    </h3>
+                  {% endif %}
+
+                  {% if block.settings.description != blank %}
+                    <div
+                      class="feature-card__description"
+                      style="
+                        color: {{ block.settings.description_color }};
+                      "
+                    >
+                      {{ block.settings.description }}
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+                    <a
+                      href="{{ block.settings.button_link }}"
+                      class="feature-card__button"
+                      style="
+                        background: {{ block.settings.button_bg }};
+                        color: {{ block.settings.button_text_color }};
+                      "
+                    >
+                      {{ block.settings.button_text }}
+                    </a>
+                  {% endif %}
+
+                </div>
+
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+
+      {% if section.settings.show_arrows %}
+        <div class="splide__arrows">
+          <button class="splide__arrow splide__arrow--prev">
+            ←
+          </button>
+
+          <button class="splide__arrow splide__arrow--next">
+            →
+          </button>
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+{%  style %} 
+.feature-showcase {
+  overflow: hidden;
+}
+
+.feature-showcase .page-width {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.feature-showcase__header {
+  margin-bottom: 40px;
+}
+
+.feature-showcase__heading {
+  margin: 0;
+  line-height: 1.2;
+  font-size: {{ section.settings.heading_size_desktop }}px;
+}
+
+.feature-showcase__slider {
+  position: relative;
+}
+
+.feature-card {
+  height: 100%;
+  transition: all .35s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+}
+
+.feature-card__image-wrapper {
+  overflow: hidden;
+}
+
+.feature-card__image {
+  width: 100%;
+  display: block;
+  transition: transform .5s ease;
+}
+
+.feature-card:hover .feature-card__image {
+  transform: scale(1.04);
+}
+
+.feature-card__title {
+  margin: 0 0 15px;
+  font-size: var(--title-size-desktop);
+  line-height: 1.2;
+}
+
+.feature-card__description {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: var(--desc-size-desktop);
+}
+
+.feature-card__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 12px 24px;
+  border: 1px solid currentColor;
+  transition: .3s ease;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.feature-card__button:hover {
+  opacity: .85;
+}
+
+/* -----------------------
+   CARD LAYOUT
+------------------------ */
+
+.feature-card--card .feature-card__image-wrapper {
+  margin-bottom: 20px;
+}
+
+.feature-card--card .feature-card__image {
+  aspect-ratio: 4/4;
+  object-fit: cover;
+}
+
+.feature-card--card .feature-card__content {
+  padding: 0;
+}
+
+/* -----------------------
+   FEATURE LAYOUT
+------------------------ */
+
+.feature-card--feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 25px;
+}
+
+.feature-card--feature .feature-card__image-wrapper {
+  flex-shrink: 0;
+}
+
+.feature-card--feature .feature-card__image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.feature-card--feature .feature-card__content {
+  flex: 1;
+}
+
+/* -----------------------
+   SPLIDE ARROWS
+------------------------ */
+
+.feature-showcase .splide__arrows {
+  position: absolute;
+  top: -70px;
+  right: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.feature-showcase .splide__arrow {
+  position: static;
+  transform: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.feature-showcase .splide__arrow svg {
+  fill: #000;
+}
+
+.feature-showcase .splide__pagination {
+  margin-top: 25px;
+  position: static;
+}
+
+.feature-showcase .splide__pagination__page.is-active {
+  transform: scale(1.2);
+}
+
+/* -----------------------
+   RESPONSIVE
+------------------------ */
+
+@media screen and (max-width: 767px) {
+
+  .feature-showcase__heading {
+    font-size: {{ section.settings.heading_size_mobile }}px;
+  }
+
+  .feature-card--feature {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .feature-card__title {
+    font-size: var(--title-size-mobile);
+  }
+
+  .feature-card__description {
+    font-size: var(--desc-size-mobile);
+  }
+
+  .feature-showcase .splide__arrows {
+    top: -55px;
+  }
+
+  .feature-showcase .splide__arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+{% endstyle %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+  const sliders = document.querySelectorAll('.feature-showcase__slider');
+
+  sliders.forEach((slider) => {
+
+    new Splide(slider, {
+      type: 'slide',
+      perPage: 3,
+      perMove: 1,
+      gap: '{{ section.settings.card_gap }}px',
+      arrows: {{ section.settings.show_arrows }},
+      pagination: {{ section.settings.show_dots }},
+      drag: true,
+      rewind: true,
+
+      breakpoints: {
+        1200: {
+          perPage: 2
+        },
+
+        767: {
+          perPage: 1
+        }
+      }
+    }).mount();
+
+  });
+
+});
+</script>
+
+{% schema %} 
+{
+  "name": "Feature Showcase",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Layout Style",
+      "options": [
+        {
+          "value": "card",
+          "label": "Card Layout"
+        },
+        {
+          "value": "feature",
+          "label": "Feature Layout"
+        }
+      ],
+      "default": "card"
+    },
+
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Design Features"
+    },
+
+    {
+      "type": "font_picker",
+      "id": "font_family",
+      "label": "Font Family",
+      "default": "helvetica_n4"
+    },
+
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#111111"
+    },
+
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size Desktop",
+      "default": 36
+    },
+
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 16,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size Mobile",
+      "default": 24
+    },
+
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    },
+
+    {
+      "type": "range",
+      "id": "card_gap",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Cards Gap",
+      "default": 24
+    },
+
+    {
+      "type": "checkbox",
+      "id": "enable_slider",
+      "label": "Enable Slider",
+      "default": true
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show Arrows",
+      "default": true
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show Pagination",
+      "default": true
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Add feature description here."
+        },
+
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Learn More"
+        },
+
+        {
+          "type": "color",
+          "id": "card_bg",
+          "label": "Card Background",
+          "default": "#ffffff"
+        },
+
+        {
+          "type": "color",
+          "id": "card_hover_bg",
+          "label": "Card Hover Background",
+          "default": "#f5f5f5"
+        },
+
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#111111"
+        },
+
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description Color",
+          "default": "#666666"
+        },
+
+        {
+          "type": "color",
+          "id": "button_bg",
+          "label": "Button Background",
+          "default": "#111111"
+        },
+
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#ffffff"
+        },
+
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "label": "Image Width",
+          "default": 120
+        },
+
+        {
+          "type": "range",
+          "id": "title_size_desktop",
+          "min": 14,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Title Size Desktop",
+          "default": 28
+        },
+
+        {
+          "type": "range",
+          "id": "title_size_mobile",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "Title Size Mobile",
+          "default": 22
+        },
+
+        {
+          "type": "range",
+          "id": "desc_size_desktop",
+          "min": 10,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "Description Size Desktop",
+          "default": 16
+        },
+
+        {
+          "type": "range",
+          "id": "desc_size_mobile",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Description Size Mobile",
+          "default": 14
+        },
+
+        {
+          "type": "select",
+          "id": "content_alignment",
+          "label": "Content Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Feature Showcase",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+ {% endschema %} 

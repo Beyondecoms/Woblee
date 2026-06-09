@@ -1,0 +1,297 @@
+{% liquid
+  assign feature_images = product.metafields.custom.product_features_images.value
+  assign feature_texts = product.metafields.custom.product_features_text.value
+%}
+
+{% if feature_images != blank and feature_texts != blank %}
+<section
+  class="product-features"
+  style="
+    --section-bg: {{ section.settings.section_background }};
+    --card-bg: {{ section.settings.card_background }};
+    --text-color: {{ section.settings.text_color }};
+    --card-padding: {{ section.settings.card_padding }}px;
+    --card-radius: {{ section.settings.card_radius }}px;
+    --icon-size: {{ section.settings.icon_size }}px;
+    --card-gap: {{ section.settings.card_gap }}px;
+    --font-size-desktop: {{ section.settings.font_size_desktop }}px;
+    --font-size-mobile: {{ section.settings.font_size_mobile }}px;
+    --font-weight: {{ section.settings.font_weight }};
+  "
+>
+  <div class="page-width">
+    <div class="product-features__grid">
+
+      {% for image in feature_images %}
+        {% assign index = forloop.index0 %}
+        {% assign feature_text = feature_texts[index] %}
+
+        <div class="product-features__item">
+          <div class="product-features__icon">
+            {{
+              image
+              | image_url: width: 80
+              | image_tag:
+                loading: 'lazy',
+                widths: '40,60,80',
+                alt: feature_text
+            }}
+          </div>
+
+          {% if feature_text != blank %}
+            <div class="product-features__text">
+              {{ feature_text }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+.product-features{
+  background: var(--section-bg);
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+
+.product-features__grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:var(--card-gap);
+  width: 95%;
+  margin: auto;
+}
+
+.product-features__item{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  background:var(--card-bg);
+  padding:var(--card-padding);
+  border-radius:var(--card-radius);
+  min-height:80px;
+}
+
+.product-features__icon{
+  flex-shrink:0;
+}
+
+.product-features__icon img{
+  width:var(--icon-size);
+  height:var(--icon-size);
+  object-fit:contain;
+  display:block;
+}
+
+.product-features__text{
+  color:var(--text-color);
+  font-size:var(--font-size-desktop);
+  font-weight:var(--font-weight);
+  line-height:1.4;
+}
+
+@media screen and (max-width: 989px){
+  .product-features__grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media screen and (max-width: 749px){
+
+  .product-features{
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  .product-features__grid{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .product-features__item{
+    padding:calc(var(--card-padding) - 4px);
+  }
+
+  .product-features__icon img{
+    width:calc(var(--icon-size) - 8px);
+    height:calc(var(--icon-size) - 8px);
+  }
+
+  .product-features__text{
+    font-size:var(--font-size-mobile);
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Product Features",
+  "tag": "section",
+  "class": "section-product-features",
+  "settings": [
+    {
+  "type": "header",
+  "content": "Section Settings"
+},
+{
+  "type": "color",
+  "id": "section_background",
+  "label": "Section Background",
+  "default": "#ffffff"
+},
+{
+  "type": "range",
+  "id": "padding_top",
+  "label": "Padding Top",
+  "min": 0,
+  "max": 120,
+  "step": 4,
+  "unit": "px",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "padding_bottom",
+  "label": "Padding Bottom",
+  "min": 0,
+  "max": 120,
+  "step": 4,
+  "unit": "px",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "padding_top_mobile",
+  "label": "Padding Top Mobile",
+  "min": 0,
+  "max": 80,
+  "step": 2,
+  "unit": "px",
+  "default": 30
+},
+{
+  "type": "range",
+  "id": "padding_bottom_mobile",
+  "label": "Padding Bottom Mobile",
+  "min": 0,
+  "max": 80,
+  "step": 2,
+  "unit": "px",
+  "default": 30
+},
+{
+  "type": "header",
+  "content": "Card Settings"
+},
+{
+  "type": "color",
+  "id": "card_background",
+  "label": "Card Background",
+  "default": "#f5f5f5"
+},
+{
+  "type": "range",
+  "id": "card_padding",
+  "label": "Card Padding",
+  "min": 10,
+  "max": 40,
+  "step": 2,
+  "unit": "px",
+  "default": 20
+},
+{
+  "type": "range",
+  "id": "card_radius",
+  "label": "Card Radius",
+  "min": 0,
+  "max": 30,
+  "step": 2,
+  "unit": "px",
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "icon_size",
+  "label": "Icon Size",
+  "min": 20,
+  "max": 80,
+  "step": 2,
+  "unit": "px",
+  "default": 38
+},
+{
+  "type": "range",
+  "id": "card_gap",
+  "label": "Gap Between Cards",
+  "min": 5,
+  "max": 40,
+  "step": 1,
+  "unit": "px",
+  "default": 20
+},
+{
+  "type": "header",
+  "content": "Typography"
+},
+{
+  "type": "color",
+  "id": "text_color",
+  "label": "Text Color",
+  "default": "#000000"
+},
+{
+  "type": "range",
+  "id": "font_size_desktop",
+  "label": "Font Size Desktop",
+  "min": 12,
+  "max": 40,
+  "step": 1,
+  "unit": "px",
+  "default": 18
+},
+{
+  "type": "range",
+  "id": "font_size_mobile",
+  "label": "Font Size Mobile",
+  "min": 10,
+  "max": 30,
+  "step": 1,
+  "unit": "px",
+  "default": 14
+},
+{
+  "type": "select",
+  "id": "font_weight",
+  "label": "Font Weight",
+  "default": "500",
+  "options": [
+    {
+      "value": "400",
+      "label": "Regular"
+    },
+    {
+      "value": "500",
+      "label": "Medium"
+    },
+    {
+      "value": "600",
+      "label": "Semi Bold"
+    },
+    {
+      "value": "700",
+      "label": "Bold"
+    }
+  ]
+}
+  ],
+  "presets": [
+    {
+      "name": "Product Features"
+    }
+  ]
+}
+{% endschema %}

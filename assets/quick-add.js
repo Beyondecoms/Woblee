@@ -84,6 +84,91 @@ export class QuickAddComponent extends Component {
   }
 
   /**
+   * Gets a cloned quick-view description block from product markup.
+   * @param {ParentNode} root
+   * @returns {HTMLElement | null}
+   */
+  #cloneDescription(root) {
+    const template = root.querySelector('.quick-view__description-template');
+    if (!(template instanceof HTMLTemplateElement)) return null;
+
+    const description = template.content.firstElementChild?.cloneNode(true);
+    return description instanceof HTMLElement ? description : null;
+  }
+
+  /**
+   * Inserts the description below the price and above the variant selectors.
+   * @param {ParentNode} root
+   * @param {HTMLElement} description
+   */
+  #insertDescription(root, description) {
+    const productHeader = root.querySelector('.product-header');
+    const productPrice = root.querySelector('.product-details product-price, .product-header product-price');
+    const variantPicker = root.querySelector('variant-picker');
+
+    description.hidden = false;
+
+    if (productHeader?.parentNode) {
+      if (variantPicker?.parentNode === productHeader.parentNode) {
+        productHeader.parentNode.insertBefore(description, variantPicker);
+      } else {
+        productHeader.parentNode.insertBefore(description, productHeader.nextSibling);
+      }
+      return;
+    }
+
+    if (productPrice?.parentNode) {
+      productPrice.parentNode.insertBefore(description, productPrice.nextSibling);
+      return;
+    }
+
+    if (variantPicker?.parentNode) {
+      variantPicker.parentNode.insertBefore(description, variantPicker);
+    }
+  }
+
+  /**
+   * Enables the Read More / Read Less toggle when the description overflows.
+   * @param {ParentNode} root
+   */
+  #setupDescription(root) {
+    const description = root.querySelector('.quick-view__description');
+    if (!(description instanceof HTMLElement)) return;
+
+    const content = description.querySelector('.quick-view__description-content');
+    const toggle = description.querySelector('.quick-view__description-toggle');
+
+    if (!(content instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement)) return;
+
+    const readMoreText = 'Read More';
+    const readLessText = 'Read Less';
+
+    const setCollapsedState = (collapsed) => {
+      description.dataset.collapsed = collapsed ? 'true' : 'false';
+      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      toggle.textContent = collapsed ? readMoreText : readLessText;
+    };
+
+    requestAnimationFrame(() => {
+      const isOverflowing = content.scrollHeight > content.clientHeight + 2;
+
+      if (!isOverflowing) {
+        description.dataset.collapsed = 'false';
+        toggle.hidden = true;
+        return;
+      }
+
+      toggle.hidden = false;
+      setCollapsedState(true);
+
+      toggle.addEventListener('click', () => {
+        const isCollapsed = description.dataset.collapsed !== 'false';
+        setCollapsedState(!isCollapsed);
+      });
+    });
+  }
+
+  /**
    * Handles quick add button click
    * @param {Event} event - The click event
    */
@@ -204,6 +289,8 @@ export class QuickAddComponent extends Component {
 
     if (!productGrid || !modalContent) return;
 
+    const description = this.#cloneDescription(productGrid);
+
     if (isMobileBreakpoint()) {
       const productDetails = productGrid.querySelector('.product-details');
       const productFormComponent = productGrid.querySelector('product-form-component');
@@ -224,6 +311,10 @@ export class QuickAddComponent extends Component {
       }
       productGrid.appendChild(productHeader);
 
+      if (description) {
+        this.#insertDescription(productGrid, description);
+      }
+
       if (variantPicker) {
         productGrid.appendChild(variantPicker);
       }
@@ -235,6 +326,12 @@ export class QuickAddComponent extends Component {
     }
 
     morph(modalContent, productGrid);
+
+    if (!isMobileBreakpoint() && description) {
+      this.#insertDescription(modalContent, description);
+    }
+
+    this.#setupDescription(modalContent);
 
     this.#syncVariantSelection(modalContent);
   }
@@ -283,6 +380,7 @@ class QuickAddDialog extends DialogComponent {
 
     this.addEventListener(ThemeEvents.cartUpdate, this.handleCartUpdate, { signal: this.#abortController.signal });
     this.addEventListener(ThemeEvents.variantUpdate, this.#updateProductTitleLink);
+    this.addEventListener(ThemeEvents.variantUpdate, this.#updateQuickViewContent);
 
     this.addEventListener(DialogCloseEvent.eventName, this.#handleDialogClose);
   }
@@ -335,6 +433,60 @@ class QuickAddDialog extends DialogComponent {
         });
       }
     });
+  };
+
+  /**
+   * Updates the Quick View's Form (Variant ID), Price, and Inventory on variant change
+   * @param {CustomEvent} event - The variant update event payload
+   */
+  #updateQuickViewContent = (event) => {
+    const html = event.detail.data?.html;
+    if (!html) return;
+
+    // 1. Update the buy buttons block (contains form, hidden variant input, Add to Cart button)
+    const currentBuyButtons = this.querySelector('.buy-buttons-block');
+    const newBuyButtons = html.querySelector('.buy-buttons-block');
+    if (currentBuyButtons && newBuyButtons) {
+      morph(currentBuyButtons, newBuyButtons);
+    } else {
+      // Fallback: morph just the form if buy-buttons-block is missing
+      const currentForm = this.querySelector('product-form-component');
+      const newForm = html.querySelector('product-form-component');
+      if (currentForm && newForm) {
+        morph(currentForm, newForm);
+      }
+    }
+
+    // FIX: Explicitly set the hidden variant ID input to the newly selected variant.
+    // The HTML fetched from the server defaults to the first available variant 
+    // if it was fetched without a specific variant ID context. Overriding it post-morph ensures accuracy.
+    const selectedVariantId = event.detail.resource?.id;
+    if (selectedVariantId) {
+      const formInputs = this.querySelectorAll('form[action*="/cart/add"] input[name="id"]');
+      formInputs.forEach(input => {
+        input.value = selectedVariantId;
+      });
+    }
+
+    // Debug log to verify the input updated successfully prior to form submission
+    const updatedInput = this.querySelector('form[action*="/cart/add"] input[name="id"]');
+    if (updatedInput) {
+      console.log('[Quick View Debug] Submitting Variant:', updatedInput.value);
+    }
+
+    // 2. Update prices
+    const currentPrices = this.querySelectorAll('product-price');
+    const newPrices = html.querySelectorAll('product-price');
+    currentPrices.forEach((price, index) => {
+      if (newPrices[index]) morph(price, newPrices[index]);
+    });
+
+    // 3. Update inventory status
+    const currentInventory = this.querySelector('product-inventory');
+    const newInventory = html.querySelector('product-inventory');
+    if (currentInventory && newInventory) {
+      morph(currentInventory, newInventory);
+    }
   };
 }
 
