@@ -376,7 +376,7 @@
                   "type": "_accordion-row",
                   "name": "t:names.accordion_row",
                   "settings": {
-                    "heading": "Supplier",
+                    "heading": "Design Elements",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -411,53 +411,12 @@
                   "block_order": [
                     "text_UbbHiR"
                   ]
-                },
-                "accordion_row_hAWNeq": {
-                  "type": "_accordion-row",
-                  "name": "t:names.accordion_row",
-                  "settings": {
-                    "heading": "Manufacturing ",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_7rA9BM": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Ras Jebel<br/>Tunisia<br/>Employees:1000-2000</p>",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_7rA9BM"
-                  ]
                 }
               },
               "block_order": [
                 "accordion_row_TbgNUF",
                 "accordion_row_iMd7pJ",
-                "accordion_row_NtC7h9",
-                "accordion_row_hAWNeq"
+                "accordion_row_NtC7h9"
               ]
             }
           },
