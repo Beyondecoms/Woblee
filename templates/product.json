@@ -293,31 +293,30 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "accordion_row_MKhW8R": {
+                "accordion_row_TbgNUF": {
                   "type": "_accordion-row",
-                  "name": "t:names.accordion_row",
                   "settings": {
-                    "heading": "Raw Material ",
+                    "heading": "Product Description",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
                   },
                   "blocks": {
-                    "text_LfPGhF": {
+                    "text_n6TMzy": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>The supplier and origin of raw material.</p><ul><li>Supplier -Egecot Tarim San. Ve Tic. A.s.Söke<br/>Türkiye<br/>Employees: Missing info<br/>Visited By Nudie Jeans</li><li>Supplier, second -Akasya ltdBalçova<br/>Türkiye<br/>Employees: Missing info<br/>Visited By Nudie Jeans</li><li>Ginning -Egecot Tarim San. Ve Tic. A.s.Söke<br/>Türkiye<br/>Employees: Missing info<br/>Visited By Nudie Jeans</li></ul>",
+                        "text": "{{ closest.product.description }}",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
                         "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
+                        "font": "var(--font-primary--family)",
+                        "font_size": "",
                         "line_height": "normal",
                         "letter_spacing": "normal",
                         "case": "none",
                         "wrap": "pretty",
-                        "color": "var(--color-foreground)",
+                        "color": "",
                         "background": false,
                         "background_color": "#00000026",
                         "corner_radius": 0,
@@ -330,14 +329,14 @@
                     }
                   },
                   "block_order": [
-                    "text_LfPGhF"
+                    "text_n6TMzy"
                   ]
                 },
                 "accordion_row_iMd7pJ": {
                   "type": "_accordion-row",
                   "name": "t:names.accordion_row",
                   "settings": {
-                    "heading": "Fabric Process ",
+                    "heading": "Washing Care",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -377,7 +376,7 @@
                   "type": "_accordion-row",
                   "name": "t:names.accordion_row",
                   "settings": {
-                    "heading": "Supplier",
+                    "heading": "Design Elements",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -452,174 +451,13 @@
                   "block_order": [
                     "text_7rA9BM"
                   ]
-                },
-                "accordion_row_TbgNUF": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "Product Details",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_n6TMzy": {
-                      "type": "text",
-                      "settings": {
-                        "text": "{{ closest.product.description }}",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-primary--family)",
-                        "font_size": "",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_n6TMzy"
-                  ]
-                },
-                "accordion_row_XMFatY": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "Care & Maintenance",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_wbGpVU": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>To maintain the beauty and integrity of your purchase, we recommend treating it with care. Simple maintenance practices, such as gentle washing and proper storage, can effectively preserve the longevity of your favorites. We encourage you to refer to the care instructions included with each item, designed to help you keep your purchase in top condition.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-primary--family)",
-                        "font_size": "",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_wbGpVU"
-                  ]
-                },
-                "accordion_row_kmdwc8": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "Size & Fit",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_hYWKPd": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Our products are crafted to fit true to size, ensuring that you can confidently select your usual size with ease. Whether you’re looking for a relaxed or tailored fit, our designs are made to complement your unique shape and style.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-primary--family)",
-                        "font_size": "",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_hYWKPd"
-                  ]
-                },
-                "accordion_row_KhjTyV": {
-                  "type": "_accordion-row",
-                  "name": "t:names.accordion_row",
-                  "settings": {
-                    "heading": "Warehouse ",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_R9nkyc": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Borås, Sweden</p>",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_R9nkyc"
-                  ]
                 }
               },
               "block_order": [
-                "accordion_row_MKhW8R",
+                "accordion_row_TbgNUF",
                 "accordion_row_iMd7pJ",
                 "accordion_row_NtC7h9",
-                "accordion_row_hAWNeq",
-                "accordion_row_TbgNUF",
-                "accordion_row_XMFatY",
-                "accordion_row_kmdwc8",
-                "accordion_row_KhjTyV"
+                "accordion_row_hAWNeq"
               ]
             }
           },
@@ -825,6 +663,101 @@
         "enable_slider": true,
         "show_arrows": true,
         "show_dots": true
+      }
+    },
+    "feature_gift_pdp_38caQd": {
+      "type": "feature-gift-pdp",
+      "blocks": {
+        "feature_item_VCJ7mR": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/Any_view_of_things_that_is_not_strange_is_false.gif",
+            "icon_emoji": "",
+            "heading": "The best cotton. Period.",
+            "description": "Only extra-long staple cotton. Suvin, Supima, and other premium varieties. Picked for softness and built to last."
+          }
+        },
+        "feature_item_tKRzRK": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/ciencia_astronomia_teoria_universo.jpg",
+            "icon_emoji": "",
+            "heading": "Custom-made fabrics.",
+            "description": "Every fabric is knit, dyed, and finished exclusively for us. Nothing off the shelf, no shortcuts."
+          }
+        },
+        "feature_item_7qDXKY": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/download.gif",
+            "icon_emoji": "",
+            "heading": "Engineered for perfect fit.",
+            "description": "Fits are developed with digital simulations for stretch, tension, and drape. Patterns refined per size."
+          }
+        },
+        "feature_item_hLAyAr": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/download_3.jpg",
+            "icon_emoji": "",
+            "heading": "Tested to last.",
+            "description": "Pilling, wash cycles, spirality, long-term wear. Every product is put through it before it ships."
+          }
+        },
+        "feature_item_EKa846": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/download.gif",
+            "icon_emoji": "",
+            "heading": "No logos. Ever.",
+            "description": "You won't find our name on the outside. The fabric, the fit, how it wears over time — that's the branding."
+          }
+        },
+        "feature_item_WmrCnU": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/Any_view_of_things_that_is_not_strange_is_false.gif",
+            "icon_emoji": "",
+            "heading": "Safe. Certified.",
+            "description": "Safe for all skin types, including children. Tested in certified labs and compliant with ASTM and OEKO-TEX® standards."
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_VCJ7mR",
+        "feature_item_tKRzRK",
+        "feature_item_7qDXKY",
+        "feature_item_hLAyAr",
+        "feature_item_EKa846",
+        "feature_item_WmrCnU"
+      ],
+      "name": "Features Grid",
+      "settings": {
+        "section_heading": "Why Choose Us",
+        "section_subheading": "",
+        "section_heading_size": 40,
+        "header_align": "left",
+        "header_gap": 48,
+        "columns": 3,
+        "mobile_columns": 1,
+        "grid_gap": 40,
+        "mobile_gap": 24,
+        "container_width": 1200,
+        "card_style": "flat",
+        "card_layout": "column",
+        "card_inner_gap": 20,
+        "card_bg_color": "#1a2c4e",
+        "card_radius": 12,
+        "card_padding": 24,
+        "image_size": 80,
+        "image_radius": 50,
+        "heading_font_size": 22,
+        "desc_font_size": 15,
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a2e",
+        "desc_color": "#3a3a4a",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "product_recommendations_UeDczP": {
@@ -1158,101 +1091,6 @@
         "color_scheme": "",
         "padding-block-start": 0,
         "padding-block-end": 0
-      }
-    },
-    "feature_gift_pdp_38caQd": {
-      "type": "feature-gift-pdp",
-      "blocks": {
-        "feature_item_VCJ7mR": {
-          "type": "feature_item",
-          "settings": {
-            "image": "shopify://shop_images/Any_view_of_things_that_is_not_strange_is_false.gif",
-            "icon_emoji": "",
-            "heading": "The best cotton. Period.",
-            "description": "Only extra-long staple cotton. Suvin, Supima, and other premium varieties. Picked for softness and built to last."
-          }
-        },
-        "feature_item_tKRzRK": {
-          "type": "feature_item",
-          "settings": {
-            "image": "shopify://shop_images/ciencia_astronomia_teoria_universo.jpg",
-            "icon_emoji": "",
-            "heading": "Custom-made fabrics.",
-            "description": "Every fabric is knit, dyed, and finished exclusively for us. Nothing off the shelf, no shortcuts."
-          }
-        },
-        "feature_item_7qDXKY": {
-          "type": "feature_item",
-          "settings": {
-            "image": "shopify://shop_images/download.gif",
-            "icon_emoji": "",
-            "heading": "Engineered for perfect fit.",
-            "description": "Fits are developed with digital simulations for stretch, tension, and drape. Patterns refined per size."
-          }
-        },
-        "feature_item_hLAyAr": {
-          "type": "feature_item",
-          "settings": {
-            "image": "shopify://shop_images/download_3.jpg",
-            "icon_emoji": "",
-            "heading": "Tested to last.",
-            "description": "Pilling, wash cycles, spirality, long-term wear. Every product is put through it before it ships."
-          }
-        },
-        "feature_item_EKa846": {
-          "type": "feature_item",
-          "settings": {
-            "image": "shopify://shop_images/download.gif",
-            "icon_emoji": "",
-            "heading": "No logos. Ever.",
-            "description": "You won't find our name on the outside. The fabric, the fit, how it wears over time — that's the branding."
-          }
-        },
-        "feature_item_WmrCnU": {
-          "type": "feature_item",
-          "settings": {
-            "image": "shopify://shop_images/Any_view_of_things_that_is_not_strange_is_false.gif",
-            "icon_emoji": "",
-            "heading": "Safe. Certified.",
-            "description": "Safe for all skin types, including children. Tested in certified labs and compliant with ASTM and OEKO-TEX® standards."
-          }
-        }
-      },
-      "block_order": [
-        "feature_item_VCJ7mR",
-        "feature_item_tKRzRK",
-        "feature_item_7qDXKY",
-        "feature_item_hLAyAr",
-        "feature_item_EKa846",
-        "feature_item_WmrCnU"
-      ],
-      "name": "Features Grid",
-      "settings": {
-        "section_heading": "Why Choose Us",
-        "section_subheading": "",
-        "section_heading_size": 40,
-        "header_align": "left",
-        "header_gap": 48,
-        "columns": 3,
-        "mobile_columns": 1,
-        "grid_gap": 40,
-        "mobile_gap": 24,
-        "container_width": 1200,
-        "card_style": "flat",
-        "card_layout": "column",
-        "card_inner_gap": 20,
-        "card_bg_color": "#1a2c4e",
-        "card_radius": 12,
-        "card_padding": 24,
-        "image_size": 80,
-        "image_radius": 50,
-        "heading_font_size": 22,
-        "desc_font_size": 15,
-        "bg_color": "#ffffff",
-        "text_color": "#1a1a2e",
-        "desc_color": "#3a3a4a",
-        "padding_top": 80,
-        "padding_bottom": 80
       }
     },
     "custom_bottom_bar_ABkAHw": {
