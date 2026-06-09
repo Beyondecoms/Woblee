@@ -1145,7 +1145,7 @@
       ],
       "name": "Feature Showcase",
       "settings": {
-        "layout_style": "card",
+        "layout_style": "feature",
         "heading": "Design Features",
         "font_family": "sans_serif_n4",
         "section_bg": "#ffffff",
