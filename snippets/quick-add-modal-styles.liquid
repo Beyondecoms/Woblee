@@ -22,6 +22,7 @@
     padding: 0;
     border: var(--style-border-popover);
     overflow: hidden;
+    max-height: 90vh;
     box-shadow: 0 5px 30px rgb(0 0 0 / var(--opacity-15));
 
     @media screen and (max-width: 749px) {
@@ -32,6 +33,7 @@
       border-radius: 0;
       overflow: clip;
       height: fit-content;
+      max-height: 90vh;
     }
   }
 
@@ -431,6 +433,10 @@
     font-size: var(--font-size--sm);
     line-height: 1.5;
     overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
   }
 
   .quick-add-modal__content .quick-view__description-content > *:first-child {
@@ -441,23 +447,8 @@
     margin-bottom: 0;
   }
 
-  .quick-add-modal__content .quick-view__description[data-collapsed='true'] .quick-view__description-content {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-  }
-
-  .quick-add-modal__content .quick-view__description[data-collapsed='false'] .quick-view__description-content {
-    display: block !important;
-    -webkit-line-clamp: unset !important;
-    overflow: visible !important;
-  }
-
   .quick-add-modal__content .quick-view__description-toggle {
     display: inline-block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
     font-size: var(--font-size--xs);
     font-weight: 500;
     line-height: 1.4;
@@ -465,24 +456,25 @@
     text-underline-offset: 0.2em;
     color: inherit;
     margin-top: 8px;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: inherit;
+    transition: opacity 0.2s ease-in-out;
   }
 
   .quick-add-modal__content .quick-view__description-toggle:hover {
     opacity: 0.75;
   }
+  a.button.button-unstyled.quick-view__description-toggle{
+    font-size: 13px;
+  }
 
   .quick-add-modal__content .quick-view__description-toggle:focus-visible {
     outline: var(--focus-outline-width) solid currentColor;
     outline-offset: var(--focus-outline-offset);
-  }
-
-  .quick-add-modal__content .quick-view__description[data-collapsed='true'] .read-less-text {
-    display: none !important;
-  }
-
-  .quick-add-modal__content .quick-view__description[data-collapsed='false'] .read-more-text {
-    display: none !important;
-  }
+  } 
 
   @media screen and (max-width: 749px) {
     .quick-add-modal__content .quick-view__description {

@@ -24,21 +24,16 @@
         {{- closest.product.title }}
       </a>
      
+
 {% if product.description != blank %}
   <div class="quick-view__description-template">
-    <div class="quick-view__description" data-collapsed="true">
+    <div class="quick-view__description">
       <div class="quick-view__description-content rte">
         {{ product.description }}
       </div>
-
-      <button
-        type="button"
-        class="button button-unstyled quick-view__description-toggle"
-        aria-expanded="false"
-      >
-            <span class="read-more-text">Read More</span>
-            <span class="read-less-text">Read Less</span>
-      </button>
+      <a href="{{ product.url }}" class="button button-unstyled quick-view__description-toggle">
+        Read More
+      </a>
     </div>
   </div>
 {% endif %}

@@ -52,7 +52,21 @@ class ProductPrice extends Component {
     // Update price container
     const newPrice = newProductPrice.querySelector('[ref="priceContainer"]');
     if (newPrice && priceContainer) {
-      priceContainer.replaceWith(newPrice);
+      // Preserve the existing DOM node to avoid unmounting the custom element
+      // and causing visual flicker. Replace only the inner content.
+      try {
+        // Copy child nodes from newPrice into the existing priceContainer
+        priceContainer.innerHTML = newPrice.innerHTML;
+
+        // Copy attributes from newPrice to priceContainer (if any) except id
+        for (const attr of Array.from(newPrice.attributes || [])) {
+          if (attr.name === 'id') continue;
+          priceContainer.setAttribute(attr.name, attr.value);
+        }
+      } catch (err) {
+        // Fallback: if something goes wrong, replace the node as before
+        priceContainer.replaceWith(newPrice);
+      }
     }
 
     // Update volume pricing note
@@ -60,11 +74,13 @@ class ProductPrice extends Component {
 
     if (!newNote) {
       volumePricingNote?.remove();
-    } else if (!volumePricingNote) {
-      // Use newPrice since priceContainer was just replaced and now points to the detached element
-      newPrice?.insertAdjacentElement('afterend', /** @type {Element} */ (newNote.cloneNode(true)));
     } else {
-      volumePricingNote.replaceWith(newNote);
+      const clonedNote = /** @type {Element} */ (newNote.cloneNode(true));
+      if (!volumePricingNote && priceContainer) {
+        priceContainer.insertAdjacentElement('afterend', clonedNote);
+      } else if (volumePricingNote) {
+        volumePricingNote.replaceWith(clonedNote);
+      }
     }
 
     // Update installments (SPI banner) variant ID to trigger payment terms re-render

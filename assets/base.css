@@ -36,6 +36,14 @@ html[scroll-lock] {
   overflow: hidden;
 }
 
+html.modal-open,
+body.modal-open,
+body.meta-modal-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 img,
 picture,
 video,

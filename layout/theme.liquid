@@ -242,38 +242,5 @@ span.wrap-text{
       {% render 'quick-add-modal' %}
     {% endif %}
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // Quick View: Read More / Read Less Toggle functionality
-        document.addEventListener('click', function (event) {
-          const toggle = event.target.closest('.quick-view__description-toggle');
-          if (!toggle) return;
-
-          console.log('[Quick View Debug] Read More / Read Less button clicked.');
-          event.preventDefault(); // Prevent accidental form submissions or jumps
-
-          const wrapper = toggle.closest('.quick-view__description');
-          if (!wrapper) {
-            console.warn('[Quick View Debug] Could not find .quick-view__description wrapper.');
-            return;
-          }
-
-          // Ensure it's scoped only to the Quick View popup
-          if (!wrapper.closest('.quick-add-modal')) {
-            console.log('[Quick View Debug] Ignored: Not inside Quick View modal.');
-            return;
-          }
-
-          const isCollapsed = wrapper.getAttribute('data-collapsed') === 'true';
-          const newState = isCollapsed ? 'false' : 'true';
-          
-          console.log(`[Quick View Debug] Current state collapsed: ${isCollapsed} -> Changing to: ${newState}`);
-
-          wrapper.setAttribute('data-collapsed', newState);
-          toggle.setAttribute('aria-expanded', isCollapsed ? 'true' : 'false');
-        });
-      });
-    </script>
   </body>
 </html>

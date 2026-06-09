@@ -128,47 +128,6 @@ export class QuickAddComponent extends Component {
   }
 
   /**
-   * Enables the Read More / Read Less toggle when the description overflows.
-   * @param {ParentNode} root
-   */
-  #setupDescription(root) {
-    const description = root.querySelector('.quick-view__description');
-    if (!(description instanceof HTMLElement)) return;
-
-    const content = description.querySelector('.quick-view__description-content');
-    const toggle = description.querySelector('.quick-view__description-toggle');
-
-    if (!(content instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement)) return;
-
-    const readMoreText = 'Read More';
-    const readLessText = 'Read Less';
-
-    const setCollapsedState = (collapsed) => {
-      description.dataset.collapsed = collapsed ? 'true' : 'false';
-      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-      toggle.textContent = collapsed ? readMoreText : readLessText;
-    };
-
-    requestAnimationFrame(() => {
-      const isOverflowing = content.scrollHeight > content.clientHeight + 2;
-
-      if (!isOverflowing) {
-        description.dataset.collapsed = 'false';
-        toggle.hidden = true;
-        return;
-      }
-
-      toggle.hidden = false;
-      setCollapsedState(true);
-
-      toggle.addEventListener('click', () => {
-        const isCollapsed = description.dataset.collapsed !== 'false';
-        setCollapsedState(!isCollapsed);
-      });
-    });
-  }
-
-  /**
    * Handles quick add button click
    * @param {Event} event - The click event
    */
@@ -331,7 +290,7 @@ export class QuickAddComponent extends Component {
       this.#insertDescription(modalContent, description);
     }
 
-    this.#setupDescription(modalContent);
+    // Read More button now redirects to product page - no toggle setup needed
 
     this.#syncVariantSelection(modalContent);
   }
@@ -478,7 +437,20 @@ class QuickAddDialog extends DialogComponent {
     const currentPrices = this.querySelectorAll('product-price');
     const newPrices = html.querySelectorAll('product-price');
     currentPrices.forEach((price, index) => {
-      if (newPrices[index]) morph(price, newPrices[index]);
+      const newPrice = newPrices[index];
+      if (!newPrice) return;
+      try {
+        // Preserve mounted custom element to avoid flicker — update inner content
+        price.innerHTML = newPrice.innerHTML;
+        // Copy attributes from newPrice to existing price element (except id)
+        for (const attr of Array.from(newPrice.attributes || [])) {
+          if (attr.name === 'id') continue;
+          price.setAttribute(attr.name, attr.value);
+        }
+      } catch (err) {
+        // Fallback to morph if DOM update fails for any reason
+        morph(price, newPrice);
+      }
     });
 
     // 3. Update inventory status

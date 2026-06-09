@@ -39,6 +39,7 @@ export class DialogComponent extends Component {
   }, 50);
 
   #previousScrollY = 0;
+  #previousBodyPaddingRight = '';
 
   /**
    * Shows the dialog.
@@ -50,12 +51,21 @@ export class DialogComponent extends Component {
 
     const scrollY = window.scrollY;
     this.#previousScrollY = scrollY;
+    this.#previousBodyPaddingRight = document.body.style.paddingRight || '';
+
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
     // Prevent layout thrashing by separating DOM reads from DOM writes
     requestAnimationFrame(() => {
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+
       document.body.style.width = '100%';
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollY}px`;
+      document.body.classList.add('modal-open');
+      document.documentElement.setAttribute('scroll-lock', '');
 
       dialog.showModal();
       this.dispatchEvent(new DialogOpenEvent());
@@ -94,6 +104,9 @@ export class DialogComponent extends Component {
     document.body.style.width = '';
     document.body.style.position = '';
     document.body.style.top = '';
+    document.body.style.paddingRight = this.#previousBodyPaddingRight;
+    document.body.classList.remove('modal-open');
+    document.documentElement.removeAttribute('scroll-lock');
     window.scrollTo({ top: this.#previousScrollY, behavior: 'instant' });
 
     dialog.close();

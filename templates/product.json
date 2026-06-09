@@ -1023,6 +1023,28 @@
             "content_alignment": "left"
           }
         },
+        "feature_dwLNjq": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/internal_and_external_organization.webp",
+            "title": "Feature Title",
+            "description": "Add feature description here.",
+            "button_link": "",
+            "button_text": "Learn More",
+            "card_bg": "#ffffff",
+            "card_hover_bg": "#f5f5f5",
+            "title_color": "#111111",
+            "description_color": "#666666",
+            "button_bg": "#111111",
+            "button_text_color": "#ffffff",
+            "image_width": 120,
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "desc_size_desktop": 16,
+            "desc_size_mobile": 14,
+            "content_alignment": "left"
+          }
+        },
         "feature_ngKqib": {
           "type": "feature",
           "settings": {
@@ -1088,14 +1110,38 @@
             "desc_size_mobile": 14,
             "content_alignment": "left"
           }
+        },
+        "feature_JmAC3Q": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/bags-travel-backpack45L-black-MoS-PD_Final_Selects_High_Res_26_1.webp",
+            "title": "Feature Title",
+            "description": "Add feature description here.",
+            "button_link": "",
+            "button_text": "Learn More",
+            "card_bg": "#ffffff",
+            "card_hover_bg": "#f5f5f5",
+            "title_color": "#111111",
+            "description_color": "#666666",
+            "button_bg": "#111111",
+            "button_text_color": "#ffffff",
+            "image_width": 120,
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "desc_size_desktop": 16,
+            "desc_size_mobile": 14,
+            "content_alignment": "left"
+          }
         }
       },
       "block_order": [
         "feature_RqjL8x",
         "feature_BRqRqj",
+        "feature_dwLNjq",
         "feature_ngKqib",
         "feature_qb6c9w",
-        "feature_9Ga7nW"
+        "feature_9Ga7nW",
+        "feature_JmAC3Q"
       ],
       "name": "Feature Showcase",
       "settings": {
@@ -1112,6 +1158,101 @@
         "enable_slider": true,
         "show_arrows": true,
         "show_dots": true
+      }
+    },
+    "feature_gift_pdp_38caQd": {
+      "type": "feature-gift-pdp",
+      "blocks": {
+        "feature_item_VCJ7mR": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/Any_view_of_things_that_is_not_strange_is_false.gif",
+            "icon_emoji": "",
+            "heading": "The best cotton. Period.",
+            "description": "Only extra-long staple cotton. Suvin, Supima, and other premium varieties. Picked for softness and built to last."
+          }
+        },
+        "feature_item_tKRzRK": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/ciencia_astronomia_teoria_universo.jpg",
+            "icon_emoji": "",
+            "heading": "Custom-made fabrics.",
+            "description": "Every fabric is knit, dyed, and finished exclusively for us. Nothing off the shelf, no shortcuts."
+          }
+        },
+        "feature_item_7qDXKY": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/download.gif",
+            "icon_emoji": "",
+            "heading": "Engineered for perfect fit.",
+            "description": "Fits are developed with digital simulations for stretch, tension, and drape. Patterns refined per size."
+          }
+        },
+        "feature_item_hLAyAr": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/download_3.jpg",
+            "icon_emoji": "",
+            "heading": "Tested to last.",
+            "description": "Pilling, wash cycles, spirality, long-term wear. Every product is put through it before it ships."
+          }
+        },
+        "feature_item_EKa846": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/download.gif",
+            "icon_emoji": "",
+            "heading": "No logos. Ever.",
+            "description": "You won't find our name on the outside. The fabric, the fit, how it wears over time — that's the branding."
+          }
+        },
+        "feature_item_WmrCnU": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/Any_view_of_things_that_is_not_strange_is_false.gif",
+            "icon_emoji": "",
+            "heading": "Safe. Certified.",
+            "description": "Safe for all skin types, including children. Tested in certified labs and compliant with ASTM and OEKO-TEX® standards."
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_VCJ7mR",
+        "feature_item_tKRzRK",
+        "feature_item_7qDXKY",
+        "feature_item_hLAyAr",
+        "feature_item_EKa846",
+        "feature_item_WmrCnU"
+      ],
+      "name": "Features Grid",
+      "settings": {
+        "section_heading": "Why Choose Us",
+        "section_subheading": "",
+        "section_heading_size": 40,
+        "header_align": "left",
+        "header_gap": 48,
+        "columns": 3,
+        "mobile_columns": 1,
+        "grid_gap": 40,
+        "mobile_gap": 24,
+        "container_width": 1200,
+        "card_style": "flat",
+        "card_layout": "column",
+        "card_inner_gap": 20,
+        "card_bg_color": "#1a2c4e",
+        "card_radius": 12,
+        "card_padding": 24,
+        "image_size": 80,
+        "image_radius": 50,
+        "heading_font_size": 22,
+        "desc_font_size": 15,
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a2e",
+        "desc_color": "#3a3a4a",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "custom_bottom_bar_ABkAHw": {
@@ -1190,6 +1331,7 @@
     "product_recommendations_UeDczP",
     "collection_list_RGddHj",
     "pdp_2_sections_H4af47",
+    "feature_gift_pdp_38caQd",
     "custom_bottom_bar_ABkAHw"
   ]
 }
