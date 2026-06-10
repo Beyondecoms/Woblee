@@ -522,6 +522,238 @@
         "padding_bottom_mobile": 40
       }
     },
+    "collection_banner_kBPTxj": {
+      "type": "collection-banner",
+      "blocks": {
+        "slide_EHTaEb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Lookbook1_Desktop.webp",
+            "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
+            "heading": "Collection Spotlight",
+            "subtext": "Summer separates, easy layers, and an expanded shirting range, defined by elevated fabric blends and novelty artwork, alongside our continued partnership with Clarks Originals.",
+            "button_1_label": "Shop Now",
+            "button_1_link": "",
+            "button_2_label": "A Closer Look",
+            "button_2_link": "",
+            "override_colors": false,
+            "heading_color": "#ffffff",
+            "desc_color": "#ffffff",
+            "btn1_bg": "#ffffff",
+            "btn1_text": "#000000",
+            "btn2_bg": "#ffffff",
+            "btn2_text": "#000000",
+            "override_overlay": false,
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "override_alignment": false,
+            "text_alignment": "left",
+            "button_alignment": "flex-start"
+          }
+        },
+        "slide_99W6bA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Lookbook1_Desktop.webp",
+            "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
+            "heading": "Kith Summer 2026",
+            "subtext": "Summer separates, easy layers, and an expanded shirting range, defined by elevated fabric blends and novelty artwork, alongside our continued partnership with Clarks Originals.",
+            "button_1_label": "Shop Now",
+            "button_1_link": "",
+            "button_2_label": "A Closer Look",
+            "button_2_link": "",
+            "override_colors": false,
+            "heading_color": "#ffffff",
+            "desc_color": "#ffffff",
+            "btn1_bg": "#ffffff",
+            "btn1_text": "#000000",
+            "btn2_bg": "#ffffff",
+            "btn2_text": "#000000",
+            "override_overlay": false,
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "override_alignment": false,
+            "text_alignment": "left",
+            "button_alignment": "flex-start"
+          }
+        }
+      },
+      "block_order": [
+        "slide_EHTaEb",
+        "slide_99W6bA"
+      ],
+      "name": "Collection Slideshow",
+      "settings": {
+        "section_bg": "#ffffff",
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "content_max_width": 2000,
+        "desktop_image_height": 840,
+        "mobile_image_height": 500,
+        "desktop_overlay_color": "#000000",
+        "desktop_overlay_opacity": 0,
+        "mobile_overlay_color": "#000000",
+        "mobile_overlay_opacity": 0,
+        "image_position_desktop": "bottom",
+        "image_position_mobile": "right",
+        "image_border_radius": 0,
+        "slide_border_radius": 0,
+        "content_position": "bottom-left",
+        "content_width_desktop": 660,
+        "content_width_mobile": 350,
+        "heading_font": "sans_serif_n4",
+        "body_font": "sans_serif_n4",
+        "heading_size": 42,
+        "heading_weight": "700",
+        "heading_line_height": 1.1,
+        "heading_letter_spacing": 0,
+        "heading_color": "#ffffff",
+        "heading_hover_color": "#ffffff",
+        "heading_transform": "none",
+        "heading_size_mobile": 28,
+        "heading_line_height_mobile": 1.1,
+        "heading_letter_spacing_mobile": 0,
+        "desc_size": 15,
+        "desc_weight": "400",
+        "desc_line_height": 1.5,
+        "desc_letter_spacing": 0,
+        "desc_color": "#ffffff",
+        "desc_size_mobile": 12,
+        "desc_line_height_mobile": 1.5,
+        "btn1_bg": "#ffffff",
+        "btn1_text": "#0c4168",
+        "btn1_border_color": "#ffffff",
+        "btn1_border_width": 0,
+        "btn1_border_radius": 0,
+        "btn1_padding_x": 20,
+        "btn1_padding_y": 12,
+        "btn1_size": 11,
+        "btn1_weight": "600",
+        "btn1_letter_spacing": 1,
+        "btn1_hover_bg": "#0c4168",
+        "btn1_hover_text": "#ffffff",
+        "btn1_hover_border": "#0c4168",
+        "btn2_bg": "#ffffff",
+        "btn2_text": "#0c4168",
+        "btn2_border_color": "#ffffff",
+        "btn2_border_width": 0,
+        "btn2_border_radius": 0,
+        "btn2_padding_x": 20,
+        "btn2_padding_y": 12,
+        "btn2_size": 11,
+        "btn2_weight": "600",
+        "btn2_letter_spacing": 1,
+        "btn2_hover_bg": "#0c4168",
+        "btn2_hover_text": "#ffffff",
+        "btn2_hover_border": "#0c4168",
+        "arrow_color": "#ffffff",
+        "arrow_hover_color": "#ffffff",
+        "arrow_bg": "rgba(0,0,0,0)",
+        "arrow_hover_bg": "rgba(0,0,0,0)",
+        "arrow_size": 80,
+        "arrow_size_mobile": 54,
+        "arrow_border_radius": 50,
+        "dot_color": "#ffffff61",
+        "dot_active_color": "#fffffff2",
+        "dot_width": 28,
+        "dot_height": 3,
+        "dot_active_width": 36,
+        "dot_border_radius": 2,
+        "dot_gap": 6,
+        "autoplay": true,
+        "autoplay_speed": 6,
+        "pause_on_hover": true,
+        "infinite_loop": true,
+        "transition_duration": 0.7
+      }
+    },
+    "collection_splider_j6nUDX": {
+      "type": "collection-splider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "",
+        "collection": "home-page",
+        "products_to_show": 24,
+        "show_view_all": true,
+        "button_label": "SHOP ALL",
+        "section_padding_top": 60,
+        "section_padding_bottom": 40
+      }
+    },
+    "tab_section_PXmk7b": {
+      "type": "tab-section",
+      "blocks": {
+        "timeline_item_wxTw3A": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2017",
+            "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
+            "title": "Designing for PowerHouses",
+            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p>Mercury Development and ChilliFresh have since worked together on three more projects – Pin.FM, a new, Amazon-cloud powered, social media app for the iPhone that allows users to view their content (photos, Tweets, check-ins, and so on) from social services like Facebook, Twitter, and Foursquare in one aggregated chronological timeline and post voice comments to it; jaja, the world's first pressure-sensitive stylus; and the AppTag Laser Blaster, which brings first-person shooter console gameplay to smartphones.<br/></p>"
+          }
+        },
+        "timeline_item_Ufgcn7": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2017",
+            "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
+            "title": "Designing for PowerHouses",
+            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p></p>"
+          }
+        },
+        "timeline_item_JVj43V": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2017",
+            "image": "shopify://shop_images/q5w00c72s70127860d5dwl150v22ij58.webp",
+            "title": "Designing for PowerHouses",
+            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
+          }
+        },
+        "timeline_item_BCqJBC": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2017",
+            "image": "shopify://shop_images/drs2.webp",
+            "title": "Designing for PowerHouses",
+            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_item_wxTw3A",
+        "timeline_item_Ufgcn7",
+        "timeline_item_JVj43V",
+        "timeline_item_BCqJBC"
+      ],
+      "name": "Timeline tabs",
+      "settings": {
+        "heading": "About us",
+        "section_bg": "#ffffff",
+        "section_padding_top": 20,
+        "section_padding_bottom": 60,
+        "heading_color": "#0c4168",
+        "heading_size": 42,
+        "tab_color": "#777777",
+        "tab_active_color": "#0c4168",
+        "tab_underline_color": "#000000",
+        "tab_font_size": 15,
+        "content_heading_color": "#0c4168",
+        "content_heading_size": 28,
+        "content_text_color": "#666666",
+        "content_text_size": 15,
+        "content_width": 800,
+        "image_height_desktop": 440,
+        "image_height_mobile": 400,
+        "image_radius": 0,
+        "image_fit": "cover",
+        "layout_gap": 40
+      }
+    },
     "section_2_BrdHkP": {
       "type": "section-2",
       "blocks": {
@@ -756,168 +988,6 @@
         "padding-block-end": 0
       }
     },
-    "collection_banner_kBPTxj": {
-      "type": "collection-banner",
-      "blocks": {
-        "slide_EHTaEb": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Lookbook1_Desktop.webp",
-            "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
-            "heading": "Kith Summer 2026",
-            "subtext": "Summer separates, easy layers, and an expanded shirting range, defined by elevated fabric blends and novelty artwork, alongside our continued partnership with Clarks Originals.",
-            "button_1_label": "Shop Now",
-            "button_1_link": "",
-            "button_2_label": "A Closer Look",
-            "button_2_link": "",
-            "override_colors": false,
-            "heading_color": "#ffffff",
-            "desc_color": "#ffffff",
-            "btn1_bg": "#ffffff",
-            "btn1_text": "#000000",
-            "btn2_bg": "#ffffff",
-            "btn2_text": "#000000",
-            "override_overlay": false,
-            "overlay_color": "#000000",
-            "overlay_opacity": 40,
-            "override_alignment": false,
-            "text_alignment": "left",
-            "button_alignment": "flex-start"
-          }
-        },
-        "slide_99W6bA": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Lookbook1_Desktop.webp",
-            "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
-            "heading": "Kith Summer 2026",
-            "subtext": "Summer separates, easy layers, and an expanded shirting range, defined by elevated fabric blends and novelty artwork, alongside our continued partnership with Clarks Originals.",
-            "button_1_label": "Shop Now",
-            "button_1_link": "",
-            "button_2_label": "A Closer Look",
-            "button_2_link": "",
-            "override_colors": false,
-            "heading_color": "#ffffff",
-            "desc_color": "#ffffff",
-            "btn1_bg": "#ffffff",
-            "btn1_text": "#000000",
-            "btn2_bg": "#ffffff",
-            "btn2_text": "#000000",
-            "override_overlay": false,
-            "overlay_color": "#000000",
-            "overlay_opacity": 40,
-            "override_alignment": false,
-            "text_alignment": "left",
-            "button_alignment": "flex-start"
-          }
-        }
-      },
-      "block_order": [
-        "slide_EHTaEb",
-        "slide_99W6bA"
-      ],
-      "name": "Collection Slideshow",
-      "settings": {
-        "section_bg": "#ffffff",
-        "padding_top_desktop": 0,
-        "padding_bottom_desktop": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0,
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "content_max_width": 2000,
-        "desktop_image_height": 840,
-        "mobile_image_height": 500,
-        "desktop_overlay_color": "#000000",
-        "desktop_overlay_opacity": 0,
-        "mobile_overlay_color": "#000000",
-        "mobile_overlay_opacity": 0,
-        "image_position_desktop": "bottom",
-        "image_position_mobile": "right",
-        "image_border_radius": 0,
-        "slide_border_radius": 0,
-        "content_position": "bottom-left",
-        "content_width_desktop": 660,
-        "content_width_mobile": 350,
-        "heading_font": "sans_serif_n4",
-        "body_font": "sans_serif_n4",
-        "heading_size": 42,
-        "heading_weight": "700",
-        "heading_line_height": 1.1,
-        "heading_letter_spacing": 0,
-        "heading_color": "#ffffff",
-        "heading_hover_color": "#ffffff",
-        "heading_transform": "none",
-        "heading_size_mobile": 28,
-        "heading_line_height_mobile": 1.1,
-        "heading_letter_spacing_mobile": 0,
-        "desc_size": 15,
-        "desc_weight": "400",
-        "desc_line_height": 1.5,
-        "desc_letter_spacing": 0,
-        "desc_color": "#ffffff",
-        "desc_size_mobile": 12,
-        "desc_line_height_mobile": 1.5,
-        "btn1_bg": "#ffffff",
-        "btn1_text": "#0c4168",
-        "btn1_border_color": "#ffffff",
-        "btn1_border_width": 0,
-        "btn1_border_radius": 0,
-        "btn1_padding_x": 20,
-        "btn1_padding_y": 12,
-        "btn1_size": 11,
-        "btn1_weight": "600",
-        "btn1_letter_spacing": 1,
-        "btn1_hover_bg": "#0c4168",
-        "btn1_hover_text": "#ffffff",
-        "btn1_hover_border": "#0c4168",
-        "btn2_bg": "#ffffff",
-        "btn2_text": "#0c4168",
-        "btn2_border_color": "#ffffff",
-        "btn2_border_width": 0,
-        "btn2_border_radius": 0,
-        "btn2_padding_x": 20,
-        "btn2_padding_y": 12,
-        "btn2_size": 11,
-        "btn2_weight": "600",
-        "btn2_letter_spacing": 1,
-        "btn2_hover_bg": "#0c4168",
-        "btn2_hover_text": "#ffffff",
-        "btn2_hover_border": "#0c4168",
-        "arrow_color": "#ffffff",
-        "arrow_hover_color": "#ffffff",
-        "arrow_bg": "rgba(0,0,0,0)",
-        "arrow_hover_bg": "rgba(0,0,0,0)",
-        "arrow_size": 80,
-        "arrow_size_mobile": 54,
-        "arrow_border_radius": 50,
-        "dot_color": "#ffffff61",
-        "dot_active_color": "#fffffff2",
-        "dot_width": 28,
-        "dot_height": 3,
-        "dot_active_width": 36,
-        "dot_border_radius": 2,
-        "dot_gap": 6,
-        "autoplay": true,
-        "autoplay_speed": 6,
-        "pause_on_hover": true,
-        "infinite_loop": true,
-        "transition_duration": 0.7
-      }
-    },
-    "collection_splider_j6nUDX": {
-      "type": "collection-splider",
-      "name": "Collection Slider",
-      "settings": {
-        "heading": "",
-        "collection": "home-page",
-        "products_to_show": 24,
-        "show_view_all": true,
-        "button_label": "SHOP ALL",
-        "section_padding_top": 60,
-        "section_padding_bottom": 40
-      }
-    },
     "product_list_aak7xm": {
       "type": "product-list",
       "blocks": {
@@ -1113,76 +1183,6 @@
         "padding-block-end": 48
       }
     },
-    "tab_section_PXmk7b": {
-      "type": "tab-section",
-      "blocks": {
-        "timeline_item_wxTw3A": {
-          "type": "timeline_item",
-          "settings": {
-            "year": "2017",
-            "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
-            "title": "Designing for PowerHouses",
-            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p>Mercury Development and ChilliFresh have since worked together on three more projects – Pin.FM, a new, Amazon-cloud powered, social media app for the iPhone that allows users to view their content (photos, Tweets, check-ins, and so on) from social services like Facebook, Twitter, and Foursquare in one aggregated chronological timeline and post voice comments to it; jaja, the world's first pressure-sensitive stylus; and the AppTag Laser Blaster, which brings first-person shooter console gameplay to smartphones.<br/>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p>"
-          }
-        },
-        "timeline_item_Ufgcn7": {
-          "type": "timeline_item",
-          "settings": {
-            "year": "2017",
-            "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
-            "title": "Designing for PowerHouses",
-            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p>Mercury Development and ChilliFresh have since worked together on three more projects – Pin.FM, a new, Amazon-cloud powered, social media app for the iPhone that allows users to view their content (photos, Tweets, check-ins, and so on) from social services like Facebook, Twitter, and Foursquare in one aggregated chronological timeline and post voice comments to it; jaja, the world's first pressure-sensitive stylus; and the AppTag Laser Blaster, which brings first-person shooter console gameplay to smartphones.</p>"
-          }
-        },
-        "timeline_item_JVj43V": {
-          "type": "timeline_item",
-          "settings": {
-            "year": "2017",
-            "image": "shopify://shop_images/q5w00c72s70127860d5dwl150v22ij58.webp",
-            "title": "Designing for PowerHouses",
-            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
-          }
-        },
-        "timeline_item_BCqJBC": {
-          "type": "timeline_item",
-          "settings": {
-            "year": "2017",
-            "image": "shopify://shop_images/drs2.webp",
-            "title": "Designing for PowerHouses",
-            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "timeline_item_wxTw3A",
-        "timeline_item_Ufgcn7",
-        "timeline_item_JVj43V",
-        "timeline_item_BCqJBC"
-      ],
-      "name": "Timeline tabs",
-      "settings": {
-        "heading": "About us",
-        "section_bg": "#ffffff",
-        "section_padding_top": 20,
-        "section_padding_bottom": 60,
-        "heading_color": "#0c4168",
-        "heading_size": 42,
-        "tab_color": "#777777",
-        "tab_active_color": "#0c4168",
-        "tab_underline_color": "#000000",
-        "tab_font_size": 15,
-        "content_heading_color": "#0c4168",
-        "content_heading_size": 28,
-        "content_text_color": "#666666",
-        "content_text_size": 15,
-        "content_width": 800,
-        "image_height_desktop": 440,
-        "image_height_mobile": 400,
-        "image_radius": 0,
-        "image_fit": "cover",
-        "layout_gap": 40
-      }
-    },
     "custom_editorial_seaction_mHFt7p": {
       "type": "custom-editorial-seaction",
       "blocks": {
@@ -1335,13 +1335,13 @@
     "custom_category_icons_fa4BTq",
     "custom_category_grid_dyNMWU",
     "collection_carousel_pro_pAhcyP",
+    "collection_banner_kBPTxj",
+    "collection_splider_j6nUDX",
+    "tab_section_PXmk7b",
     "section_2_BrdHkP",
     "rotating_text_X4Hpjk",
     "17800675107a00a753",
-    "collection_banner_kBPTxj",
-    "collection_splider_j6nUDX",
     "product_list_aak7xm",
-    "tab_section_PXmk7b",
     "custom_editorial_seaction_mHFt7p",
     "custom_bottom_bar_966ULH"
   ]
