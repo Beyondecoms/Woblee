@@ -3015,7 +3015,7 @@ input[type='radio'], .swatch{
   overflow: hidden;
   background-color: #0c4168;
 }
-.variant-picker .variant-option--buttons label:has(.swatch){
+.template-product .variant-picker .variant-option--buttons label:has(.swatch){
   margin-top: 5px;
 }
 .details-content ul{
