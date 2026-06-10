@@ -41,10 +41,41 @@
             "btn3_custom_bg": "",
             "btn3_custom_text": ""
           }
+        },
+        "slide_jWfnFU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_nn8na4nn8na4nn8n.png",
+            "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/206_f40e1f60-9d03-4fcd-8ebe-4ad14798c9c5.webp",
+            "mobile_image_focal_point": "center center",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "hide_content": false,
+            "eyebrow": "",
+            "heading": "New for Summer",
+            "subtext": "Cobblestone streets, sunbaked rooftops, and Lisbon as our guide.",
+            "btn1_label": "Men",
+            "btn1_link": "shopify://collections/men",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "woMEN",
+            "btn2_link": "shopify://collections/men-copy",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "kids",
+            "btn3_link": "shopify://collections/women-copy",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
         }
       },
       "block_order": [
-        "slide_B6rmj8"
+        "slide_B6rmj8",
+        "slide_jWfnFU"
       ],
       "name": "Hero Slideshow Custom",
       "settings": {
@@ -824,13 +855,13 @@
         "caption_size": 13,
         "explore_size": 10,
         "background_color": "#ffffff",
-        "stats_color": "#ffffff",
+        "stats_color": "#2b2b2b",
         "explore_bg": "#ffffff",
         "explore_text_color": "#0c4168",
         "explore_hover_bg": "#0c4168",
         "explore_hover_text": "#ffffff",
-        "body_color": "#ffffff",
-        "cta_color": "#ffffff",
+        "body_color": "#3d3d3d",
+        "cta_color": "#1a1a1a",
         "caption_color": "#ffffff",
         "explore_color": "#ffffff"
       }
