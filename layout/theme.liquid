@@ -46,7 +46,13 @@
   justify-content: center;
 }
 }
+  .template-product .spacing-style.text-block h1{
+  font-weight: 700;
+}
 
+.template-product summary{
+ font-size: 18px !important;
+}
       :root {
         --wb-color-blue: #0C4168;
         --wb-color-lime: #21F010;
@@ -156,8 +162,9 @@ span.wrap-text{
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css">
   </head>
 
-  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
-    {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
+<body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }} page-{{ page_title | handle }}     template-{{ template.name | handle }}
+">
+      {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
 
     <div id="header-group">
       {% sections 'header-group' %}

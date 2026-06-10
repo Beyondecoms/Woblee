@@ -220,6 +220,8 @@ p:empty {
   display: none;
 }
 
+
+
 :first-child:is(p, h1, h2, h3, h4, h5, h6),
 :first-child:empty + :where(p, h1, h2, h3, h4, h5, h6) {
   margin-block-start: 0;
@@ -4242,7 +4244,6 @@ product-recommendations:has([data-has-recommendations='false']) {
   font-size: 20px;
   font-weight: 700;
   line-height: 1.2;
-  color: #111;
   letter-spacing: -0.02em;
 }
 
