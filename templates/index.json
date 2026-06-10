@@ -983,8 +983,8 @@
         "rotating_text_weight_mobile": 700,
         "sub_text_weight_mobile": 400,
         "interval": 2,
-        "padding_top": 12,
-        "padding_bottom": 12
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "17800675107a00a753": {
@@ -1301,7 +1301,7 @@
         "subheading": "Show your strongest product advantages in a premium, scrollable strip that feels interactive and easy to explore.",
         "scroll_speed": 30,
         "section_bg": "#ffffff",
-        "padding_top_desktop": 0,
+        "padding_top_desktop": 60,
         "padding_bottom_desktop": 10,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 24,
