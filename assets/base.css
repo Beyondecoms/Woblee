@@ -3004,6 +3004,9 @@ label:has(input[type='checkbox']:disabled) {
   display: block;
   border-radius: 0;
 }
+input[type='radio'], .swatch{
+ border-radius: 0;
+}
 
 /* Add to cart button */
 .button[id^='BuyButtons-ProductSubmitButton-'] {
