@@ -336,7 +336,7 @@
                   "type": "_accordion-row",
                   "name": "t:names.accordion_row",
                   "settings": {
-                    "heading": "WASH & CARE",
+                    "heading": "DESIGN DETAILS",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -345,7 +345,7 @@
                     "text_V4NpQM": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>The different process steps and the suppliers involved in turning yarn into fabric.</p><ul><li>Weaving Mill -Orta AnadoluKayseri<br/>Türkiye<br/>Employees: 1000-2000<br/>Visited By Nudie Jeans</li><li>Fabric Dying -Orta AnadoluKayseri<br/>Türkiye<br/>Employees: 1000-2000<br/>Visited By Nudie Jeans</li><li>Fabric Supplier -Orta AnadoluKayseri<br/>Türkiye<br/>Employees: 1000-2000<br/>Visited</li></ul>",
+                        "text": "<p>Crafted with a combination of <strong>RAISED PUFF PRINT</strong> and <strong>KNOTTED CHAIN-STITCH EMBROIDERY</strong>, this tee showcases intricate detailing that adds depth, texture, and character to the design. Every element has been carefully considered to create a standout piece that feels unique and elevated.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
