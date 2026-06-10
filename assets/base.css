@@ -3015,7 +3015,12 @@ input[type='radio'], .swatch{
   overflow: hidden;
   background-color: #0c4168;
 }
+.details-content ul{
+color: #0c4168;
+}
+.details-content ol{
 
+}
 /* Cart items component */
 .cart-items-component {
   width: 100%;
