@@ -3016,10 +3016,10 @@ input[type='radio'], .swatch{
   background-color: #0c4168;
 }
 .details-content ul{
-color: #0c4168;
+color: #444;
 }
 .details-content ol{
-color: #0c4168;
+color: #444;
 }
 /* Cart items component */
 .cart-items-component {
