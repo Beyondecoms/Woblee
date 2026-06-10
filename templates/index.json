@@ -294,7 +294,7 @@
             "image": "shopify://shop_images/Boxy.png",
             "image_hover": "shopify://shop_images/Boxy-Blue.png",
             "label": "Boxy",
-            "link": "",
+            "link": "shopify://collections/regular-tees-copy",
             "circle_bg": "#ffffff"
           }
         },
@@ -304,7 +304,7 @@
             "image": "shopify://shop_images/Oversized.png",
             "image_hover": "shopify://shop_images/Oversized-Blue.png",
             "label": "Oversized",
-            "link": "",
+            "link": "shopify://collections/home-page",
             "circle_bg": "#ffffff"
           }
         },
@@ -314,7 +314,7 @@
             "image": "shopify://shop_images/Relaxed.png",
             "image_hover": "shopify://shop_images/Relaxed-Blue.png",
             "label": "Relaxed",
-            "link": "",
+            "link": "shopify://collections/relaxed-tees",
             "circle_bg": "#ffffff"
           }
         }
