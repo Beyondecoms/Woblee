@@ -257,7 +257,7 @@
         "link_font": "Aptos",
         "link_font_weight": "800",
         "link_size_desktop": 12,
-        "link_size_mobile": 12,
+        "link_size_mobile": 10,
         "link_letter_spacing": "0.08",
         "underline_thickness": 2,
         "underline_offset": 6,
