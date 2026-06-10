@@ -97,7 +97,8 @@ a.contents.user-select-text p{
       margin-bottom: 0;
     }
     .group-block-content.layout-panel-flex.layout-panel-flex--column.mobile-column,
-    product-price.text-block.text-left.h6.spacing-style{
+    product-price.text-block.text-left.h6.spacing-style,
+    :is(main>.shopify-section:first-child .section:not(.disable-section-top-offset).spacing-style,main>.shopify-section:first-child .section:not(.disable-section-top-offset) .spacing-style) :is(.spacing-style,.inherit-spacing){
       gap: 0 !important;
       margin-top: 0 !important;
       padding-top: 0 !important;
