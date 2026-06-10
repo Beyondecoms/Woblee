@@ -25,7 +25,15 @@
       </a>
      
 
-{% if product.description != blank %}
+
+    </div>
+    {% content_for 'blocks' %}
+  {% endcapture %}
+
+  {% render 'group', children: children, settings: block_settings, shopify_attributes: block.shopify_attributes %}
+
+
+  {% if product.description != blank %}
   <details>
     <summary>PRODUCT OVERVIEW</summary>
 <div>Crafted with a combination of RAISED PUFF PRINT and KNOTTED CHAIN-STITCH EMBROIDERY, this tee showcases intricate detailing that adds depth, texture, and character to the design. Every element has been carefully considered to create a standout piece that feels unique and elevated.</div>
@@ -52,11 +60,6 @@ Do not dry clean</div>
 {% endif %}
 
 
-    </div>
-    {% content_for 'blocks' %}
-  {% endcapture %}
-
-  {% render 'group', children: children, settings: block_settings, shopify_attributes: block.shopify_attributes %}
 </div>
 
 {% stylesheet %}
