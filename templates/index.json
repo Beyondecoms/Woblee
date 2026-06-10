@@ -284,7 +284,7 @@
             "image": "shopify://shop_images/Regular.png",
             "image_hover": "shopify://shop_images/Regular-Blue.png",
             "label": "Regular",
-            "link": "",
+            "link": "shopify://collections/regular-tees",
             "circle_bg": "#ffffff"
           }
         },
