@@ -17,27 +17,175 @@
           "name": "Title",
           "settings": {
             "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "h2",
-            "width": "100%"
-          }
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "page-content": {
           "type": "page-content",
-          "settings": {}
+          "settings": {},
+          "blocks": {}
         }
       },
       "block_order": [
         "heading",
         "page-content"
       ],
+      "disabled": true,
       "settings": {
+        "content_direction": "column",
         "gap": 32,
+        "color_scheme": "",
         "padding-block-start": 40,
         "padding-block-end": 80
+      }
+    },
+    "custom_banner_bdgDNU": {
+      "type": "custom-banner",
+      "name": "Custom Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/WWLookbook-DesktopTopBanner-1-Women-NA-Lookbook-5THJUNE_1.webp",
+        "mobile_image": "shopify://shop_images/WWLookbook-MobileTopBanner-1-Women-NA-Lookbook-5THJUNE.webp",
+        "section_width": "full",
+        "banner_height": "fit",
+        "banner_link": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_banner_Aca8En": {
+      "type": "custom-banner",
+      "name": "Custom Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/WWLookbook-DesktopBannerSunAndSand-1-Women-NA-Lookbook-5thJune_1.webp",
+        "mobile_image": "shopify://shop_images/WWLookbook-MobileBannerSunAndSand-1-Women-NA-Lookbook-5thJune.webp",
+        "section_width": "full",
+        "banner_height": "fit",
+        "banner_link": "",
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "custom_banner_eMq78y": {
+      "type": "custom-banner",
+      "name": "Custom Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/WWLookbook-DesktopBannerFreeSpirited-1-Women-NA-Lookbook-5thJune_1.webp",
+        "mobile_image": "shopify://shop_images/WWLookbook-MobileBannerFreeSpirited-1-Women-NA-Lookbook-5thJune.webp",
+        "section_width": "full",
+        "banner_height": "fit",
+        "banner_link": "",
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "custom_banner_q7Arew": {
+      "type": "custom-banner",
+      "name": "Custom Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/WWLookbook-DesktopBannerSunshineReady-1-Women-NA-Lookbook-5thJune_1.webp",
+        "mobile_image": "shopify://shop_images/WWLookbook-MobileBannerSunshineReady-1-Women-NA-Lookbook-5thJune.webp",
+        "section_width": "full",
+        "banner_height": "fit",
+        "banner_link": "",
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "custom_banner_ybNwy7": {
+      "type": "custom-banner",
+      "name": "Custom Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/WWLookbook-Strip-1-Women-NA-LookbookNewArrivals-5thJune.webp",
+        "section_width": "full",
+        "banner_height": "fit",
+        "banner_link": "",
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "look_book_categories_ARwxiR": {
+      "type": "look-book-categories",
+      "blocks": {
+        "category_LrEGNy": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/WWLookbook-CategoryTiles-2-Women-PoloShirts-Lookbook-5thJune.webp",
+            "title": "SHOP DRESSES",
+            "link": ""
+          }
+        },
+        "category_gHqVhJ": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/WWLookbook-CategoryTiles-1-Women-Dresses-Lookbook-5thJune.webp",
+            "title": "SHOP DRESSES",
+            "link": ""
+          }
+        },
+        "category_t6ehMm": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/WWLookbook-CategoryTiles-3-Women-Shirts-Lookbook-5thJune.webp",
+            "title": "SHOP DRESSES",
+            "link": ""
+          }
+        },
+        "category_FkTjxk": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/WWLookbook-CategoryTiles-4-Women-Bottomwear-Lookbook-5thJune.webp",
+            "title": "SHOP DRESSES",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_LrEGNy",
+        "category_gHqVhJ",
+        "category_t6ehMm",
+        "category_FkTjxk"
+      ],
+      "name": "Shop By Category Slider",
+      "settings": {
+        "heading": "Shop By Category",
+        "desktop_columns": 3,
+        "mobile_columns": 2,
+        "show_arrows": true,
+        "show_pagination": true,
+        "autoplay": true,
+        "section_width": "full",
+        "card_bg": "#eaf3f8",
+        "border_color": "#000000",
+        "padding_top": 50,
+        "padding_bottom": 50
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "custom_banner_bdgDNU",
+    "custom_banner_Aca8En",
+    "custom_banner_eMq78y",
+    "custom_banner_q7Arew",
+    "custom_banner_ybNwy7",
+    "look_book_categories_ARwxiR"
   ]
 }
