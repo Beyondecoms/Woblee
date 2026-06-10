@@ -754,6 +754,87 @@
         "layout_gap": 40
       }
     },
+    "custom_editorial_seaction_mHFt7p": {
+      "type": "custom-editorial-seaction",
+      "blocks": {
+        "grid_item_TpiJNJ": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/materialsblock_1024x1024_6e31caab-b83c-438a-b38b-47b5ad9e718b.webp",
+            "caption": "Explore the incredible materials we use",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_x33UQJ": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/factory-our-parternerblock_1024x1024_8237e11c-afc5-44fe-991b-5a7e9e1b4735.webp",
+            "caption": "Read about our amazing factory partners",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_BYHQCe": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/promisblock_1024x1024_5d0eabf8-08ae-45bc-9137-ba4035196c6a.webp",
+            "caption": "Our promise of great quality",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_bGrG7w": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/sustainabilityblock_1024x1024_fc8ae7de-d48e-4c34-b64b-243a76d0c263.webp",
+            "caption": "Discover our pursuit of sustainability",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "grid_item_TpiJNJ",
+        "grid_item_x33UQJ",
+        "grid_item_BYHQCe",
+        "grid_item_bGrG7w"
+      ],
+      "name": "Custom Editorial Split",
+      "settings": {
+        "max_width": 1400,
+        "left_width": "1.1fr",
+        "gap": 6,
+        "h_padding": 20,
+        "padding_top": 0,
+        "padding_bottom": 60,
+        "left_image": "shopify://shop_images/updated-extended-signup-banner-home_d.webp",
+        "left_content_padding": 32,
+        "logo": "shopify://shop_images/Woblee_Logo_Wide.png",
+        "logo_width": 80,
+        "stats_text": "10+ years of premium fashion.\nOver 2 lakh happy customers.\n1500+ unique styles.",
+        "body_text": "And a relentless vision of setting a new benchmark for premium Indian fashion.",
+        "cta_label": "New Arrivals",
+        "cta_url": "",
+        "grid_overlay_padding": 16,
+        "body_font": "Helvetica Neue",
+        "stats_size": 13,
+        "body_size": 13,
+        "cta_size": 11,
+        "caption_size": 13,
+        "explore_size": 10,
+        "background_color": "#ffffff",
+        "stats_color": "#2b2b2b",
+        "explore_bg": "#ffffff",
+        "explore_text_color": "#0c4168",
+        "explore_hover_bg": "#0c4168",
+        "explore_hover_text": "#ffffff",
+        "body_color": "#3d3d3d",
+        "cta_color": "#1a1a1a",
+        "caption_color": "#ffffff",
+        "explore_color": "#ffffff"
+      }
+    },
     "section_2_BrdHkP": {
       "type": "section-2",
       "blocks": {
@@ -1183,87 +1264,6 @@
         "padding-block-end": 48
       }
     },
-    "custom_editorial_seaction_mHFt7p": {
-      "type": "custom-editorial-seaction",
-      "blocks": {
-        "grid_item_TpiJNJ": {
-          "type": "grid_item",
-          "settings": {
-            "image": "shopify://shop_images/materialsblock_1024x1024_6e31caab-b83c-438a-b38b-47b5ad9e718b.webp",
-            "caption": "Explore the incredible materials we use",
-            "explore_label": "EXPLORE",
-            "link": ""
-          }
-        },
-        "grid_item_x33UQJ": {
-          "type": "grid_item",
-          "settings": {
-            "image": "shopify://shop_images/factory-our-parternerblock_1024x1024_8237e11c-afc5-44fe-991b-5a7e9e1b4735.webp",
-            "caption": "Read about our amazing factory partners",
-            "explore_label": "EXPLORE",
-            "link": ""
-          }
-        },
-        "grid_item_BYHQCe": {
-          "type": "grid_item",
-          "settings": {
-            "image": "shopify://shop_images/promisblock_1024x1024_5d0eabf8-08ae-45bc-9137-ba4035196c6a.webp",
-            "caption": "Our promise of great quality",
-            "explore_label": "EXPLORE",
-            "link": ""
-          }
-        },
-        "grid_item_bGrG7w": {
-          "type": "grid_item",
-          "settings": {
-            "image": "shopify://shop_images/sustainabilityblock_1024x1024_fc8ae7de-d48e-4c34-b64b-243a76d0c263.webp",
-            "caption": "Discover our pursuit of sustainability",
-            "explore_label": "EXPLORE",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "grid_item_TpiJNJ",
-        "grid_item_x33UQJ",
-        "grid_item_BYHQCe",
-        "grid_item_bGrG7w"
-      ],
-      "name": "Custom Editorial Split",
-      "settings": {
-        "max_width": 1400,
-        "left_width": "1.1fr",
-        "gap": 6,
-        "h_padding": 20,
-        "padding_top": 0,
-        "padding_bottom": 60,
-        "left_image": "shopify://shop_images/updated-extended-signup-banner-home_d.webp",
-        "left_content_padding": 32,
-        "logo": "shopify://shop_images/Woblee_Logo_Wide.png",
-        "logo_width": 80,
-        "stats_text": "10+ years of premium fashion.\nOver 2 lakh happy customers.\n1500+ unique styles.",
-        "body_text": "And a relentless vision of setting a new benchmark for premium Indian fashion.",
-        "cta_label": "READ REVIEWS",
-        "cta_url": "",
-        "grid_overlay_padding": 16,
-        "body_font": "Helvetica Neue",
-        "stats_size": 13,
-        "body_size": 13,
-        "cta_size": 11,
-        "caption_size": 13,
-        "explore_size": 10,
-        "background_color": "#ffffff",
-        "stats_color": "#2b2b2b",
-        "explore_bg": "#ffffff",
-        "explore_text_color": "#0c4168",
-        "explore_hover_bg": "#0c4168",
-        "explore_hover_text": "#ffffff",
-        "body_color": "#3d3d3d",
-        "cta_color": "#1a1a1a",
-        "caption_color": "#ffffff",
-        "explore_color": "#ffffff"
-      }
-    },
     "custom_bottom_bar_966ULH": {
       "type": "custom-bottom-bar",
       "blocks": {
@@ -1338,11 +1338,11 @@
     "collection_banner_kBPTxj",
     "collection_splider_j6nUDX",
     "tab_section_PXmk7b",
+    "custom_editorial_seaction_mHFt7p",
     "section_2_BrdHkP",
     "rotating_text_X4Hpjk",
     "17800675107a00a753",
     "product_list_aak7xm",
-    "custom_editorial_seaction_mHFt7p",
     "custom_bottom_bar_966ULH"
   ]
 }
