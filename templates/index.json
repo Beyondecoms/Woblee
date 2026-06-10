@@ -391,156 +391,33 @@
         "padding_bottom": 60
       }
     },
-    "section_2_BrdHkP": {
-      "type": "section-2",
-      "blocks": {
-        "card_KDWbQm": {
-          "type": "card",
-          "settings": {
-            "card_image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
-            "card_label": "Pure Confidence"
-          }
-        },
-        "card_KMLL9L": {
-          "type": "card",
-          "settings": {
-            "card_image": "shopify://shop_images/black.webp",
-            "card_label": "Born Bold"
-          }
-        },
-        "card_r6TGtV": {
-          "type": "card",
-          "settings": {
-            "card_image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
-            "card_label": "Fearless Spirit"
-          }
-        },
-        "stat_eApY44": {
-          "type": "stat",
-          "settings": {
-            "stat_value": "10K+",
-            "stat_label": "Happy Customers"
-          }
-        },
-        "stat_Pqzapj": {
-          "type": "stat",
-          "settings": {
-            "stat_value": "4.9★",
-            "stat_label": "Avg. Rating"
-          }
-        },
-        "stat_j3QiFA": {
-          "type": "stat",
-          "settings": {
-            "stat_value": "100%",
-            "stat_label": "Made with Love"
-          }
-        }
-      },
-      "block_order": [
-        "card_KDWbQm",
-        "card_KMLL9L",
-        "card_r6TGtV",
-        "stat_eApY44",
-        "stat_Pqzapj",
-        "stat_j3QiFA"
-      ],
-      "name": "About Us — Fan Cards",
+    "custom_category_grid_dyNMWU": {
+      "type": "custom-category-grid",
+      "name": "Drop collections",
       "settings": {
-        "heading": "ABOUT US",
-        "body_text": "Be bold, be you. Born from a belief that every woman deserves confidence in everything she wears — our products are crafted with care, purpose, and a fearless spirit.",
-        "cta_text": "Our Story",
-        "cta_url": "",
-        "section_font": "sans_serif_n4",
-        "heading_color": "#ffffff",
-        "heading_size": 42,
-        "heading_weight": 700,
-        "body_color": "#ffffff",
-        "body_size": 14,
-        "body_weight": 400,
-        "button_bg": "#ffffff",
-        "button_text": "#0c4168",
-        "button_hover_bg": "#0c4168",
-        "button_hover_text": "#ffffff",
-        "button_font_size": 14,
-        "button_font_weight": 700,
-        "stats_number_color": "#21f010",
-        "stats_label_color": "#b7c1cc",
-        "background_color": "#e6e6e6",
-        "accent_color": "#21f010",
-        "blob_color": "#21f010",
-        "padding_top": 84,
-        "padding_bottom": 0
-      }
-    },
-    "rotating_text_X4Hpjk": {
-      "type": "rotating-text",
-      "blocks": {
-        "phrase_erCf4E": {
-          "type": "phrase",
-          "settings": {
-            "word": "bold",
-            "sub_text": "But never curt"
-          }
-        },
-        "phrase_DkDGRX": {
-          "type": "phrase",
-          "settings": {
-            "word": "unapologetic",
-            "sub_text": "But never disrespectful"
-          }
-        },
-        "phrase_JrdzcE": {
-          "type": "phrase",
-          "settings": {
-            "word": "rebellious",
-            "sub_text": "But never scandalous"
-          }
-        },
-        "phrase_CamVJL": {
-          "type": "phrase",
-          "settings": {
-            "word": "fearless",
-            "sub_text": "But never reckless"
-          }
-        },
-        "phrase_wqybQ8": {
-          "type": "phrase",
-          "settings": {
-            "word": "confident",
-            "sub_text": "But never arrogant"
-          }
-        }
-      },
-      "block_order": [
-        "phrase_erCf4E",
-        "phrase_DkDGRX",
-        "phrase_JrdzcE",
-        "phrase_CamVJL",
-        "phrase_wqybQ8"
-      ],
-      "name": "We Are — Rotating Banner",
-      "settings": {
-        "static_text": "We are",
-        "background_color": "#f5c800",
-        "static_text_color": "#ffffff",
-        "rotating_text_color": "#0c4168",
-        "sub_text_color": "#0c4168",
-        "static_text_size_desktop": 42,
-        "rotating_text_size_desktop": 42,
-        "sub_text_size_desktop": 15,
-        "static_text_size_mobile": 24,
-        "rotating_text_size_mobile": 24,
-        "sub_text_size_mobile": 12,
-        "static_text_weight_desktop": 700,
-        "rotating_text_weight_desktop": 700,
-        "sub_text_weight_desktop": 400,
-        "static_text_weight_mobile": 700,
-        "rotating_text_weight_mobile": 700,
-        "sub_text_weight_mobile": 400,
-        "interval": 2,
-        "padding_top": 12,
-        "padding_bottom": 12
+        "heading": "Drop Collections",
+        "heading_size": 40,
+        "section_bg": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 40,
+        "heading_color": "#0c4168",
+        "heading_weight": "700",
+        "desktop_image_1": "shopify://shop_images/Untitled_design.png",
+        "link_1": "",
+        "desktop_image_2": "shopify://shop_images/Untitled_design_1.png",
+        "link_2": "",
+        "desktop_image_3": "shopify://shop_images/Untitled_design_2.png",
+        "link_3": "",
+        "desktop_image_4": "shopify://shop_images/Untitled_design_3.png",
+        "link_4": "",
+        "desktop_image_5": "shopify://shop_images/Untitled_design_4.png",
+        "link_5": "",
+        "desktop_image_6": "shopify://shop_images/Untitled_design_6.png",
+        "link_6": "",
+        "desktop_image_7": "shopify://shop_images/Untitled_design_5.png",
+        "link_7": "",
+        "desktop_image_8": "shopify://shop_images/Untitled_design_7.png",
+        "link_8": ""
       }
     },
     "collection_carousel_pro_pAhcyP": {
@@ -643,6 +520,158 @@
         "padding_bottom": 60,
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
+      }
+    },
+    "section_2_BrdHkP": {
+      "type": "section-2",
+      "blocks": {
+        "card_KDWbQm": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
+            "card_label": "Pure Confidence"
+          }
+        },
+        "card_KMLL9L": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/black.webp",
+            "card_label": "Born Bold"
+          }
+        },
+        "card_r6TGtV": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "card_label": "Fearless Spirit"
+          }
+        },
+        "stat_eApY44": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "10K+",
+            "stat_label": "Happy Customers"
+          }
+        },
+        "stat_Pqzapj": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "4.9★",
+            "stat_label": "Avg. Rating"
+          }
+        },
+        "stat_j3QiFA": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "100%",
+            "stat_label": "Made with Love"
+          }
+        }
+      },
+      "block_order": [
+        "card_KDWbQm",
+        "card_KMLL9L",
+        "card_r6TGtV",
+        "stat_eApY44",
+        "stat_Pqzapj",
+        "stat_j3QiFA"
+      ],
+      "name": "Lookbook",
+      "settings": {
+        "heading": "Lookbook",
+        "body_text": "Be bold, be you. Born from a belief that every woman deserves confidence in everything she wears — our products are crafted with care, purpose, and a fearless spirit.",
+        "cta_text": "Explore",
+        "cta_url": "",
+        "section_font": "sans_serif_n4",
+        "heading_color": "#ffffff",
+        "heading_size": 42,
+        "heading_weight": 700,
+        "body_color": "#ffffff",
+        "body_size": 14,
+        "body_weight": 400,
+        "button_bg": "#ffffff",
+        "button_text": "#0c4168",
+        "button_hover_bg": "#0c4168",
+        "button_hover_text": "#ffffff",
+        "button_font_size": 14,
+        "button_font_weight": 700,
+        "stats_number_color": "#21f010",
+        "stats_label_color": "#b7c1cc",
+        "background_color": "#e6e6e6",
+        "accent_color": "#21f010",
+        "blob_color": "#21f010",
+        "padding_top": 84,
+        "padding_bottom": 0
+      }
+    },
+    "rotating_text_X4Hpjk": {
+      "type": "rotating-text",
+      "blocks": {
+        "phrase_erCf4E": {
+          "type": "phrase",
+          "settings": {
+            "word": "bold",
+            "sub_text": "But never curt"
+          }
+        },
+        "phrase_DkDGRX": {
+          "type": "phrase",
+          "settings": {
+            "word": "unapologetic",
+            "sub_text": "But never disrespectful"
+          }
+        },
+        "phrase_JrdzcE": {
+          "type": "phrase",
+          "settings": {
+            "word": "rebellious",
+            "sub_text": "But never scandalous"
+          }
+        },
+        "phrase_CamVJL": {
+          "type": "phrase",
+          "settings": {
+            "word": "fearless",
+            "sub_text": "But never reckless"
+          }
+        },
+        "phrase_wqybQ8": {
+          "type": "phrase",
+          "settings": {
+            "word": "confident",
+            "sub_text": "But never arrogant"
+          }
+        }
+      },
+      "block_order": [
+        "phrase_erCf4E",
+        "phrase_DkDGRX",
+        "phrase_JrdzcE",
+        "phrase_CamVJL",
+        "phrase_wqybQ8"
+      ],
+      "name": "We Are — Rotating Banner",
+      "settings": {
+        "static_text": "We are",
+        "background_color": "#f5c800",
+        "static_text_color": "#ffffff",
+        "rotating_text_color": "#0c4168",
+        "sub_text_color": "#0c4168",
+        "static_text_size_desktop": 42,
+        "rotating_text_size_desktop": 42,
+        "sub_text_size_desktop": 15,
+        "static_text_size_mobile": 24,
+        "rotating_text_size_mobile": 24,
+        "sub_text_size_mobile": 12,
+        "static_text_weight_desktop": 700,
+        "rotating_text_weight_desktop": 700,
+        "sub_text_weight_desktop": 400,
+        "static_text_weight_mobile": 700,
+        "rotating_text_weight_mobile": 700,
+        "sub_text_weight_mobile": 400,
+        "interval": 2,
+        "padding_top": 12,
+        "padding_bottom": 12
       }
     },
     "17800675107a00a753": {
@@ -1235,35 +1264,6 @@
         "explore_color": "#ffffff"
       }
     },
-    "custom_category_grid_dyNMWU": {
-      "type": "custom-category-grid",
-      "name": "Baby Category Grid",
-      "settings": {
-        "heading": "SHOP BY PRICE",
-        "heading_size": 40,
-        "section_bg": "#ffffff",
-        "padding_top": 0,
-        "padding_bottom": 40,
-        "heading_color": "#0c4168",
-        "heading_weight": "700",
-        "desktop_image_1": "shopify://shop_images/Untitled_design.png",
-        "link_1": "",
-        "desktop_image_2": "shopify://shop_images/Untitled_design_1.png",
-        "link_2": "",
-        "desktop_image_3": "shopify://shop_images/Untitled_design_2.png",
-        "link_3": "",
-        "desktop_image_4": "shopify://shop_images/Untitled_design_3.png",
-        "link_4": "",
-        "desktop_image_5": "shopify://shop_images/Untitled_design_4.png",
-        "link_5": "",
-        "desktop_image_6": "shopify://shop_images/Untitled_design_6.png",
-        "link_6": "",
-        "desktop_image_7": "shopify://shop_images/Untitled_design_5.png",
-        "link_7": "",
-        "desktop_image_8": "shopify://shop_images/Untitled_design_7.png",
-        "link_8": ""
-      }
-    },
     "custom_bottom_bar_966ULH": {
       "type": "custom-bottom-bar",
       "blocks": {
@@ -1333,16 +1333,16 @@
     "marquee_izzYrQ",
     "custom_editorial_CCz9Yx",
     "custom_category_icons_fa4BTq",
+    "custom_category_grid_dyNMWU",
+    "collection_carousel_pro_pAhcyP",
     "section_2_BrdHkP",
     "rotating_text_X4Hpjk",
-    "collection_carousel_pro_pAhcyP",
     "17800675107a00a753",
     "collection_banner_kBPTxj",
     "collection_splider_j6nUDX",
     "product_list_aak7xm",
     "tab_section_PXmk7b",
     "custom_editorial_seaction_mHFt7p",
-    "custom_category_grid_dyNMWU",
     "custom_bottom_bar_966ULH"
   ]
 }
