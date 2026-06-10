@@ -532,7 +532,7 @@
         "text_color": "#0c4168",
         "desc_color": "#0c4168",
         "padding_top": 64,
-        "padding_bottom": 64
+        "padding_bottom": 24
       }
     },
     "product_recommendations_7NA7MK": {
@@ -542,7 +542,7 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h2>Related products</h2>",
+            "text": "<h2>YOU MAY ALSO LIKE</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
