@@ -885,7 +885,7 @@
         "products_to_show": 24,
         "show_view_all": true,
         "button_label": "SHOP ALL",
-        "section_padding_top": 40,
+        "section_padding_top": 80,
         "section_padding_bottom": 24
       }
     },
