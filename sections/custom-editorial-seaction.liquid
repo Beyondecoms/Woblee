@@ -107,7 +107,7 @@
 
 .ess-section {
   background: var(--ess-bg);
-  padding: var(--ess-padding-top) {{ section.settings.h_padding }}px var(--ess-padding-bottom);
+  padding: var(--ess-padding-top) 0px var(--ess-padding-bottom);
   font-family: var(--wb-font-body);
 }
 
@@ -115,7 +115,7 @@
   display: grid;
   grid-template-columns: var(--ess-left-ratio) 1fr;
   gap: var(--ess-gap);
-  max-width: {{ section.settings.max_width }}px;
+  /* max-width: {{ section.settings.max_width }}px; */
   margin: 0 auto;
 }
 
@@ -167,7 +167,7 @@
 
 .ess-stats {
   font-family: var(--wb-font-body);
-  font-size: {{ section.settings.stats_size }}px;
+  font-size: 14px;
   color: var(--ess-stats-color);
   line-height: var(--wb-line-relaxed);
   font-weight: var(--wb-fw-regular);

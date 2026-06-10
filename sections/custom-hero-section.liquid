@@ -207,9 +207,9 @@
 }
 
 .hs-slide__heading {
-  font-family: var(--font-heading);
+  font-family: Helvetica, Arial, sans-serif;
   font-size: clamp(42px, 6vw, 88px);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.04em;
   text-transform: uppercase;
@@ -218,7 +218,7 @@
 }
 
 .hs-slide__subtext {
-  font-family: var(--font-body);
+  font-family: Helvetica, Arial, sans-serif;
   font-size: clamp(15px, 1.2vw, 18px);
   line-height: 1.7;
   color: var(--brand-white);
@@ -693,29 +693,6 @@ bottom: -2%;
 
     {
       "type": "header",
-      "content": "━━  Slide Height  ━━"
-    },
-    {
-      "type": "range",
-      "id": "desktop_height",
-      "label": "Desktop height (px)",
-      "min": 300,
-      "max": 1000,
-      "step": 10,
-      "default": 780
-    },
-    {
-      "type": "range",
-      "id": "mobile_height",
-      "label": "Mobile height (px)",
-      "min": 200,
-      "max": 800,
-      "step": 10,
-      "default": 500
-    },
-
-    {
-      "type": "header",
       "content": "━━  Overlay  ━━"
     },
     {
@@ -732,45 +709,6 @@ bottom: -2%;
       "max": 90,
       "step": 5,
       "default": 25
-    },
-
-    {
-      "type": "header",
-      "content": "━━  Typography  ━━"
-    },
-    {
-      "type": "select",
-      "id": "heading_font",
-      "label": "Heading font family",
-      "options": [
-        { "value": "Georgia, 'Times New Roman', serif",         "label": "Georgia (Serif)" },
-        { "value": "'Playfair Display', Georgia, serif",        "label": "Playfair Display" },
-        { "value": "'Cormorant Garamond', Georgia, serif",      "label": "Cormorant Garamond" },
-        { "value": "'Libre Baskerville', Georgia, serif",       "label": "Libre Baskerville" },
-        { "value": "'DM Serif Display', Georgia, serif",        "label": "DM Serif Display" },
-        { "value": "'Helvetica Neue', Arial, sans-serif",       "label": "Helvetica Neue (Sans)" },
-        { "value": "'Raleway', 'Helvetica Neue', sans-serif",   "label": "Raleway" },
-        { "value": "'Josefin Sans', sans-serif",                "label": "Josefin Sans" },
-        { "value": "'Montserrat', sans-serif",                  "label": "Montserrat" },
-        { "value": "'Bodoni Moda', Georgia, serif",             "label": "Bodoni Moda" }
-      ],
-      "default": "Georgia, 'Times New Roman', serif"
-    },
-    {
-      "type": "select",
-      "id": "body_font",
-      "label": "Body / button font family",
-      "options": [
-        { "value": "'Helvetica Neue', Arial, sans-serif",     "label": "Helvetica Neue" },
-        { "value": "'Raleway', 'Helvetica Neue', sans-serif", "label": "Raleway" },
-        { "value": "'Josefin Sans', sans-serif",              "label": "Josefin Sans" },
-        { "value": "'Lato', sans-serif",                      "label": "Lato" },
-        { "value": "'Nunito', sans-serif",                    "label": "Nunito" },
-        { "value": "'Open Sans', sans-serif",                 "label": "Open Sans" },
-        { "value": "'Montserrat', sans-serif",                "label": "Montserrat" },
-        { "value": "Georgia, serif",                          "label": "Georgia" }
-      ],
-      "default": "'Helvetica Neue', Arial, sans-serif"
     },
     {
       "type": "range",
