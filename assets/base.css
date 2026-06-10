@@ -4255,6 +4255,10 @@ product-recommendations:has([data-has-recommendations='false']) {
   margin-top: 6px;
 }
 
+.template-collection .price__regular .price{
+   font-size: 14px !important;
+}
+
 .price__regular .price,
 .price-item--sale {
   font-size: 20px;
