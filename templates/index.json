@@ -892,9 +892,9 @@
       "name": "Lookbook",
       "settings": {
         "heading": "Lookbook",
-        "body_text": "Be bold, be you. Born from a belief that every woman deserves confidence in everything she wears — our products are crafted with care, purpose, and a fearless spirit.",
+        "body_text": "Be bold, be you. Born from a belief that every woman deserves confidence in everything she wears",
         "cta_text": "Explore",
-        "cta_url": "",
+        "cta_url": "shopify://pages/lookbook",
         "section_font": "sans_serif_n4",
         "heading_color": "#ffffff",
         "heading_size": 42,
