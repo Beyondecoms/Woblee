@@ -339,7 +339,7 @@
         "heading_transform": "uppercase",
         "heading_margin_bottom": 18,
         "subtext_line_1": "We craft premium menswear, designed to last.",
-        "subtext_line_2_before": "Start exploring our categories and make sure you",
+        "subtext_line_2_before": "",
         "inline_link_label": "",
         "inline_link_url": "",
         "subtext_line_2_after": "for exclusive benefits.",
@@ -369,7 +369,7 @@
         "label_letter_spacing": "0.08",
         "label_transform": "uppercase",
         "cta_label": "View All",
-        "cta_url": "",
+        "cta_url": "shopify://collections",
         "btn_bg": "#ffffff",
         "btn_text_color": "#0c4168",
         "btn_border_color": "#0c4168",
@@ -428,7 +428,7 @@
           "settings": {
             "image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
             "title": "",
-            "link": ""
+            "link": "shopify://products/strive-to-conquer-mens-graphic-tee"
           }
         },
         "card_rxyi84": {
