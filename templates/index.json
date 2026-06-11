@@ -1050,7 +1050,7 @@
         "subheading": "Show your strongest product advantages in a premium, scrollable strip that feels interactive and easy to explore.",
         "scroll_speed": 30,
         "section_bg": "#ffffff",
-        "padding_top_desktop": 60,
+        "padding_top_desktop": 40,
         "padding_bottom_desktop": 10,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 24,
