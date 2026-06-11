@@ -451,6 +451,103 @@
         "link_8": ""
       }
     },
+    "carousel_pro_updated_y638eJ": {
+      "type": "carousel-pro-updated",
+      "blocks": {
+        "card_ydRnHz": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
+            "title": "",
+            "link": "shopify://products/chic-back-bow-tiered-midi-dress-in-english-blue"
+          }
+        },
+        "card_R4azyN": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_c4My6r": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_aQtnyp": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/black.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_gYJYw9": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_tdbejf": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/black.webp",
+            "title": "",
+            "link": "shopify://products/chic-back-bow-tiered-midi-dress-in-english-blue"
+          }
+        }
+      },
+      "block_order": [
+        "card_ydRnHz",
+        "card_R4azyN",
+        "card_c4My6r",
+        "card_aQtnyp",
+        "card_gYJYw9",
+        "card_tdbejf"
+      ],
+      "name": "Carousel Pro V2",
+      "settings": {
+        "small_heading": "MORE TO",
+        "main_heading": "Best Sellers",
+        "description": "Discover our curated edits and seasonal collections",
+        "section_font": "sans_serif_n4",
+        "background_color": "#f7f7f7",
+        "small_heading_color": "#21f010",
+        "main_heading_color": "#0c4168",
+        "description_color": "#4f5d6b",
+        "small_heading_size": 18,
+        "small_heading_weight": 700,
+        "main_heading_size": 72,
+        "main_heading_weight": 700,
+        "description_size": 15,
+        "description_weight": 400,
+        "small_heading_size_mobile": 14,
+        "main_heading_size_mobile": 44,
+        "description_size_mobile": 14,
+        "content_width": 40,
+        "card_gap": 24,
+        "card_height_desktop": 400,
+        "card_height_mobile": 380,
+        "card_radius": 0,
+        "overlay_color": "#0c4168",
+        "card_title_color": "#ffffff",
+        "card_title_size": 28,
+        "card_title_weight": 800,
+        "arrow_bg": "rgba(0,0,0,0)",
+        "arrow_color": "#ffffff",
+        "arrow_size": 50,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
     "collection_carousel_pro_pAhcyP": {
       "type": "collection-carousel-pro",
       "blocks": {
@@ -511,6 +608,7 @@
         "card_d3fLwH",
         "card_tM8P6i"
       ],
+      "disabled": true,
       "name": "Collection Carousel Pro",
       "settings": {
         "small_heading": "MORE TO",
@@ -1365,15 +1463,16 @@
     "custom_editorial_CCz9Yx",
     "custom_category_icons_fa4BTq",
     "custom_category_grid_dyNMWU",
-    "collection_carousel_pro_pAhcyP",
+    "carousel_pro_updated_y638eJ",
     "collection_banner_kBPTxj",
     "collection_splider_j6nUDX",
     "tab_section_PXmk7b",
     "custom_editorial_seaction_mHFt7p",
     "section_2_BrdHkP",
     "rotating_text_X4Hpjk",
+    "custom_bottom_bar_966ULH",
     "17800675107a00a753",
     "product_list_aak7xm",
-    "custom_bottom_bar_966ULH"
+    "collection_carousel_pro_pAhcyP"
   ]
 }

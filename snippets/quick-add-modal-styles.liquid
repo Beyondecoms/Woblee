@@ -72,7 +72,6 @@
     z-index: var(--layer-raised);
     overflow: visible;
     transform-origin: center;
-    border: none;
   }
 
   .quick-add-modal__close:active {
@@ -664,8 +663,6 @@
       .view-product-title *,
       .quick-view__description,
       .quick-view__description *,
-      .accordion,
-      .accordion *,
       variant-picker,
       variant-picker *,
       product-price,
@@ -681,21 +678,6 @@
     }
   }
 
-  @media screen and (min-width: 750px) {
-    .quick-add-modal__content .product-details .text-block:has(h1),
-    .quick-add-modal__content .product-details .text-block:has(h2),
-    .quick-add-modal__content .product-details .text-block:has(h3),
-    .quick-add-modal__content .product-details .text-block:has(h1) *,
-    .quick-add-modal__content .product-details .text-block:has(h2) *,
-    .quick-add-modal__content .product-details .text-block:has(h3) * {
-      display: revert !important;
-    }
-
-    body.template-collection.modal-open .quick-add-modal__content .product-details .text-block :is(h1, h2, h3) {
-      display: block !important;
-    }
-  }
-
   .quick-add-modal__content
     .group-block:not(
       :has(
@@ -705,8 +687,6 @@
           .view-product-title *,
           .quick-view__description,
           .quick-view__description *,
-          .accordion,
-          .accordion *,
           variant-picker,
           variant-picker *,
           product-price,
@@ -852,10 +832,6 @@
   .quick-add-modal__content .text-block.rte:not(product-price),
   .quick-add-modal__content .view-more-details__wrapper {
     display: none;
-  }
-
-  .quick-add-modal__content .accordion .text-block.rte {
-    display: block;
   }
 
   @media screen and (max-width: 749px) {

@@ -1,0 +1,715 @@
+<section
+  class="collection-carousel-pro"
+  id="collection-carousel-{{ section.id }}"
+>
+
+  <div class="collection-carousel-pro__container">
+
+    <div class="collection-carousel-pro__content">
+
+      {% if section.settings.small_heading != blank %}
+        <div class="collection-carousel-pro__eyebrow">
+          {{ section.settings.small_heading }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.main_heading != blank %}
+        <h2 class="collection-carousel-pro__heading">
+          {{ section.settings.main_heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="collection-carousel-pro__description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+    </div>
+
+    <div class="collection-carousel-pro__slider-wrapper">
+
+      <div class="splide collection-carousel-splide">
+
+        <div class="splide__track">
+
+          <ul class="splide__list">
+
+            {% for block in section.blocks %}
+
+              <li
+                class="splide__slide"
+                {{ block.shopify_attributes }}
+              >
+
+                <a
+                  href="{% if block.settings.link != blank %}{{ block.settings.link }}{% else %}#{% endif %}"
+                  class="collection-carousel-pro__card"
+                >
+
+                  {% if block.settings.image != blank %}
+                    {{
+                      block.settings.image
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'collection-carousel-pro__image'
+                    }}
+                  {% endif %}
+
+                  <div class="collection-carousel-pro__overlay"></div>
+
+                  {% if block.settings.title != blank %}
+                    <div class="collection-carousel-pro__title">
+                      {{ block.settings.title }}
+                    </div>
+                  {% endif %}
+
+                </a>
+
+              </li>
+
+            {% endfor %}
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{%  style %}
+.collection-carousel-pro {
+  background: {{ section.settings.background_color }};
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  overflow: hidden;
+}
+
+.collection-carousel-pro__container {
+  max-width: 1800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.collection-carousel-pro__content {
+  width: {{ section.settings.content_width }}%;
+  flex-shrink: 0;
+  padding-left: 60px;
+}
+
+.collection-carousel-pro__eyebrow {
+  color: {{ section.settings.small_heading_color }};
+  font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
+  font-size: {{ section.settings.small_heading_size }}px;
+  font-weight: {{ section.settings.small_heading_weight }};
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.collection-carousel-pro__heading {
+  color: {{ section.settings.main_heading_color }};
+  font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
+  font-size: {{ section.settings.main_heading_size }}px;
+  font-weight: {{ section.settings.main_heading_weight }};
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+}
+
+.collection-carousel-pro__description {
+  color: {{ section.settings.description_color }};
+  font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
+  font-size: {{ section.settings.description_size }}px;
+  font-weight: {{ section.settings.description_weight }};
+  line-height: 1.7;
+  max-width: 450px;
+}
+
+.collection-carousel-pro__slider-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.collection-carousel-splide {
+  width: 100%;
+}
+
+.collection-carousel-pro__card {
+  position: relative;
+  display: block;
+  height: {{ section.settings.card_height_desktop }}px;
+  border-radius: {{ section.settings.card_radius }}px;
+  overflow: hidden;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.collection-carousel-pro__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  transition: transform .4s ease;
+}
+
+.collection-carousel-pro__card:hover .collection-carousel-pro__image {
+  transform: scale(1.05);
+}
+
+.collection-carousel-pro__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    {{ section.settings.overlay_color }} 0%,
+    rgba(12,65,104,.65) 25%,
+    transparent 65%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.collection-carousel-pro__title {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  z-index: 2;
+
+  color: {{ section.settings.card_title_color }};
+  font-size: {{ section.settings.card_title_size }}px;
+  font-weight: {{ section.settings.card_title_weight }};
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.collection-carousel-splide .splide__arrow {
+  background: {{ section.settings.arrow_bg }};
+  width: {{ section.settings.arrow_size }}px;
+  height: {{ section.settings.arrow_size }}px;
+  opacity: 1;
+}
+
+.collection-carousel-splide .splide__arrow svg {
+  fill: {{ section.settings.arrow_color }};
+}
+
+.collection-carousel-splide .splide__pagination {
+  display: none;
+}
+
+/* IMPORTANT FOR MOBILE SWIPE */
+
+.collection-carousel-splide,
+.collection-carousel-splide .splide__track,
+.collection-carousel-splide .splide__list,
+.collection-carousel-splide .splide__slide {
+  touch-action: pan-y;
+}
+
+.collection-carousel-pro__card,
+.collection-carousel-pro__image {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 767px) {
+
+  .collection-carousel-pro {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  .collection-carousel-pro__container {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .collection-carousel-pro__content {
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .collection-carousel-pro__description {
+    max-width: 100%;
+    margin: 0 auto;
+    font-size: {{ section.settings.description_size_mobile }}px;
+  }
+
+  .collection-carousel-pro__eyebrow {
+    font-size: {{ section.settings.small_heading_size_mobile }}px;
+  }
+
+  .collection-carousel-pro__heading {
+    font-size: {{ section.settings.main_heading_size_mobile }}px;
+    margin-bottom: 16px;
+  }
+
+  .collection-carousel-pro__slider-wrapper {
+    width: 100%;
+    padding-left: 20px;
+  }
+
+  .collection-carousel-pro__card {
+    height: {{ section.settings.card_height_mobile }}px;
+  }
+
+  .collection-carousel-pro__title {
+    left: 20px;
+    bottom: 20px;
+    font-size: 22px;
+  }
+}
+{% endstyle %} 
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  const section = document.getElementById('collection-carousel-{{ section.id }}');
+  if (!section) return;
+
+  const splideElement = section.querySelector('.collection-carousel-splide');
+  if (!splideElement) return;
+
+  if (typeof Splide === 'undefined') {
+    console.error('Splide is not loaded');
+    return;
+  }
+
+  const splide = new Splide(splideElement, {
+    type: 'loop',
+
+    perPage: 2,
+    perMove: 1,
+
+    gap: '{{ section.settings.card_gap }}px',
+
+    arrows: true,
+    pagination: false,
+
+    drag: true,
+    swipe: true,
+
+    speed: 600,
+
+    autoplay: true,
+    interval: 2000,
+
+    pauseOnHover: true,
+    pauseOnFocus: true,
+
+    resetProgress: false,
+
+    breakpoints: {
+      991: {
+        perPage: 1.5,
+      },
+
+      767: {
+        perPage: 1.1,
+        gap: '12px',
+
+        drag: true,
+        swipe: true,
+
+        arrows: true,
+        pagination: false,
+      }
+    }
+  });
+
+  splide.mount();
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Carousel Pro V2",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Content"
+    },
+    {
+      "type": "text",
+      "id": "small_heading",
+      "label": "Small Heading",
+      "default": "MORE TO"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "PRODUCTS"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover our curated edits and seasonal collections"
+    },
+
+    {
+      "type": "header",
+      "content": "Font Family"
+    },
+    {
+      "type": "font_picker",
+      "id": "section_font",
+      "label": "Font Family",
+      "default": "helvetica_n4"
+    },
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F7F7F7"
+    },
+    {
+      "type": "color",
+      "id": "small_heading_color",
+      "label": "Small Heading Color",
+      "default": "#21F010"
+    },
+    {
+      "type": "color",
+      "id": "main_heading_color",
+      "label": "Main Heading Color",
+      "default": "#0C4168"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#4F5D6B"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop Typography"
+    },
+    {
+      "type": "range",
+      "id": "small_heading_size",
+      "label": "Small Heading Size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "small_heading_weight",
+      "label": "Small Heading Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "main_heading_size",
+      "label": "Main Heading Size",
+      "min": 30,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "main_heading_weight",
+      "label": "Main Heading Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description Size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_weight",
+      "label": "Description Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile Typography"
+    },
+    {
+      "type": "range",
+      "id": "small_heading_size_mobile",
+      "label": "Small Heading Size Mobile",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "main_heading_size_mobile",
+      "label": "Main Heading Size Mobile",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "label": "Description Size Mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Left Content Width (%)",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Card Gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop Card Settings"
+    },
+    {
+      "type": "range",
+      "id": "card_height_desktop",
+      "label": "Card Height Desktop",
+      "min": 300,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 650
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile Card Settings"
+    },
+    {
+      "type": "range",
+      "id": "card_height_mobile",
+      "label": "Card Height Mobile",
+      "min": 220,
+      "max": 500,
+      "step": 5,
+      "unit": "px",
+      "default": 380
+    },
+
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card Radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Card Overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#0C4168"
+    },
+
+    {
+      "type": "header",
+      "content": "Card Title"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card Title Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "label": "Card Title Size",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_title_weight",
+      "label": "Card Title Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 800
+    },
+
+    {
+      "type": "header",
+      "content": "Arrow Settings"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg",
+      "label": "Arrow Background",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow Icon Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow Size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 50
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "COLLECTION"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Card Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Carousel Pro V2",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
