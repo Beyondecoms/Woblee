@@ -1313,7 +1313,11 @@ button.shopify-payment-button__button--unbranded {
 }
 
 .button:not(.button-secondary, .button-unstyled) {
-  outline-color: var(--button-background-color);
+  /* outline-color: var(--button-background-color); */
+outline-color: #0c4168;
+}
+.button[id^="BuyButtons-ProductSubmitButton-"]:hover{
+  color: white;
 }
 
 .button-secondary {

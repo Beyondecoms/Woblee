@@ -122,7 +122,7 @@ a.contents.user-select-text p{
     }
 body.template-collection.modal-open .quick-add-modal__content .price__regular .price{
      font-size: 18px !important;
-     margin-left: 1rem;
+
     }
     .quick-add-modal__content .product-details :is(.buy-buttons-block){
       margin-top: 0 !important;
@@ -151,6 +151,14 @@ body.template-collection.modal-open .quick-add-modal__content .price__regular .p
     button.sticky-add-to-cart__button.add-to-cart-button.button{
       background-color: #0c4168;
     }
+    button.sticky-add-to-cart__button.add-to-cart-button.button:hover{
+      border:#0c4168;
+      color: white;
+    }
+    .sticky-add-to-cart__price .price__regular .price{
+    font-size: 
+    }
+
     @media only screen and (max-width: 768px){
        #trust-strip-template--20344750243991__custom_bottom_bar_966ULH .trust-strip__heading,
     .wci-heading, h3.t4s-section-title.t4s-title.shop-bnd, .collection-carousel-pro__heading,
@@ -161,10 +169,20 @@ body.template-collection.modal-open .quick-add-modal__content .price__regular .p
       
       font-size: 24px !important;
     }
+     body.template-collection .content-for-layout > .shopify-section:last-child{
+       margin-top: 0rem;
+    }
+    body.template-collection.modal-open .quick-add-modal__content .price__regular .price{
+     font-size: 18px !important;
+
+    }
+    .product-grid{
+      width: 95%;
+    }
     #quick-add-modal-content .price__regular{
       padding-left: 0 !important;
       margin-left: 0;
-           margin-top: 1rem !important
+           margin-top: 0rem !important
     }
     body.template-collection.modal-open .quick-add-modal__content .price__regular .price{
       margin-left: 0 !important;
@@ -253,6 +271,12 @@ text-transform: uppercase;
 }
 body.template-collection.modal-open .quick-add-modal__content .product-details *:not(.group-block,.group-block-content,.buy-buttons-block,.buy-buttons-block *,.view-product-title,.view-product-title *,.quick-view__description,.quick-view__description *,variant-picker,variant-picker *,product-price,product-price *,product-inventory,product-inventory *,.view-more-details__wrapper,.view-more-details__wrapper *){
   display: block !important;
+}
+.quick-add-modal__content .product-details .text-block:is(.h1,.h2,.h3,.h4,.h5,.h6):has(h1) :is(h1,h2,h3,h4,h5,h6){
+  margin-left: 1.6rem !important;
+}
+.quick-add-modal__content :where(.product-details>.group-block>.group-block-content>*){
+  margin-top: 1rem !important;
 }
 
 

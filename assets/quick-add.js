@@ -255,6 +255,7 @@ export class QuickAddComponent extends Component {
       const productFormComponent = productGrid.querySelector('product-form-component');
       const variantPicker = productGrid.querySelector('variant-picker');
       const productPrice = productGrid.querySelector('product-price');
+      const accordionBlocks = productDetails ? Array.from(productDetails.querySelectorAll('.accordion')) : [];
       const productTitle = document.createElement('a');
       productTitle.textContent = this.dataset.productTitle || '';
 
@@ -279,6 +280,18 @@ export class QuickAddComponent extends Component {
       }
       if (productFormComponent) {
         productGrid.appendChild(productFormComponent);
+      }
+      if (accordionBlocks.length) {
+        accordionBlocks.forEach((accordionBlock) => {
+          accordionBlock.classList.add('quick-add-mobile-accordion');
+          accordionBlock.querySelectorAll('accordion-custom').forEach((accordionCustom) => {
+            accordionCustom.removeAttribute('open-by-default-on-mobile');
+          });
+          accordionBlock.querySelectorAll('details').forEach((details) => {
+            details.removeAttribute('open');
+          });
+          productGrid.appendChild(accordionBlock);
+        });
       }
 
       productDetails?.remove();

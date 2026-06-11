@@ -531,8 +531,8 @@
         "bg_color": "#ffffff",
         "text_color": "#0c4168",
         "desc_color": "#444444",
-        "padding_top": 64,
-        "padding_bottom": 24
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "product_recommendations_7NA7MK": {
@@ -673,8 +673,8 @@
         "section_width": "page-width",
         "gap": 28,
         "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 0,
+        "padding-block-end": 40
       }
     },
     "custom_bottom_bar_ABkAHw": {
@@ -722,8 +722,8 @@
         "scroll_speed": 60,
         "section_bg": "#ffffff",
         "padding_top_desktop": 0,
-        "padding_bottom_desktop": 10,
-        "padding_top_mobile": 16,
+        "padding_bottom_desktop": 0,
+        "padding_top_mobile": 0,
         "padding_bottom_mobile": 14,
         "font_family": "sans_serif_n4",
         "heading_size_desktop": 32,
