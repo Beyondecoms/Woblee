@@ -161,9 +161,11 @@ body.template-collection.modal-open .quick-add-modal__content .price__regular .p
     body:has(#header-group #header-component[data-sticky-state=active]) .product-details.sticky-content--desktop{
       display: block;
     }
-    .quick-view-pdp-accordions.accordion.accordion--plus.accordion--dividers span.svg-wrapper.icon-caret.icon-animated{
+    .quick-view-pdp-accordions.accordion.accordion--plus.accordion--dividers span.svg-wrapper.icon-caret.icon-animated,
+    .quick-view-pdp-accordions.accordion.accordion--plus.accordion--dividers body:has(#header-group #header-component[data-sticky-state=active]) .product-details.sticky-content--desktop{
       display: none !important;
     }
+    
     @media only screen and (max-width: 767px){
   body:has(#header-group #header-component[data-sticky-state=active]) .product-details.sticky-content--desktop{
      width: 90%;
