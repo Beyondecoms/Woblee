@@ -4259,9 +4259,7 @@ product-recommendations:has([data-has-recommendations='false']) {
   margin-top: 6px;
 }
 
-.template-collection .price__regular .price{
-   font-size: 14px !important;
-}
+
 
 .price__regular .price,
 .price-item--sale {
@@ -4360,40 +4358,39 @@ a[ref="productTitleLink"] p {
     max-height: 2.7em;
   }
 }
-a.hs-btn, .wci-cta-btn,
-.hero-slideshow__btn,
-.fcs-view-all-btn,
-.wau-section.wau-visible .wau-cta,
-.custom-footer__cta-btn,
-.wau-section.wau-visible .wau-cta,
-.ess-grid-bottom .ess-explore{
-  min-width: 150px;
-  max-width: 150px;
-  padding: 14px !important;
-  max-height: 40px !important;
-   min-height: 40px !important;
-   
-}
-.wci-cta-btn{
-    padding: 14px !important;
-  max-height: 40px !important;
-   min-height: 40px !important;
+.template-index :is(
+  a.hs-btn,
+  .wci-cta-btn,
+  .custom-footer__cta-btn
+) {
+  width: var(--home-page-button-width) !important;
+  min-width: var(--home-page-button-width) !important;
+  max-width: var(--home-page-button-width) !important;
+  height: var(--home-page-button-height) !important;
+  min-height: var(--home-page-button-height) !important;
+  max-height: var(--home-page-button-height) !important;
+  padding: var(--home-page-button-padding) !important;
+  font-size: var(--home-page-button-font-size) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
 }
 
-@media only screen and (max-width: 749px){
-  a.hs-btn, .wci-cta-btn,
-.hero-slideshow__btn,
-.fcs-view-all-btn,
-.wau-section.wau-visible .wau-cta,
-.custom-footer__cta-btn,
-.wau-section.wau-visible .wau-cta,
-.ess-grid-bottom .ess-explore{
-   min-width: 100px !important;
-  max-width: 100px !important;
-  padding: 8px !important;
-  font-size: 10px !important;
-}
-.wau-section.wau-visible .wau-cta{
-  padding: 6px !important;
-}
+@media only screen and (max-width: 749px) {
+  .template-index :is(
+    a.hs-btn,
+    .wci-cta-btn,
+    .custom-footer__cta-btn
+  ) {
+    width: var(--home-page-button-width-mobile) !important;
+    min-width: var(--home-page-button-width-mobile) !important;
+    max-width: var(--home-page-button-width-mobile) !important;
+    height: var(--home-page-button-height-mobile) !important;
+    min-height: var(--home-page-button-height-mobile) !important;
+    max-height: var(--home-page-button-height-mobile) !important;
+    padding: var(--home-page-button-padding-mobile) !important;
+    font-size: var(--home-page-button-font-size-mobile) !important;
+  }
 }

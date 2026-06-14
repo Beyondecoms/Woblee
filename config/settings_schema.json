@@ -1690,6 +1690,67 @@
     ]
   },
   {
+    "name": "Home Page Button Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Desktop Button Settings"
+      },
+      {
+        "type": "number",
+        "id": "home_page_button_width",
+        "label": "Button Width (px)",
+        "default": 150
+      },
+      {
+        "type": "number",
+        "id": "home_page_button_height",
+        "label": "Button Height (px)",
+        "default": 40
+      },
+      {
+        "type": "number",
+        "id": "home_page_button_padding",
+        "label": "Button Padding (px)",
+        "default": 14
+      },
+      {
+        "type": "number",
+        "id": "home_page_button_font_size",
+        "label": "Button Font Size (px)",
+        "default": 14
+      },
+      {
+        "type": "header",
+        "content": "Mobile Button Settings"
+      },
+      {
+        "type": "number",
+        "id": "home_page_button_width_mobile",
+        "label": "Mobile Button Width (px)",
+        "default": 100
+      },
+      {
+        "type": "number",
+        "id": "home_page_button_height_mobile",
+        "label": "Mobile Button Height (px)",
+        "default": 40
+      },
+      {
+        "type": "number",
+        "id": "home_page_button_padding_mobile",
+        "label": "Mobile Button Padding (px)",
+        "default": 8
+      },
+      {
+        "type": "number",
+        "id": "home_page_button_font_size_mobile",
+        "label": "Mobile Button Font Size (px)",
+        "default": 10
+      }
+    ]
+  },
+  {
     "name": "t:names.cart",
     "settings": [
       {
@@ -1754,6 +1815,56 @@
         "label": "t:settings.auto_open_cart_drawer",
         "default": false,
         "visible_if": "{{ settings.cart_type == 'drawer' }}"
+      },
+      {
+        "type": "header",
+        "content": "Cart Drawer Heading"
+      },
+      {
+        "type": "number",
+        "id": "cart_drawer_heading_font_size_desktop",
+        "label": "Desktop Font Size (px)",
+        "default": 18
+      },
+      {
+        "type": "number",
+        "id": "cart_drawer_heading_font_size_mobile",
+        "label": "Mobile Font Size (px)",
+        "default": 16
+      },
+      {
+        "type": "select",
+        "id": "cart_drawer_heading_font_weight",
+        "label": "Font Weight",
+        "default": "700",
+        "options": [
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          },
+          {
+            "value": "800",
+            "label": "800"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "cart_drawer_heading_text_color",
+        "label": "Text Color",
+        "default": "#1E3D63"
       },
       {
         "type": "header",

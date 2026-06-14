@@ -22,6 +22,102 @@
   }
 {% endjavascript %}
 
+{% style %}
+  body.template-collection results-list[section-id='{{ section.id }}'] a.contents.user-select-text p {
+    font-size: {{ section.settings.collection_card_title_font_size_desktop }}px;
+    font-weight: {{ section.settings.collection_card_title_font_weight }};
+    line-height: 1.3;
+  }
+
+  body.template-collection results-list[section-id='{{ section.id }}'] product-price .price {
+    font-size: {{ section.settings.collection_card_price_font_size_desktop }}px;
+    font-weight: {{ section.settings.collection_card_price_font_weight }};
+    line-height: 1.3;
+  }
+
+  body.template-collection.modal-open .quick-add-modal__content .text-block h1,
+  body.template-collection.modal-open .quick-add-modal__content .product-header a:not(product-price *) {
+    font-size: {{ section.settings.quick_view_title_font_size_desktop }}px !important;
+    font-weight: {{ section.settings.quick_view_title_font_weight }} !important;
+    line-height: 1.2;
+  }
+
+  body.template-collection.modal-open .quick-add-modal__content product-price .price {
+    font-size: {{ section.settings.quick_view_price_font_size_desktop }}px !important;
+    font-weight: {{ section.settings.quick_view_price_font_weight }} !important;
+    line-height: 1.3;
+  }
+
+  body.template-collection.modal-open .quick-add-modal__content :is(
+      .variant-option legend,
+      .variant-option__button-label__text,
+      .details-content,
+      .details-content p,
+      .details-content li,
+      .details-content span,
+      .details-content strong,
+      .quick-view__description-content,
+      .quick-view__description-content p,
+      .quick-view__description-content li
+    ) {
+    font-size: {{ section.settings.quick_view_content_font_size_desktop }}px !important;
+  }
+
+  body.template-collection.modal-open .quick-add-modal__content .details__header,
+  body.template-collection.modal-open .quick-add-modal__content .details__header > * {
+    font-size: {{ section.settings.quick_view_accordion_heading_font_size_desktop }}px !important;
+    font-weight: {{ section.settings.quick_view_accordion_heading_font_weight }} !important;
+  }
+
+  body.template-collection.modal-open .quick-add-modal__content .add-to-cart-button {
+    font-size: {{ section.settings.quick_view_add_to_cart_font_size_desktop }}px !important;
+    font-weight: {{ section.settings.quick_view_add_to_cart_font_weight }} !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    body.template-collection results-list[section-id='{{ section.id }}'] a.contents.user-select-text p {
+      font-size: {{ section.settings.collection_card_title_font_size_mobile }}px;
+    }
+
+    body.template-collection results-list[section-id='{{ section.id }}'] product-price .price {
+      font-size: {{ section.settings.collection_card_price_font_size_mobile }}px;
+    }
+
+    body.template-collection.modal-open .quick-add-modal__content .text-block h1,
+    body.template-collection.modal-open .quick-add-modal__content .product-header a:not(product-price *) {
+      font-size: {{ section.settings.quick_view_title_font_size_mobile }}px !important;
+    }
+
+    body.template-collection.modal-open .quick-add-modal__content product-price .price {
+      font-size: {{ section.settings.quick_view_price_font_size_mobile }}px !important;
+    }
+
+    body.template-collection.modal-open .quick-add-modal__content :is(
+        .variant-option legend,
+        .variant-option__button-label__text,
+        .details-content,
+        .details-content p,
+        .details-content li,
+        .details-content span,
+        .details-content strong,
+        .quick-view__description-content,
+        .quick-view__description-content p,
+        .quick-view__description-content li
+      ) {
+      font-size: {{ section.settings.quick_view_content_font_size_mobile }}px !important;
+    }
+
+    body.template-collection.modal-open .quick-add-modal__content .details__header,
+    body.template-collection.modal-open .quick-add-modal__content .details__header > * {
+      font-size: {{ section.settings.quick_view_accordion_heading_font_size_mobile }}px !important;
+    }
+
+    body.template-collection.modal-open .quick-add-modal__content .add-to-cart-button {
+      font-size: {{ section.settings.quick_view_add_to_cart_font_size_mobile }}px !important;
+    }
+  }
+{% endstyle %}
+
 {% comment %} We always render this full-width, as the child blocks have width: page/full settings {% endcomment %}
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <results-list
@@ -159,6 +255,208 @@
     {
       "type": "header",
       "content": "t:content.layout"
+    },
+    {
+      "type": "header",
+      "content": "Collection Product Card Typography"
+    },
+    {
+      "type": "range",
+      "id": "collection_card_title_font_size_desktop",
+      "label": "Product Title Font Size Desktop",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "collection_card_title_font_size_mobile",
+      "label": "Product Title Font Size Mobile",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "collection_card_title_font_weight",
+      "label": "Product Title Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "collection_card_price_font_size_desktop",
+      "label": "Product Price Font Size Desktop",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "collection_card_price_font_size_mobile",
+      "label": "Product Price Font Size Mobile",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "collection_card_price_font_weight",
+      "label": "Product Price Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "header",
+      "content": "Quick View Typography"
+    },
+    {
+      "type": "range",
+      "id": "quick_view_title_font_size_desktop",
+      "label": "Quick View Product Title Font Size Desktop",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "quick_view_title_font_size_mobile",
+      "label": "Quick View Product Title Font Size Mobile",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "quick_view_title_font_weight",
+      "label": "Quick View Product Title Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "quick_view_price_font_size_desktop",
+      "label": "Quick View Product Price Font Size Desktop",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "quick_view_price_font_size_mobile",
+      "label": "Quick View Product Price Font Size Mobile",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "quick_view_price_font_weight",
+      "label": "Quick View Product Price Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "quick_view_content_font_size_desktop",
+      "label": "Quick View Content Text Font Size Desktop",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "quick_view_content_font_size_mobile",
+      "label": "Quick View Content Text Font Size Mobile",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "quick_view_accordion_heading_font_size_desktop",
+      "label": "Quick View Accordion Heading Font Size Desktop",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "quick_view_accordion_heading_font_size_mobile",
+      "label": "Quick View Accordion Heading Font Size Mobile",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "quick_view_accordion_heading_font_weight",
+      "label": "Quick View Accordion Heading Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "quick_view_add_to_cart_font_size_desktop",
+      "label": "Quick View Add To Cart Font Size Desktop",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "quick_view_add_to_cart_font_size_mobile",
+      "label": "Quick View Add To Cart Font Size Mobile",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "quick_view_add_to_cart_font_weight",
+      "label": "Quick View Add To Cart Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 700
     },
     {
       "type": "select",

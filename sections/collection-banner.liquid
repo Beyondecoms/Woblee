@@ -92,9 +92,12 @@
     --btn1-border: {{ section.settings.btn1_border_color }};
     --btn1-bw: {{ section.settings.btn1_border_width }}px;
     --btn1-br: {{ section.settings.btn1_border_radius }}px;
+    --btn1-width: {{ section.settings.btn1_width }}px;
+    --btn1-height: {{ section.settings.btn1_height }}px;
     --btn1-px: {{ section.settings.btn1_padding_x }}px;
     --btn1-py: {{ section.settings.btn1_padding_y }}px;
     --btn1-size: {{ section.settings.btn1_size }}px;
+    --btn1-size-mobile: 10px;
     --btn1-weight: {{ section.settings.btn1_weight }};
     --btn1-ls: {{ section.settings.btn1_letter_spacing }}px;
     --btn1-hover-bg: {{ section.settings.btn1_hover_bg }};
@@ -106,14 +109,22 @@
     --btn2-border: {{ section.settings.btn2_border_color }};
     --btn2-bw: {{ section.settings.btn2_border_width }}px;
     --btn2-br: {{ section.settings.btn2_border_radius }}px;
+    --btn2-width: {{ section.settings.btn2_width }}px;
+    --btn2-height: {{ section.settings.btn2_height }}px;
     --btn2-px: {{ section.settings.btn2_padding_x }}px;
     --btn2-py: {{ section.settings.btn2_padding_y }}px;
     --btn2-size: {{ section.settings.btn2_size }}px;
+    --btn2-size-mobile: 10px;
     --btn2-weight: {{ section.settings.btn2_weight }};
     --btn2-ls: {{ section.settings.btn2_letter_spacing }}px;
     --btn2-hover-bg: {{ section.settings.btn2_hover_bg }};
     --btn2-hover-text: {{ section.settings.btn2_hover_text }};
     --btn2-hover-border: {{ section.settings.btn2_hover_border }};
+
+    --btn1-width-mobile: {{ section.settings.btn1_width_mobile }}px;
+    --btn1-height-mobile: {{ section.settings.btn1_height_mobile }}px;
+    --btn2-width-mobile: {{ section.settings.btn2_width_mobile }}px;
+    --btn2-height-mobile: {{ section.settings.btn2_height_mobile }}px;
 
     --arrow-color: {{ section.settings.arrow_color }};
     --arrow-hover-color: {{ section.settings.arrow_hover_color }};
@@ -260,10 +271,15 @@
     color: var(--block-btn1-text, var(--btn1-text));
     border: var(--btn1-bw) solid var(--btn1-border);
     border-radius: var(--btn1-br);
+    width: var(--btn1-width);
+    min-width: var(--btn1-width);
+    height: var(--btn1-height);
+    min-height: var(--btn1-height);
     padding: var(--btn1-py) var(--btn1-px);
     font-size: var(--btn1-size);
     font-weight: var(--btn1-weight);
     letter-spacing: var(--btn1-ls);
+    box-sizing: border-box;
   }
   .hero-slideshow__btn--1:hover {
     background: var(--btn1-hover-bg);
@@ -276,10 +292,15 @@
     color: var(--block-btn2-text, var(--btn2-text));
     border: var(--btn2-bw) solid var(--btn2-border);
     border-radius: var(--btn2-br);
+    width: var(--btn2-width);
+    min-width: var(--btn2-width);
+    height: var(--btn2-height);
+    min-height: var(--btn2-height);
     padding: var(--btn2-py) var(--btn2-px);
     font-size: var(--btn2-size);
     font-weight: var(--btn2-weight);
     letter-spacing: var(--btn2-ls);
+    box-sizing: border-box;
   }
   .hero-slideshow__btn--2:hover {
     background: var(--btn2-hover-bg);
@@ -381,6 +402,20 @@
     .hero-slideshow__arrow {
       width: var(--arrow-size-mobile);
       height: var(--arrow-size-mobile);
+    }
+    .hero-slideshow__btn--1 {
+      width: var(--btn1-width-mobile);
+      min-width: var(--btn1-width-mobile);
+      height: var(--btn1-height-mobile);
+      min-height: var(--btn1-height-mobile);
+      font-size: var(--btn1-size-mobile);
+    }
+    .hero-slideshow__btn--2 {
+      width: var(--btn2-width-mobile);
+      min-width: var(--btn2-width-mobile);
+      height: var(--btn2-height-mobile);
+      min-height: var(--btn2-height-mobile);
+      font-size: var(--btn2-size-mobile);
     }
   }
 </style>
@@ -1120,6 +1155,46 @@
     },
     {
       "type": "range",
+      "id": "btn1_width",
+      "min": 60,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Width Desktop",
+      "default": 150
+    },
+    {
+      "type": "range",
+      "id": "btn1_height",
+      "min": 24,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Height Desktop",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "btn1_width_mobile",
+      "min": 60,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Width Mobile",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "btn1_height_mobile",
+      "min": 24,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Height Mobile",
+      "default": 40
+    },
+    {
+      "type": "range",
       "id": "btn1_padding_x",
       "min": 0,
       "max": 60,
@@ -1146,7 +1221,7 @@
       "step": 1,
       "unit": "px",
       "label": "Button Font Size",
-      "default": 11
+      "default": 14
     },
     {
       "type": "select",
@@ -1232,6 +1307,46 @@
     },
     {
       "type": "range",
+      "id": "btn2_width",
+      "min": 60,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Width Desktop",
+      "default": 150
+    },
+    {
+      "type": "range",
+      "id": "btn2_height",
+      "min": 24,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Height Desktop",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "btn2_width_mobile",
+      "min": 60,
+      "max": 240,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Width Mobile",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "btn2_height_mobile",
+      "min": 24,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Height Mobile",
+      "default": 40
+    },
+    {
+      "type": "range",
       "id": "btn2_padding_x",
       "min": 0,
       "max": 60,
@@ -1258,7 +1373,7 @@
       "step": 1,
       "unit": "px",
       "label": "Button Font Size",
-      "default": 11
+      "default": 14
     },
     {
       "type": "select",

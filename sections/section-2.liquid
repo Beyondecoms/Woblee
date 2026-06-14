@@ -32,15 +32,28 @@
 
     --wau-stats-number-color: {{ section.settings.stats_number_color }};
     --wau-stats-label-color: {{ section.settings.stats_label_color }};
+    --wau-stats-number-size: {{ section.settings.stats_number_size }}px;
+    --wau-stats-number-size-mobile: {{ section.settings.stats_number_size_mobile }}px;
+    --wau-stats-number-weight: {{ section.settings.stats_number_weight }};
+    --wau-stats-label-size: {{ section.settings.stats_label_size }}px;
+    --wau-stats-label-size-mobile: {{ section.settings.stats_label_size_mobile }}px;
+    --wau-stats-label-weight: {{ section.settings.stats_label_weight }};
 
     --wau-heading-size: {{ section.settings.heading_size }}px;
+    --wau-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
     --wau-heading-weight: {{ section.settings.heading_weight }};
 
     --wau-body-size: {{ section.settings.body_size }}px;
+    --wau-body-size-mobile: {{ section.settings.body_size_mobile }}px;
     --wau-body-weight: {{ section.settings.body_weight }};
 
     --wau-button-size: {{ section.settings.button_font_size }}px;
+    --wau-button-size-mobile: {{ section.settings.button_font_size_mobile }}px;
     --wau-button-weight: {{ section.settings.button_font_weight }};
+    --wau-button-width: {{ section.settings.button_width_desktop }}px;
+    --wau-button-height: {{ section.settings.button_height_desktop }}px;
+    --wau-button-width-mobile: {{ section.settings.button_width_mobile }}px;
+    --wau-button-height-mobile: {{ section.settings.button_height_mobile }}px;
 
     --wau-pt: {{ section.settings.padding_top }}px;
     --wau-pb: {{ section.settings.padding_bottom }}px;
@@ -63,7 +76,7 @@
   {% endif %}
 
   {% if section.settings.body_text != blank %}
-    <div class="wau-body">
+    <div class="wau-body ccc">
       {{ section.settings.body_text }}
     </div>
   {% endif %}
@@ -252,12 +265,15 @@
   font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
   font-size: var(--wau-button-size);
   font-weight: var(--wau-button-weight);
-
+  width: var(--wau-button-width);
+  min-width: var(--wau-button-width);
+  height: var(--wau-button-height);
+  min-height: var(--wau-button-height);
   background: var(--wau-button-bg);
   color: var(--wau-button-text);
-
-  padding: 14px 24px;
+  padding: 0 14px;
   transition: all .3s ease;
+  box-sizing: border-box;
 }
 
 .wau-cta::after {
@@ -277,18 +293,6 @@
 .wau-section.wau-visible .wau-cta {
   opacity: 1;
   transform: translateY(0);
-}
-
-@media only screen and (max-width: 768px){
-.wau-section.wau-visible .wau-cta {
-  padding: 6px !important;
-}
-}
-
-@media only screen and (min-width: 768px){
-  .wau-cta {
-    padding: 14px !important;
-  }
 }
 
 /* Stats */
@@ -326,14 +330,15 @@
 
 .wau-stat-pill strong {
   font-family: var(--wb-font-heading, sans-serif);
-  font-size: var(--wb-h4, clamp(22px, 2.4vw, 32px));
-  font-weight: var(--wb-fw-extrabold, 900);
-   color: var(--wau-accent);
+  font-size: var(--wau-stats-number-size);
+  font-weight: var(--wau-stats-number-weight);
+  color: var(--wau-accent);
   line-height: 1;
 }
 
 .wau-stat-pill span {
-  font-size: var(--wb-caption, 11px);
+  font-size: var(--wau-stats-label-size);
+  font-weight: var(--wau-stats-label-weight);
   letter-spacing: var(--wb-letter-wide, 0.1em);
   text-transform: uppercase;
   color: rgba(255,255,255,0.5);
@@ -565,9 +570,31 @@ width: 37%;
 }
 
 @media (max-width: 768px) {
-.wau-heading{
-  font-size: 24px !important;
-}
+  .wau-heading {
+    font-size: var(--wau-heading-size-mobile) !important;
+  }
+
+  .wau-body {
+    font-size: var(--wau-body-size-mobile);
+  }
+
+  .wau-stat-pill strong {
+    font-size: var(--wau-stats-number-size-mobile);
+  }
+
+  .wau-stat-pill span {
+    font-size: var(--wau-stats-label-size-mobile);
+  }
+
+  .wau-cta {
+    width: var(--wau-button-width-mobile);
+    min-width: var(--wau-button-width-mobile);
+    height: var(--wau-button-height-mobile);
+    min-height: var(--wau-button-height-mobile);
+    font-size: var(--wau-button-size-mobile);
+    padding: 0 8px;
+    gap: 6px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -732,7 +759,17 @@ width: 37%;
       "max": 120,
       "step": 2,
       "unit": "px",
-      "default": 72
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Font Size Mobile",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 24
     },
     {
       "type": "range",
@@ -741,7 +778,7 @@ width: 37%;
       "min": 100,
       "max": 900,
       "step": 100,
-      "default": 800
+      "default": 700
     },
     {
       "type": "color",
@@ -757,7 +794,17 @@ width: 37%;
       "max": 40,
       "step": 1,
       "unit": "px",
-      "default": 18
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "body_size_mobile",
+      "label": "Body Font Size Mobile",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
     },
     {
       "type": "range",
@@ -805,7 +852,17 @@ width: 37%;
       "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 16
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_font_size_mobile",
+      "label": "Button Font Size Mobile",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
     },
     {
       "type": "range",
@@ -815,6 +872,46 @@ width: 37%;
       "max": 900,
       "step": 100,
       "default": 700
+    },
+    {
+      "type": "range",
+      "id": "button_width_desktop",
+      "label": "Button Width Desktop",
+      "min": 80,
+      "max": 220,
+      "step": 2,
+      "unit": "px",
+      "default": 150
+    },
+    {
+      "type": "range",
+      "id": "button_height_desktop",
+      "label": "Button Height Desktop",
+      "min": 24,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_width_mobile",
+      "label": "Button Width Mobile",
+      "min": 60,
+      "max": 220,
+      "step": 2,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "button_height_mobile",
+      "label": "Button Height Mobile",
+      "min": 24,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
     },
 
     {
@@ -832,6 +929,64 @@ width: 37%;
       "id": "stats_label_color",
       "label": "Stats Label Color",
       "default": "#B7C1CC"
+    },
+    {
+      "type": "range",
+      "id": "stats_number_size",
+      "label": "Stats Number Font Size Desktop",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "stats_number_size_mobile",
+      "label": "Stats Number Font Size Mobile",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "stats_number_weight",
+      "label": "Stats Number Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "stats_label_size",
+      "label": "Stats Label Font Size Desktop",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "stats_label_size_mobile",
+      "label": "Stats Label Font Size Mobile",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "stats_label_weight",
+      "label": "Stats Label Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
     },
 
     {

@@ -380,11 +380,23 @@
     overflow-y: auto;
   }
 
-  .cart-drawer__heading {
+  .cart-drawer__heading,
+  .cart-drawer__heading.h4 {
     display: flex;
     align-items: center;
     gap: var(--gap-xs);
     margin-bottom: 0;
+    font-size: var(--cart-drawer-heading-font-size-desktop) !important;
+    font-weight: var(--cart-drawer-heading-font-weight) !important;
+    color: var(--cart-drawer-heading-text-color) !important;
+    line-height: 1.2;
+  }
+
+  @media screen and (max-width: 749px) {
+    .cart-drawer__heading,
+    .cart-drawer__heading.h4 {
+      font-size: var(--cart-drawer-heading-font-size-mobile) !important;
+    }
   }
 
   .cart-drawer__close-button {

@@ -589,6 +589,14 @@
     --button-size: var(--minimum-touch-target);
     --button-padding-inline: 24px;
     --button-padding-block: 16px;
+    --home-page-button-width: {{ settings.home_page_button_width }}px;
+    --home-page-button-height: {{ settings.home_page_button_height }}px;
+    --home-page-button-padding: {{ settings.home_page_button_padding }}px;
+    --home-page-button-font-size: {{ settings.home_page_button_font_size }}px;
+    --home-page-button-width-mobile: {{ settings.home_page_button_width_mobile }}px;
+    --home-page-button-height-mobile: {{ settings.home_page_button_height_mobile }}px;
+    --home-page-button-padding-mobile: {{ settings.home_page_button_padding_mobile }}px;
+    --home-page-button-font-size-mobile: {{ settings.home_page_button_font_size_mobile }}px;
 
     /* Button font-family */
     --button-font-family-primary: var(--font-{{ settings.type_font_button_primary }}--family);
@@ -616,6 +624,10 @@
     --drawer-height: 100dvh;
     --drawer-width: 95vw;
     --drawer-max-width: 500px;
+    --cart-drawer-heading-font-size-desktop: {{ settings.cart_drawer_heading_font_size_desktop | default: 18 }}px;
+    --cart-drawer-heading-font-size-mobile: {{ settings.cart_drawer_heading_font_size_mobile | default: 16 }}px;
+    --cart-drawer-heading-font-weight: {{ settings.cart_drawer_heading_font_weight | default: '700' }};
+    --cart-drawer-heading-text-color: {{ settings.cart_drawer_heading_text_color | default: '#1E3D63' }};
 
     /* Variant Picker Swatches */
     --variant-picker-swatch-width-unitless: {{ settings.variant_swatch_width }};

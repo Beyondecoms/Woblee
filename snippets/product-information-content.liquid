@@ -74,12 +74,52 @@
     when 'content-full-width'
       assign content_width = 'full-width'
   endcase
+
+  assign pi_title_size_desktop = settings.typography_product_title_size_desktop | default: 60
+  assign pi_title_size_mobile = settings.typography_product_title_size_mobile | default: 40
+  assign pi_title_weight = settings.typography_product_title_weight | default: '700'
+
+  assign pi_price_size_desktop = settings.typography_product_price_size_desktop | default: 24
+  assign pi_price_size_mobile = settings.typography_product_price_size_mobile | default: 18
+  assign pi_price_weight = settings.typography_product_price_weight | default: '700'
+
+  assign pi_variant_label_size_desktop = settings.typography_variant_labels_size_desktop | default: 14
+  assign pi_variant_label_size_mobile = settings.typography_variant_labels_size_mobile | default: 14
+  assign pi_variant_label_weight = settings.typography_variant_labels_weight | default: '600'
+
+  assign pi_variant_value_size_desktop = settings.typography_variant_values_size_desktop | default: 14
+  assign pi_variant_value_size_mobile = settings.typography_variant_values_size_mobile | default: 14
+  assign pi_variant_value_weight = settings.typography_variant_values_weight | default: '500'
+
+  assign pi_atc_size_desktop = settings.typography_add_to_cart_size_desktop | default: 14
+  assign pi_atc_size_mobile = settings.typography_add_to_cart_size_mobile | default: 14
+  assign pi_atc_weight = settings.typography_add_to_cart_weight | default: '700'
+
+  assign pi_accordion_heading_size_desktop = settings.typography_accordion_heading_size_desktop | default: 14
+  assign pi_accordion_heading_size_mobile = settings.typography_accordion_heading_size_mobile | default: 14
+  assign pi_accordion_heading_weight = settings.typography_accordion_heading_weight | default: '700'
+
+  assign pi_accordion_content_size_desktop = settings.typography_accordion_content_size_desktop | default: 14
+  assign pi_accordion_content_size_mobile = settings.typography_accordion_content_size_mobile | default: 14
+  assign pi_accordion_content_weight = settings.typography_accordion_content_weight | default: '400'
+
+  assign pi_feature_icon_size_desktop = settings.typography_feature_icons_size_desktop | default: 14
+  assign pi_feature_icon_size_mobile = settings.typography_feature_icons_size_mobile | default: 12
+  assign pi_feature_icon_weight = settings.typography_feature_icons_weight | default: '600'
+
+  assign pi_breadcrumbs_size_desktop = settings.typography_breadcrumbs_size_desktop | default: 14
+  assign pi_breadcrumbs_size_mobile = settings.typography_breadcrumbs_size_mobile | default: 12
+  assign pi_breadcrumbs_weight = settings.typography_breadcrumbs_weight | default: '400'
+
+  assign pi_meta_size_desktop = settings.typography_product_meta_size_desktop | default: 14
+  assign pi_meta_size_mobile = settings.typography_product_meta_size_mobile | default: 14
+  assign pi_meta_weight = settings.typography_product_meta_weight | default: '400'
 %}
 
 <div class="section-background color-{{ settings.color_scheme }}"></div>
 <div
   class="product-information section section--{{ content_width }} spacing-style color-{{ settings.color_scheme }} relative"
-  style="{% render 'spacing-style', settings: settings %} --gap: {{ settings.gap }}px;"
+  style="{% render 'spacing-style', settings: settings %} --gap: {{ settings.gap }}px; --pi-title-size-desktop: {{ pi_title_size_desktop }}px; --pi-title-size-mobile: {{ pi_title_size_mobile }}px; --pi-title-weight: {{ pi_title_weight }}; --pi-price-size-desktop: {{ pi_price_size_desktop }}px; --pi-price-size-mobile: {{ pi_price_size_mobile }}px; --pi-price-weight: {{ pi_price_weight }}; --pi-variant-label-size-desktop: {{ pi_variant_label_size_desktop }}px; --pi-variant-label-size-mobile: {{ pi_variant_label_size_mobile }}px; --pi-variant-label-weight: {{ pi_variant_label_weight }}; --pi-variant-value-size-desktop: {{ pi_variant_value_size_desktop }}px; --pi-variant-value-size-mobile: {{ pi_variant_value_size_mobile }}px; --pi-variant-value-weight: {{ pi_variant_value_weight }}; --pi-atc-size-desktop: {{ pi_atc_size_desktop }}px; --pi-atc-size-mobile: {{ pi_atc_size_mobile }}px; --pi-atc-weight: {{ pi_atc_weight }}; --pi-accordion-heading-size-desktop: {{ pi_accordion_heading_size_desktop }}px; --pi-accordion-heading-size-mobile: {{ pi_accordion_heading_size_mobile }}px; --pi-accordion-heading-weight: {{ pi_accordion_heading_weight }}; --pi-accordion-content-size-desktop: {{ pi_accordion_content_size_desktop }}px; --pi-accordion-content-size-mobile: {{ pi_accordion_content_size_mobile }}px; --pi-accordion-content-weight: {{ pi_accordion_content_weight }}; --pi-feature-icon-size-desktop: {{ pi_feature_icon_size_desktop }}px; --pi-feature-icon-size-mobile: {{ pi_feature_icon_size_mobile }}px; --pi-feature-icon-weight: {{ pi_feature_icon_weight }}; --pi-breadcrumbs-size-desktop: {{ pi_breadcrumbs_size_desktop }}px; --pi-breadcrumbs-size-mobile: {{ pi_breadcrumbs_size_mobile }}px; --pi-breadcrumbs-weight: {{ pi_breadcrumbs_weight }}; --pi-meta-size-desktop: {{ pi_meta_size_desktop }}px; --pi-meta-size-mobile: {{ pi_meta_size_mobile }}px; --pi-meta-weight: {{ pi_meta_weight }};"
   data-testid="product-information"
 >
   {% if settings.desktop_media_position == 'left' and product_has_media and request.page_type == 'product' %}
@@ -307,6 +347,75 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 {% stylesheet %}
+  .product-information:not(.quick-add-modal__content .product-information) .product-details .text-block:is(.h1, .h2, .h3, .h4, .h5, .h6):has(h1) :is(h1, h2, h3, h4, h5, h6) {
+    font-size: var(--pi-title-size-desktop);
+    font-weight: var(--pi-title-weight);
+    line-height: 1.1;
+  }
+
+  .product-information:not(.quick-add-modal__content .product-information) .product-details product-price :is(.price, .price-item--sale, .price-item--regular, .compare-at-price) {
+    font-size: var(--pi-price-size-desktop);
+    font-weight: var(--pi-price-weight);
+    line-height: 1.2;
+  }
+
+  .product-information:not(.quick-add-modal__content .product-information) .product-details .variant-option legend {
+    font-size: var(--pi-variant-label-size-desktop);
+    font-weight: var(--pi-variant-label-weight);
+  }
+
+  .product-information:not(.quick-add-modal__content .product-information) .product-details :is(.variant-option__button-label__text, .variant-option__swatch-value) {
+    font-size: var(--pi-variant-value-size-desktop);
+    font-weight: var(--pi-variant-value-weight);
+  }
+
+  .product-information:not(.quick-add-modal__content .product-information) .product-details .add-to-cart-button {
+    font-size: var(--pi-atc-size-desktop);
+    font-weight: var(--pi-atc-weight);
+  }
+
+  .product-information:not(.quick-add-modal__content .product-information) .product-details .details__header,
+  .product-information:not(.quick-add-modal__content .product-information) .product-details .details__header > * {
+    font-size: var(--pi-accordion-heading-size-desktop);
+    font-weight: var(--pi-accordion-heading-weight);
+  }
+
+  .product-information:not(.quick-add-modal__content .product-information) .product-details .details-content,
+  .product-information:not(.quick-add-modal__content .product-information) .product-details .details-content :is(p, li, span, strong) {
+    font-size: var(--pi-accordion-content-size-desktop);
+    font-weight: var(--pi-accordion-content-weight);
+  }
+
+  .product-information:not(.quick-add-modal__content .product-information) .product-meta-cards .meta-card span {
+    font-size: var(--pi-feature-icon-size-desktop);
+    font-weight: var(--pi-feature-icon-weight);
+  }
+
+  #shopify-section-{{ section_id }} :is(.breadcrumbs, .breadcrumb, nav[aria-label='breadcrumb'], nav[aria-label='Breadcrumb']) :is(a, span, li) {
+    font-size: var(--pi-breadcrumbs-size-desktop);
+    font-weight: var(--pi-breadcrumbs-weight);
+  }
+
+  .product-information:not(.quick-add-modal__content .product-information) :is(
+      product-sku-component,
+      product-sku-component *,
+      product-inventory,
+      product-inventory *,
+      .product-inventory__text,
+      .quantity-label,
+      .quantity-rules,
+      .product-form-text__error,
+      .tax-note,
+      .volume-pricing__title,
+      .volume-pricing__row,
+      .pickup-availability-drawer,
+      .pickup-availability-preview,
+      .product-meta-modal__body
+    ) {
+    font-size: var(--pi-meta-size-desktop);
+    font-weight: var(--pi-meta-weight);
+  }
+
   .product-information {
     gap: var(--gap) 0;
   }
@@ -344,6 +453,63 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Mobile styles */
   @media screen and (max-width: 749px) {
+    .product-information:not(.quick-add-modal__content .product-information) .product-details .text-block:is(.h1, .h2, .h3, .h4, .h5, .h6):has(h1) :is(h1, h2, h3, h4, h5, h6) {
+      font-size: var(--pi-title-size-mobile);
+    }
+
+    .product-information:not(.quick-add-modal__content .product-information) .product-details product-price :is(.price, .price-item--sale, .price-item--regular, .compare-at-price) {
+      font-size: var(--pi-price-size-mobile);
+    }
+
+    .product-information:not(.quick-add-modal__content .product-information) .product-details .variant-option legend {
+      font-size: var(--pi-variant-label-size-mobile);
+    }
+
+    .product-information:not(.quick-add-modal__content .product-information) .product-details :is(.variant-option__button-label__text, .variant-option__swatch-value) {
+      font-size: var(--pi-variant-value-size-mobile);
+    }
+
+    .product-information:not(.quick-add-modal__content .product-information) .product-details .add-to-cart-button {
+      font-size: var(--pi-atc-size-mobile);
+    }
+
+    .product-information:not(.quick-add-modal__content .product-information) .product-details .details__header,
+    .product-information:not(.quick-add-modal__content .product-information) .product-details .details__header > * {
+      font-size: var(--pi-accordion-heading-size-mobile);
+    }
+
+    .product-information:not(.quick-add-modal__content .product-information) .product-details .details-content,
+    .product-information:not(.quick-add-modal__content .product-information) .product-details .details-content :is(p, li, span, strong) {
+      font-size: var(--pi-accordion-content-size-mobile);
+    }
+
+    .product-information:not(.quick-add-modal__content .product-information) .product-meta-cards .meta-card span {
+      font-size: var(--pi-feature-icon-size-mobile);
+    }
+
+    #shopify-section-{{ section_id }} :is(.breadcrumbs, .breadcrumb, nav[aria-label='breadcrumb'], nav[aria-label='Breadcrumb']) :is(a, span, li) {
+      font-size: var(--pi-breadcrumbs-size-mobile);
+    }
+
+    .product-information:not(.quick-add-modal__content .product-information) :is(
+        product-sku-component,
+        product-sku-component *,
+        product-inventory,
+        product-inventory *,
+        .product-inventory__text,
+        .quantity-label,
+        .quantity-rules,
+        .product-form-text__error,
+        .tax-note,
+        .volume-pricing__title,
+        .volume-pricing__row,
+        .pickup-availability-drawer,
+        .pickup-availability-preview,
+        .product-meta-modal__body
+      ) {
+      font-size: var(--pi-meta-size-mobile);
+    }
+
     .product-information:not(.quick-add-modal__content .product-information) .product-information__media {
       grid-column: 1 / -1;
       grid-row: 1;

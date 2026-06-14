@@ -143,7 +143,10 @@
 
   <h3
     class="t4s-section-title t4s-title shop-bnd"
-    style="font-size:{{ section.settings.heading_size }}px;"
+    style="
+      font-size: {{ section.settings.heading_size_mobile }}px;
+      font-weight: {{ section.settings.heading_weight_mobile }};
+    "
   >
     <span>{{ section.settings.heading }}</span>
   </h3>
@@ -315,14 +318,15 @@ section.shop-by-price-section.page-width{
 padding-bottom: 0 !important;
 }
 h3.t4s-section-title.t4s-title.shop-bnd span{
-font-size:24px;
+font-size: {{ section.settings.heading_size_mobile }}px;
 }
 
   .shop-desk{
     display:none !important;
   }
 h3.t4s-section-title.t4s-title.shop-bnd{
- font-size: 29px !important;
+ font-size: {{ section.settings.heading_size_mobile }}px !important;
+ font-weight: {{ section.settings.heading_weight_mobile }} !important;
 }
   .shop-mobile{
     display:block;
@@ -447,12 +451,22 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       "type": "range",
       "id": "heading_size",
-      "label": "Heading Size",
+      "label": "Heading Size - Desktop",
       "min": 20,
       "max": 80,
       "step": 2,
       "unit": "px",
       "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size - Mobile",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 24
     },
     {
   "type": "header",
@@ -497,7 +511,39 @@ document.addEventListener('DOMContentLoaded', function () {
 {
   "type": "select",
   "id": "heading_weight",
-  "label": "Heading Font Weight",
+  "label": "Heading Font Weight - Desktop",
+  "options": [
+    {
+      "value": "400",
+      "label": "Regular"
+    },
+    {
+      "value": "500",
+      "label": "Medium"
+    },
+    {
+      "value": "600",
+      "label": "Semi Bold"
+    },
+    {
+      "value": "700",
+      "label": "Bold"
+    },
+    {
+      "value": "800",
+      "label": "Extra Bold"
+    },
+    {
+      "value": "900",
+      "label": "Black"
+    }
+  ],
+  "default": "900"
+},
+{
+  "type": "select",
+  "id": "heading_weight_mobile",
+  "label": "Heading Font Weight - Mobile",
   "options": [
     {
       "value": "400",

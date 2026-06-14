@@ -305,25 +305,36 @@
 #{{ section_id }} .trust-strip__heading,
 #{{ section_id }} .trust-strip__title{
   font-family: {{ section.settings.font_family.family }}, {{ section.settings.font_family.fallback_families }};
-  font-weight: {{ section.settings.heading_weight }};
-    color: {{ section.settings.title_color }};
+  color: {{ section.settings.title_color }};
 }
 
 #{{ section_id }} .trust-strip__text,
 #{{ section_id }} .trust-strip__subheading{
   font-family: {{ section.settings.font_family.family }}, {{ section.settings.font_family.fallback_families }};
-  font-weight: {{ section.settings.text_weight }};
-    color: {{ section.settings.subheading_color }};
 }
 
 #{{ section_id }} .trust-strip__heading{
   font-size: {{ section.settings.heading_size_desktop }}px;
-    color: {{ section.settings.heading_color }};
+  font-weight: {{ section.settings.heading_weight_desktop }};
+  color: {{ section.settings.heading_color }};
+}
+
+#{{ section_id }} .trust-strip__subheading{
+  font-size: {{ section.settings.subheading_size_desktop }}px;
+  font-weight: {{ section.settings.subheading_weight_desktop }};
+  color: {{ section.settings.subheading_color }};
+}
+
+#{{ section_id }} .trust-strip__title{
+  font-size: {{ section.settings.title_size_desktop }}px;
+  font-weight: {{ section.settings.title_weight_desktop }};
+  color: {{ section.settings.title_color }};
 }
 
 #{{ section_id }} .trust-strip__text{
   font-size: {{ section.settings.text_size_desktop }}px;
-   color: {{ section.settings.text_color }};
+  font-weight: {{ section.settings.text_weight_desktop }};
+  color: {{ section.settings.text_color }};
 }
 
 @media screen and (max-width:749px){
@@ -335,11 +346,22 @@
 
   #{{ section_id }} .trust-strip__heading{
     font-size: {{ section.settings.heading_size_mobile }}px;
-    
+    font-weight: {{ section.settings.heading_weight_mobile }};
+  }
+
+  #{{ section_id }} .trust-strip__subheading{
+    font-size: {{ section.settings.subheading_size_mobile }}px;
+    font-weight: {{ section.settings.subheading_weight_mobile }};
+  }
+
+  #{{ section_id }} .trust-strip__title{
+    font-size: {{ section.settings.title_size_mobile }}px;
+    font-weight: {{ section.settings.title_weight_mobile }};
   }
 
   #{{ section_id }} .trust-strip__text{
     font-size: {{ section.settings.text_size_mobile }}px;
+    font-weight: {{ section.settings.text_weight_mobile }};
   }
 }
 </style>
@@ -509,8 +531,111 @@
 },
 {
   "type": "select",
-  "id": "heading_weight",
-  "label": "Heading Font Weight",
+  "id": "heading_weight_desktop",
+  "label": "Heading Font Weight Desktop",
+  "default": "700",
+  "options": [
+    { "value": "400", "label": "Regular" },
+    { "value": "500", "label": "Medium" },
+    { "value": "600", "label": "Semi Bold" },
+    { "value": "700", "label": "Bold" },
+    { "value": "800", "label": "Extra Bold" }
+  ]
+},
+{
+  "type": "select",
+  "id": "heading_weight_mobile",
+  "label": "Heading Font Weight Mobile",
+  "default": "700",
+  "options": [
+    { "value": "400", "label": "Regular" },
+    { "value": "500", "label": "Medium" },
+    { "value": "600", "label": "Semi Bold" },
+    { "value": "700", "label": "Bold" },
+    { "value": "800", "label": "Extra Bold" }
+  ]
+},
+{
+  "type": "range",
+  "id": "subheading_size_desktop",
+  "label": "Subheading Size Desktop",
+  "min": 10,
+  "max": 30,
+  "step": 1,
+  "default": 15,
+  "unit": "px"
+},
+{
+  "type": "range",
+  "id": "subheading_size_mobile",
+  "label": "Subheading Size Mobile",
+  "min": 10,
+  "max": 24,
+  "step": 1,
+  "default": 13,
+  "unit": "px"
+},
+{
+  "type": "select",
+  "id": "subheading_weight_desktop",
+  "label": "Subheading Font Weight Desktop",
+  "default": "500",
+  "options": [
+    { "value": "400", "label": "Regular" },
+    { "value": "500", "label": "Medium" },
+    { "value": "600", "label": "Semi Bold" },
+    { "value": "700", "label": "Bold" }
+  ]
+},
+{
+  "type": "select",
+  "id": "subheading_weight_mobile",
+  "label": "Subheading Font Weight Mobile",
+  "default": "500",
+  "options": [
+    { "value": "400", "label": "Regular" },
+    { "value": "500", "label": "Medium" },
+    { "value": "600", "label": "Semi Bold" },
+    { "value": "700", "label": "Bold" }
+  ]
+},
+{
+  "type": "range",
+  "id": "title_size_desktop",
+  "label": "Card Title Size Desktop",
+  "min": 10,
+  "max": 30,
+  "step": 1,
+  "default": 15,
+  "unit": "px"
+},
+{
+  "type": "range",
+  "id": "title_size_mobile",
+  "label": "Card Title Size Mobile",
+  "min": 10,
+  "max": 24,
+  "step": 1,
+  "default": 14,
+  "unit": "px"
+},
+{
+  "type": "select",
+  "id": "title_weight_desktop",
+  "label": "Card Title Font Weight Desktop",
+  "default": "700",
+  "options": [
+    { "value": "400", "label": "Regular" },
+    { "value": "500", "label": "Medium" },
+    { "value": "600", "label": "Semi Bold" },
+    { "value": "700", "label": "Bold" },
+    { "value": "800", "label": "Extra Bold" }
+  ]
+},
+{
+  "type": "select",
+  "id": "title_weight_mobile",
+  "label": "Card Title Font Weight Mobile",
   "default": "700",
   "options": [
     { "value": "400", "label": "Regular" },
@@ -543,8 +668,20 @@
 },
 {
   "type": "select",
-  "id": "text_weight",
-  "label": "Text Font Weight",
+  "id": "text_weight_desktop",
+  "label": "Text Font Weight Desktop",
+  "default": "500",
+  "options": [
+    { "value": "400", "label": "Regular" },
+    { "value": "500", "label": "Medium" },
+    { "value": "600", "label": "Semi Bold" },
+    { "value": "700", "label": "Bold" }
+  ]
+},
+{
+  "type": "select",
+  "id": "text_weight_mobile",
+  "label": "Text Font Weight Mobile",
   "default": "500",
   "options": [
     { "value": "400", "label": "Regular" },
