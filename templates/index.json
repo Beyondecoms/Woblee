@@ -424,7 +424,9 @@
         "btn_hover_lift": 2,
         "background_color": "#ffffff",
         "padding_top": 0,
-        "padding_bottom": 60
+        "padding_bottom": 60,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 30
       }
     },
     "custom_category_grid_dyNMWU": {
