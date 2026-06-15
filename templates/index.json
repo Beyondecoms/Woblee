@@ -533,7 +533,7 @@
         "shop_all_button_border_radius": 0,
         "shop_all_button_border_width": 1,
         "shop_all_button_text_color": "#0c4168",
-        "shop_all_button_background_color": "rgba(0,0,0,0)",
+        "shop_all_button_background_color": "#FFFFFF",
         "shop_all_button_border_color": "#0c4168",
         "shop_all_button_margin_top": 20,
         "shop_all_button_margin_bottom": 0,
