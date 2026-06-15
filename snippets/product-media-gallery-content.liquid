@@ -26,8 +26,21 @@
 {%- endif -%}
 {%- liquid
   assign selected_product = closest.product
-  assign selected_variant_media = selected_product.selected_or_first_available_variant.featured_media
+  assign selected_variant = selected_product.selected_or_first_available_variant
+  assign selected_variant_media = selected_variant.featured_media
   assign first_3d_model = selected_product.media | where: 'media_type', 'model' | first
+  assign color_option_index = blank
+  assign selected_color_value = blank
+
+  for product_option in selected_product.options_with_values
+    assign normalized_option_name = product_option.name | downcase | strip
+
+    if normalized_option_name contains 'color' or normalized_option_name contains 'colour'
+      assign color_option_index = forloop.index0
+      assign selected_color_value = selected_variant.options[color_option_index]
+      break
+    endif
+  endfor
 
   if block_settings.hide_variants
     assign variant_images = selected_product.images | where: 'attached_to_variant?', true | map: 'src'
@@ -102,7 +115,42 @@
   endif
 
   assign sorted_media = '' | split: ','
-  if selected_variant_media
+  assign matching_color_media_ids = '|'
+
+  if color_option_index != blank and selected_color_value != blank
+    for variant in selected_product.variants
+      assign variant_color_value = variant.options[color_option_index]
+
+      if variant_color_value == selected_color_value and variant.featured_media
+        assign media_id_token = '|' | append: variant.featured_media.id | append: '|'
+
+        unless matching_color_media_ids contains media_id_token
+          assign matching_color_media_ids = matching_color_media_ids | append: variant.featured_media.id | append: '|'
+        endunless
+      endif
+    endfor
+  endif
+
+  if matching_color_media_ids != '|'
+    if selected_variant_media
+      assign sorted_media = sorted_media | concat: selected_product.media | where: 'id', selected_variant_media.id
+    endif
+
+    for media in selected_product.media
+      assign media_id_token = '|' | append: media.id | append: '|'
+
+      unless matching_color_media_ids contains media_id_token
+        continue
+      endunless
+
+      if selected_variant_media and media.id == selected_variant_media.id
+        continue
+      endif
+
+      assign found_media = selected_product.media | where: 'id', media.id
+      assign sorted_media = sorted_media | concat: found_media
+    endfor
+  elsif selected_variant_media
     assign sorted_media = sorted_media | concat: selected_product.media | where: 'id', selected_variant_media.id
 
     for media in selected_product.media
