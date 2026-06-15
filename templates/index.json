@@ -777,7 +777,7 @@
         "button_margin_top": 36,
         "button_width_desktop": 150,
         "button_height_desktop": 40,
-        "button_width_mobile": 144,
+        "button_width_mobile": 100,
         "button_height_mobile": 40,
         "button_font_size_desktop": 14,
         "button_font_size_mobile": 10,
