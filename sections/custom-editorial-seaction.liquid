@@ -112,6 +112,7 @@
 
   --ess-padding-top: {{ section.settings.padding_top }}px;
   --ess-padding-bottom: {{ section.settings.padding_bottom }}px;
+   --ess-padding-bottom-mobile: {{ section.settings.padding_top_mobile }}
   --ess-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
   --ess-left-min-height: {{ section.settings.left_min_height }}px;
   --ess-left-min-height-mobile: {{ section.settings.left_min_height_mobile }}px;
@@ -447,7 +448,7 @@
 
 @media (max-width: 480px) {
   .ess-section {
-    padding-top: {{ section.setting.top__mobile }}
+    padding-top: {{ sectio }}
     padding-bottom: var(--ess-padding-bottom-mobile);
   }
 
@@ -543,7 +544,7 @@
     },
         {
       "type": "range",
-      "id": "padding_bottom_top",
+      "id": "padding_top_mobile",
       "label": "Section Top padding mobile (px)",
       "min": 0,
       "max": 80,
