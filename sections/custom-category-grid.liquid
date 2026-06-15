@@ -317,6 +317,11 @@ h3.t4s-section-title.t4s-title.shop-bnd span{
 section.shop-by-price-section.page-width{
 padding-bottom: 0 !important;
 }
+.shop-mobile {
+  padding-top: {{ section.settings.padding_top_mobile }}px;
+  padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+ 
+}
 h3.t4s-section-title.t4s-title.shop-bnd span{
 font-size: {{ section.settings.heading_size_mobile }}px;
 }
@@ -495,6 +500,26 @@ document.addEventListener('DOMContentLoaded', function () {
   "min": 0,
   "max": 120,
   "step": 4,
+  "unit": "px",
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "padding_top_mobile",
+  "label": "Top Padding - Mobile",
+  "min": 0,
+  "max": 120,
+  "step": 2,
+  "unit": "px",
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "padding_bottom_mobile",
+  "label": "Bottom Padding - Mobile",
+  "min": 0,
+  "max": 120,
+  "step": 2,
   "unit": "px",
   "default": 0
 },
