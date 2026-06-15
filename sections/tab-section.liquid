@@ -262,9 +262,8 @@
 
 @media screen and (max-width: 990px) {
 #{{ section_id }} {
-  padding-top: {{ section.settings.section_padding_top_mobile }}px;
-  padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px;
-  
+  padding-top: {{ section.settings.section_padding_top_mobile }}px !important;
+  padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px !important;
 }
   #{{ section_id }} .timeline-tabs__layout {
     grid-template-columns: 1fr;
