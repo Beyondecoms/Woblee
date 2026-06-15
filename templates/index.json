@@ -926,7 +926,7 @@
       ],
       "name": "Custom Editorial Split",
       "settings": {
-        "max_width": 1400,
+        "max_width": 1500,
         "left_width": "1.1fr",
         "gap": 6,
         "h_padding": 20,
