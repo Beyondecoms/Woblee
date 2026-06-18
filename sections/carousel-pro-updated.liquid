@@ -108,9 +108,6 @@
 
 {%  style %}
 /* Hide mobile-below button on desktop */
-a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--mobile-below {
-  display: none;
-}
 
 @media screen and (max-width: 767px) {
 
@@ -312,6 +309,15 @@ a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--m
   -webkit-user-drag: none;
 }
 
+
+@media screen and (min-width: 768px) {
+a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--mobile-below {
+  display: none;
+}
+
+
+}
+
 /* MOBILE */
 
 @media screen and (max-width: 767px) {
@@ -371,6 +377,9 @@ a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--m
     bottom: 20px;
   }
 }
+
+
+
 {% endstyle %} 
 
 <script>
