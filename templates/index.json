@@ -1065,22 +1065,22 @@
         "stat_eApY44": {
           "type": "stat",
           "settings": {
-            "stat_value": "10K+",
-            "stat_label": "Happy Customers"
+            "stat_value": "DESIGN-LED",
+            "stat_label": " CREATED BY DESIGNERS"
           }
         },
         "stat_Pqzapj": {
           "type": "stat",
           "settings": {
-            "stat_value": "4.9★",
-            "stat_label": "Avg. Rating"
+            "stat_value": "STORY-DRIVEN",
+            "stat_label": " GRAPHICS WITH MEANING"
           }
         },
         "stat_j3QiFA": {
           "type": "stat",
           "settings": {
-            "stat_value": "100%",
-            "stat_label": "Made with Love"
+            "stat_value": "LIMITED EDITIONS",
+            "stat_label": " MADE TO STAND OUT"
           }
         }
       },
