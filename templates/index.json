@@ -12,6 +12,36 @@
     "custom_hero_section_jrfcFp": {
       "type": "custom-hero-section",
       "blocks": {
+        "slide_jWfnFU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_nn8na4nn8na4nn8n.png",
+            "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/PRDGY_Flying_Bull_Back_Oversized_T-shirt.webp",
+            "mobile_image_focal_point": "center center",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "hide_content": false,
+            "eyebrow": "Wear Your Vibe. Layer Your Story.",
+            "heading": "AUTUMN WINTER ‘26 HAS ARRIVED",
+            "subtext": "Playful, expressive, and built for everyday comfort. The latest Woblee drop brings fresh graphics, premium essentials, and statement styles made for the season.",
+            "btn1_label": "Men",
+            "btn1_link": "shopify://collections/men",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "woMEN",
+            "btn2_link": "shopify://collections/men-copy",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "kids",
+            "btn3_link": "shopify://collections/women-copy",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        },
         "slide_B6rmj8": {
           "type": "slide",
           "settings": {
@@ -41,41 +71,11 @@
             "btn3_custom_bg": "",
             "btn3_custom_text": ""
           }
-        },
-        "slide_jWfnFU": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_nn8na4nn8na4nn8n.png",
-            "image_focal_point": "center center",
-            "mobile_image": "shopify://shop_images/PRDGY_Flying_Bull_Back_Oversized_T-shirt.webp",
-            "mobile_image_focal_point": "center center",
-            "video_url_mp4": "",
-            "video_url_webm": "",
-            "hide_content": false,
-            "eyebrow": "",
-            "heading": "AUTUMN WINTER ‘26 HAS ARRIVED",
-            "subtext": "Wear Your Vibe. Layer Your Story.",
-            "btn1_label": "Men",
-            "btn1_link": "shopify://collections/men",
-            "btn1_new_tab": false,
-            "btn1_custom_bg": "",
-            "btn1_custom_text": "",
-            "btn2_label": "woMEN",
-            "btn2_link": "shopify://collections/men-copy",
-            "btn2_new_tab": false,
-            "btn2_custom_bg": "",
-            "btn2_custom_text": "",
-            "btn3_label": "kids",
-            "btn3_link": "shopify://collections/women-copy",
-            "btn3_new_tab": false,
-            "btn3_custom_bg": "",
-            "btn3_custom_text": ""
-          }
         }
       },
       "block_order": [
-        "slide_B6rmj8",
-        "slide_jWfnFU"
+        "slide_jWfnFU",
+        "slide_B6rmj8"
       ],
       "name": "Hero Slideshow Custom",
       "settings": {
@@ -380,7 +380,7 @@
         "shop_all_button_margin_top": 20,
         "shop_all_button_margin_bottom": 0,
         "section_font": "sans_serif_n4",
-        "background_color": "#E5E5E5",
+        "background_color": "#e5e5e5",
         "small_heading_color": "#21f010",
         "main_heading_color": "#0c4168",
         "description_color": "#4f5d6b",
@@ -704,57 +704,57 @@
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/Relaxed-Blue.png",
-            "title": "100% COTTON",
-            "text": "Naturally breathable, comfortable, and made for everyday wear."
+            "title": "PURE COTTON",
+            "text": "Naturally breathable for everyday wear"
           }
         },
         "feature_L3LwBp": {
           "type": "feature",
           "settings": {
-            "title": "BIO-WASHED SOFTNESS",
-            "text": "Extra-soft finish for a smoother feel and lasting comfort."
+            "title": "BIO-WASHED",
+            "text": "Extra-soft finish for lasting comfort"
           }
         },
         "feature_XNFat3": {
           "type": "feature",
           "settings": {
-            "title": "PREMIUM GSM FABRIC",
-            "text": "Substantial fabric weight that feels premium and holds its shape."
+            "title": "HEAVYWEIGHT",
+            "text": "High GSM that maintains its shape"
           }
         },
         "feature_eGHHm8": {
           "type": "feature",
           "settings": {
-            "title": "PRE-SHRUNK FABRIC",
-            "text": "Designed to maintain its fit and feel, wash after wash."
+            "title": "PRE-SHRUNK",
+            "text": "Made to sustain, wash after wash"
           }
         },
         "feature_kdGgmU": {
           "type": "feature",
           "settings": {
-            "title": "MADE TO LAST",
-            "text": "Built with quality construction for repeat wear and lasting durability."
+            "title": "BUILT TO LAST",
+            "text": "Quality construction for years of wear"
           }
         },
         "feature_adQCEh": {
           "type": "feature",
           "settings": {
-            "title": "DESIGNED FOR SELF-EXPRESSION",
-            "text": "Styles created to help you wear your personality with confidence."
+            "title": "EXPRESSIVE",
+            "text": "Created to affirm your individuality"
           }
         },
         "feature_yG6U8R": {
           "type": "feature",
           "settings": {
-            "title": "TREND-LED STYLES",
-            "text": "Contemporary silhouettes inspired by culture, creativity, and daily life."
+            "title": "MODERN FITS",
+            "text": "Inspired by culture & creativity"
           }
         },
         "feature_hLwyTP": {
           "type": "feature",
           "settings": {
-            "title": "DESIGNED BY INDUSTRY VETERANS",
-            "text": "15+ years of experience in fashion, graphics, and product design."
+            "title": "DESIGN EXPERTISE",
+            "text": "15+ years in visuals & design"
           }
         }
       },
@@ -771,7 +771,7 @@
       "name": "Trust scroll strip",
       "settings": {
         "heading": "DESIGNED TO BE WORN. MADE TO BE LOVED.",
-        "subheading": "Show your strongest product advantages in a premium, scrollable strip that feels interactive and easy to explore.",
+        "subheading": "",
         "scroll_speed": 30,
         "section_bg": "#ffffff",
         "padding_top_desktop": 40,
@@ -1095,7 +1095,7 @@
       "name": "Lookbook",
       "settings": {
         "heading": "Lookbook",
-        "body_text": "Be bold, be you. Born from a belief that every woman deserves confidence in everything she wears",
+        "body_text": "A collection of moods, moments, and stories waiting to be worn.",
         "cta_text": "EXPLORE",
         "cta_url": "shopify://pages/lookbook",
         "section_font": "sans_serif_n4",
@@ -1213,37 +1213,46 @@
         "timeline_item_wxTw3A": {
           "type": "timeline_item",
           "settings": {
-            "year": "2017",
+            "year": "ORIGIN",
             "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
-            "title": "Designing for PowerHouses",
-            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p>Mercury Development and ChilliFresh have since worked together on three more projects – Pin.FM, a new, Amazon-cloud powered, social media app for the iPhone that allows users to view their content (photos, Tweets, check-ins, and so on) from social services like Facebook, Twitter, and Foursquare in one aggregated chronological timeline and post voice comments to it; jaja, the world's first pressure-sensitive stylus; and the AppTag Laser Blaster, which brings first-person shooter console gameplay to smartphones.<br/></p>"
+            "title": "It Started With A Feeling",
+            "text": "<p><em>We believed clothing could be more than something you throw on in the morning. It could reflect personality, spark conversations, and make everyday moments a little more interesting. Woblee was born from a desire to create pieces that feel as good as they look and help people express themselves without trying too hard.</em></p>"
           }
         },
         "timeline_item_Ufgcn7": {
           "type": "timeline_item",
           "settings": {
-            "year": "2017",
+            "year": "CRAFT",
             "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
-            "title": "Designing for PowerHouses",
-            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p></p>"
+            "title": "Quality Comes First",
+            "text": "<p><em>Every piece starts with carefully chosen fabrics and a focus on comfort that lasts beyond the first wear. From premium cotton and bio-washed finishes to thoughtful construction and durable details, we believe great products are built through hundreds of small decisions made well.</em></p>"
           }
         },
         "timeline_item_JVj43V": {
           "type": "timeline_item",
           "settings": {
-            "year": "2017",
+            "year": "DESIGN",
             "image": "shopify://shop_images/q5w00c72s70127860d5dwl150v22ij58.webp",
-            "title": "Designing for PowerHouses",
-            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
+            "title": "Where Ideas Come Alive",
+            "text": "<p><em>Our process starts with curiosity. A thought, a story, a moment, or sometimes just a sketch on a page. We take those ideas and shape them into graphics, fits, and collections that feel original, purposeful, and worth wearing. Nothing is added without a reason, and every detail has a role to play.</em></p>"
           }
         },
         "timeline_item_BCqJBC": {
           "type": "timeline_item",
           "settings": {
-            "year": "2017",
+            "year": "COMMUNITY",
             "image": "shopify://shop_images/drs2.webp",
-            "title": "Designing for PowerHouses",
-            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
+            "title": "Made For Real People",
+            "text": "<p><em>Woblee is for people who value originality over imitation and personality over perfection. Our community inspires what we create and reminds us why we started. Every piece is designed to become part of someone's story, not just another item in their wardrobe.</em></p>"
+          }
+        },
+        "timeline_item_L4FmA7": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "FUTURE",
+            "image": "shopify://shop_images/drs2.webp",
+            "title": "The Best Is Ahead",
+            "text": "<p><em>We're only getting started. There are more stories to tell, more ideas to explore, and more ways to push what Woblee can become. As we grow, our goal remains the same: create thoughtful products, stay true to our creative roots, and build a brand people genuinely connect with.</em></p>"
           }
         }
       },
@@ -1251,7 +1260,8 @@
         "timeline_item_wxTw3A",
         "timeline_item_Ufgcn7",
         "timeline_item_JVj43V",
-        "timeline_item_BCqJBC"
+        "timeline_item_BCqJBC",
+        "timeline_item_L4FmA7"
       ],
       "name": "Timeline tabs",
       "settings": {
