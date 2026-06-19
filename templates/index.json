@@ -1066,21 +1066,21 @@
           "type": "stat",
           "settings": {
             "stat_value": "DESIGN-LED",
-            "stat_label": " CREATED BY DESIGNERS"
+            "stat_label": "CREATED BY DESIGNERS"
           }
         },
         "stat_Pqzapj": {
           "type": "stat",
           "settings": {
             "stat_value": "STORY-DRIVEN",
-            "stat_label": " GRAPHICS WITH MEANING"
+            "stat_label": "GRAPHICS WITH MEANING"
           }
         },
         "stat_j3QiFA": {
           "type": "stat",
           "settings": {
             "stat_value": "LIMITED EDITIONS",
-            "stat_label": " MADE TO STAND OUT"
+            "stat_label": "MADE TO STAND OUT"
           }
         }
       },
