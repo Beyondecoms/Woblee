@@ -435,13 +435,13 @@
             "circle_bg": "#ffffff"
           }
         },
-        "category_6dU3Bg": {
+        "category_Fgx9N4": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Boxy.png",
-            "image_hover": "shopify://shop_images/Boxy-Blue.png",
-            "label": "Boxy",
-            "link": "shopify://collections/regular-tees-copy",
+            "image": "shopify://shop_images/Relaxed.png",
+            "image_hover": "shopify://shop_images/Relaxed-Blue.png",
+            "label": "Relaxed",
+            "link": "shopify://collections/relaxed-tees",
             "circle_bg": "#ffffff"
           }
         },
@@ -455,13 +455,13 @@
             "circle_bg": "#ffffff"
           }
         },
-        "category_Fgx9N4": {
+        "category_6dU3Bg": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Relaxed.png",
-            "image_hover": "shopify://shop_images/Relaxed-Blue.png",
-            "label": "Relaxed",
-            "link": "shopify://collections/relaxed-tees",
+            "image": "shopify://shop_images/Boxy.png",
+            "image_hover": "shopify://shop_images/Boxy-Blue.png",
+            "label": "Boxy",
+            "link": "shopify://collections/regular-tees-copy",
             "circle_bg": "#ffffff"
           }
         }
@@ -469,9 +469,9 @@
       "block_order": [
         "category_kzEbaF",
         "category_HapBiR",
-        "category_6dU3Bg",
+        "category_Fgx9N4",
         "category_LP6wDc",
-        "category_Fgx9N4"
+        "category_6dU3Bg"
       ],
       "name": "Custom Category Icons",
       "settings": {
