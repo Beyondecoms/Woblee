@@ -1250,7 +1250,7 @@
         "static_text_color": "#ffffff",
         "rotating_text_color": "#0c4168",
         "sub_text_color": "#0c4168",
-        "static_text_size_desktop": 40,
+        "static_text_size_desktop": 28,
         "rotating_text_size_desktop": 40,
         "sub_text_size_desktop": 14,
         "static_text_size_mobile": 24,
