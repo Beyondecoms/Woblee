@@ -103,10 +103,7 @@
   transform: translateY(110%);
 }
 
-.war-word--visible {
-  left: 50%;
-  transform: translateY(0);
-}
+
 
 .war-word--animating-in {
   left: 50%;
@@ -190,8 +187,8 @@
   letter-spacing: -0.02em;
 
   position: absolute;
-  left: 0;
-  transform: translateY(110%);
+  left: 50%;
+  transform: translate(-50%, 110%);
   opacity: 0;
   transition: none;
 }
@@ -227,21 +224,20 @@
 
 .war-word--enter {
   position: absolute;
-  transform: translateY(110%);
+  left: 50%;
+  transform: translate(-50%, 110%);
   opacity: 0;
 }
 
 .war-word--animating-in {
-  transform: translateY(0);
-  opacity: 1;
-  transition:
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.3s ease;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .war-word--animating-out {
-  transform: translateY(-110%);
-  opacity: 0;
+  left: 50%;
+  transform: translate(-50%, -110%);
+    opacity: 0;
   transition:
     transform 0.45s cubic-bezier(0.55, 0, 0.8, 0.45),
     opacity 0.3s ease;
@@ -315,7 +311,7 @@
   function sizeSlot() {
     const h = elA.offsetHeight || 52;
     slot.style.height = h + 'px';
-    slot.style.minWidth = Math.max(elA.offsetWidth, elB.offsetWidth) + 'px';
+  
   }
   sizeSlot();
 
@@ -337,8 +333,8 @@
     void inactiveEl.offsetWidth;
 
     /* Widen slot if new word is wider */
-    const newW = inactiveEl.scrollWidth;
-    const curW = activeEl.scrollWidth;
+    {% comment %} const newW = inactiveEl.scrollWidth;
+    const curW = activeEl.scrollWidth; {% endcomment %}
 
     /* Kick both animations simultaneously */
     activeEl.className  = 'war-word war-word--animating-out';
