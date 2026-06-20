@@ -44,9 +44,9 @@
 
   <div class="war-inner">
 
-    <span class="war-static">
+    {% comment %} <span class="war-static">
       {{ section.settings.static_text }}
-    </span>
+    </span> {% endcomment %}
 
     <div class="war-slot" aria-live="polite" aria-atomic="true">
 
@@ -338,12 +338,6 @@
       "type": "header",
       "content": "Content"
     },
-    {
-      "type": "text",
-      "id": "static_text",
-      "label": "Static text",
-      "default": "We are"
-    },
 {
   "type": "header",
   "content": "Design"
@@ -354,12 +348,7 @@
   "label": "Background Color",
   "default": "#F5C800"
 },
-{
-  "type": "color",
-  "id": "static_text_color",
-  "label": "Static Text Color (We are)",
-  "default": "#FFFFFF"
-},
+
 {
   "type": "color",
   "id": "rotating_text_color",
@@ -376,16 +365,6 @@
 {
   "type": "header",
   "content": "Desktop Font Sizes"
-},
-{
-  "type": "range",
-  "id": "static_text_size_desktop",
-  "label": "Static Text Size Desktop",
-  "min": 16,
-  "max": 120,
-  "step": 2,
-  "unit": "px",
-  "default": 52
 },
 {
   "type": "range",
@@ -412,16 +391,7 @@
   "type": "header",
   "content": "Mobile Font Sizes"
 },
-{
-  "type": "range",
-  "id": "static_text_size_mobile",
-  "label": "Static Text Size Mobile",
-  "min": 12,
-  "max": 80,
-  "step": 1,
-  "unit": "px",
-  "default": 28
-},
+
 {
   "type": "range",
   "id": "rotating_text_size_mobile",
@@ -447,15 +417,7 @@
   "type": "header",
   "content": "Desktop Font Weights"
 },
-{
-  "type": "range",
-  "id": "static_text_weight_desktop",
-  "label": "Static Text Weight Desktop",
-  "min": 100,
-  "max": 900,
-  "step": 100,
-  "default": 700
-},
+
 {
   "type": "range",
   "id": "rotating_text_weight_desktop",
@@ -479,15 +441,7 @@
   "type": "header",
   "content": "Mobile Font Weights"
 },
-{
-  "type": "range",
-  "id": "static_text_weight_mobile",
-  "label": "Static Text Weight Mobile",
-  "min": 100,
-  "max": 900,
-  "step": 100,
-  "default": 700
-},
+
 {
   "type": "range",
   "id": "rotating_text_weight_mobile",
