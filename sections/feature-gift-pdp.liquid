@@ -92,14 +92,30 @@
 
 .features-slider .splide__slide {
   height: auto;
-  border-left: 0.5px solid gray;
+  position: relative;
+  border-left: none !important;
+  border-right: none !important;
 }
-@media only screen and (max-width: 768px) {
-.features-slider .splide__slide {
 
-  {% comment %} border-left: 0px solid rgb(255, 255, 255); {% endcomment %}
+.features-slider .splide__slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -15px; /* Centered in the 30px gap */
+  width: 0.5px;
+  background-color: var(--wb-color-grey, #626261);
 }
-    }
+
+.features-slider .splide__slide:first-child::before {
+  display: none !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .features-slider .splide__slide {
+    /* No border on slide element directly */
+  }
+}
 
 /* Arrows */
 .features-slider .splide__arrows {

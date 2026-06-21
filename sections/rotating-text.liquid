@@ -1,7 +1,6 @@
 {% comment %}
   ============================================================
   WE ARE — Rotating Text Banner Section
-  By Mime360
   ============================================================
 {% endcomment %}
 
@@ -79,51 +78,8 @@
   CSS
 ═══════════════════════════════════════ -->
 
-
 <style>
 .war-section {
-  text-align: center;
-}
-
-.war-inner {
-  width: 100%;
-  justify-content: center;
-  text-align: center;
-}
-
-.war-slot {
-  width: 100%;
-  justify-content: center;
-  text-align: center;
-}
-
-.war-word {
-  text-align: center;
-  left: 50%;
-  transform: translateY(110%);
-}
-
-.war-word--visible {
-  left: 50%;
-  transform: translateY(0);
-}
-
-.war-word--animating-in {
-  left: 50%;
-  transform: translateY(0);
-}
-
-.war-word--animating-out {
-  left: 50%;
-  transform: translateY(-110%);
-}
-
-.war-sub {
-  width: 100%;
-  text-align: center;
-}
-
-  .war-section {
   background: var(--war-bg);
   padding-top: var(--war-pt);
   padding-bottom: var(--war-pb);
@@ -156,6 +112,7 @@
   justify-content: center;
   gap: 16px;
   flex-wrap: nowrap;
+  width: 100%;
 }
 
 .war-slot {
@@ -163,13 +120,13 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  min-width: 40px;
   justify-content: center;
+  width: 100%;
 }
 
 /* ==========================
    DESKTOP TYPOGRAPHY
-========================== */
+ ========================== */
 
 .war-static {
   font-family: var(--wb-font-heading, 'Helvetica Neue', sans-serif);
@@ -190,10 +147,36 @@
   letter-spacing: -0.02em;
 
   position: absolute;
-  left: 0;
-  transform: translateY(110%);
+  left: 50%;
+  transform: translateX(-50%) translateY(110%);
   opacity: 0;
   transition: none;
+}
+
+.war-word--visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.war-word--enter {
+  transform: translateX(-50%) translateY(110%);
+  opacity: 0;
+}
+
+.war-word--animating-in {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+.war-word--animating-out {
+  transform: translateX(-50%) translateY(-110%);
+  opacity: 0;
+  transition:
+    transform 0.45s cubic-bezier(0.55, 0, 0.8, 0.45),
+    opacity 0.3s ease;
 }
 
 .war-sub {
@@ -216,35 +199,6 @@
   min-height: 1.4em;
 
   transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-/* Animation States */
-.war-word--visible {
-  position: relative;
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.war-word--enter {
-  position: absolute;
-  transform: translateY(110%);
-  opacity: 0;
-}
-
-.war-word--animating-in {
-  transform: translateY(0);
-  opacity: 1;
-  transition:
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.3s ease;
-}
-
-.war-word--animating-out {
-  transform: translateY(-110%);
-  opacity: 0;
-  transition:
-    transform 0.45s cubic-bezier(0.55, 0, 0.8, 0.45),
-    opacity 0.3s ease;
 }
 
 .war-sub.war-sub--hiding {
@@ -313,9 +267,12 @@
 
   /* Size the slot to match word height so it never collapses */
   function sizeSlot() {
-    const h = elA.offsetHeight || 52;
+    // Temporarily make both absolute words visible to measure
+    const h = Math.max(elA.offsetHeight, elB.offsetHeight) || 52;
+    const wA = elA.scrollWidth || 0;
+    const wB = elB.scrollWidth || 0;
     slot.style.height = h + 'px';
-    slot.style.minWidth = Math.max(elA.offsetWidth, elB.offsetWidth) + 'px';
+    slot.style.minWidth = Math.max(wA, wB) + 'px';
   }
   sizeSlot();
 
