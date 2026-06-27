@@ -94,6 +94,20 @@
       </div>
     </div>
 
+
+
+        {% if section.settings.enable_shop_all_button %}
+      
+      <a href="{% if section.settings.shop_all_button_link != blank %}{{ section.settings.shop_all_button_link }}{% else %}#{% endif %}"
+        class="collection-carousel-pro__shop-all-btn collection-carousel-pro__shop-all-btn--mobile-below">
+        {{ section.settings.shop_all_button_text }}
+      </a>
+    {% endif %}
+
+
+
+
+
   </div>
 
 </section>
