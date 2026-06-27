@@ -495,7 +495,7 @@
         "shop_all_button_margin_top": 20,
         "shop_all_button_margin_bottom": 0,
         "section_font": "sans_serif_n4",
-        "background_color": "#F0EFEF",
+        "background_color": "#f0efef",
         "small_heading_color": "#21f010",
         "main_heading_color": "#0c4168",
         "description_color": "#4f5d6b",
@@ -525,8 +525,8 @@
         "arrow_size": 50,
         "scrollbar_track": "#eaeaea",
         "scrollbar_thumb": "#0c4168",
-        "padding_top": 60,
-        "padding_bottom": 60,
+        "padding_top": 20,
+        "padding_bottom": 20,
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
       }
