@@ -374,7 +374,7 @@
         "enable_shop_all_button": true,
         "shop_all_button_text": "SHOP ALL",
         "shop_all_button_link": "",
-        "shop_all_button_width_desktop": 150,
+        "shop_all_button_width_desktop": 140,
         "shop_all_button_height_desktop": 40,
         "shop_all_button_width_mobile": 100,
         "shop_all_button_height_mobile": 40,
