@@ -416,17 +416,17 @@ const splide = new Splide(splideElement, {
   
 
   // Prevent links from blocking drag
-  splide.on('drag', function () {
+  {% comment %} splide.on('drag', function () {
     section.querySelectorAll('.collection-carousel-pro__card').forEach(function (link) {
       link.style.pointerEvents = 'none';
     });
-  });
-
+  }); {% endcomment %}
+{% comment %} 
   splide.on('dragged', function () {
     section.querySelectorAll('.collection-carousel-pro__card').forEach(function (link) {
       link.style.pointerEvents = 'auto';
     });
-  });
+  }); {% endcomment %}
 
 });
 </script>
