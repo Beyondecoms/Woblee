@@ -303,7 +303,7 @@
         "card_hjY9gV": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/807aa052ae6e876691f2007ba68eea30.webp",
+            "image": "shopify://shop_images/New_Arriv_1.png",
             "title": "",
             "link": "shopify://products/strive-to-conquer-mens-graphic-tee"
           }
@@ -311,7 +311,7 @@
         "card_rxyi84": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/PRDGY_Flying_Bull_Back_Oversized_T-shirt.webp",
+            "image": "shopify://shop_images/New_Arri_2.png",
             "title": "",
             "link": ""
           }
@@ -319,7 +319,7 @@
         "card_WDQtQc": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/8_39eafd6b-af28-4049-b163-26dea5a977ee.webp",
+            "image": "shopify://shop_images/New_Arri_3.png",
             "title": "",
             "link": ""
           }
@@ -327,7 +327,7 @@
         "card_8ew7Bf": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/206_f40e1f60-9d03-4fcd-8ebe-4ad14798c9c5.webp",
+            "image": "shopify://shop_images/New_Arri_4.png",
             "title": "",
             "link": ""
           }
@@ -335,7 +335,7 @@
         "card_d3fLwH": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/Screenshot2026-06-05at16.36.59.png",
+            "image": "shopify://shop_images/1.png",
             "title": "",
             "link": ""
           }
@@ -343,7 +343,15 @@
         "card_tM8P6i": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/Screenshot2026-06-05at16.37.50.png",
+            "image": "shopify://shop_images/2.png",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_MNgmtT": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/3.png",
             "title": "",
             "link": ""
           }
@@ -355,7 +363,8 @@
         "card_WDQtQc",
         "card_8ew7Bf",
         "card_d3fLwH",
-        "card_tM8P6i"
+        "card_tM8P6i",
+        "card_MNgmtT"
       ],
       "name": "Collection Carousel Pro",
       "settings": {
