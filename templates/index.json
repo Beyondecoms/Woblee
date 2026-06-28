@@ -15,9 +15,9 @@
         "slide_jWfnFU": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_nn8na4nn8na4nn8n.png",
+            "image": "shopify://shop_images/Banner_1.png",
             "image_focal_point": "center center",
-            "mobile_image": "shopify://shop_images/PRDGY_Flying_Bull_Back_Oversized_T-shirt.webp",
+            "mobile_image": "shopify://shop_images/Banner_1_mob.png",
             "mobile_image_focal_point": "center center",
             "video_url_mp4": "",
             "video_url_webm": "",
@@ -45,9 +45,9 @@
         "slide_B6rmj8": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_nn8na4nn8na4nn8n.png",
+            "image": "shopify://shop_images/Banner_2_web.png",
             "image_focal_point": "center center",
-            "mobile_image": "shopify://shop_images/807aa052ae6e876691f2007ba68eea30.webp",
+            "mobile_image": "shopify://shop_images/Banner_2_mob.png",
             "mobile_image_focal_point": "center center",
             "video_url_mp4": "",
             "video_url_webm": "",
@@ -173,7 +173,7 @@
         "collection_item_3c4Dti": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/206_f40e1f60-9d03-4fcd-8ebe-4ad14798c9c5.webp",
+            "image": "shopify://shop_images/Artistic.png",
             "heading": "ARTISTIC",
             "card_bg_override": "",
             "heading_color_override": "",
@@ -187,7 +187,7 @@
         "collection_item_W9xTnk": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/PRDGY_Flying_Bull_Back_Oversized_T-shirt.webp",
+            "image": "shopify://shop_images/Graphic.png",
             "heading": "GRAPHIC",
             "card_bg_override": "",
             "heading_color_override": "",
@@ -201,7 +201,7 @@
         "collection_item_EGfkLq": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
+            "image": "shopify://shop_images/Essentials.png",
             "heading": "ESSENTIALS",
             "card_bg_override": "",
             "heading_color_override": "",
@@ -215,7 +215,7 @@
         "collection_item_GJtwzb": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/8_39eafd6b-af28-4049-b163-26dea5a977ee.webp",
+            "image": "shopify://shop_images/Statement_-_replace_smart_casual_with_this.png",
             "heading": "SMART CASUAL",
             "card_bg_override": "",
             "heading_color_override": "",
