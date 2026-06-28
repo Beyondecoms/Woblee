@@ -1,8 +1,5 @@
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css"
->
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.pkgd.min.js" defer></script>
 
 <section
   class="collection-carousel-pro"
@@ -28,6 +25,8 @@
     --padding-bottom: {{ section.settings.padding_bottom }}px;
     --padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
     --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --card-height-desktop: {{ section.settings.card_height_desktop }}px;
+    --card-height-mobile: {{ section.settings.card_height_mobile }}px;
     --shop-all-btn-width-desktop: {{ section.settings.shop_all_button_width_desktop }}px;
     --shop-all-btn-height-desktop: {{ section.settings.shop_all_button_height_desktop }}px;
     --shop-all-btn-width-mobile: {{ section.settings.shop_all_button_width_mobile }}px;
@@ -41,7 +40,6 @@
     --shop-all-btn-margin-bottom: {{ section.settings.shop_all_button_margin_bottom }}px;
   "
 >
-
   <div class="collection-carousel-pro__container">
 
     <div class="collection-carousel-pro__content">
@@ -55,63 +53,56 @@
         <div class="collection-carousel-pro__description">{{ section.settings.description }}</div>
       {% endif %}
       {% if section.settings.enable_shop_all_button %}
-        
-          class="collection-carousel-pro__shop-all-btn best-seller-shop-all-btn"
-          href="{% if section.settings.shop_all_button_link != blank %}{{ section.settings.shop_all_button_link }}{% else %}#{% endif %}"
-        >
+        <a class="collection-carousel-pro__shop-all-btn collection-carousel-pro__shop-all-btn--desktop"
+          href="{% if section.settings.shop_all_button_link != blank %}{{ section.settings.shop_all_button_link }}{% else %}#{% endif %}">
           {{ section.settings.shop_all_button_text }}
         </a>
       {% endif %}
     </div>
 
     <div class="collection-carousel-pro__slider-wrapper">
-      <div class="splide collection-carousel-splide">
-        <div class="splide__track">
-          <ul class="splide__list">
-            {% for block in section.blocks %}
-              {% if block.type == 'card' %}
-                <li class="splide__slide" {{ block.shopify_attributes }}>
-                  <div class="collection-carousel-pro__card">
-                    {% if block.settings.image != blank %}
-                      {% if forloop.index0 < 2 %}
-                        {{ block.settings.image | image_url: width: 1200 | image_tag:
-                          loading: 'eager',
-                          fetchpriority: 'high',
-                          class: 'collection-carousel-pro__image',
-                          widths: '400, 600, 800, 1200',
-                          sizes: '(max-width: 767px) 90vw, 50vw'
-                        }}
-                      {% else %}
-                        {{ block.settings.image | image_url: width: 1200 | image_tag:
-                          loading: 'lazy',
-                          class: 'collection-carousel-pro__image',
-                          widths: '400, 600, 800, 1200',
-                          sizes: '(max-width: 767px) 90vw, 50vw'
-                        }}
-                      {% endif %}
-                    {% endif %}
-                    <div class="collection-carousel-pro__overlay"></div>
-                    {% if block.settings.title != blank %}
-                      <div class="collection-carousel-pro__title">{{ block.settings.title }}</div>
-                    {% endif %}
-                  </div>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
+      <div class="collection-carousel-flickity" id="flickity-{{ section.id }}">
+        {% for block in section.blocks %}
+          {% if block.type == 'card' %}
+            <div class="collection-carousel-pro__slide" {{ block.shopify_attributes }}>
+              <div class="collection-carousel-pro__card">
+                {% if block.settings.image != blank %}
+                  {% if forloop.index0 < 3 %}
+                    {{ block.settings.image | image_url: width: 1200 | image_tag:
+                      loading: 'eager',
+                      fetchpriority: 'high',
+                      class: 'collection-carousel-pro__image',
+                      widths: '400, 600, 800, 1200',
+                      sizes: '(max-width: 767px) 90vw, 50vw'
+                    }}
+                  {% else %}
+                    {{ block.settings.image | image_url: width: 1200 | image_tag:
+                      loading: 'lazy',
+                      class: 'collection-carousel-pro__image',
+                      widths: '400, 600, 800, 1200',
+                      sizes: '(max-width: 767px) 90vw, 50vw'
+                    }}
+                  {% endif %}
+                {% endif %}
+                <div class="collection-carousel-pro__overlay"></div>
+                {% if block.settings.title != blank %}
+                  <div class="collection-carousel-pro__title">{{ block.settings.title }}</div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
 
     {% if section.settings.enable_shop_all_button %}
       <a href="{% if section.settings.shop_all_button_link != blank %}{{ section.settings.shop_all_button_link }}{% else %}#{% endif %}"
-        class="collection-carousel-pro__shop-all-btn collection-carousel-pro__shop-all-btn--mobile-below">
+        class="collection-carousel-pro__shop-all-btn collection-carousel-pro__shop-all-btn--mobile">
         {{ section.settings.shop_all_button_text }}
       </a>
     {% endif %}
 
   </div>
-
 </section>
 
 {% style %}
@@ -172,34 +163,34 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--shop-all-btn-width-desktop);
   max-width: 100%;
-  height: var(--shop-all-btn-height-desktop);
-  margin-top: var(--shop-all-btn-margin-top);
-  margin-bottom: var(--shop-all-btn-margin-bottom);
   padding: 0 16px;
   border: var(--shop-all-btn-border-width) solid var(--shop-all-btn-border-color);
   border-radius: var(--shop-all-btn-radius);
   background: var(--shop-all-btn-bg-color);
   color: var(--shop-all-btn-text-color);
   font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
-  font-size: var(--shop-all-btn-font-size-desktop);
   font-weight: var(--shop-all-btn-font-weight);
   line-height: 1;
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
-.collection-carousel-pro__shop-all-btn:hover {
-  opacity: 0.9;
+.collection-carousel-pro__shop-all-btn:hover { opacity: 0.9; }
+
+.collection-carousel-pro__shop-all-btn--desktop {
+  width: var(--shop-all-btn-width-desktop);
+  height: var(--shop-all-btn-height-desktop);
+  font-size: var(--shop-all-btn-font-size-desktop);
+  margin-top: var(--shop-all-btn-margin-top);
+  margin-bottom: var(--shop-all-btn-margin-bottom);
 }
 
-@media screen and (min-width: 768px) {
-  a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--mobile-below {
-    display: none;
-  }
+.collection-carousel-pro__shop-all-btn--mobile {
+  display: none;
 }
 
 .collection-carousel-pro__slider-wrapper {
@@ -207,24 +198,24 @@
   min-width: 0;
 }
 
-.collection-carousel-splide {
-  width: 100%;
+/* Flickity base */
+.collection-carousel-flickity {
+  outline: none;
+}
+
+.collection-carousel-pro__slide {
+  width: 48%;
+  margin-right: var(--card-gap);
 }
 
 .collection-carousel-pro__card {
   position: relative;
-  display: block;
   width: 100%;
-  height: {{ section.settings.card_height_desktop }}px;
+  height: var(--card-height-desktop);
   border-radius: var(--card-radius);
   overflow: hidden;
   cursor: pointer;
-  text-decoration: none;
-  color: inherit;
   -webkit-tap-highlight-color: transparent;
-  touch-action: pan-x;
-  -webkit-user-select: none;
-  user-select: none;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;
@@ -236,12 +227,12 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform .5s ease;
   pointer-events: none;
   -webkit-user-drag: none;
-  will-change: transform;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+  transition: transform 0.5s ease;
+  will-change: transform;
 }
 
 .collection-carousel-pro__card:hover .collection-carousel-pro__image {
@@ -275,42 +266,31 @@
   pointer-events: none;
 }
 
-.collection-carousel-splide .splide__slide {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.collection-carousel-splide .splide__arrow {
+/* Flickity arrow overrides */
+.collection-carousel-flickity .flickity-button {
+  background: var(--arrow-bg);
   width: var(--arrow-size);
   height: var(--arrow-size);
-  background: var(--arrow-bg);
-  opacity: 1;
 }
 
-.collection-carousel-splide .splide__arrow svg {
+.collection-carousel-flickity .flickity-button-icon {
   fill: var(--arrow-color);
 }
 
-.collection-carousel-splide .splide__pagination {
-  bottom: -25px;
+.collection-carousel-flickity .flickity-button:focus {
+  box-shadow: none;
 }
 
-.collection-carousel-splide .splide__pagination__page {
-  width: 8px;
-  height: 8px;
+.collection-carousel-flickity .flickity-page-dots {
+  bottom: -28px;
 }
 
+/* ── MOBILE ── */
 @media screen and (max-width: 767px) {
 
   .collection-carousel-pro {
     padding-top: var(--padding-top-mobile);
     padding-bottom: var(--padding-bottom-mobile);
-  }
-
-  .collection-carousel-pro__content .collection-carousel-pro__shop-all-btn {
-    display: none !important;
   }
 
   .collection-carousel-pro__container {
@@ -333,14 +313,6 @@
     font-size: {{ section.settings.description_size_mobile }}px;
   }
 
-  .collection-carousel-pro__shop-all-btn {
-    width: var(--shop-all-btn-width-mobile);
-    height: var(--shop-all-btn-height-mobile);
-    font-size: var(--shop-all-btn-font-size-mobile);
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .collection-carousel-pro__eyebrow {
     font-size: {{ section.settings.small_heading_size_mobile }}px;
   }
@@ -350,14 +322,30 @@
     margin-bottom: 15px;
   }
 
+  .collection-carousel-pro__shop-all-btn--desktop {
+    display: none !important;
+  }
+
+  .collection-carousel-pro__shop-all-btn--mobile {
+    display: inline-flex;
+    width: var(--shop-all-btn-width-mobile);
+    height: var(--shop-all-btn-height-mobile);
+    font-size: var(--shop-all-btn-font-size-mobile);
+    margin: var(--shop-all-btn-margin-top) auto var(--shop-all-btn-margin-bottom);
+  }
+
   .collection-carousel-pro__slider-wrapper {
     width: 100%;
     padding-left: 15px;
-    overflow: hidden;
+  }
+
+  .collection-carousel-pro__slide {
+    width: 80%;
+    margin-right: 12px;
   }
 
   .collection-carousel-pro__card {
-    height: {{ section.settings.card_height_mobile }}px;
+    height: var(--card-height-mobile);
   }
 
   .collection-carousel-pro__title {
@@ -366,63 +354,55 @@
     bottom: 20px;
   }
 
-  .collection-carousel-splide .splide__pagination {
+  .collection-carousel-flickity .flickity-page-dots {
     display: flex;
   }
-}
-
-.collection-carousel-splide,
-.collection-carousel-splide .splide__track,
-.collection-carousel-splide .splide__list {
-  touch-action: pan-x !important;
 }
 
 {% endstyle %}
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+(function () {
+  function initCarousel() {
+    var section = document.getElementById('collection-carousel-{{ section.id }}');
+    if (!section) return;
 
-  const section = document.getElementById('collection-carousel-{{ section.id }}');
-  if (!section) return;
+    var carousel = section.querySelector('.collection-carousel-flickity');
+    if (!carousel) return;
 
-  const splideElement = section.querySelector('.collection-carousel-splide');
-  if (!splideElement) return;
+    if (typeof Flickity === 'undefined') {
+      setTimeout(initCarousel, 100);
+      return;
+    }
 
-  if (typeof Splide === 'undefined') {
-    console.error('Splide not loaded');
-    return;
+    if (carousel._flickity) return;
+
+    var isMobile = window.innerWidth <= 767;
+
+    new Flickity(carousel, {
+      cellAlign: 'left',
+      contain: false,
+      wrapAround: true,
+      groupCells: false,
+      autoPlay: false,
+      pageDots: isMobile,
+      prevNextButtons: true,
+      draggable: true,
+      freeScroll: false,
+      friction: 0.28,
+      selectedAttraction: 0.025,
+      imagesLoaded: true,
+      lazyLoad: 2,
+      adaptiveHeight: false
+    });
   }
 
-  if (splideElement.splide) return;
-
-  const splide = new Splide(splideElement, {
-    type: 'loop',
-    perPage: 2,
-    perMove: 1,
-    gap: '{{ section.settings.card_gap }}px',
-    arrows: true,
-    pagination: false,
-    drag: true,
-    swipe: true,
-    trimSpace: false,
-    waitForTransition: true,
-    lazyLoad: 'nearby',
-    breakpoints: {
-      991: {
-        perPage: 1.5,
-      },
-      767: {
-        perPage: 1.1,
-        gap: '12px',
-        drag: true,
-        swipe: true,
-      }
-    }
-  });
-
-  splide.mount();
-
-});
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousel);
+  } else {
+    initCarousel();
+  }
+})();
 </script>
 
 {% schema %}
