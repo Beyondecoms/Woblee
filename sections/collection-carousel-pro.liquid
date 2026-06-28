@@ -386,29 +386,32 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 const splide = new Splide(splideElement, {
-  type: 'loop',
-  perPage: 2,
-  perMove: 1,
-  gap: '{{ section.settings.card_gap }}px',
+    type: 'loop',
+    perPage: 2,
+    perMove: 1,
 
-  arrows: true,
-  pagination: false,
+    drag: 'free',
+    snap: true,
 
-  drag: true,
-  swipe: true,
-  // speed: 600,
+    speed: 400,
 
-  breakpoints: {
-    991: {
-      perPage: 1.5,
-    },
-    767: {
-      perPage: 1.1,
-      gap: '12px',
-      drag: true,
-      swipe: true,
+    updateOnMove: true,
+
+    flickPower: 150,
+    flickMaxPages: 1,
+
+    arrows: true,
+    pagination: false,
+
+    breakpoints: {
+        991: {
+            perPage: 1.5
+        },
+        767: {
+            perPage: 1.1,
+            gap: '12px'
+        }
     }
-  }
 });
 
 
