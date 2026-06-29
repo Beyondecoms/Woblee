@@ -302,14 +302,16 @@
       "blocks": {
         "card_hjY9gV": {
           "type": "card",
+          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/New_Arriv_1.png",
+            "image": "shopify://shop_images/1.png",
             "title": "",
             "link": "shopify://products/strive-to-conquer-mens-graphic-tee"
           }
         },
         "card_rxyi84": {
           "type": "card",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/New_Arri_2.png",
             "title": "",
@@ -318,6 +320,7 @@
         },
         "card_WDQtQc": {
           "type": "card",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/New_Arri_3.png",
             "title": "",
@@ -326,6 +329,7 @@
         },
         "card_8ew7Bf": {
           "type": "card",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/New_Arri_4.png",
             "title": "",
